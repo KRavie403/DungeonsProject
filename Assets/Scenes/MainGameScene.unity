@@ -4064,7 +4064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3974127413309999574, guid: 21278256c7aa9ab4da388250760d3466, type: 3}
       propertyPath: m_Name
-      value: Queen Black
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21278256c7aa9ab4da388250760d3466, type: 3}
@@ -7387,6 +7387,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 494002, guid: 06db9a7ddd8a5704684a6469cf4d5140, type: 3}
   m_PrefabInstance: {fileID: 1676501633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1705864128 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3974127413309999574, guid: 21278256c7aa9ab4da388250760d3466, type: 3}
+  m_PrefabInstance: {fileID: 946876047}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1705864131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705864128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a4a9c85f82832046b8f3ba3c653e873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActionPoint: 8
+  AttackPower: 10
+  DeffencePower: 10
+  MaxHP: 100
+--- !u!114 &1705864132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705864128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a24f5e21d79a86f46ad862afe7937c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1708387132
 PrefabInstance:
   m_ObjectHideFlags: 0
