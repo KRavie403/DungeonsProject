@@ -75,7 +75,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - _ph: 64
-    - _pixels: 15000
+    - _pixels: 17000
     - _pw: 64
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
