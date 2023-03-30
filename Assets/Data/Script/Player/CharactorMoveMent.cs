@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharactorMoveMent : CharactorProperty
 {
-    protected void MoveToTile(Transform target)
+    protected void MoveToTile(Vector3 target)
     {
         StartCoroutine(MovingToTile(target));
     }
@@ -23,8 +23,9 @@ public class CharactorMoveMent : CharactorProperty
     {
 
     }
-    IEnumerator MovingToTile(Transform target)
+    IEnumerator MovingToTile(Vector3 target)
     {
+        transform.position = target;
         yield return null;
     }
 

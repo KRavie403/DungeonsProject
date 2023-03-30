@@ -2,13 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
+
 public class CharactorProperty : MonoBehaviour
 {
     public int ActionPoint = 8;
     public float AttackPower = 10.0f;
     public float DeffencePower = 10.0f;
     public float MaxHP = 100.0f;
+    public JOB_CLASS jclass;
+    public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
+
+    public GameBoard GameMapManger = null;
+
 
     protected float curHP
     {

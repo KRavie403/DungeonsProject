@@ -10,11 +10,11 @@ public class Player : CharactorMoveMent
     }
 
     STATE _curState = STATE.CREATE;
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameMapManger = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameBoard>();
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class Player : CharactorMoveMent
     {
         _curState = STATE.IDLE;
     }
-    public void OnMove(Transform tile)
+    public void OnMove(Vector3 tile)
     {
         MoveToTile(tile);
     }
