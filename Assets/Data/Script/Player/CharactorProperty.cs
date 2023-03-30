@@ -15,7 +15,7 @@ public class CharactorProperty : MonoBehaviour
     float _curHP = -100.0f;
 
     public GameBoard GameMapManger = null;
-
+        
 
     protected float curHP
     {
