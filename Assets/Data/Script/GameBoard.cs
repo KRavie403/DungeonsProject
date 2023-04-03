@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +7,8 @@ public class GameBoard : MonoBehaviour
     public int rows = 10;
     public int columns = 10;
     public int scale = 1;
-    public GameObject tilePrefab;
+
+    public Material tileMat;
     public GameObject[,] tiles;
     public Vector3 LBLocation = new Vector3(0, 0, 0);
 
@@ -18,30 +18,54 @@ public class GameBoard : MonoBehaviour
     //public Transform[] _MapTiles = null;
     private void Awake()
     {
-        tiles = new GameObject[columns, rows];
 
-        if (tilePrefab)
-            GenerateTiles();
+        GenerateAllTiles(1, columns, rows);
 
         Players = new List<GameObject>();
     }
 
 
-    void GenerateTiles()
+    void GenerateAllTiles(float tileSize, int tileCount_X, int tileCount_Y)
     {
-        for(int i = 0; i < columns; i++)
+        tiles = new GameObject[tileCount_X, tileCount_Y];
+
+        Debug.Log("Generating All Tiles");
+        for (int x = 0; x < tileCount_X; x++)
         {
-            for(int j=0;j<rows; j++)
+            for (int y = 0; y < tileCount_Y; y++)
             {
-                GameObject obj = Instantiate(tilePrefab, new Vector3 (LBLocation.x + scale*i, LBLocation.y, LBLocation.z + scale *j), Quaternion.identity);
-                obj.transform.SetParent(gameObject.transform);
-                obj.GetComponent<TileProperty>().x_pos = i;
-                obj.GetComponent<TileProperty>().y_pos = j;
-                tiles[i, j] = obj;
+                tiles[x, y] = GenerateSingleTile(tileSize, x, y);
                 //obj.SetActive(false);
             }
         }
     }
+
+    private GameObject GenerateSingleTile(float tileSize, int x, int y)
+    {
+        Debug.Log("Generating Si Tiles");
+
+        GameObject tile = new GameObject(string.Format("X : {0}, Y:{1}", x, y));
+        tile.transform.parent = gameObject.transform;
+        tile.layer = 3;
+        Mesh mesh = new Mesh();
+        tile.AddComponent<MeshFilter>().mesh = mesh;
+        tile.AddComponent<MeshRenderer>().material = tileMat;
+
+        Vector3[] vertices = new Vector3[4];
+        vertices[0] = new Vector3(x * tileSize, 0.1f, y * tileSize);
+        vertices[1] = new Vector3(x * tileSize, 0.1f, (y+1) * tileSize);
+        vertices[2] = new Vector3((x+1) * tileSize, 0.1f, y * tileSize);
+        vertices[3] = new Vector3((x+1) * tileSize, 0.1f, (y+1) * tileSize);
+        int[] tris = new int[] { 0, 1, 2, 1, 3, 2 };
+        mesh.vertices = vertices;
+        mesh.triangles = tris;
+
+        tile.AddComponent<BoxCollider>();
+
+        return tile;
+        //obj.SetActive(false);
+    }
+   
     void Init()
     {
         foreach (GameObject obj in tiles)
