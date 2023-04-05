@@ -39,7 +39,6 @@ public class GameBoard : MonoBehaviour
             }
         }
     }
-
     private GameObject GenerateSingleTile(float tileSize, int x, int y)
     {
         Debug.Log("Generating Si Tiles");
@@ -65,27 +64,28 @@ public class GameBoard : MonoBehaviour
         return tile;
         //obj.SetActive(false);
     }
-   
     void Init()
     {
         foreach (GameObject obj in tiles)
             obj.GetComponent<TileProperty>().isVisited = -1;
 
     }
-
     void VisitedTile(int X, int Y)
     {
         tiles[X, Y].GetComponent<TileProperty>().isVisited = 0;
     }
 
-    void Show()
+    public Vector2Int GetTileIndex(GameObject hitInfo)
     {
-        for (int i = 0; i < columns; i++)
+        for(int x=0;x< columns; x++)
         {
-            for (int j = 0; j < rows; j++)
-            {
-                tiles[i, j].SetActive(true);
+            for(int y = 0; y < rows; y ++) {
+                if (tiles[x, y] == hitInfo)
+                    return new Vector2Int(x, y);
             }
         }
+        return -Vector2Int.one;
     }
+   
+
 }
