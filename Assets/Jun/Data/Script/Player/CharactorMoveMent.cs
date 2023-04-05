@@ -6,7 +6,9 @@ public class CharactorMoveMent : CharactorProperty
 {
     protected void MoveToTile(Vector3 target)
     {
-        StartCoroutine(MovingToTile(target));
+        transform.Translate(target, Space.World);
+
+        // StartCoroutine(MovingToTile(target));
     }
 
     void GettingItem()
@@ -25,7 +27,7 @@ public class CharactorMoveMent : CharactorProperty
     }
     IEnumerator MovingToTile(Vector3 target)
     {
-        transform.position = target;
+        transform.Translate(target, Space.World);
         yield return null;
     }
 

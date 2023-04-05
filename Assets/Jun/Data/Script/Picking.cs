@@ -11,6 +11,8 @@ public class Picking : MonoBehaviour
 
     private GameBoard GB = null;
     private Vector2Int currentHover;
+
+    private Vector3 bounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,22 +36,20 @@ public class Picking : MonoBehaviour
                 }
 
             }
-            else
+            Vector2Int hitPos = GB.GetTileIndex(hit.transform.gameObject);
+            if (currentHover == -Vector2Int.one)
             {
-                //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
-                Vector2Int hitPos = GB.GetTileIndex(hit.transform.gameObject);
-                if (currentHover == -Vector2Int.one)
-                {
-                    currentHover = hitPos;
-                    GB.tiles[hitPos.x, hitPos.y].layer = 8;
-                }
-                if (currentHover != hitPos)
-                {
-                    GB.tiles[currentHover.x, currentHover.y].layer = 3;
-                    currentHover = hitPos;
-                    GB.tiles[hitPos.x, hitPos.y].layer = 8;
-                }
+                currentHover = hitPos;
+                GB.tiles[hitPos.x, hitPos.y].layer = 8;
             }
+
+            if (currentHover != hitPos)
+            {
+                GB.tiles[currentHover.x, currentHover.y].layer = 3;
+                currentHover = hitPos;
+                GB.tiles[hitPos.x, hitPos.y].layer = 8;
+            }
+
         }
         else
         {

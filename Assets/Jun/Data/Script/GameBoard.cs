@@ -8,9 +8,7 @@ public class GameBoard : MonoBehaviour
     public int columns = 10;
     public int scale = 1;
 
-    public Material tileMat;
-    public Material HoveringtileMat;
-    public Material SelectedtileMat;
+    [SerializeField]public Material tileMat;
 
     public GameObject[,] tiles;
     public Vector3 LBLocation = new Vector3(0, 0, 0);

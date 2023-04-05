@@ -10,6 +10,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@3.0.18/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="2NdtfEWx8oldiQwZk5j7satSevR" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -35,6 +38,7 @@
       <workItem from="1680428087347" duration="599000" />
       <workItem from="1680432948631" duration="17000" />
       <workItem from="1680445703631" duration="598000" />
+      <workItem from="1680686028102" duration="2581000" />
     </task>
     <servers />
   </component>
