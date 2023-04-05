@@ -29,6 +29,7 @@ public class Picking : MonoBehaviour
             {
                 if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
                 {
+                    Debug.Log($"Hit Layer : {hit.transform.gameObject.layer}");
                     clickAction?.Invoke(hit.transform.position);
                 }
 
