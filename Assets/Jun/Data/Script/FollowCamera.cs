@@ -26,12 +26,13 @@ public class FollowCamera : MonoBehaviour
         targetDist = Dist = dir.magnitude;
         dir.Normalize();
         dir = transform.InverseTransformDirection(dir);
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        transform.position = myTarget.position + Quaternion.Euler(MinAngle, 0, 0) * dir * Dist;
     }
 
     Quaternion rotX = Quaternion.identity, rotY = Quaternion.identity;
