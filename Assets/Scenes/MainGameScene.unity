@@ -196,6 +196,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a97ac3e626f6ff4499bc837d2b4d43dd, type: 3}
+--- !u!1 &2610588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2005721182135651384, guid: 7e34ba573c6679e458f679a6c05db607, type: 3}
+  m_PrefabInstance: {fileID: 454053379}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2610592
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610588}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2205999, y: 3.8463995, z: 1.2204999}
+  m_Center: {x: -0.00000333786, y: 1.9231999, z: -3.0954523}
 --- !u!1001 &8051239
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15144,7 +15162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2976291160054910159, guid: 7e34ba573c6679e458f679a6c05db607, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.68168
+      value: 25.66
       objectReference: {fileID: 0}
     - target: {fileID: 2976291160054910159, guid: 7e34ba573c6679e458f679a6c05db607, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54904,7 +54922,7 @@ MonoBehaviour:
   Players: []
   rows: 10
   columns: 10
-  scale: 2
+  scale: 1
   tileMat: {fileID: 2100000, guid: 55fdeecf04b1d8645b1238de2d968d02, type: 2}
   LBLocation: {x: 0.5, y: 0, z: 0.5}
 --- !u!1001 &1584206051
