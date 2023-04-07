@@ -18,9 +18,9 @@ public class Player : CharactorMovement
         GameMapManger.Players.Add(this.gameObject);
         pos_x = Random.Range(0, GameMapManger.rows);
         pos_y = Random.Range(0, GameMapManger.columns);
-        float half_scale = GameMapManger.scale / 2.0f;
-        transform.position = new Vector3((float)pos_x - half_scale, 0, (float)pos_y - half_scale);
-        Debug.Log($"{half_scale}, {(float)pos_x - half_scale}");
+
+        float half = GameMapManger.scale * 0.5f;
+        transform.position = new Vector3((float)pos_x + half, 0, (float)pos_y + half);
 
     }
 
@@ -34,7 +34,7 @@ public class Player : CharactorMovement
     {
         _curState = STATE.IDLE;
     }
-    public void OnMove(Vector3 tile)
+    public void OnMove(Vector2Int tile)
     {
         InitMoveStart();
         MoveToTile(tile);

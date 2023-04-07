@@ -6,7 +6,7 @@ public class GameBoard : MonoBehaviour
     public List<GameObject> Players;
     public int rows = 10;
     public int columns = 10;
-    public float scale = 1;
+    public float scale = 1.0f;
 
     public Material tileMat;
 
@@ -22,8 +22,6 @@ public class GameBoard : MonoBehaviour
         Players = new List<GameObject>();
 
         GenerateAllTiles(1, columns, rows);
-
-
 
     }
     
@@ -69,7 +67,6 @@ public class GameBoard : MonoBehaviour
         tile.GetComponent<TileState>().y_pos = y;
 
         return tile;
-        //obj.SetActive(false);
     }
     void Init()
     {

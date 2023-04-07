@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class Picking : MonoBehaviour
 {
     public LayerMask pickMask;
-    public UnityEvent<Vector3> clickAction = null;
+    public UnityEvent<Vector2Int> clickAction = null;
 
     private GameBoard GB = null;
     private Vector2Int currentHover;
@@ -30,7 +30,7 @@ public class Picking : MonoBehaviour
                 if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
                 {
                     Debug.Log($"Hit Layer : {hit.transform.gameObject.layer}");
-                    clickAction?.Invoke(hit.transform.position);
+                    clickAction?.Invoke(GB.GetTileIndex(hit.transform.gameObject));
                 }
 
             }
