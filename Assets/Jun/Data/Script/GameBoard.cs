@@ -6,25 +6,27 @@ public class GameBoard : MonoBehaviour
     public List<GameObject> Players;
     public int rows = 10;
     public int columns = 10;
-    public int scale = 1;
+    public float scale = 1;
 
-    [SerializeField]public Material tileMat;
+    public Material tileMat;
+
 
     public GameObject[,] tiles;
     public Vector3 LBLocation = new Vector3(0, 0, 0);
 
-    public int Start_X = 0;
-    public int Start_Y = 0;
+
 
     //public Transform[] _MapTiles = null;
     private void Awake()
     {
+        Players = new List<GameObject>();
 
         GenerateAllTiles(1, columns, rows);
 
-        Players = new List<GameObject>();
-    }
 
+
+    }
+    
 
     void GenerateAllTiles(float tileSize, int tileCount_X, int tileCount_Y)
     {
@@ -61,6 +63,10 @@ public class GameBoard : MonoBehaviour
         mesh.triangles = tris;
 
         tile.AddComponent<BoxCollider>();
+        tile.AddComponent<TileState>();
+        tile.GetComponent<TileState>().isVisited = -1;
+        tile.GetComponent<TileState>().x_pos = x;
+        tile.GetComponent<TileState>().y_pos = y;
 
         return tile;
         //obj.SetActive(false);
@@ -68,12 +74,12 @@ public class GameBoard : MonoBehaviour
     void Init()
     {
         foreach (GameObject obj in tiles)
-            obj.GetComponent<TileProperty>().isVisited = -1;
+            obj.GetComponent<TileState>().isVisited = -1;
 
     }
     void VisitedTile(int X, int Y)
     {
-        tiles[X, Y].GetComponent<TileProperty>().isVisited = 0;
+        tiles[X, Y].GetComponent<TileState>().isVisited = 0;
     }
 
     public Vector2Int GetTileIndex(GameObject hitInfo)
