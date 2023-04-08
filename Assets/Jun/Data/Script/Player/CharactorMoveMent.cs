@@ -11,7 +11,7 @@ public class CharactorMovement : CharactorProperty
     int End_X, End_Y;
     public List<GameObject> path = new List<GameObject>();
 
-    protected void MoveToTile(Vector3 target)
+    protected void MoveToTile(Vector2Int target)
     {
         StopAllCoroutines();
         StartCoroutine(MovingToTile(target));
@@ -45,7 +45,7 @@ public class CharactorMovement : CharactorProperty
                     GameMapManger.tiles[x + 1, y].GetComponent<TileState>().isVisited == step) return true;
                 break;
             case Direction.Back:
-                if (y - 1 < -1 && GameMapManger.tiles[x, y - 1] &&
+                if (y - 1 > -1 && GameMapManger.tiles[x, y - 1] &&
                     GameMapManger.tiles[x, y-1].GetComponent<TileState>().isVisited == step) return true;
                 break;
             case Direction.Front:
@@ -63,7 +63,7 @@ public class CharactorMovement : CharactorProperty
 
     void SetDistance()
     {
-        for(int step = 1;step < ActionPoint; step++)
+        for(int step = 1; step < ActionPoint; step++)
         {
             foreach(GameObject obj in GameMapManger.tiles)
             {
@@ -98,6 +98,7 @@ public class CharactorMovement : CharactorProperty
         else
         {
             Debug.Log("Nope");
+            findPath = false;
             return;
         }
         for(int i = step; step > -1; step--)
@@ -118,15 +119,23 @@ public class CharactorMovement : CharactorProperty
             tempList.Clear();
         }
     }
-    IEnumerator MovingToTile(Vector3 target)
+
+
+
+    IEnumerator MovingToTile(Vector2Int target)
     {
         findPath = true;
+        End_X = target.x;
+        End_Y = target.y;
+
         while (findPath)
         {
             SetDistance();
-            SetPath();
+            //SetPath();
             yield return null;
         }
+
+
     }
     GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
     {
