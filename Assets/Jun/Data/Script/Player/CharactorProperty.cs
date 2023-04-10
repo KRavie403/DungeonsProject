@@ -6,6 +6,7 @@ public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 
 public class CharactorProperty : MonoBehaviour
 {
+    public int pos_x, pos_y;
     public int ActionPoint = 8;
     public float AttackPower = 10.0f;
     public float DeffencePower = 10.0f;
