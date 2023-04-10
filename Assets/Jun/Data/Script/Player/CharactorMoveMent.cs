@@ -26,7 +26,9 @@ public class CharactorMovement : CharactorProperty
     {
         StopAllCoroutines();
 
+        // 추후 이동 선택시에만 발동하도록 변경
         SetDistance();
+
         SetPath(tile);
         if(findPath)
             StartCoroutine(MovingByPath());
@@ -83,8 +85,15 @@ public class CharactorMovement : CharactorProperty
         {
             foreach(GameObject obj in GameMapManger.tiles)
             {
-                if (obj!=null && obj.GetComponent<TileState>().isVisited == step - 1)
+                if (obj != null && obj.GetComponent<TileState>().isVisited == step - 1)
+                {
                     TestAllDirection(obj.GetComponent<TileState>().x_pos, obj.GetComponent<TileState>().y_pos, step);
+                    obj.layer = 9;
+                }
+                else if (obj.GetComponent<TileState>().isVisited >= step)
+                {
+                    obj.layer = 3;
+                }
             }
         }
     }

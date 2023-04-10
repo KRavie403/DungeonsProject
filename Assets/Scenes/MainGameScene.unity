@@ -32759,7 +32759,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 967911461442466566, guid: 21278256c7aa9ab4da388250760d3466, type: 3}
       propertyPath: pickMask.m_Bits
-      value: 264
+      value: 776
+      objectReference: {fileID: 0}
+    - target: {fileID: 967911461442466566, guid: 21278256c7aa9ab4da388250760d3466, type: 3}
+      propertyPath: clickAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnMoveByPath
       objectReference: {fileID: 0}
     - target: {fileID: 3907266859454381633, guid: 21278256c7aa9ab4da388250760d3466, type: 3}
       propertyPath: m_RootOrder
@@ -54920,10 +54924,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Players: []
-  rows: 10
-  columns: 10
+  rows: 90
+  columns: 90
   scale: 1
-  tileMat: {fileID: 2100000, guid: 55fdeecf04b1d8645b1238de2d968d02, type: 2}
+  tileMat: {fileID: 2100000, guid: 3bbe6b640ca7ba64d9663b2f85e31c09, type: 2}
   LBLocation: {x: 0.5, y: 0, z: 0.5}
 --- !u!1001 &1584206051
 PrefabInstance:
