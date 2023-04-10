@@ -9,14 +9,14 @@ public class Picking : MonoBehaviour
     public LayerMask pickMask;
     public UnityEvent<Vector2Int> clickAction = null;
 
-    private GameBoard GB = null;
+    private GameMapManager GB = null;
     private Vector2Int currentHover;
 
     private Vector3 bounds;
     // Start is called before the first frame update
     void Start()
     {
-        GB = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameBoard>();
+        GB = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameMapManager>();
     }
 
     // Update is called once per frame

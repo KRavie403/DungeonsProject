@@ -8,6 +8,8 @@ public class CharactorProperty : MonoBehaviour
 {
     public int pos_x, pos_y;
     public int ActionPoint = 8;
+    public float MoveSpeed = 1.0f;
+    public float RotSpeed = 35.0f;
     public float AttackPower = 10.0f;
     public float DeffencePower = 10.0f;
     public float MaxHP = 100.0f;
@@ -15,8 +17,9 @@ public class CharactorProperty : MonoBehaviour
     public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
 
-    public GameBoard GameMapManger = null;
-        
+    public GameMapManager GameMapManger = null;
+    public GameManager GameManager = null;
+
 
     protected float curHP
     {
