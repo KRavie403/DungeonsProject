@@ -8,6 +8,8 @@ public class CharactorProperty : MonoBehaviour
 {
     public int pos_x, pos_y;
     public int ActionPoint = 8;
+    public float MoveSpeed = 1.0f;
+    public float RotSpeed = 35.0f;
     public float AttackPower = 10.0f;
     public float DeffencePower = 10.0f;
     public float MaxHP = 100.0f;

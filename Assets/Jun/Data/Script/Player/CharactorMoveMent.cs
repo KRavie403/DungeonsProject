@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharactorMovement : CharactorProperty
 {
@@ -10,13 +11,20 @@ public class CharactorMovement : CharactorProperty
     protected int Start_X, Start_Y;
     int End_X, End_Y;
     public List<GameObject> path = new List<GameObject>();
-
-    protected void MoveToTile(Vector2Int target)
-    {
-        StopAllCoroutines();
-        StartCoroutine(MovingToTile(target));
-    }
     
+    Coroutine coMove = null;
+
+    protected void MoveToTile(Vector2Int target, UnityAction done = null)
+    {
+        if (coMove != null)
+        {
+            StopCoroutine(coMove);
+            coMove = null;
+        }
+        coMove = StartCoroutine(MovingToTile(target, done));
+    }
+
+
     void GettingItem()
     {
 
@@ -67,7 +75,7 @@ public class CharactorMovement : CharactorProperty
         {
             foreach(GameObject obj in GameMapManger.tiles)
             {
-                if (obj.GetComponent<TileState>().isVisited == step - 1)
+                if (obj!=null && obj.GetComponent<TileState>().isVisited == step - 1)
                     TestAllDirection(obj.GetComponent<TileState>().x_pos, obj.GetComponent<TileState>().y_pos, step);
             }
         }
@@ -118,24 +126,38 @@ public class CharactorMovement : CharactorProperty
             y = tmp.GetComponent<TileState>().y_pos;
             tempList.Clear();
         }
+        findPath = true;
+        return;
     }
 
 
 
-    IEnumerator MovingToTile(Vector2Int target)
+    IEnumerator MovingToTile(Vector2Int target, UnityAction done)
     {
-        findPath = true;
-        End_X = target.x;
-        End_Y = target.y;
+        Vector3 dir = new Vector3(target.x + GameMapManger.scale / 2.0f, transform.position.y, target.y + GameMapManger.scale / 2.0f) - transform.position;
+        float dist = dir.magnitude;
+        dir.Normalize();
 
-        while (findPath)
+        StartCoroutine(Rotating(dir));
+
+        //myAnim.SetBool("isMoving", true);
+
+        while (dist > 0.0f)
         {
-            SetDistance();
-            //SetPath();
+            //if (!myAnim.GetBool("isAttacking"))
+            //{
+                float delta = MoveSpeed * Time.deltaTime;
+                if (dist - delta < 0.0f)
+                {
+                    delta = dist;
+                }
+                dist -= delta;
+                transform.Translate(dir * delta, Space.World);
+            //}
             yield return null;
         }
 
-
+        //myAnim.SetBool("isMoving", false);
     }
     GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
     {
@@ -150,5 +172,67 @@ public class CharactorMovement : CharactorProperty
             }
         }
         return list[indexNum];
+    }
+
+    IEnumerator MovingToPos(Vector3 pos, UnityAction done)
+    {
+        Vector3 dir = pos - transform.position;
+        float dist = dir.magnitude;
+        dir.Normalize();
+
+        StartCoroutine(Rotating(dir));
+
+        myAnim.SetBool("isMoving", true);
+
+        while (dist > 0.0f)
+        {
+            if (!myAnim.GetBool("isAttacking"))
+            {
+                float delta = MoveSpeed * Time.deltaTime;
+                if (dist - delta < 0.0f)
+                {
+                    delta = dist;
+                }
+                dist -= delta;
+                transform.Translate(dir * delta, Space.World);
+            }
+            yield return null;
+        }
+
+        myAnim.SetBool("isMoving", false);
+    }
+    IEnumerator MovingByPath()
+    {
+        //myAnim.SetFloat("Speed", MoveSpeed);
+        for (int i = 1; i < path.Count;)
+        {
+            bool done = false;
+            Vector2Int tilePos = new Vector2Int(path[i].GetComponent<TileState>().x_pos, path[i].GetComponent<TileState>().y_pos);
+            MoveToTile(tilePos, () => done = true);
+            i++;
+        }
+        //myAnim.SetFloat("Speed", 0);
+        yield return null;
+
+    }
+    IEnumerator Rotating(Vector3 dir)
+    {
+        float angle = Vector3.Angle(transform.forward, dir);
+        float rotDir = 1.0f;
+        if (Vector3.Dot(transform.right, dir) < 0.0f)
+        {
+            rotDir = -1.0f;
+        }
+        while (angle > 0.0f)
+        {
+            float delta = RotSpeed * Time.deltaTime;
+            if (angle - delta < 0.0f)
+            {
+                delta = angle;
+            }
+            angle -= delta;
+            transform.Rotate(Vector3.up * rotDir * delta);
+            yield return null;
+        }
     }
 }
