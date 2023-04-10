@@ -68,7 +68,7 @@ public class GameBoard : MonoBehaviour
 
         return tile;
     }
-    void Init()
+    public void Init()
     {
         foreach (GameObject obj in tiles)
             obj.GetComponent<TileState>().isVisited = -1;

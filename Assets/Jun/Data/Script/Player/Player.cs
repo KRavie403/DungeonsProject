@@ -10,7 +10,8 @@ public class Player : CharactorMovement
     }
 
     STATE _curState = STATE.CREATE;
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,18 @@ public class Player : CharactorMovement
         InitMoveStart();
         MoveToTile(tile);
     }
-    
+    public void OnMoveByPath(Vector2Int tile)
+    {
+        InitMoveStart();
+        Debug.Log($"Pos : {pos_x},{pos_y}");
+        Debug.Log($"Target : {tile}");
+        Debug.Log($"Start : {Start_X},{Start_Y}");
+        pos_x = tile.x;
+        pos_y = tile.y;
+
+        MoveByPath(tile);
+    }
+
     void InitMoveStart()
     {
         Start_X = pos_x;

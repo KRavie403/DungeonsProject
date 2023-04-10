@@ -9,7 +9,6 @@ public class CharactorMovement : CharactorProperty
     public bool findPath = false;
 
     protected int Start_X, Start_Y;
-    int End_X, End_Y;
     public List<GameObject> path = new List<GameObject>();
     
     Coroutine coMove = null;
@@ -22,6 +21,15 @@ public class CharactorMovement : CharactorProperty
             coMove = null;
         }
         coMove = StartCoroutine(MovingToTile(target, done));
+    }
+    protected void MoveByPath(Vector2Int tile)
+    {
+        StopAllCoroutines();
+
+        SetDistance();
+        SetPath(tile);
+        if(findPath)
+            StartCoroutine(MovingByPath());
     }
 
 
@@ -91,14 +99,14 @@ public class CharactorMovement : CharactorProperty
         if (CastDirectionTile(x, y, -1, Direction.Back))
             SetVisited(x, y - 1, step);
     }
-    void SetPath()
+    void SetPath(Vector2Int target)
     {
         int step;
-        int x = End_X;
-        int y = End_Y;
+        int x = target.x;
+        int y = target.y;
         List<GameObject> tempList = new List<GameObject>();
         path.Clear();
-        if(GameMapManger.tiles[End_X, End_Y] && GameMapManger.tiles[End_X, End_Y].GetComponent<TileState>().isVisited > 0)
+        if(GameMapManger.tiles[target.x, target.y] && GameMapManger.tiles[target.x, target.y].GetComponent<TileState>().isVisited > 0)
         {
             path.Add(GameMapManger.tiles[x, y]);
             step = GameMapManger.tiles[x, y].GetComponent<TileState>().isVisited - 1;
@@ -120,7 +128,7 @@ public class CharactorMovement : CharactorProperty
             if (CastDirectionTile(x, y, step, Direction.Right))
                 tempList.Add(GameMapManger.tiles[x + 1, y]);
 
-            GameObject tmp = FindClosest(GameMapManger.tiles[End_X, End_Y].transform, tempList);
+            GameObject tmp = FindClosest(GameMapManger.tiles[target.x, target.y].transform, tempList);
             path.Add(tmp);
             x = tmp.GetComponent<TileState>().x_pos;
             y = tmp.GetComponent<TileState>().y_pos;
@@ -158,6 +166,8 @@ public class CharactorMovement : CharactorProperty
         }
 
         //myAnim.SetBool("isMoving", false);
+        done?.Invoke();
+
     }
     GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
     {
@@ -174,46 +184,23 @@ public class CharactorMovement : CharactorProperty
         return list[indexNum];
     }
 
-    IEnumerator MovingToPos(Vector3 pos, UnityAction done)
-    {
-        Vector3 dir = pos - transform.position;
-        float dist = dir.magnitude;
-        dir.Normalize();
-
-        StartCoroutine(Rotating(dir));
-
-        myAnim.SetBool("isMoving", true);
-
-        while (dist > 0.0f)
-        {
-            if (!myAnim.GetBool("isAttacking"))
-            {
-                float delta = MoveSpeed * Time.deltaTime;
-                if (dist - delta < 0.0f)
-                {
-                    delta = dist;
-                }
-                dist -= delta;
-                transform.Translate(dir * delta, Space.World);
-            }
-            yield return null;
-        }
-
-        myAnim.SetBool("isMoving", false);
-    }
     IEnumerator MovingByPath()
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
-        for (int i = 1; i < path.Count;)
+        for (int i = path.Count-1; i >= 0;)
         {
             bool done = false;
             Vector2Int tilePos = new Vector2Int(path[i].GetComponent<TileState>().x_pos, path[i].GetComponent<TileState>().y_pos);
             MoveToTile(tilePos, () => done = true);
-            i++;
+            while (!done)
+            {
+                yield return null;
+            }
+            i--;
         }
-        //myAnim.SetFloat("Speed", 0);
-        yield return null;
 
+        GameMapManger.Init();
+        //myAnim.SetFloat("Speed", 0);
     }
     IEnumerator Rotating(Vector3 dir)
     {
