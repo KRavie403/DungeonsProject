@@ -17,8 +17,9 @@ public class CharactorProperty : MonoBehaviour
     public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
 
-    public GameBoard GameMapManger = null;
-        
+    public GameMapManager GameMapManger = null;
+    public GameManager GameManager = null;
+
 
     protected float curHP
     {

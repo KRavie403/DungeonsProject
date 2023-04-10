@@ -15,8 +15,9 @@ public class Player : CharactorMovement
     // Start is called before the first frame update
     void Start()
     {
-        GameMapManger = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameBoard>();
-        GameMapManger.Players.Add(this.gameObject);
+        GameMapManger = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameMapManager>();
+        GameManager = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameManager>();
+        GameManager.Players.Add(this.gameObject);
         pos_x = Random.Range(0, GameMapManger.rows);
         pos_y = Random.Range(0, GameMapManger.columns);
 

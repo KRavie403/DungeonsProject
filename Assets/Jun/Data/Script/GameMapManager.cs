@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameBoard : MonoBehaviour
+public class GameMapManager : MonoBehaviour
 {
-    public List<GameObject> Players;
+    
     public int rows = 10;
     public int columns = 10;
     public float scale = 1.0f;
@@ -19,7 +19,6 @@ public class GameBoard : MonoBehaviour
     //public Transform[] _MapTiles = null;
     private void Awake()
     {
-        Players = new List<GameObject>();
 
         GenerateAllTiles(1, columns, rows);
 
@@ -42,7 +41,7 @@ public class GameBoard : MonoBehaviour
     }
     private GameObject GenerateSingleTile(float tileSize, int x, int y)
     {
-        Debug.Log("Generating Si Tiles");
+        //Debug.Log("Generating Si Tiles");
 
         GameObject tile = new GameObject(string.Format("X : {0}, Y:{1}", x, y));
         tile.transform.parent = gameObject.transform;
@@ -61,6 +60,8 @@ public class GameBoard : MonoBehaviour
         mesh.triangles = tris;
 
         tile.AddComponent<BoxCollider>();
+        tile.GetComponent<BoxCollider>().isTrigger = true;
+
         tile.AddComponent<TileState>();
         tile.GetComponent<TileState>().isVisited = -1;
         tile.GetComponent<TileState>().x_pos = x;
