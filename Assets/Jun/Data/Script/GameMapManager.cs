@@ -72,14 +72,19 @@ public class GameMapManager : MonoBehaviour
     public void Init()
     {
         foreach (GameObject obj in tiles)
-            obj.GetComponent<TileState>().isVisited = -1;
-
+        {
+            if(obj != null)
+                obj.GetComponent<TileState>().isVisited = -1;
+        }
     }
     void VisitedTile(int X, int Y)
     {
         tiles[X, Y].GetComponent<TileState>().isVisited = 0;
     }
-
+    public int CheckTileVisited(int X, int Y)
+    {
+        return tiles[X, Y].GetComponent<TileState>().isVisited;
+    }
     public Vector2Int GetTileIndex(GameObject hitInfo)
     {
         for(int x=0;x< columns; x++)

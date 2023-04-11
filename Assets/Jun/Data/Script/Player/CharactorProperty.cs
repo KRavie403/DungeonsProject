@@ -17,9 +17,31 @@ public class CharactorProperty : MonoBehaviour
     public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
 
-    public GameMapManager GameMapManger = null;
+    public GameMapManager GameManangerMap = null;
     public GameManager GameManager = null;
 
+
+    protected GameMapManager GMMap
+    {
+        get
+        {
+            if (GameManangerMap == null)
+                GameManangerMap = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameMapManager>();
+
+            return GameManangerMap;
+        }
+    }
+
+    protected GameManager GM
+    {
+        get
+        {
+            if (GameManangerMap == null)
+                GameManager = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameManager>();
+
+            return GameManager;
+        }
+    }
 
     protected float curHP
     {

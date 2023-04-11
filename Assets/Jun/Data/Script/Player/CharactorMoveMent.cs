@@ -13,6 +13,7 @@ public class CharactorMovement : CharactorProperty
     
     Coroutine coMove = null;
 
+    //이동
     protected void MoveToTile(Vector2Int target, UnityAction done = null)
     {
         if (coMove != null)
@@ -26,74 +27,57 @@ public class CharactorMovement : CharactorProperty
     {
         StopAllCoroutines();
 
-        // 추후 이동 선택시에만 발동하도록 변경
-        SetDistance();
 
         SetPath(tile);
-        if(findPath)
+        if (findPath)
             StartCoroutine(MovingByPath());
     }
-
-
-    void GettingItem()
-    {
-
-    }
-
-    void Attack()
-    {
-
-    }
-
-    void Guard()
-    {
-
-    }
-
     bool CastDirectionTile(int x, int y, int step, Direction dir)
     {
         switch (dir)
         {
             case Direction.Left:
-                if (x - 1 > -1 && GameMapManger.tiles[x - 1, y] &&
-                    GameMapManger.tiles[x - 1, y].GetComponent<TileState>().isVisited == step) return true;
+                if (x - 1 > -1 && GMMap.tiles[x - 1, y] &&
+                    GMMap.tiles[x - 1, y].GetComponent<TileState>().isVisited == step) return true;
                 break;
             case Direction.Right:
-                if (x + 1 < GameMapManger.columns && GameMapManger.tiles[x + 1, y] &&
-                    GameMapManger.tiles[x + 1, y].GetComponent<TileState>().isVisited == step) return true;
+                if (x + 1 < GMMap.columns && GMMap.tiles[x + 1, y] &&
+                    GMMap.tiles[x + 1, y].GetComponent<TileState>().isVisited == step) return true;
                 break;
             case Direction.Back:
-                if (y - 1 > -1 && GameMapManger.tiles[x, y - 1] &&
-                    GameMapManger.tiles[x, y-1].GetComponent<TileState>().isVisited == step) return true;
+                if (y - 1 > -1 && GMMap.tiles[x, y - 1] &&
+                    GMMap.tiles[x, y-1].GetComponent<TileState>().isVisited == step) return true;
                 break;
             case Direction.Front:
-                if (y + 1 < GameMapManger.rows && GameMapManger.tiles[x, y+1] &&
-                    GameMapManger.tiles[x, y+1].GetComponent<TileState>().isVisited == step) return true;
+                if (y + 1 < GMMap.rows && GMMap.tiles[x, y+1] &&
+                    GMMap.tiles[x, y+1].GetComponent<TileState>().isVisited == step) return true;
                 break;
         }
         return false;
     }
     void SetVisited (int x, int y, int step)
     {
-        if(GameMapManger.tiles[x, y])
-            GameMapManger.tiles[x, y].GetComponent<TileState>().isVisited = step;
+        if(GMMap.tiles[x, y])
+            GMMap.tiles[x, y].GetComponent<TileState>().isVisited = step;
     }
-
-    void SetDistance()
+    protected void SetDistance()
     {
-        for(int step = 1; step < ActionPoint; step++)
+        for (int step = 1; step <= ActionPoint; step++)
         {
-            foreach(GameObject obj in GameMapManger.tiles)
+            foreach (GameObject obj in GMMap.tiles)
             {
                 if (obj != null && obj.GetComponent<TileState>().isVisited == step - 1)
                 {
                     TestAllDirection(obj.GetComponent<TileState>().x_pos, obj.GetComponent<TileState>().y_pos, step);
                     obj.layer = 9;
                 }
-                else if (obj.GetComponent<TileState>().isVisited >= step)
-                {
-                    obj.layer = 3;
-                }
+            }
+        }
+        foreach (GameObject obj in GMMap.tiles)
+        {
+            if (obj != null && obj.GetComponent<TileState>().isVisited == -1)
+            {
+                obj.layer = 3;
             }
         }
     }
@@ -115,10 +99,10 @@ public class CharactorMovement : CharactorProperty
         int y = target.y;
         List<GameObject> tempList = new List<GameObject>();
         path.Clear();
-        if(GameMapManger.tiles[target.x, target.y] && GameMapManger.tiles[target.x, target.y].GetComponent<TileState>().isVisited > 0)
+        if(GMMap.tiles[target.x, target.y] && GMMap.tiles[target.x, target.y].GetComponent<TileState>().isVisited > 0)
         {
-            path.Add(GameMapManger.tiles[x, y]);
-            step = GameMapManger.tiles[x, y].GetComponent<TileState>().isVisited - 1;
+            path.Add(GMMap.tiles[x, y]);
+            step = GMMap.tiles[x, y].GetComponent<TileState>().isVisited - 1;
         }
         else
         {
@@ -129,15 +113,15 @@ public class CharactorMovement : CharactorProperty
         for(int i = step; step > -1; step--)
         {
             if (CastDirectionTile(x, y, step, Direction.Front))
-                tempList.Add(GameMapManger.tiles[x, y + 1]);
+                tempList.Add(GMMap.tiles[x, y + 1]);
             if (CastDirectionTile(x, y, step, Direction.Back))
-                tempList.Add(GameMapManger.tiles[x, y - 1]);
+                tempList.Add(GMMap.tiles[x, y - 1]);
             if (CastDirectionTile(x, y, step, Direction.Left))
-                tempList.Add(GameMapManger.tiles[x - 1, y]);
+                tempList.Add(GMMap.tiles[x - 1, y]);
             if (CastDirectionTile(x, y, step, Direction.Right))
-                tempList.Add(GameMapManger.tiles[x + 1, y]);
+                tempList.Add(GMMap.tiles[x + 1, y]);
 
-            GameObject tmp = FindClosest(GameMapManger.tiles[target.x, target.y].transform, tempList);
+            GameObject tmp = FindClosest(GMMap.tiles[target.x, target.y].transform, tempList);
             path.Add(tmp);
             x = tmp.GetComponent<TileState>().x_pos;
             y = tmp.GetComponent<TileState>().y_pos;
@@ -146,12 +130,23 @@ public class CharactorMovement : CharactorProperty
         findPath = true;
         return;
     }
-
-
-
+    GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
+    {
+        float currentDinstance = GMMap.scale * GMMap.rows * GMMap.columns;
+        int indexNum = 0;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (Vector3.Distance(targetLoctaion.position, list[i].transform.position) < currentDinstance)
+            {
+                currentDinstance = Vector3.Distance(targetLoctaion.position, list[i].transform.position);
+                indexNum = i;
+            }
+        }
+        return list[indexNum];
+    }
     IEnumerator MovingToTile(Vector2Int target, UnityAction done)
     {
-        Vector3 dir = new Vector3(target.x + GameMapManger.scale / 2.0f, transform.position.y, target.y + GameMapManger.scale / 2.0f) - transform.position;
+        Vector3 dir = new Vector3(target.x + GMMap.scale / 2.0f, transform.position.y, target.y + GMMap.scale / 2.0f) - transform.position;
         float dist = dir.magnitude;
         dir.Normalize();
 
@@ -178,21 +173,6 @@ public class CharactorMovement : CharactorProperty
         done?.Invoke();
 
     }
-    GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
-    {
-        float currentDinstance = GameMapManger.scale * GameMapManger.rows * GameMapManger.columns;
-        int indexNum = 0;
-        for(int i = 0; i < list.Count; i++)
-        {
-            if(Vector3.Distance(targetLoctaion.position, list[i].transform.position) < currentDinstance)
-            {
-                currentDinstance = Vector3.Distance(targetLoctaion.position, list[i].transform.position);
-                indexNum = i;
-            }
-        }
-        return list[indexNum];
-    }
-
     IEnumerator MovingByPath()
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
@@ -208,7 +188,8 @@ public class CharactorMovement : CharactorProperty
             i--;
         }
 
-        GameMapManger.Init();
+        GM.ChangeTurn();
+        GMMap.Init();
         //myAnim.SetFloat("Speed", 0);
     }
     IEnumerator Rotating(Vector3 dir)
@@ -231,4 +212,31 @@ public class CharactorMovement : CharactorProperty
             yield return null;
         }
     }
+
+    //행동
+    void GettingItem()
+    {
+
+    }
+    void Attack()
+    {
+
+    }
+    protected void Guard()
+    {
+        if (coMove != null)
+        {
+            StopCoroutine(coMove);
+            coMove = null;
+        }
+        coMove = StartCoroutine(GuardUpCast());
+    }
+    IEnumerator GuardUpCast()
+    {
+        //애니메이션 실행
+        yield return new WaitForSeconds(2.0f);
+        GM.ChangeTurn();
+    }
+
 }
+
