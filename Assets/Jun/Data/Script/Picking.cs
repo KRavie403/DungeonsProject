@@ -4,17 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Picking : MonoBehaviour
+public class Picking : CharactorMovement
 {
     public LayerMask pickMask;
     public UnityEvent<Vector2Int> clickAction = null;
 
-    private GameBoard GB = null;
     private Vector2Int currentHover;
     // Start is called before the first frame update
     void Start()
     {
-        GB = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameBoard>();
+
     }
 
     // Update is called once per frame
@@ -25,29 +24,36 @@ public class Picking : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, pickMask))
         {
-            if (Input.GetMouseButtonDown(0))
+            Player.STATE _curState = this.GetComponent<Player>().GetState();
+            if (_curState == Player.STATE.MOVE)
             {
-                if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log($"Hit Layer : {hit.transform.gameObject.layer}");
-                    clickAction?.Invoke(GB.GetTileIndex(hit.transform.gameObject));
-                }
+                    if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
+                    {
+                        Debug.Log($"Hit Layer : {hit.transform.gameObject.layer}");
+                        clickAction?.Invoke(GMMap.GetTileIndex(hit.transform.gameObject));
+                    }
 
-            }
-            else
-            {
-                //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
-                Vector2Int hitPos = GB.GetTileIndex(hit.transform.gameObject);
-                if (currentHover == -Vector2Int.one)
-                {
-                    currentHover = hitPos;
-                    GB.tiles[hitPos.x, hitPos.y].layer = 8;
                 }
-                if (currentHover != hitPos)
+                else
                 {
-                    GB.tiles[currentHover.x, currentHover.y].layer = 3;
-                    currentHover = hitPos;
-                    GB.tiles[hitPos.x, hitPos.y].layer = 8;
+                    //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
+                    Vector2Int hitPos = GMMap.GetTileIndex(hit.transform.gameObject);
+                    if (currentHover == -Vector2Int.one)
+                    {
+                        currentHover = hitPos;
+                        GMMap.tiles[hitPos.x, hitPos.y].layer = 8;
+                    }
+                    if (currentHover != hitPos)
+                    {
+                        if (GMMap.CheckTileVisited(currentHover.x, currentHover.y) == -1)
+                            GMMap.tiles[currentHover.x, currentHover.y].layer = 3;
+                        else
+                            GMMap.tiles[currentHover.x, currentHover.y].layer = 9;
+                        currentHover = hitPos;
+                        GMMap.tiles[hitPos.x, hitPos.y].layer = 8;
+                    }
                 }
             }
         }
@@ -55,7 +61,7 @@ public class Picking : MonoBehaviour
         {
             if (currentHover != -Vector2Int.one)
             {
-                GB.tiles[currentHover.x, currentHover.y].layer = 3;
+                GMMap.tiles[currentHover.x, currentHover.y].layer = 3;
                 currentHover = -Vector2Int.one;
             }
         }
