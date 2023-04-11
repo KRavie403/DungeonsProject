@@ -28429,6 +28429,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_default (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
 --- !u!1001 &817530991
@@ -50987,6 +50991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_default (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
 --- !u!1001 &1476030052
@@ -53720,6 +53728,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Players: []
+  Main_Cam: {fileID: 963194231}
+  currentPlayer: 0
 --- !u!1001 &1585009402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71561,6 +71571,10 @@ PrefabInstance:
     - target: {fileID: 951467943377267786, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}

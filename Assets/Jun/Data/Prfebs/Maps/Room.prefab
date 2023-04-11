@@ -3953,10 +3953,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CY (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 2005721182135651384, guid: 7e34ba573c6679e458f679a6c05db607, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2976291160054910159, guid: 7e34ba573c6679e458f679a6c05db607, type: 3}
       propertyPath: m_RootOrder
       value: 6
