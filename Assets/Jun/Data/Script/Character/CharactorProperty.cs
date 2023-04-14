@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 
 public class CharactorProperty : MonoBehaviour
 {
-    public int pos_x, pos_y;
+    public OB_TYPES myType;
+    public Vector2Int my_Pos;
     public int ActionPoint = 8;
     public float MoveSpeed = 1.0f;
     public float RotSpeed = 35.0f;
@@ -17,31 +19,6 @@ public class CharactorProperty : MonoBehaviour
     public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
 
-    public GameMapManager GameManangerMap = null;
-    public GameManager GameManager = null;
-
-
-    protected GameMapManager GMMap
-    {
-        get
-        {
-            if (GameManangerMap == null)
-                GameManangerMap = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameMapManager>();
-
-            return GameManangerMap;
-        }
-    }
-
-    protected GameManager GM
-    {
-        get
-        {
-            if (GameManangerMap == null)
-                GameManager = GameObject.FindGameObjectWithTag("GameMapManager").GetComponent<GameManager>();
-
-            return GameManager;
-        }
-    }
 
     protected float curHP
     {
