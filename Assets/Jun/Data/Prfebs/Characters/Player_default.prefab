@@ -62,8 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4a9c85f82832046b8f3ba3c653e873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos_x: 0
-  pos_y: 0
+  my_Pos: {x: 0, y: 0}
   ActionPoint: 8
   MoveSpeed: 1
   RotSpeed: 1
@@ -72,8 +71,6 @@ MonoBehaviour:
   MaxHP: 100
   jclass: 1
   speed: 1
-  GameMapManger: {fileID: 0}
-  GameManager: {fileID: 0}
   findPath: 0
   path: []
 --- !u!114 &3998090938736891546
@@ -88,6 +85,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ab96f9a9680a449a32c1ea67c67940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  my_Pos: {x: 0, y: 0}
+  ActionPoint: 8
+  MoveSpeed: 1
+  RotSpeed: 35
+  AttackPower: 10
+  DeffencePower: 10
+  MaxHP: 100
+  jclass: 0
+  speed: 1
+  findPath: 0
+  path: []
   pickMask:
     serializedVersion: 2
     m_Bits: 776
@@ -96,7 +104,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4184588278579400287}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnMoveByPath
+        m_MethodName: Picked
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

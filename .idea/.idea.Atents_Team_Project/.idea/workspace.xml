@@ -11,7 +11,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Script/ShaderControler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@3.0.18/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2NdtfEWx8oldiQwZk5j7satSevR" />
   <component name="ProjectViewState">
@@ -33,6 +33,12 @@
       <option name="presentableId" value="Default" />
       <updated>1680005887888</updated>
       <workItem from="1680005891680" duration="2627000" />
+      <workItem from="1680352405805" duration="617000" />
+      <workItem from="1680354918693" duration="169000" />
+      <workItem from="1680428087347" duration="599000" />
+      <workItem from="1680432948631" duration="17000" />
+      <workItem from="1680445703631" duration="598000" />
+      <workItem from="1680686028102" duration="2581000" />
     </task>
     <servers />
   </component>
@@ -41,5 +47,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/pone/asda.cs</url>
+          <line>19</line>
+          <properties documentPath="D:\09.backup\Code\Atents_Team_Project\Assets\pone\asda.cs" initialLine="19" isMultiMethodBreakpoint="true">
+            <option name="multiMethodBreakpoint" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
