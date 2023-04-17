@@ -12,15 +12,26 @@ public class Player : CharactorMovement
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
+    {
+        SetGame();
+    }
+    
+    void SetGame()
     {
         myType = OB_TYPES.PLAYER;
-        GameManager.GM.Players.Add(this.gameObject);
         my_Pos.x = Random.Range(0, GameManager.GM.rows);
         my_Pos.y = Random.Range(0, GameManager.GM.columns);
 
+        GameManager.GM.Turn_of_Objects.Add(this.gameObject);
+
         float half = GameManager.GM.scale * 0.5f;
-        transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y+ half);
+        transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_target = this.gameObject;
+
+        GameManager.GM.Turn_of_Objects[GameManager.GM.currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
 
     }
 

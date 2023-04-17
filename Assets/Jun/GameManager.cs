@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
+
     public static GameManager GM = null;
-    public GameObject Boss = null;
-    public List<GameObject> Players;
+    public List<GameObject> Turn_of_Objects;
     public FollowCamera Main_Cam;
     public int currentPlayer =0;
     public GameObject[,] tiles;
@@ -16,27 +17,13 @@ public class GameManager : MonoBehaviour
     {
         GM = this;
         GenerateAllTiles(1, columns, rows);
-        Players = new List<GameObject>();
+        Turn_of_Objects = new List<GameObject>();
     }
     
     private void Start()
     {
-        if (Players != null)
-        {
-            Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
-            foreach(var p in Players)
-            {
-                Vector2Int player = p.GetComponent<Player>().my_Pos;
-                tiles[player.x, player.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
-                tiles[player.x, player.y].GetComponent<TileState>().my_target = p;
-            }
-        }
-        if(Boss != null)
-        {
-            Vector2Int pos = Boss.GetComponent<BossMonster>().my_Pos;
-            tiles[pos.x, pos.y].GetComponent<TileState>().my_obj = OB_TYPES.MONSTER;
-            tiles[pos.x, pos.y].GetComponent<TileState>().my_target = Boss;
-        }
+        if(Turn_of_Objects != null)
+            Main_Cam.myTarget = Turn_of_Objects[currentPlayer].transform.Find("ViewPoint").transform;
     }
     void Update()
     {
@@ -44,20 +31,19 @@ public class GameManager : MonoBehaviour
 
     //Player
 
-    public void SetBoss(GameObject boss)
-    {
-        Boss = boss;
-    }
     public void ChangeTurn()
     {
-        Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.IDLE);
-        currentPlayer = (++currentPlayer) % (Players.Count);
-        Main_Cam.myTarget = Players[currentPlayer].transform.Find("ViewPoint").transform;
-        Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+        Turn_of_Objects[currentPlayer].GetComponent<Player>()?.ChangeState(Player.STATE.IDLE);
+        Turn_of_Objects[currentPlayer].GetComponent<BossMonster>()?.ChangeState(BossMonster.STATE.IDLE);
+        currentPlayer = (++currentPlayer) % (Turn_of_Objects.Count);
+        Main_Cam.myTarget = Turn_of_Objects[currentPlayer].transform.Find("ViewPoint").transform;
+        Turn_of_Objects[currentPlayer].GetComponent<Player>()?.ChangeState(Player.STATE.ACTION);
+        Turn_of_Objects[currentPlayer].GetComponent<BossMonster>()?.ChangeState(BossMonster.STATE.ACTION);
+
 
     }
     // Update is called once per frame
-    
+
 
     //GameMap
     public int rows = 10;

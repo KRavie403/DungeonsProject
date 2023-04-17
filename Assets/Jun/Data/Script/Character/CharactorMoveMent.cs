@@ -146,7 +146,7 @@ public class CharactorMovement : CharactorProperty
     }
     IEnumerator MovingToTile(Vector2Int target, UnityAction done)
     {
-        Vector3 dir = new Vector3(target.x + GameManager.GM.scale / 2.0f, transform.position.y, target.y + GameManager.GM.scale / 2.0f) - transform.position;
+        Vector3 dir = new Vector3(target.x + GameManager.GM.scale / 2.0f, transform.position.y, target.y + GameManager.GM.scale / 2.0f) * my_Size - transform.position;
         float dist = dir.magnitude;
         dir.Normalize();
 

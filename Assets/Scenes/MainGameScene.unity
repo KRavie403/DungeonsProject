@@ -25396,6 +25396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myType: 1
   my_Pos: {x: 0, y: 0}
+  my_Size: 1
   ActionPoint: 8
   MoveSpeed: 1
   RotSpeed: 35
@@ -33456,7 +33457,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 38.144, y: -99.022, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -54456,8 +54457,8 @@ GameObject:
   - component: {fileID: 1584030537}
   - component: {fileID: 1584030539}
   m_Layer: 0
-  m_Name: GameMapManager
-  m_TagString: GameMapManager
+  m_Name: GameManager
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -54489,7 +54490,7 @@ Transform:
   - {fileID: 1023241965}
   - {fileID: 1654945135}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1584030539
 MonoBehaviour:

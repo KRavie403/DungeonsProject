@@ -9,6 +9,7 @@ public class CharactorProperty : MonoBehaviour
 {
     public OB_TYPES myType;
     public Vector2Int my_Pos;
+    public float my_Size = 1.0f;
     public int ActionPoint = 8;
     public float MoveSpeed = 1.0f;
     public float RotSpeed = 35.0f;
@@ -18,6 +19,7 @@ public class CharactorProperty : MonoBehaviour
     public JOB_CLASS jclass;
     public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
+
 
 
     protected float curHP
