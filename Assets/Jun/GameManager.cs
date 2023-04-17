@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour //턴돌아가면서 플레이어 비추는카메라??
 {
     public List<GameObject> Players;
     public FollowCamera Main_Cam;

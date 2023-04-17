@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class IntroManager : MonoBehaviour
+public class IntroManager : MonoBehaviour //UI관련??메인타이틀??
 {
     public GameObject StartPanel;
     public GameObject IntroPanel;

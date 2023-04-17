@@ -11896,6 +11896,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_default
       objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
 --- !u!1001 &377502102
@@ -28790,6 +28798,10 @@ PrefabInstance:
       value: Player_default (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
@@ -35167,7 +35179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1023241965}
   m_Layer: 0
-  m_Name: GameObjects
+  m_Name: STRUCTURES
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51715,6 +51727,10 @@ PrefabInstance:
     - target: {fileID: 951467943377267786, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
       propertyPath: m_Name
       value: Player_default (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
       propertyPath: m_Enabled
@@ -72705,6 +72721,10 @@ PrefabInstance:
     - target: {fileID: 951467943377267786, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
+      propertyPath: MoveSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3998090938736891546, guid: b20115a202c87574d9101dd11c1ad35e, type: 3}
       propertyPath: m_Enabled
