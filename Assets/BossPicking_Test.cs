@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-
-public class Picking : MonoBehaviour
+public class BossPicking_Test : MonoBehaviour
 {
 
     public LayerMask pickMask;
@@ -22,13 +21,11 @@ public class Picking : MonoBehaviour
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        
-        Camera.main.ViewportPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, pickMask))
         {
-            Player.STATE _curState = this.GetComponent<Player>().GetState();
-            if (_curState == Player.STATE.MOVE)
+            BossMonster.STATE _curState = this.GetComponent<BossMonster>().GetState();
+            if (_curState == BossMonster.STATE.MOVE)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
