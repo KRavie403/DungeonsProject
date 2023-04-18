@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager GM = null;
-    public GameObject Boss = null;
     public List<GameObject> Players;
     public FollowCamera Main_Cam;
     public int currentPlayer =0;
@@ -21,22 +20,17 @@ public class GameManager : MonoBehaviour
     
     private void Start()
     {
-        if (Players != null)
+        if (Players == null)
         {
             Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
             foreach(var p in Players)
             {
-                Vector2Int player = p.GetComponent<Player>().my_Pos;
-                tiles[player.x, player.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
-                tiles[player.x, player.y].GetComponent<TileState>().my_target = p;
+                Player player = p.GetComponent<Player>();
+                tiles[player.my_Pos.x, player.my_Pos.y].GetComponent<TileState>().my_obj = player.myType;
+                tiles[player.my_Pos.x, player.my_Pos.y].GetComponent<TileState>().my_target = p;
             }
         }
-        if(Boss != null)
-        {
-            Vector2Int pos = Boss.GetComponent<BossMonster>().my_Pos;
-            tiles[pos.x, pos.y].GetComponent<TileState>().my_obj = OB_TYPES.MONSTER;
-            tiles[pos.x, pos.y].GetComponent<TileState>().my_target = Boss;
-        }
+        
     }
     void Update()
     {
@@ -44,10 +38,6 @@ public class GameManager : MonoBehaviour
 
     //Player
 
-    public void SetBoss(GameObject boss)
-    {
-        Boss = boss;
-    }
     public void ChangeTurn()
     {
         Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.IDLE);

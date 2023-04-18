@@ -21,6 +21,8 @@ public class Picking : MonoBehaviour
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        Camera.main.ViewportPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, pickMask))
         {

@@ -12,7 +12,7 @@ public class Player : CharactorMovement
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         myType = OB_TYPES.PLAYER;
         GameManager.GM.Players.Add(this.gameObject);
