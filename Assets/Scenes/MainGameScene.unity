@@ -52380,25 +52380,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 77.552444
-      objectReference: {fileID: 0}
-    - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 77.552444
-      objectReference: {fileID: 0}
-    - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 77.552444
       objectReference: {fileID: 0}
     - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
       propertyPath: m_LocalPosition.x
@@ -52587,8 +52571,8 @@ MonoBehaviour:
   Players: []
   Main_Cam: {fileID: 1337284519}
   currentPlayer: 0
-  rows: 20
-  columns: 20
+  rows: 10
+  columns: 10
   scale: 1
   tileMat: {fileID: 2100000, guid: 3bbe6b640ca7ba64d9663b2f85e31c09, type: 2}
   LBLocation: {x: 0, y: 0, z: 0}

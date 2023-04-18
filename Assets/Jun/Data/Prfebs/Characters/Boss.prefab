@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7378950966504236141}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ViewPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114759972845451339}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.024731755, y: 0.029921219, z: 0.49396077}
+  m_LocalPosition: {x: 0, y: 0.0418, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,7 +42,8 @@ GameObject:
   - component: {fileID: 6359686612413033023}
   - component: {fileID: 6136653727933910314}
   - component: {fileID: 738821168}
-  m_Layer: 0
+  - component: {fileID: 1344118261}
+  m_Layer: 11
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 5510757949259109818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 40, y: 40, z: 40}
+  m_LocalScale: {x: 77.552444, y: 77.552444, z: 77.552444}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6071098113074790861}
@@ -74,7 +75,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5510757949259109818}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -92,10 +93,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53057d6c87cd4ce46975533c03d19c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  my_Sprite: {fileID: 0}
   myType: 1
   my_Pos: {x: 0, y: 0}
   my_Size: 1
   ActionPoint: 8
+  _mySize: 1
   MoveSpeed: 1
   RotSpeed: 35
   AttackPower: 10
@@ -105,6 +108,22 @@ MonoBehaviour:
   speed: 1
   findPath: 0
   path: []
+--- !u!54 &1344118261
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510757949259109818}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &6037751414860768806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,6 +154,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0c8b3e10f1de0c847a5168f2db2aec77, type: 3}
       propertyPath: m_Name
       value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c8b3e10f1de0c847a5168f2db2aec77, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c8b3e10f1de0c847a5168f2db2aec77, type: 3}

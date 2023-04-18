@@ -57,7 +57,7 @@ public class Player : CharactorMovement
                 break;
 
             case STATE.IDLE:
-
+                
                 break;
 
             case STATE.ACTION:

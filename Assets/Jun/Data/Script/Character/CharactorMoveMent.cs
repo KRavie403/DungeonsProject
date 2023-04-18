@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -62,7 +63,7 @@ public class CharactorMovement : CharactorProperty
     }
     protected void SetDistance()
     {
-        for (int step = 1; step <= ActionPoint; step++)
+        for (int step = 1; step <= curActionPoint; step++)
         {
             foreach (GameObject obj in GameManager.GM.tiles)
             {
@@ -172,7 +173,7 @@ public class CharactorMovement : CharactorProperty
     IEnumerator MovingByPath()
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
-        for (int i = path.Count-1; i >= 0;)
+        for (int i = path.Count - 1; i >= 0;)
         {
             bool done = false;
             Vector2Int tilePos = new Vector2Int(path[i].GetComponent<TileState>().pos.x, path[i].GetComponent<TileState>().pos.y);
@@ -181,10 +182,22 @@ public class CharactorMovement : CharactorProperty
             {
                 yield return null;
             }
+            curActionPoint--;
             i--;
         }
 
-        GameManager.GM.ChangeTurn();
+
+
+        if (curActionPoint <= 0)
+        {
+            GameManager.GM.ChangeTurn();
+            curActionPoint = ActionPoint;
+        }
+        else
+        {
+            this.GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+        }
+    
         GameManager.GM.Init();
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_target = this.gameObject;
