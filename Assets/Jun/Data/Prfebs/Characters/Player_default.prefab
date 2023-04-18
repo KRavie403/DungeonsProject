@@ -48,9 +48,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4a9c85f82832046b8f3ba3c653e873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  my_Sprite: {fileID: 21300000, guid: 73ae470741602774d895db3dfacd869d, type: 3}
   myType: 0
   my_Pos: {x: 0, y: 0}
+  my_Size: 1
   ActionPoint: 8
+  _mySize: 1
   MoveSpeed: 1
   RotSpeed: 1
   AttackPower: 10

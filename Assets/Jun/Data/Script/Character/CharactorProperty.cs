@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 
 public class CharactorProperty : MonoBehaviour
 {
+    public Sprite my_Sprite;
     public OB_TYPES myType;
     public Vector2Int my_Pos;
     public float my_Size = 1.0f;

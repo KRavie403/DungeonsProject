@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static UI_Manager UM = null;
     public static GameManager GM = null;
     public List<GameObject> Players;
     public FollowCamera Main_Cam;
@@ -14,13 +15,16 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GM = this;
+        UM = GetComponent<UI_Manager>();
         GenerateAllTiles(1, columns, rows);
         Players = new List<GameObject>();
     }
     
-    private void Start()
+    public void GameStart()
     {
-        if (Players == null)
+        UM.TurnSystemUI.gameObject.SetActive(true);
+
+        if (Players != null)
         {
             Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
             foreach(var p in Players)
@@ -28,6 +32,7 @@ public class GameManager : MonoBehaviour
                 Player player = p.GetComponent<Player>();
                 tiles[player.my_Pos.x, player.my_Pos.y].GetComponent<TileState>().my_obj = player.myType;
                 tiles[player.my_Pos.x, player.my_Pos.y].GetComponent<TileState>().my_target = p;
+                UM.AddPlayer(player.my_Sprite);
             }
         }
         

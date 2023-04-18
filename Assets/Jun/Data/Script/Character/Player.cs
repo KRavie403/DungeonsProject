@@ -14,16 +14,30 @@ public class Player : CharactorMovement
     // Start is called before the first frame update
     void Start()
     {
-        myType = OB_TYPES.PLAYER;
-        GameManager.GM.Players.Add(this.gameObject);
-        my_Pos.x = Random.Range(0, GameManager.GM.rows);
-        my_Pos.y = Random.Range(0, GameManager.GM.columns);
-
-        float half = GameManager.GM.scale * 0.5f;
-        transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y+ half);
-
+        SetPlayer();
+        StartCoroutine(SetPos());
     }
 
+    void SetPlayer()
+    {
+        myType = OB_TYPES.PLAYER;
+        GameManager.GM.Players.Add(this.gameObject);
+    }
+    IEnumerator SetPos()
+    {
+        int x = Random.Range(0, GameManager.GM.rows);
+        int y = Random.Range(0, GameManager.GM.columns);
+        while (GameManager.GM.tiles[x, y] == null)
+        {
+            x = Random.Range(0, GameManager.GM.rows);
+            y = Random.Range(0, GameManager.GM.columns);
+        }
+        my_Pos = new Vector2Int(x, y);
+
+        float half = GameManager.GM.scale * 0.5f;
+        transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+        yield return null;
+    }
     // Update is called once per frame
     void Update()
     {
