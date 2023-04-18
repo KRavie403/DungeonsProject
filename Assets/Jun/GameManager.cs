@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,17 +24,11 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         UM.TurnSystemUI.gameObject.SetActive(true);
-
+        UM.start_button.gameObject.SetActive(false);
+        Main_Cam.enabled = true;
         if (Players != null)
         {
             Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
-            foreach(var p in Players)
-            {
-                Player player = p.GetComponent<Player>();
-                tiles[player.my_Pos.x, player.my_Pos.y].GetComponent<TileState>().my_obj = player.myType;
-                tiles[player.my_Pos.x, player.my_Pos.y].GetComponent<TileState>().my_target = p;
-                UM.AddPlayer(player.my_Sprite);
-            }
         }
         
     }
@@ -117,8 +112,11 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject obj in tiles)
         {
-            if (obj != null)
+            if (obj != null && obj.GetComponent<TileState>().isVisited != -5)
+            {
                 obj.GetComponent<TileState>().isVisited = -1;
+                obj.layer = 3;
+            }
         }
     }
     void VisitedTile(int X, int Y)

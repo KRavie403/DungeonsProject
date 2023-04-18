@@ -50,7 +50,7 @@ public class Picking : MonoBehaviour
                     }
                     if (currentHover != hitPos)
                     {
-                        if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) == -1)
+                        if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) <= -1)
                             GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
                         else
                             GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 9;
@@ -64,7 +64,8 @@ public class Picking : MonoBehaviour
         {
             if (currentHover != -Vector2Int.one)
             {
-                GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
+                if(GameManager.GM.tiles[currentHover.x, currentHover.y] != null)
+                    GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
                 currentHover = -Vector2Int.one;
             }
         }

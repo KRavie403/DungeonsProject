@@ -27,7 +27,7 @@ public class Player : CharactorMovement
     {
         int x = Random.Range(0, GameManager.GM.rows);
         int y = Random.Range(0, GameManager.GM.columns);
-        while (GameManager.GM.tiles[x, y] == null)
+        while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5)
         {
             x = Random.Range(0, GameManager.GM.rows);
             y = Random.Range(0, GameManager.GM.columns);
@@ -36,6 +36,11 @@ public class Player : CharactorMovement
 
         float half = GameManager.GM.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_target = this.gameObject;
+        GameManager.UM.AddPlayer(my_Sprite);
+
         yield return null;
     }
     // Update is called once per frame

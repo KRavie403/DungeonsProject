@@ -16,7 +16,7 @@ public class TileState : MonoBehaviour
         Debug.Log("Enter");
         if (other.gameObject.layer == LayerMask.NameToLayer("Structures"))
         {
-            Destroy(this.gameObject);
+            isVisited = -5;
         }
     }
 

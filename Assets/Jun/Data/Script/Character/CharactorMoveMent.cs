@@ -66,20 +66,16 @@ public class CharactorMovement : CharactorProperty
         {
             foreach (GameObject obj in GameManager.GM.tiles)
             {
-                if (obj != null && obj.GetComponent<TileState>().isVisited == step - 1)
+                if (obj.GetComponent<TileState>().isVisited == step - 1)
                 {
                     TestAllDirection(obj.GetComponent<TileState>().pos.x, obj.GetComponent<TileState>().pos.y, step);
                     obj.layer = 9;
                 }
+                if (obj.GetComponent<TileState>().isVisited == step )
+                    obj.layer = 9;
             }
         }
-        foreach (GameObject obj in GameManager.GM.tiles)
-        {
-            if (obj != null && obj.GetComponent<TileState>().isVisited == -1)
-            {
-                obj.layer = 3;
-            }
-        }
+        
     }
     void TestAllDirection(int x, int y, int step)
     {
