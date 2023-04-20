@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     
     public void GameStart()
     {
-        UM.TurnSystemUI.gameObject.SetActive(true);
+        UM.InGameUI.gameObject.SetActive(true);
         UM.start_button.gameObject.SetActive(false);
         Main_Cam.enabled = true;
         if (Players != null)

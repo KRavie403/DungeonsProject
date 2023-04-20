@@ -8,6 +8,7 @@ public class Player : CharactorMovement
     {
         CREATE, ACTION, MOVE, ATTACK_CAST, GUARD_UP, IDLE
     }
+    STATE _bfState;
     STATE _curState = STATE.CREATE;
 
 
@@ -21,6 +22,7 @@ public class Player : CharactorMovement
     void SetPlayer()
     {
         myType = OB_TYPES.PLAYER;
+        skilList = new List<SkillSet>();
         GameManager.GM.Players.Add(this.gameObject);
     }
     IEnumerator SetPos()
@@ -78,13 +80,28 @@ public class Player : CharactorMovement
 
 
                 break;
+            case STATE.MOVE:
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    InitMoveStart();
+                    ChangeState(_bfState);
+                }
+                break;
 
+            case STATE.ATTACK_CAST:
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    InitMoveStart();
+                    ChangeState(_bfState);
+                }
+                break;
         }
     }
 
     public void ChangeState(STATE s)
     {
         if (_curState == s) return;
+        _bfState = _curState;
         _curState = s;
         switch (_curState)
         {

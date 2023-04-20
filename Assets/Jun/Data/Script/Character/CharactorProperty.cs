@@ -7,6 +7,7 @@ public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 
 public class CharactorProperty : MonoBehaviour
 {
+    public List<SkillSet> skilList;
     public Sprite my_Sprite;
     public OB_TYPES myType;
     public Vector2Int my_Pos;
