@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossMovement : CharactorMovement
+public class check : MonoBehaviour
 {
-    Vector2Int[] NeighboringTilePos;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +13,7 @@ public class BossMovement : CharactorMovement
     // Update is called once per frame
     void Update()
     {
-        
+        float f = 1/Time.deltaTime;
+        Debug.Log(f);
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class Picking : MonoBehaviour
 {
+
     public LayerMask pickMask;
     public UnityEvent<Vector2Int> clickAction = null;
 
@@ -21,6 +22,8 @@ public class Picking : MonoBehaviour
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        
+        Camera.main.ViewportPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, pickMask))
         {
@@ -47,7 +50,7 @@ public class Picking : MonoBehaviour
                     }
                     if (currentHover != hitPos)
                     {
-                        if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) == -1)
+                        if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) <= -1)
                             GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
                         else
                             GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 9;
@@ -61,7 +64,8 @@ public class Picking : MonoBehaviour
         {
             if (currentHover != -Vector2Int.one)
             {
-                GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
+                if(GameManager.GM.tiles[currentHover.x, currentHover.y] != null)
+                    GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
                 currentHover = -Vector2Int.one;
             }
         }
