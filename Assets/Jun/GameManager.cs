@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public int currentPlayer =0;
     public GameObject[,] tiles;
 
-    // Start is called before the first frame update
     private void Awake()
     {
         GM = this;
