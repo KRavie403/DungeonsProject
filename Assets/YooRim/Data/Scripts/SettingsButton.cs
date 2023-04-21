@@ -5,7 +5,14 @@ using UnityEngine;
 public class SettingsButton : MonoBehaviour
 {
     public GameObject Settings;
-    //public GameObject ResetButton;
+    void Start()
+    {
+
+    }
+    void Update()
+    {
+
+    }
     public void QuitSettingsMenu()
     {
         Settings.SetActive(false);
@@ -13,16 +20,8 @@ public class SettingsButton : MonoBehaviour
 
     public void ResetSettingsMenu()
     {
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

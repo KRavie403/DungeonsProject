@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CurrentPlayerUI : MonoBehaviour
 {
-    List<GameObject> Skills;
-    List<GameObject> Items;
+    GameObject[] Skills;
+    GameObject[] Items;
 
     void Awake()
     {
-        Skills = new List<GameObject>(8);
-        Items = new List<GameObject>(8);
+        Skills = new GameObject[10];
+        Items = new GameObject[10];
     }
     
 }

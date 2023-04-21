@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c1e4e0752db3ec42ac4ca42437a03f7, type: 3}
   m_Name: ItemData
   m_EditorClassIdentifier: 
-  _type: 0
-  _damage: 0
+  _type: 1
+  _damage: 3123
   _effect: {fileID: 0}
-  AttackIndex: []
+  AttackIndex:
+  - {x: 0, y: 0}
+  - {x: 0, y: 0}
