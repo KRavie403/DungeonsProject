@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SkillDataBase
   m_EditorClassIdentifier: 
   SkillList:
+  - {fileID: 11400000, guid: 59511187d122cab4f8a88adabb0daf62, type: 2}
   - {fileID: 11400000, guid: 39ebaeb72c1e406438acc450a66657ce, type: 2}

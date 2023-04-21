@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int currentPlayer =0;
     public GameObject[,] tiles;
 
+
     private void Awake()
     {
         GM = this;
