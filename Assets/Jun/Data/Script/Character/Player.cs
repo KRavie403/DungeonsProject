@@ -8,22 +8,43 @@ public class Player : CharactorMovement
     {
         CREATE, ACTION, MOVE, ATTACK_CAST, GUARD_UP, IDLE
     }
+    STATE _bfState;
     STATE _curState = STATE.CREATE;
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        myType = OB_TYPES.PLAYER;
-        GameManager.GM.Players.Add(this.gameObject);
-        my_Pos.x = Random.Range(0, GameManager.GM.rows);
-        my_Pos.y = Random.Range(0, GameManager.GM.columns);
-
-        float half = GameManager.GM.scale * 0.5f;
-        transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y+ half);
-
+        SetPlayer();
+        StartCoroutine(SetPos());
     }
 
+    void SetPlayer()
+    {
+        myType = OB_TYPES.PLAYER;
+        skilList = new List<SkillSet>();
+        GameManager.GM.Players.Add(this.gameObject);
+    }
+    IEnumerator SetPos()
+    {
+        int x = Random.Range(0, GameManager.GM.rows);
+        int y = Random.Range(0, GameManager.GM.columns);
+        while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5)
+        {
+            x = Random.Range(0, GameManager.GM.rows);
+            y = Random.Range(0, GameManager.GM.columns);
+        }
+        my_Pos = new Vector2Int(x, y);
+
+        float half = GameManager.GM.scale * 0.5f;
+        transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_target = this.gameObject;
+        GameManager.UM.AddPlayer(my_Sprite);
+
+        yield return null;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +59,7 @@ public class Player : CharactorMovement
                 break;
 
             case STATE.IDLE:
-
+                
                 break;
 
             case STATE.ACTION:
@@ -59,13 +80,28 @@ public class Player : CharactorMovement
 
 
                 break;
+            case STATE.MOVE:
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    InitMoveStart();
+                    ChangeState(_bfState);
+                }
+                break;
 
+            case STATE.ATTACK_CAST:
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    InitMoveStart();
+                    ChangeState(_bfState);
+                }
+                break;
         }
     }
 
     public void ChangeState(STATE s)
     {
         if (_curState == s) return;
+        _bfState = _curState;
         _curState = s;
         switch (_curState)
         {

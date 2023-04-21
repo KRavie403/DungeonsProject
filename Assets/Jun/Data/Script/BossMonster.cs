@@ -8,7 +8,7 @@ public class BossMonster : BossMovement
     private void Start()
     {
         myType = OB_TYPES.MONSTER;
-        GameManager.GM.Boss = this.gameObject;
+        //GameManager.GM.Players.Add(this.gameObject);
         my_Pos.x = GameManager.GM.rows - 5;
         my_Pos.y = GameManager.GM.columns - 5;
         float half = GameManager.GM.scale * 0.5f;
@@ -21,4 +21,5 @@ public class BossMonster : BossMovement
     {
         
     }
+
 }

@@ -1,42 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class GameManager : MonoBehaviour //턴돌아가면서 플레이어 비추는카메라??
 {
+    public static UI_Manager UM = null;
     public static GameManager GM = null;
-    public GameObject Boss = null;
     public List<GameObject> Players;
     public FollowCamera Main_Cam;
     public int currentPlayer =0;
     public GameObject[,] tiles;
 
-    // Start is called before the first frame update
     private void Awake()
     {
         GM = this;
+        UM = GetComponent<UI_Manager>();
         GenerateAllTiles(1, columns, rows);
         Players = new List<GameObject>();
     }
     
-    private void Start()
+    public void GameStart()
     {
+        UM.InGameUI.gameObject.SetActive(true);
+        UM.start_button.gameObject.SetActive(false);
+        Main_Cam.enabled = true;
         if (Players != null)
         {
             Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
-            foreach(var p in Players)
-            {
-                Vector2Int player = p.GetComponent<Player>().my_Pos;
-                tiles[player.x, player.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
-                tiles[player.x, player.y].GetComponent<TileState>().my_target = p;
-            }
         }
-        if(Boss != null)
-        {
-            Vector2Int pos = Boss.GetComponent<BossMonster>().my_Pos;
-            tiles[pos.x, pos.y].GetComponent<TileState>().my_obj = OB_TYPES.MONSTER;
-            tiles[pos.x, pos.y].GetComponent<TileState>().my_target = Boss;
-        }
+        
     }
     void Update()
     {
@@ -44,10 +37,6 @@ public class GameManager : MonoBehaviour //턴돌아가면서 플레이어 비추는카메라??
 
     //Player
 
-    public void SetBoss(GameObject boss)
-    {
-        Boss = boss;
-    }
     public void ChangeTurn()
     {
         Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.IDLE);
@@ -122,8 +111,11 @@ public class GameManager : MonoBehaviour //턴돌아가면서 플레이어 비추는카메라??
     {
         foreach (GameObject obj in tiles)
         {
-            if (obj != null)
+            if (obj != null && obj.GetComponent<TileState>().isVisited != -5)
+            {
                 obj.GetComponent<TileState>().isVisited = -1;
+                obj.layer = 3;
+            }
         }
     }
     void VisitedTile(int X, int Y)

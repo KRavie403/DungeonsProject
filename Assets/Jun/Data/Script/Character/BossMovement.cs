@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossMovement : CharactorMovement
 {
+    Vector2Int[] NeighboringTilePos;
+
     // Start is called before the first frame update
     void Start()
     {
