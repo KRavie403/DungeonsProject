@@ -7,10 +7,9 @@ public class TeleportSystem : MonoBehaviour
     public GameObject orgObject;
     Vector3 pos = Vector3.zero;
     int x = 0, z = 0;
-    void random(int r)
+    public void random(int rd)
     {
-        int p = Random.Range(1, 11);
-        switch (p)
+        switch (rd)
         {
             case 1:
                 x = 80;
@@ -55,12 +54,37 @@ public class TeleportSystem : MonoBehaviour
         }
         pos = new Vector3(x, 1, z);
     }
+    void teleportSystem()
+    {
+        int rd;
+
+        for (int j = 0; j < 10;) //10번반복
+        {
+            rd = Random.Range(1, 11); //1-10 랜덤숫자 넣기
+            if (list.Contains(rd)) //list에서 중복된숫자가있다면
+            {
+                rd = Random.Range(1, 11);
+            }
+            else //list에서 중복된숫자가없다면 list에 숫자넣고 j++
+            {
+                list.Add(rd); //0번인덱스부터 9까지 1-11랜덤숫자 넣기              
+                j++;
+            }
+        }
+
+        for (int i = 0; i < 5; ++i)
+        {
+            Debug.Log(list[i] + "   " + i);
+            random(list[i]);
+            GameObject obj = Instantiate(orgObject, pos, Quaternion.identity);
+        }
+    }
+
     List<int> list = new List<int>();
+
     void Start() //랜덤숫자 뽑기 -> 중복됬다면 다시 뽑기 -> 위치이동
     {
-
-        random(list[0]);
-        GameObject obj = Instantiate(orgObject, pos, Quaternion.identity);
+        teleportSystem();
     }
     void Update()
     {
