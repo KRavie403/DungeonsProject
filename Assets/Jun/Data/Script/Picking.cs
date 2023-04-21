@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class Picking : CharactorMovement
+public class Picking : MonoBehaviour
 {
     public LayerMask pickMask; //누를수있는 레이어추가
     public UnityEvent<Vector2Int> clickAction = null; //Player스크립트에있는 OnMoveByPath불러오기
@@ -32,27 +32,27 @@ public class Picking : CharactorMovement
                     if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
                     {
                         Debug.Log($"Hit Layer : {hit.transform.gameObject.layer}");
-                        clickAction?.Invoke(GMMap.GetTileIndex(hit.transform.gameObject));
+                        clickAction?.Invoke(GameManager.GM.GetTileIndex(hit.transform.gameObject));
                     }
 
                 }
                 else
                 {
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
-                    Vector2Int hitPos = GMMap.GetTileIndex(hit.transform.gameObject);
+                    Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
                     if (currentHover == -Vector2Int.one)
                     {
                         currentHover = hitPos;
-                        GMMap.tiles[hitPos.x, hitPos.y].layer = 8;
+                        GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
                     }
                     if (currentHover != hitPos)
                     {
-                        if (GMMap.CheckTileVisited(currentHover.x, currentHover.y) == -1)
-                            GMMap.tiles[currentHover.x, currentHover.y].layer = 3;
+                        if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) == -1)
+                            GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
                         else
-                            GMMap.tiles[currentHover.x, currentHover.y].layer = 9;
+                            GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 9;
                         currentHover = hitPos;
-                        GMMap.tiles[hitPos.x, hitPos.y].layer = 8;
+                        GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
                     }
                 }
             }
@@ -61,7 +61,7 @@ public class Picking : CharactorMovement
         {
             if (currentHover != -Vector2Int.one)
             {
-                GMMap.tiles[currentHover.x, currentHover.y].layer = 3;
+                GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
                 currentHover = -Vector2Int.one;
             }
         }
