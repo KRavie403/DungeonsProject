@@ -6,7 +6,7 @@ public class MapSet : MonoBehaviour
 {
     public GameObject Map1;
     public GameObject Map2;
-    public GameObject Quit;
+    //public GameObject C;
     public GameObject CharacterSet;
     public GameObject Map;
 
@@ -30,5 +30,6 @@ public class MapSet : MonoBehaviour
     public void CloseMapSet()
     {
         Map.SetActive(false);
+        CharacterSet.SetActive(false);
     }
 }
