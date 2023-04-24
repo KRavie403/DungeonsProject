@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int currentPlayer =0;
     public GameObject[,] tiles;
 
+
     private void Awake()
     {
         GM = this;
@@ -28,8 +29,9 @@ public class GameManager : MonoBehaviour
         if (Players != null)
         {
             Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            CurrentSkill();
         }
-        
+
     }
     void Update()
     {
@@ -40,10 +42,22 @@ public class GameManager : MonoBehaviour
     public void ChangeTurn()
     {
         Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.IDLE);
+        
         currentPlayer = (++currentPlayer) % (Players.Count);
         Main_Cam.myTarget = Players[currentPlayer].transform.Find("ViewPoint").transform;
         Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+        CurrentSkill();
 
+
+    }
+    private void CurrentSkill()
+    {
+        UM.currentSkillSet.SkillList.Clear();
+        UM.skill_Count = 0;
+        foreach (var skill in Players[currentPlayer].GetComponent<Player>().skilList)
+            UM.AddSkills(skill);
+        
+        
     }
     // Update is called once per frame
     

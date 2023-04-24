@@ -6,11 +6,11 @@ public class Player : CharactorMovement
 {
     public enum STATE
     {
-        CREATE, ACTION, MOVE, ATTACK_CAST, GUARD_UP, IDLE
+        CREATE, ACTION, MOVE, SKILL_CAST, GUARD_UP, IDLE
     }
-    STATE _bfState;
-    STATE _curState = STATE.CREATE;
-
+    public STATE _bfState;
+    public STATE _curState = STATE.CREATE;
+    public SkillSet currSKill = null;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,8 @@ public class Player : CharactorMovement
     void SetPlayer()
     {
         myType = OB_TYPES.PLAYER;
-        skilList = new List<SkillSet>();
+        if(skilList == null)
+            skilList = new List<SkillSet>();
         GameManager.GM.Players.Add(this.gameObject);
     }
     IEnumerator SetPos()
@@ -88,7 +89,7 @@ public class Player : CharactorMovement
                 }
                 break;
 
-            case STATE.ATTACK_CAST:
+            case STATE.SKILL_CAST:
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
                     InitMoveStart();
@@ -145,6 +146,12 @@ public class Player : CharactorMovement
     }
     public void OnAttack(Vector2Int tile)
     {
+
+    }
+    public void OnAttackCast(SkillSet skill)
+    {
+        ChangeState(STATE.SKILL_CAST);
+        currSKill = skill;
 
     }
 

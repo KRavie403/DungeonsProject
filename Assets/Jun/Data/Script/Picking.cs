@@ -59,6 +59,46 @@ public class Picking : MonoBehaviour
                     }
                 }
             }
+            if (_curState == Player.STATE.SKILL_CAST)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
+                    {
+                        //clickAction?.Invoke(GameManager.GM.GetTileIndex(hit.transform.gameObject));
+                    }
+
+                }
+                else
+                {
+                    //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
+                    Vector2Int pPos = GetComponent<Player>().my_Pos;
+                    Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+
+                    Vector2 dir = hitPos - pPos;
+
+                    foreach (Vector2Int v in GetComponent<Player>().currSKill.AttackIndex)
+                    {
+                        Vector2Int tmp = pPos + v;
+                    }
+
+
+                    //if (currentHover == -Vector2Int.one)
+                    //{
+                    //    currentHover = hitPos;
+                    //    GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
+                    //}
+                    //if (currentHover != hitPos)
+                    //{
+                    //    if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) <= -1)
+                    //        GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
+                    //    else
+                    //        GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 9;
+                    //    currentHover = hitPos;
+                    //    GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
+                    //}
+                }
+            }
         }
         else
         {

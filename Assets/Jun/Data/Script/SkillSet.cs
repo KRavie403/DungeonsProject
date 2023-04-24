@@ -12,6 +12,10 @@ public class SkillSet : ScriptableObject
     public SkillType myType { get { return _type; } }
 
     [SerializeField]
+    private Sprite _sprite;
+    public Sprite MySprite { get { return _sprite; } }
+
+    [SerializeField]
     private int _damage;
     public int Damage{ get { return _damage; } }
 
@@ -22,4 +26,5 @@ public class SkillSet : ScriptableObject
     [SerializeField]
     public List<Vector2Int> AttackIndex;
 
+    
 }
