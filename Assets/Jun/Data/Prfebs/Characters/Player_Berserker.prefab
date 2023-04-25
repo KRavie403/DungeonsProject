@@ -204,7 +204,7 @@ MonoBehaviour:
   MaxHP: 100
   my_Size: 1
   _mySize: 1
-  MoveSpeed: 1
+  MoveSpeed: 10
   RotSpeed: 1
   AttackPower: 10
   DeffencePower: 10
@@ -214,6 +214,9 @@ MonoBehaviour:
   curActionPoint: 8
   findPath: 0
   path: []
+  _bfState: 0
+  _curState: 0
+  currSKill: {fileID: 0}
 --- !u!114 &6842431276467786003
 MonoBehaviour:
   m_ObjectHideFlags: 0
