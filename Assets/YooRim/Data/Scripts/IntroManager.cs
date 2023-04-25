@@ -32,7 +32,13 @@ public class IntroManager : MonoBehaviour
         Settings.SetActive(false);
     }
 
-    public void MainGameScene() //Start
+    public void OpenStartMenu() //Start
+    {
+        MapPanel.SetActive(true);
+        //SceneManager.LoadScene("MainGameScene");
+    }
+
+    public void QuitStartMenu()
     {
         MapPanel.SetActive(true);
         //SceneManager.LoadScene("MainGameScene");
