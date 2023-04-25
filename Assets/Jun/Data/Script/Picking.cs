@@ -72,15 +72,32 @@ public class Picking : MonoBehaviour
                 else
                 {
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
-                    Vector2Int pPos = GetComponent<Player>().my_Pos;
-                    Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+                    Vector3 pPos = this.transform.position;
 
-                    Vector2 dir = hitPos - pPos;
+                    Vector3 dir = hit.point - pPos;
+                    dir.Normalize();
+                    
+                    bool is_front = false;
+                    float dot = Vector3.Dot(transform.forward, dir);
+                    float angle= Vector3.Angle(transform.right, dir);
 
-                    foreach (Vector2Int v in GetComponent<Player>().currSKill.AttackIndex)
+
+                    if (dot > 0) 
+                        is_front = true;
+                    if(angle <= 45)
                     {
-                        Vector2Int tmp = pPos + v;
+                        //foreach (vector2int v in getcomponent<player>().currskill.attackindex)
+                        //{
+                        //    vector2int tmp = ppos + v;
+                        //}
                     }
+
+
+                    Debug.Log($"Front : {is_front}, Direction {angle}");
+
+
+
+
 
 
                     //if (currentHover == -Vector2Int.one)

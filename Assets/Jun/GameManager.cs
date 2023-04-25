@@ -26,9 +26,11 @@ public class GameManager : MonoBehaviour
         UM.InGameUI.gameObject.SetActive(true);
         UM.start_button.gameObject.SetActive(false);
         Main_Cam.enabled = true;
+        Main_Cam.SetCam(0);
+
         if (Players != null)
         {
-            Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            Players[0].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
             CurrentSkill();
         }
 
@@ -38,13 +40,17 @@ public class GameManager : MonoBehaviour
     }
 
     //Player
+    public void OnMove()
+    {
+        Players[currentPlayer].GetComponent<Player>().OnMove();
 
+    }
     public void ChangeTurn()
     {
         Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.IDLE);
         
         currentPlayer = (++currentPlayer) % (Players.Count);
-        Main_Cam.myTarget = Players[currentPlayer].transform.Find("ViewPoint").transform;
+        Main_Cam.SetCam(currentPlayer);
         Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
         CurrentSkill();
 

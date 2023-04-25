@@ -6,7 +6,7 @@ public class Player : CharactorMovement
 {
     public enum STATE
     {
-        CREATE, ACTION, MOVE, SKILL_CAST, GUARD_UP, IDLE
+        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE
     }
     public STATE _bfState;
     public STATE _curState = STATE.CREATE;
@@ -28,14 +28,16 @@ public class Player : CharactorMovement
     }
     IEnumerator SetPos()
     {
-        int x = Random.Range(0, GameManager.GM.rows);
-        int y = Random.Range(0, GameManager.GM.columns);
-        while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5)
+        int x, y;
+
+        do
         {
-            x = Random.Range(0, GameManager.GM.rows);
-            y = Random.Range(0, GameManager.GM.columns);
-        }
-        my_Pos = new Vector2Int(x, y);
+            x = Random.Range(0, GameManager.GM.columns);
+            y = Random.Range(0, GameManager.GM.rows);
+        } while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5);
+
+
+        my_Pos = new Vector2Int(y, x);
 
         float half = GameManager.GM.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
@@ -72,19 +74,13 @@ public class Player : CharactorMovement
                     Guard();
                     ChangeState(STATE.GUARD_UP);
                 }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    InitMoveStart();
-                    SetDistance();
-                    ChangeState(STATE.MOVE);
-                }
-
+                
 
                 break;
             case STATE.MOVE:
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
-                    InitMoveStart();
+                    InitTileDistance();
                     ChangeState(_bfState);
                 }
                 break;
@@ -92,7 +88,7 @@ public class Player : CharactorMovement
             case STATE.SKILL_CAST:
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
-                    InitMoveStart();
+                    InitTileDistance();
                     ChangeState(_bfState);
                 }
                 break;
@@ -119,7 +115,6 @@ public class Player : CharactorMovement
 
                 break;
             case STATE.MOVE:
-                gameObject.GetComponent<Picking>().enabled = true;
 
                 break;
 
@@ -146,19 +141,26 @@ public class Player : CharactorMovement
     }
     public void OnAttack(Vector2Int tile)
     {
-
+        ChangeState(STATE.ATTACK);
+        InitTileDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
     }
-    public void OnAttackCast(SkillSet skill)
+    public void OnSkillCast(SkillSet skill)
     {
         ChangeState(STATE.SKILL_CAST);
         currSKill = skill;
-
+        InitTileDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
     }
 
-    public void OnMove(Vector2Int tile)
+    public void OnMove()
     {
-        InitMoveStart();
-        MoveToTile(tile);
+        //InitMoveStart();
+        //MoveToTile(tile);
+        ChangeState(STATE.MOVE);
+        InitTileDistance();
+        SetDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
     }
     public void OnMoveByPath(Vector2Int tile)
     {
@@ -169,7 +171,7 @@ public class Player : CharactorMovement
         MoveByPath(tile);
     }
 
-    void InitMoveStart()
+    void InitTileDistance()
     {
         Start_X = my_Pos.x;
         Start_Y = my_Pos.y;
