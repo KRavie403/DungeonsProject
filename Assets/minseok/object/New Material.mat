@@ -40,11 +40,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: df525983230e7694090fcc78c5f9dc91, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f79a4b1802423a4494e580780db1e5f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 4c25389763a77bf46bdbd295d1885b30, type: 3}
+        m_Texture: {fileID: 2800000, guid: b4b06ca78839cec4987b23cfd3e6433d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ClippingMask:
@@ -76,7 +76,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: df525983230e7694090fcc78c5f9dc91, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f79a4b1802423a4494e580780db1e5f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap_Sampler:
