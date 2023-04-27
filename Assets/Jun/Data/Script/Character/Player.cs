@@ -11,7 +11,6 @@ public class Player : CharactorMovement
     public STATE _bfState;
     public STATE _curState = STATE.CREATE;
     public SkillSet currSKill = null;
-
     // Start is called before the first frame update
     void Start()
     {
