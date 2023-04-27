@@ -18,12 +18,20 @@ public class TileState : MonoBehaviour
         {
             isVisited = -5;
         }
-        else if(other.gameObject.layer == LayerMask.NameToLayer("Boss"))
-        {
-            my_obj = OB_TYPES.MONSTER;
-            my_target = other.gameObject;
-            isVisited = -2;
-        }
+        
     }
-
+    public GameObject OnMyTarget()
+    {
+        return my_target;
+    }
+    public void reSetTile()
+    {
+        isVisited = 0;
+        my_obj = OB_TYPES.NONE;
+        my_target = null;
+    }
+    public void SettingTarget(GameObject tar)
+    {
+        my_target = tar;
+    }
 }

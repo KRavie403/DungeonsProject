@@ -38,7 +38,6 @@ public class CharactorProperty : MonoBehaviour
         }
         set => _curHP = Mathf.Clamp(value, 0.0f, MaxHP);
     }
-    
     Animator _anim = null;
 
     protected Animator myAnim

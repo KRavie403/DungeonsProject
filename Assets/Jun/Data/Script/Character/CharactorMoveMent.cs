@@ -24,14 +24,17 @@ public class CharactorMovement : CharactorProperty
         }
         coMove = StartCoroutine(MovingToTile(target, done));
     }
-    protected void MoveByPath(Vector2Int tile)
+    protected void MoveByPath(Vector2Int tile, UnityAction done = null)
     {
         StopAllCoroutines();
 
 
         SetPath(tile);
         if (findPath)
-            StartCoroutine(MovingByPath());
+            StartCoroutine(MovingByPath(done));
+        
+        my_Pos = tile;
+
     }
     bool CastDirectionTile(int x, int y, int step, Direction dir)
     {
@@ -170,7 +173,7 @@ public class CharactorMovement : CharactorProperty
         done?.Invoke();
 
     }
-    IEnumerator MovingByPath()
+    IEnumerator MovingByPath(UnityAction arrive)
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
         for (int i = path.Count - 1; i >= 0;)
@@ -201,6 +204,8 @@ public class CharactorMovement : CharactorProperty
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_target = this.gameObject;
 
         //myAnim.SetFloat("Speed", 0);
+        arrive?.Invoke();
+
     }
     IEnumerator Rotating(Vector3 dir)
     {
