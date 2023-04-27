@@ -186,8 +186,6 @@ public class CharactorMovement : CharactorProperty
             i--;
         }
 
-
-
         if (curActionPoint <= 0)
         {
             GameManager.GM.ChangeTurn();

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowCamera : MonoBehaviour //카메라동작??
+public class FollowCamera : MonoBehaviour
 {
     public LayerMask crashMask;
     public float Rotspeed;
@@ -10,9 +10,9 @@ public class FollowCamera : MonoBehaviour //카메라동작??
     public Transform myTarget;
 
     [Range(0, 45)]
-    public float MinAngle = 45; //0~45
+    public float MinAngle = 45;
     [Range(45, 80)]
-    public float MaxAngle = 80; //45~80
+    public float MaxAngle = 80;
 
 
     Vector3 dir = Vector3.zero;
@@ -21,18 +21,25 @@ public class FollowCamera : MonoBehaviour //카메라동작??
 
     private void Awake()
     {
-        transform.LookAt(myTarget); //플레이어에 붙어있는 ViewPoint를 보게함
-        dir = transform.position - myTarget.position; 
-        targetDist = Dist = dir.magnitude;
-        dir.Normalize();
-        dir = transform.InverseTransformDirection(dir); //플레이어와 카메라의 거리유지??
+        //transform.LookAt(myTarget);
+        //dir = transform.position - myTarget.position;
+        //targetDist = Dist = dir.magnitude;
+        //dir.Normalize();
+        //dir = transform.InverseTransformDirection(dir);
 
     }
-
-    // Start is called before the first frame update
+    public void SetCam(int num)
+    {
+        myTarget = GameManager.GM.Players[num].transform.Find("ViewPoint").transform;
+        transform.LookAt(myTarget);
+        dir = transform.position - myTarget.position;
+        targetDist = Dist = dir.magnitude;
+        dir.Normalize();
+        dir = transform.InverseTransformDirection(dir);
+    }
     void Start()
     {
-        transform.position = myTarget.position + Quaternion.Euler(MinAngle, 0, 0) * dir * Dist; //카메라 위치와 각도 초기화??
+        transform.position = myTarget.position + Quaternion.Euler(MinAngle, 0, 0) * dir * Dist;
     }
 
     Quaternion rotX = Quaternion.identity, rotY = Quaternion.identity;
@@ -42,8 +49,8 @@ public class FollowCamera : MonoBehaviour //카메라동작??
     {
         if (Input.GetMouseButton(1))
         {
-            float x = Input.GetAxis("Mouse Y"); //마우스 Y축움직일시 -1~1로 수치나옴
-            float y = Input.GetAxis("Mouse X"); //마우스 X축움직일시 -1~1로 수치나옴
+            float x = Input.GetAxis("Mouse Y");
+            float y = Input.GetAxis("Mouse X");
             //쿼터니언
 
             rotX *= Quaternion.Euler(x, 0, 0);

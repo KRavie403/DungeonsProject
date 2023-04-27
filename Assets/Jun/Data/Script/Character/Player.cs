@@ -6,11 +6,11 @@ public class Player : CharactorMovement
 {
     public enum STATE
     {
-        CREATE, ACTION, MOVE, ATTACK_CAST, GUARD_UP, IDLE
+        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE
     }
-    STATE _bfState;
-    STATE _curState = STATE.CREATE;
-
+    public STATE _bfState;
+    public STATE _curState = STATE.CREATE;
+    public SkillSet currSKill = null;
 
     // Start is called before the first frame update
     void Start()
@@ -22,21 +22,22 @@ public class Player : CharactorMovement
     void SetPlayer()
     {
         myType = OB_TYPES.PLAYER;
-        skilList = new List<SkillSet>();
+        if(skilList == null)
+            skilList = new List<SkillSet>();
         GameManager.GM.Players.Add(this.gameObject);
     }
     IEnumerator SetPos()
     {
-        int x;
-        int y;
+        int x, y;
 
         do
         {
-            x = Random.Range(0, GameManager.GM.rows);
-            y = Random.Range(0, GameManager.GM.columns);
+            x = Random.Range(0, GameManager.GM.columns);
+            y = Random.Range(0, GameManager.GM.rows);
         } while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5);
 
-        my_Pos = new Vector2Int(x, y);
+
+        my_Pos = new Vector2Int(y, x);
 
         float half = GameManager.GM.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
@@ -73,27 +74,21 @@ public class Player : CharactorMovement
                     Guard();
                     ChangeState(STATE.GUARD_UP);
                 }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    InitMoveStart();
-                    SetDistance();
-                    ChangeState(STATE.MOVE);
-                }
-
+                
 
                 break;
             case STATE.MOVE:
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
-                    InitMoveStart();
+                    InitTileDistance();
                     ChangeState(_bfState);
                 }
                 break;
 
-            case STATE.ATTACK_CAST:
+            case STATE.SKILL_CAST:
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
-                    InitMoveStart();
+                    InitTileDistance();
                     ChangeState(_bfState);
                 }
                 break;
@@ -120,7 +115,6 @@ public class Player : CharactorMovement
 
                 break;
             case STATE.MOVE:
-                gameObject.GetComponent<Picking>().enabled = true;
 
                 break;
 
@@ -147,13 +141,26 @@ public class Player : CharactorMovement
     }
     public void OnAttack(Vector2Int tile)
     {
-
+        ChangeState(STATE.ATTACK);
+        InitTileDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
+    }
+    public void OnSkillCast(SkillSet skill)
+    {
+        ChangeState(STATE.SKILL_CAST);
+        currSKill = skill;
+        InitTileDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
     }
 
-    public void OnMove(Vector2Int tile)
+    public void OnMove()
     {
-        InitMoveStart();
-        MoveToTile(tile);
+        //InitMoveStart();
+        //MoveToTile(tile);
+        ChangeState(STATE.MOVE);
+        InitTileDistance();
+        SetDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
     }
     public void OnMoveByPath(Vector2Int tile)
     {
@@ -164,12 +171,14 @@ public class Player : CharactorMovement
         MoveByPath(tile);
     }
 
-    void InitMoveStart()
+    void InitTileDistance()
     {
         Start_X = my_Pos.x;
         Start_Y = my_Pos.y;
         GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().isVisited = 0;
         GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_obj = OB_TYPES.NONE;
         GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_target = null;
+
     }
+
 }
