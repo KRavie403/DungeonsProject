@@ -202,6 +202,7 @@ public class CharactorMovement : CharactorProperty
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_target = this.gameObject;
 
+
         //myAnim.SetFloat("Speed", 0);
     }
     IEnumerator Rotating(Vector3 dir)

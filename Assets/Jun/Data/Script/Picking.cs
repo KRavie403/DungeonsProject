@@ -7,6 +7,8 @@ using UnityEngine.Events;
 public class Picking : MonoBehaviour
 {
     public LayerMask pickMask; //누를수있는 레이어추가
+    public LayerMask TP;
+    public GameObject TPUI;
     public UnityEvent<Vector2Int> clickAction = null; //Player스크립트에있는 OnMoveByPath불러오기
 
     private Vector2Int currentHover;
@@ -34,10 +36,11 @@ public class Picking : MonoBehaviour
                         Debug.Log($"Hit Layer : {hit.transform.gameObject.layer}");
                         clickAction?.Invoke(GameManager.GM.GetTileIndex(hit.transform.gameObject));
                     }
-
+                    
                 }
                 else
                 {
+                    
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
                     Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
                     if (currentHover == -Vector2Int.one)
@@ -53,6 +56,22 @@ public class Picking : MonoBehaviour
                             GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 9;
                         currentHover = hitPos;
                         GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
+                    }
+                    
+                }
+            }
+            if (_curState == Player.STATE.ACTION)
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    if ((1 << hit.transform.gameObject.layer & TP) != 0)
+                    {
+                        if (hit.transform.position.x - this.transform.position.x <= 1.5f && hit.transform.position.x - this.transform.position.x >= -1.5f
+                            && hit.transform.position.z - this.transform.position.z <= 1.5f && hit.transform.position.z - this.transform.position.z >= -1.5f)
+                        {
+                            TPUI.SetActive(true);
+                            TeleportSystem.main_teleport.testtarget(hit.transform);
+                        }
                     }
                 }
             }

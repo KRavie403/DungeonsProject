@@ -27,13 +27,15 @@ public class Player : CharactorMovement
     }
     IEnumerator SetPos()
     {
-        int x = Random.Range(0, GameManager.GM.rows);
-        int y = Random.Range(0, GameManager.GM.columns);
-        while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5)
+        int x;
+        int y;
+
+        do
         {
             x = Random.Range(0, GameManager.GM.rows);
             y = Random.Range(0, GameManager.GM.columns);
-        }
+        } while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5);
+
         my_Pos = new Vector2Int(x, y);
 
         float half = GameManager.GM.scale * 0.5f;
@@ -169,7 +171,5 @@ public class Player : CharactorMovement
         GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().isVisited = 0;
         GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_obj = OB_TYPES.NONE;
         GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_target = null;
-
     }
-
 }

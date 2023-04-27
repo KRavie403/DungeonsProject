@@ -4,55 +4,68 @@ using UnityEngine;
 
 public class TeleportSystem : MonoBehaviour
 {
+    public static TeleportSystem main_teleport = null;
+
     public GameObject orgObject;
-    Vector3 pos = Vector3.zero;
-    int x = 0, z = 0;
+    public GameObject TPUI;
+    Vector2Int pos = Vector2Int.zero;
+    Vector3 testpos = Vector3.zero;
+    public List<Teleport> teleporters;
+    public GameObject mytarget = null;
+    int x = 0, y = 0;
     public void random(int rd)
     {
+
         switch (rd)
         {
             case 1:
                 x = 80;
-                z = 80;
+                y = 80;
                 break;
             case 2:
                 x = 70;
-                z = 15;
+                y = 15;
                 break;
             case 3:
                 x = 58;
-                z = 50;
+                y = 50;
                 break;
             case 4:
                 x = 42;
-                z = 89;
+                y = 89;
                 break;
             case 5:
                 x = 18;
-                z = 85;
+                y = 85;
                 break;
             case 6:
                 x = 24;
-                z = 10;
+                y = 10;
                 break;
             case 7:
                 x = 26;
-                z = 33;
+                y = 33;
                 break;
             case 8:
                 x = 15;
-                z = 62;
+                y = 62;
                 break;
             case 9:
                 x = 45;
-                z = 63;
+                y = 63;
                 break;
             case 10:
                 x = 76;
-                z = 44;
+                y = 44;
                 break;
         }
-        pos = new Vector3(x, 1, z);
+
+        Vector2Int my_Pos = new Vector2Int(x, y);
+
+        float half = GameManager.GM.scale * 0.5f;
+        testpos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+
+        pos = new Vector2Int(x, y);
     }
     void teleportSystem()
     {
@@ -67,27 +80,45 @@ public class TeleportSystem : MonoBehaviour
             }
             else //list에서 중복된숫자가없다면 list에 숫자넣고 j++
             {
-                list.Add(rd); //0번인덱스부터 9까지 1-11랜덤숫자 넣기              
+                list.Add(rd); //0번인덱스부터 9까지 1-11랜덤숫자 넣기       
                 j++;
             }
         }
 
         for (int i = 0; i < 5; ++i)
         {
-            Debug.Log(list[i] + "   " + i);
             random(list[i]);
-            GameObject obj = Instantiate(orgObject, pos, Quaternion.identity);
+            GameObject obj = Instantiate(orgObject, testpos, Quaternion.identity);
+            obj.GetComponent<Teleport>().pos = pos;
         }
+        
+        GameObject obj1 = Instantiate(orgObject, new Vector3(8.5f,0,8.5f), Quaternion.identity);
+        GameObject obj2 = Instantiate(orgObject, new Vector3(2.5f, 0, 2.5f), Quaternion.identity);
+
     }
 
     List<int> list = new List<int>();
 
-    void Start() //랜덤숫자 뽑기 -> 중복됬다면 다시 뽑기 -> 위치이동
+    void Start()
     {
         teleportSystem();
+        teleporters = new List<Teleport>();
+        main_teleport = this;
     }
+
+    
     void Update()
     {
         
+    }
+
+    public  void Ontp()
+    {
+        TPUI.SetActive(false);
+        mytarget.GetComponent<Teleport>().tp();
+    }
+    public void testtarget(Transform target)
+    {
+        mytarget = target.gameObject;
     }
 }

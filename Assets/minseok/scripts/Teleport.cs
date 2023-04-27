@@ -1,23 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Teleport : TeleportSystem
+public class Teleport : MonoBehaviour
 {
+    public Vector2Int pos;
+    public LayerMask pickMask;
+    public List<TileState> tiles;
     void Start()
     {
-
+        TeleportSystem.main_teleport.teleporters.Add(this);
+        Setting();
     }
     void Update()
     {
-
+        
     }
-
-    private void OnTriggerEnter(Collider other) //랜덤좌표값 가져오기 그좌표로 닿은상대를 이동
+    private void OnTriggerEnter(Collider other) 
     {
-        int rnd = Random.Range(1, 11);
-        Debug.Log("닿음");
-        random(rnd);
-        //pos값을 가져오려면?
+        if ((1 << other.gameObject.layer & pickMask) != 0)
+        {
+            pos = GameManager.GM.GetTileIndex(other.gameObject);
+            
+            this.GetComponent<CapsuleCollider>().isTrigger = false;
+        }
+    }
+    public void tp()
+    {
+        foreach (var tile in tiles)
+        {
+            if (tile.my_obj == OB_TYPES.PLAYER)
+            {
+                Player.STATE _curState = tile.my_target.GetComponent<Player>().GetState();
+                if (_curState == Player.STATE.ACTION)
+                {
+                    tile.my_target.transform.position = new Vector3(5.5f, 0, 8.5f);
+                }
+            }
+        }
+    }
+    public void Setting()
+    {
+        tiles.Add(GameManager.GM.tiles[pos.x + 1, pos.y + 0].GetComponent<TileState>());
+        tiles.Add(GameManager.GM.tiles[pos.x + 0, pos.y + 1].GetComponent<TileState>());
+        tiles.Add(GameManager.GM.tiles[pos.x + -1, pos.y + 0].GetComponent<TileState>());
+        tiles.Add(GameManager.GM.tiles[pos.x + 0, pos.y + -1].GetComponent<TileState>());
+        tiles.Add(GameManager.GM.tiles[pos.x + 1, pos.y + 1].GetComponent<TileState>());
+        tiles.Add(GameManager.GM.tiles[pos.x + -1, pos.y + -1].GetComponent<TileState>());
+        tiles.Add(GameManager.GM.tiles[pos.x + 1, pos.y + -1].GetComponent<TileState>());
+        tiles.Add(GameManager.GM.tiles[pos.x + -1, pos.y + 1].GetComponent<TileState>());
     }
 }

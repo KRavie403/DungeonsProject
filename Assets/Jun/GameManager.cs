@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class GameManager : MonoBehaviour //턴돌아가면서 플레이어 비추는카메라??
+public class GameManager : MonoBehaviour
 {
     public static UI_Manager UM = null;
     public static GameManager GM = null;
