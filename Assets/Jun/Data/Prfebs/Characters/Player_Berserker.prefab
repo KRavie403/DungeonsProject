@@ -232,6 +232,10 @@ MonoBehaviour:
   pickMask:
     serializedVersion: 2
     m_Bits: 776
+  TP:
+    serializedVersion: 2
+    m_Bits: 8192
+  TPUI: {fileID: 0}
   clickToMove:
     m_PersistentCalls:
       m_Calls:
