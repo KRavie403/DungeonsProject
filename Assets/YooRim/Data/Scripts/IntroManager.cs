@@ -41,7 +41,6 @@ public class IntroManager : MonoBehaviour
     public void QuitStartMenu()
     {
         MapPanel.SetActive(true);
-        //SceneManager.LoadScene("MainGameScene");
     }
     public void CloseGame() //Quit
     {
