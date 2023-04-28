@@ -24,6 +24,10 @@ public class CharactorMovement : CharactorProperty
         }
         coMove = StartCoroutine(MovingToTile(target, done));
     }
+    protected void Roatate(Vector3 dir, UnityAction done = null)
+    {
+        StartCoroutine(Rotating(dir, done));
+    }
     protected void MoveByPath(Vector2Int tile, UnityAction done = null)
     {
         StopAllCoroutines();
@@ -66,7 +70,7 @@ public class CharactorMovement : CharactorProperty
     }
     protected void SetDistance()
     {
-        for (int step = 1; step <= curActionPoint; step++)
+        for (int step = 1; step <= curAP; step++)
         {
             foreach (GameObject obj in GameManager.GM.tiles)
             {
@@ -150,7 +154,12 @@ public class CharactorMovement : CharactorProperty
         float dist = dir.magnitude;
         dir.Normalize();
 
-        StartCoroutine(Rotating(dir));
+        bool rote = false;
+        Roatate(dir, () => rote = true);
+        while (!rote)
+        {
+            yield return null;
+        }
 
         //myAnim.SetBool("isMoving", true);
 
@@ -185,14 +194,15 @@ public class CharactorMovement : CharactorProperty
             {
                 yield return null;
             }
-            curActionPoint--;
+            curAP--;
+            GameManager.UM.StateUpdate(GameManager.GM.currentPlayer);
             i--;
         }
 
-        if (curActionPoint <= 0)
+        if (curAP <= 0)
         {
             GameManager.GM.ChangeTurn();
-            curActionPoint = ActionPoint;
+            curAP = 10;
         }
         else
         {
@@ -208,7 +218,7 @@ public class CharactorMovement : CharactorProperty
         arrive?.Invoke();
 
     }
-    IEnumerator Rotating(Vector3 dir)
+    IEnumerator Rotating(Vector3 dir, UnityAction roatate)
     {
         float angle = Vector3.Angle(transform.forward, dir);
         float rotDir = 1.0f;
@@ -227,6 +237,7 @@ public class CharactorMovement : CharactorProperty
             transform.Rotate(Vector3.up * rotDir * delta);
             yield return null;
         }
+        roatate?.Invoke();
     }
 
     //Çàµ¿

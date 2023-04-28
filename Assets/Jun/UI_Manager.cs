@@ -12,8 +12,16 @@ public class UI_Manager : MonoBehaviour
     public SkillSetDB currentSkillSet;
     public GameObject start_button;
     public List<GameObject> skillSlots;
-
+    public TMPro.TextContainer currentHP;
+    public Image currentActionPoint;
     public int skill_Count = 0;
+
+    public void StateUpdate(int p)
+    {
+        currentActionPoint.fillAmount = GameManager.GM.Players[p].GetComponent<Player>().CheckAP() / 10.0f;
+
+
+    }
     public void AddPlayer(Sprite _spt)
     {
         GameObject obj = Instantiate(char_Frame);

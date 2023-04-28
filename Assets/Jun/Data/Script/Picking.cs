@@ -134,7 +134,7 @@ public class Picking : MonoBehaviour
                         is_front = -1;
                     if(angle <= 45.0f)
                     {
-                        foreach (Vector2Int v in GetComponent<Player>().currSKill.AttackIndex)
+                        foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
                         {
                             Vector2Int tmp = GetComponent<Player>().my_Pos + new Vector2Int(v.y, v.x);
 
@@ -147,7 +147,7 @@ public class Picking : MonoBehaviour
                     }
                     else if(angle <= 135.0f)
                     {
-                        foreach (Vector2Int v in GetComponent<Player>().currSKill.AttackIndex)
+                        foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
                         {
                             Vector2Int tmp = GetComponent<Player>().my_Pos + v * is_front;
 
@@ -161,7 +161,7 @@ public class Picking : MonoBehaviour
                     }
                     else
                     {
-                        foreach (Vector2Int v in GetComponent<Player>().currSKill.AttackIndex)
+                        foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
                         {
                             Vector2Int tmp = GetComponent<Player>().my_Pos - new Vector2Int(v.y, v.x);
 

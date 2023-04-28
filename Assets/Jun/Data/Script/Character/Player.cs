@@ -10,7 +10,7 @@ public class Player : CharactorMovement
     }
     public STATE _bfState;
     public STATE _curState = STATE.CREATE;
-    public SkillSet currSKill = null;
+    public SkillSet currSkill = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -161,7 +161,7 @@ public class Player : CharactorMovement
     public void OnSkillCast(SkillSet skill)
     {
         ChangeState(STATE.SKILL_CAST);
-        currSKill = skill;
+        currSkill = skill;
         InitTileDistance();
         gameObject.GetComponent<Picking>().enabled = true;
     }
@@ -191,4 +191,8 @@ public class Player : CharactorMovement
 
     }
 
+    public float CheckAP()
+    {
+        return curAP;
+    }
 }
