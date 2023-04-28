@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "CharacterStatData", menuName = "ScriptableObjects/Character", order = 3)]
-public class CharacterSet : ScriptableObject
+public class Charactert : ScriptableObject
 {
     [SerializeField]
     private string _name;

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee4da881497b7844b908939212f7fccb, type: 3}
-  m_Name: CharacterStatDataBase
+  m_Name: CharacterDB
   m_EditorClassIdentifier: 
-  SkillList:
-  - {fileID: 11400000, guid: e75c27eca0ece70419e4fff262a6059c, type: 2}
-  - {fileID: 11400000, guid: cff5388850efa18469d95413a814523e, type: 2}
-  - {fileID: 11400000, guid: cff5388850efa18469d95413a814523e, type: 2}
-  - {fileID: 11400000, guid: cff5388850efa18469d95413a814523e, type: 2}
+  CharacterList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
