@@ -42,13 +42,13 @@ public class Teleport : MonoBehaviour
     }
     public void Setting()
     {
-        tiles.Add(GameManager.GM.tiles[pos.x + 1, pos.y + 0].GetComponent<TileState>());
-        tiles.Add(GameManager.GM.tiles[pos.x + 0, pos.y + 1].GetComponent<TileState>());
-        tiles.Add(GameManager.GM.tiles[pos.x + -1, pos.y + 0].GetComponent<TileState>());
-        tiles.Add(GameManager.GM.tiles[pos.x + 0, pos.y + -1].GetComponent<TileState>());
-        tiles.Add(GameManager.GM.tiles[pos.x + 1, pos.y + 1].GetComponent<TileState>());
-        tiles.Add(GameManager.GM.tiles[pos.x + -1, pos.y + -1].GetComponent<TileState>());
-        tiles.Add(GameManager.GM.tiles[pos.x + 1, pos.y + -1].GetComponent<TileState>());
-        tiles.Add(GameManager.GM.tiles[pos.x + -1, pos.y + 1].GetComponent<TileState>());
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if(i!=0 && j!= 0 && GameManager.GM.CheckIncludedIndex(new Vector2Int(pos.x+i,pos.y+j)))
+                   tiles.Add(GameManager.GM.tiles[pos.x + i, pos.y + j].GetComponent<TileState>());
+            }
+        }
     }
 }

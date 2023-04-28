@@ -18,12 +18,7 @@ public class TileState : MonoBehaviour
         {
             isVisited = -5;
         }
-        else if(other.gameObject.layer == LayerMask.NameToLayer("Boss"))
-        {
-            my_obj = OB_TYPES.MONSTER;
-            my_target = other.gameObject;
-            isVisited = -2;
-        }
+
         else if (other.gameObject.layer == LayerMask.NameToLayer("Teleport"))
         {
             my_obj = OB_TYPES.TELEPORT;
@@ -31,5 +26,19 @@ public class TileState : MonoBehaviour
             isVisited = -3;
         }
     }
-
+    public void SettingTarget(GameObject target)
+    {
+        my_target = target;
+    }
+    public GameObject OnMyTarget()
+    {
+        return my_target;
+    }
+    public void reSetTile()
+    {
+        my_obj = OB_TYPES.NONE;
+        my_target = null;
+        isVisited = 0;
+        gameObject.layer = 3;
+    }
 }

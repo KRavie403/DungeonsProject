@@ -8,6 +8,7 @@ public class SkillSlot : MonoBehaviour
 
     public void CastingSkill()
     {
-        GameManager.GM.Players[GameManager.GM.currentPlayer].GetComponent<Player>().OnSkillCast(_my_skill);
+        if(_my_skill != null)
+            GameManager.GM.Players[GameManager.GM.currentPlayer].GetComponent<Player>().OnSkillCast(_my_skill);
     }
 }

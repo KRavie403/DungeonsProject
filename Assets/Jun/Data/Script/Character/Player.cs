@@ -10,8 +10,7 @@ public class Player : CharactorMovement
     }
     public STATE _bfState;
     public STATE _curState = STATE.CREATE;
-    public SkillSet currSKill = null;
-
+    public SkillSet currSkill = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,7 +42,7 @@ public class Player : CharactorMovement
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
-        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_target = this.gameObject;
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SettingTarget(this.gameObject);
         GameManager.UM.AddPlayer(my_Sprite);
 
         yield return null;
@@ -111,6 +110,7 @@ public class Player : CharactorMovement
                 break;
 
             case STATE.ACTION:
+                gameObject.GetComponent<Picking>().enabled = true;
 
 
                 break;
@@ -126,7 +126,7 @@ public class Player : CharactorMovement
     }
     public void Picked(Vector2Int tile)
     {
-        OB_TYPES tmp = GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_obj;
+        OB_TYPES tmp = GameManager.GM.tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
         switch (tmp)
         {
             case OB_TYPES.NONE:
@@ -139,6 +139,19 @@ public class Player : CharactorMovement
                 break;
         }
     }
+    public void CastingSkill(Vector2Int[] targets)
+    {
+        //애니메이션 재생
+        foreach (var index in targets)
+        {
+            GameObject target = GameManager.GM.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
+
+            if(target != null && target.GetComponent<BossMonster>()!= null)
+            {
+                target.GetComponent<BossMonster>().OnDamage(10.0f);
+            }
+        }
+    }
     public void OnAttack(Vector2Int tile)
     {
         ChangeState(STATE.ATTACK);
@@ -148,7 +161,7 @@ public class Player : CharactorMovement
     public void OnSkillCast(SkillSet skill)
     {
         ChangeState(STATE.SKILL_CAST);
-        currSKill = skill;
+        currSkill = skill;
         InitTileDistance();
         gameObject.GetComponent<Picking>().enabled = true;
     }
@@ -166,7 +179,6 @@ public class Player : CharactorMovement
     {
         Debug.Log($"Target : {tile}");
         Debug.Log($"Start : {Start_X},{Start_Y}");
-        my_Pos = tile;
 
         MoveByPath(tile);
     }
@@ -175,10 +187,12 @@ public class Player : CharactorMovement
     {
         Start_X = my_Pos.x;
         Start_Y = my_Pos.y;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().isVisited = 0;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_obj = OB_TYPES.NONE;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_target = null;
+        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().reSetTile();
 
     }
 
+    public float CheckAP()
+    {
+        return curAP;
+    }
 }
