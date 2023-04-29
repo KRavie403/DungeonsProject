@@ -25,9 +25,10 @@ Material:
   m_ValidKeywords:
   - _EMISSIVE_SIMPLE
   - _IS_ANGELRING_OFF
-  - _IS_CLIPPING_OFF
   - _IS_OUTLINE_CLIPPING_NO
+  - _IS_TRANSCLIPPING_ON
   - _OUTLINE_NML
+  - _SHADINGGRADEMAP
   m_InvalidKeywords:
   - _
   - _SPECULAR_ON
@@ -37,7 +38,7 @@ Material:
   m_CustomRenderQueue: 2000
   stringTagMap:
     IgnoreProjection: False
-    RenderType: Opaque
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -201,7 +202,7 @@ Material:
     - _CastShadows: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ClippingMode: 0
+    - _ClippingMode: 1
     - _Clipping_Level: 0
     - _ColorShift_Speed: 0
     - _Cull: 2
@@ -263,7 +264,7 @@ Material:
     - _Offset_X_Axis_BLD: -0.05
     - _Offset_Y_Axis_BLD: 0.09
     - _Offset_Z: 0
-    - _Outline_Width: 19.1
+    - _Outline_Width: 13.83
     - _Parallax: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
@@ -306,7 +307,7 @@ Material:
     - _Tweak_MatcapMaskLevel: 0
     - _Tweak_RimLightMaskLevel: 0
     - _Tweak_ShadingGradeMapLevel: 0
-    - _Tweak_SystemShadowsLevel: 0
+    - _Tweak_SystemShadowsLevel: 0.386
     - _Tweak_transparency: 0
     - _UVSec: 0
     - _Unlit_Intensity: 1
@@ -319,7 +320,7 @@ Material:
     - _ZWriteControl: 0
     - _ZWriteMode: 1
     - _simpleUI: 0
-    - _utsTechnique: 0
+    - _utsTechnique: 1
     - _utsVersionX: 2
     - _utsVersionY: 5
     - _utsVersionZ: 1

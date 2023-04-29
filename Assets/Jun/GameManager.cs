@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
     }
     private void CurrentSkill()
     {
-        UM.currentSkillSet.SkillList.Clear();
+        if(UM.currentSkillSet.SkillList != null)
+            UM.currentSkillSet.SkillList.Clear();
         UM.skill_Count = 0;
         foreach (var skill in Players[currentPlayer].GetComponent<Player>().skilList)
             UM.AddSkills(skill);

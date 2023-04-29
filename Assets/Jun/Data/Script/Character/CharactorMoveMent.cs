@@ -13,7 +13,7 @@ public class CharactorMovement : CharactorProperty
     public List<GameObject> path = new List<GameObject>();
     
     Coroutine coMove = null;
-
+   
     //이동
     protected void MoveToTile(Vector2Int target, UnityAction done = null)
     {
@@ -239,7 +239,7 @@ public class CharactorMovement : CharactorProperty
         }
         roatate?.Invoke();
     }
-
+    
     //행동
     void GettingItem()
     {
@@ -249,7 +249,12 @@ public class CharactorMovement : CharactorProperty
     {
 
     }
-
+    public void TakeDamage(float dmg)
+    {
+        //
+        curHP -= dmg;
+        Debug.Log($"Get Damage, Current HP : {curHP}");
+    }
     protected void Guard()
     {
         if (coMove != null)

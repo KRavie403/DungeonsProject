@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : CharactorMovement
 {
@@ -139,16 +141,33 @@ public class Player : CharactorMovement
                 break;
         }
     }
-    public void CastingSkill(Vector2Int[] targets)
+
+    public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
-        //애니메이션 재생
+        //애니메이션 재생 (casting end)
+        //목표 회전
+        Vector3 dir = new Vector3((target.x + GameManager.GM.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.GM.scale / 2.0f) * _mySize) - transform.position;
+        StartCoroutine(CastingSkill(dir, targets));
+    }
+    IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
+    {
+        bool rote = false;
+        Roatate(dir, () => rote = true);
+        while (!rote)
+        {
+            yield return null;
+        }
+
+        //애니메이션 재생 (action start)
+
+        //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
             GameObject target = GameManager.GM.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
 
-            if(target != null && target.GetComponent<BossMonster>()!= null)
+            if (target != null && target.GetComponent<BossMonster>() != null)
             {
-                target.GetComponent<BossMonster>().OnDamage(10.0f);
+                target.GetComponent<BossMonster>().TakeDamage(10.0f);
             }
         }
     }
@@ -158,8 +177,9 @@ public class Player : CharactorMovement
         InitTileDistance();
         gameObject.GetComponent<Picking>().enabled = true;
     }
-    public void OnSkillCast(SkillSet skill)
+    public void OnSkilCastStart(SkillSet skill)
     {
+        //애니메이션 재생 (casting)
         ChangeState(STATE.SKILL_CAST);
         currSkill = skill;
         InitTileDistance();
