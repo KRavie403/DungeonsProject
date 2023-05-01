@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Character
+public enum CharacterList
 {
     None, T1, T2, T3, D1, D2, D3, H1
 }

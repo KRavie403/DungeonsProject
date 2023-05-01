@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "CharacterStatData", menuName = "ScriptableObjects/Character", order = 3)]
-public class Charactert : ScriptableObject
+public class Character : ScriptableObject
 {
     [SerializeField]
     private string _name;
@@ -40,7 +40,6 @@ public class Charactert : ScriptableObject
 
     [SerializeField]
     private int _actionPoint;
-    public int ActionPoint { get { return _actionPoint; 
-        } }
+    public int ActionPoint { get { return _actionPoint; } }
 
 }
