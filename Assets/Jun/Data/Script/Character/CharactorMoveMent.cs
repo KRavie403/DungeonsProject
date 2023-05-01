@@ -13,7 +13,7 @@ public class CharactorMovement : CharactorProperty
     public List<GameObject> path = new List<GameObject>();
     
     Coroutine coMove = null;
-
+   
     //이동
     protected void MoveToTile(Vector2Int target, UnityAction done = null)
     {
@@ -24,14 +24,21 @@ public class CharactorMovement : CharactorProperty
         }
         coMove = StartCoroutine(MovingToTile(target, done));
     }
-    protected void MoveByPath(Vector2Int tile)
+    protected void Roatate(Vector3 dir, UnityAction done = null)
+    {
+        StartCoroutine(Rotating(dir, done));
+    }
+    protected void MoveByPath(Vector2Int tile, UnityAction done = null)
     {
         StopAllCoroutines();
 
 
         SetPath(tile);
         if (findPath)
-            StartCoroutine(MovingByPath());
+            StartCoroutine(MovingByPath(done));
+        
+        my_Pos = tile;
+
     }
     bool CastDirectionTile(int x, int y, int step, Direction dir)
     {
@@ -63,7 +70,7 @@ public class CharactorMovement : CharactorProperty
     }
     protected void SetDistance()
     {
-        for (int step = 1; step <= curActionPoint; step++)
+        for (int step = 1; step <= curAP; step++)
         {
             foreach (GameObject obj in GameManager.GM.tiles)
             {
@@ -147,7 +154,12 @@ public class CharactorMovement : CharactorProperty
         float dist = dir.magnitude;
         dir.Normalize();
 
-        StartCoroutine(Rotating(dir));
+        bool rote = false;
+        Roatate(dir, () => rote = true);
+        while (!rote)
+        {
+            yield return null;
+        }
 
         //myAnim.SetBool("isMoving", true);
 
@@ -170,7 +182,7 @@ public class CharactorMovement : CharactorProperty
         done?.Invoke();
 
     }
-    IEnumerator MovingByPath()
+    IEnumerator MovingByPath(UnityAction arrive)
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
         for (int i = path.Count - 1; i >= 0;)
@@ -182,14 +194,15 @@ public class CharactorMovement : CharactorProperty
             {
                 yield return null;
             }
-            curActionPoint--;
+            curAP--;
+            GameManager.UM.StateUpdate(GameManager.GM.currentPlayer);
             i--;
         }
 
-        if (curActionPoint <= 0)
+        if (curAP <= 0)
         {
             GameManager.GM.ChangeTurn();
-            curActionPoint = ActionPoint;
+            curAP = 10;
         }
         else
         {
@@ -202,8 +215,10 @@ public class CharactorMovement : CharactorProperty
 
 
         //myAnim.SetFloat("Speed", 0);
+        arrive?.Invoke();
+
     }
-    IEnumerator Rotating(Vector3 dir)
+    IEnumerator Rotating(Vector3 dir, UnityAction roatate)
     {
         float angle = Vector3.Angle(transform.forward, dir);
         float rotDir = 1.0f;
@@ -222,8 +237,9 @@ public class CharactorMovement : CharactorProperty
             transform.Rotate(Vector3.up * rotDir * delta);
             yield return null;
         }
+        roatate?.Invoke();
     }
-
+    
     //행동
     void GettingItem()
     {
@@ -233,7 +249,12 @@ public class CharactorMovement : CharactorProperty
     {
 
     }
-
+    public void TakeDamage(float dmg)
+    {
+        //
+        curHP -= dmg;
+        Debug.Log($"Get Damage, Current HP : {curHP}");
+    }
     protected void Guard()
     {
         if (coMove != null)

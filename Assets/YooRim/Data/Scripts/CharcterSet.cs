@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class CharcterSet : MonoBehaviour
 {
     public GameObject CharacterSet;
-    public GameObject Map;
+    public GameObject CharacterSkill;
+    public GameObject ResetButton;
+    public GameObject ApplyButton;
 
     // Start is called before the first frame update
     void Start()
@@ -19,14 +21,18 @@ public class CharcterSet : MonoBehaviour
     {
         
     }
-
-    public void OpenMapSet() //Settings
+    public void SkillSetting()
     {
-        Map.SetActive(true);
+
     }
 
-    public void StartGame()
+    public void ClickResetButton() //Settings
     {
-        SceneManager.LoadScene("MainGameScene");
+    }    
+    
+    public void ClickApplyButton() //Settings
+    {
+        CharacterSet.SetActive(false);
     }
+
 }

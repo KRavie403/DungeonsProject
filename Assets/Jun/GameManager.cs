@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
     }
     private void CurrentSkill()
     {
-        UM.currentSkillSet.SkillList.Clear();
+        if(UM.currentSkillSet.SkillList != null)
+            UM.currentSkillSet.SkillList.Clear();
         UM.skill_Count = 0;
         foreach (var skill in Players[currentPlayer].GetComponent<Player>().skilList)
             UM.AddSkills(skill);
@@ -131,12 +132,14 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject obj in tiles)
         {
-            if (obj != null && obj.GetComponent<TileState>().isVisited != -5)
-            {
-                obj.GetComponent<TileState>().isVisited = -1;
-                obj.layer = 3;
-            }
+            obj.GetComponent<TileState>().isVisited = -1;
+            obj.layer = 3;
         }
+    }
+    public void InitTarget(Vector2Int tile)
+    {
+        tiles[tile.x, tile.y].GetComponent<TileState>().isVisited = -1;
+        tiles[tile.x, tile.y].layer = 3;
     }
     void VisitedTile(int X, int Y)
     {
@@ -145,6 +148,16 @@ public class GameManager : MonoBehaviour
     public int CheckTileVisited(int X, int Y)
     {
         return tiles[X, Y].GetComponent<TileState>().isVisited;
+    }
+
+    public bool CheckIncludedIndex(Vector2Int pos)
+    {
+        if (pos.x >= columns || pos.x < 0)
+            return false;
+        if (pos.y >= rows || pos.y < 0)
+            return false;
+
+        return true;
     }
     public Vector2Int GetTileIndex(GameObject hitInfo)
     {

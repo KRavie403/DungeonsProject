@@ -7,5 +7,5 @@ using UnityEngine;
 public class ItemSetDB : ScriptableObject
 {
     [SerializeField]
-    public List<ItemSet> SkillList = new List<ItemSet>();
+    public List<ItemSet> ItemList = new List<ItemSet>();
 }

@@ -13,10 +13,6 @@ public class SettingsButton : MonoBehaviour
     {
 
     }
-    public void QuitSettingsMenu()
-    {
-        Settings.SetActive(false);
-    }
 
     public void ResetSettingsMenu()
     {
