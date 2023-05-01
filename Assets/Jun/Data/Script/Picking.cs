@@ -8,7 +8,9 @@ public class Picking : MonoBehaviour
 {
     public LayerMask pickMask; //누를수있는 레이어추가
     public LayerMask TP;
+    public LayerMask Chest;
     public GameObject TPUI;
+    public GameObject ChestUI;
     public UnityEvent<Vector2Int> clickAction = null; //Player스크립트에있는 OnMoveByPath불러오기
 
     private Vector2Int currentHover;
@@ -64,13 +66,20 @@ public class Picking : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if ((1 << hit.transform.gameObject.layer & TP) != 0)
+                    Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+
+                    if (hitPos.x - GetComponent<Player>().my_Pos.x <= 1.5f && hitPos.x - GetComponent<Player>().my_Pos.x >= -1.5f
+                        && hitPos.y - GetComponent<Player>().my_Pos.y <= 1.5f && hitPos.y - GetComponent<Player>().my_Pos.y >= -1.5f)
                     {
-                        if (hit.transform.position.x - this.transform.position.x <= 1.5f && hit.transform.position.x - this.transform.position.x >= -1.5f
-                            && hit.transform.position.z - this.transform.position.z <= 1.5f && hit.transform.position.z - this.transform.position.z >= -1.5f)
+                        if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.TELEPORT)
                         {
                             TPUI.SetActive(true);
-                            TeleportSystem.main_teleport.testtarget(hit.transform);
+                            Create_obj_System.main_teleport.TPtarget(hit.transform);
+                        }
+                        if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.Chest)
+                        {
+                            ChestUI.SetActive(true);
+                            Create_obj_System.main_teleport.Chesttarget(hit.transform);
                         }
                     }
                 }

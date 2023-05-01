@@ -1,32 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Teleport : MonoBehaviour
+public class Chest : MonoBehaviour
 {
     public Vector2Int pos;
     public LayerMask pickMask;
     public List<TileState> tiles;
     void Start()
     {
-        //Create_obj_System.main_teleport.teleporters.Add(this);
         Setting();
     }
+
     void Update()
     {
         
     }
-    private void OnTriggerEnter(Collider other) 
+
+    private void OnTriggerEnter(Collider other)
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
             pos = GameManager.GM.GetTileIndex(other.gameObject);
-            
-            this.GetComponent<CapsuleCollider>().isTrigger = false;
+
+            this.GetComponent<BoxCollider>().isTrigger = false;
         }
     }
-    public void tp()
+    public void chest()
     {
         foreach (var tile in tiles)
         {
@@ -35,8 +35,7 @@ public class Teleport : MonoBehaviour
                 Player.STATE _curState = tile.my_target.GetComponent<Player>().GetState();
                 if (_curState == Player.STATE.ACTION)
                 {
-                    tile.my_target.transform.position = new Vector3(5.5f, 0, 8.5f);
-                    tile.my_target.GetComponent<Player>().my_Pos = new Vector2Int(5, 8);
+
                 }
             }
         }
