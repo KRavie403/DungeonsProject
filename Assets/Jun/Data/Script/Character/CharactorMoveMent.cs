@@ -4,17 +4,39 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharactorMovement : CharactorProperty
+public abstract class CharactorMovement : CharactorProperty
 {
-    enum Direction { Front, Left, Right, Back}
+    enum Direction { Front, Left, Right, Back }
+    public enum STATE
+    {
+        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE, TRACE
+    }
+    public STATE _bfState;
+    public STATE _curState = STATE.CREATE;
+
     public bool findPath = false;
 
     protected int Start_X, Start_Y;
     public List<GameObject> path = new List<GameObject>();
-    
+
     Coroutine coMove = null;
 
-    //¿Ãµø
+    virtual public void ChangeState(STATE s) { }
+    public STATE GetState()
+    {
+        return _curState;
+    }
+    virtual public void OnMove() { }
+    protected void InitTileDistance()
+    {
+        Start_X = my_Pos.x;
+        Start_Y = my_Pos.y;
+        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().reSetTile();
+    }
+    public float CheckAP()
+    {
+        return curAP;
+    }
     protected void MoveToTile(Vector2Int target, UnityAction done = null)
     {
         if (coMove != null)
@@ -195,7 +217,7 @@ public class CharactorMovement : CharactorProperty
                 yield return null;
             }
             curAP--;
-            GameManager.UM.StateUpdate(GameManager.GM.currentPlayer);
+            GameManager.UM.StateUpdate(GameManager.GM.curCharacter);
             i--;
         }
 
@@ -206,9 +228,12 @@ public class CharactorMovement : CharactorProperty
         }
         else
         {
-            this.GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            if(myType == OB_TYPES.PLAYER)
+               GetComponent<Player>().ChangeState(STATE.ACTION);
+            else 
+               GetComponent<BossMonster>().ChangeState(STATE.ACTION);
         }
-    
+
         GameManager.GM.Init();
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_target = this.gameObject;
@@ -220,9 +245,10 @@ public class CharactorMovement : CharactorProperty
     }
     IEnumerator Rotating(Vector3 dir, UnityAction roatate)
     {
-        float angle = Vector3.Angle(transform.forward, dir);
+        Transform target = transform.Find("Model").GetComponent<Transform>(); 
+        float angle = Vector3.Angle(target.forward, dir);
         float rotDir = 1.0f;
-        if (Vector3.Dot(transform.right, dir) < 0.0f)
+        if (Vector3.Dot(target.right, dir) < 0.0f)
         {
             rotDir = -1.0f;
         }
@@ -234,13 +260,13 @@ public class CharactorMovement : CharactorProperty
                 delta = angle;
             }
             angle -= delta;
-            transform.Rotate(Vector3.up * rotDir * delta);
+            target.Rotate(Vector3.up * rotDir * delta);
             yield return null;
         }
         roatate?.Invoke();
     }
-
-    //«‡µø
+    
+    //ÔøΩ‡µø
     void GettingItem()
     {
 
@@ -249,7 +275,12 @@ public class CharactorMovement : CharactorProperty
     {
 
     }
-
+    public void TakeDamage(float dmg)
+    {
+        //
+        curHP -= dmg;
+        Debug.Log($"Get Damage, Current HP : {curHP}");
+    }
     protected void Guard()
     {
         if (coMove != null)
@@ -261,7 +292,7 @@ public class CharactorMovement : CharactorProperty
     }
     IEnumerator GuardUpCast()
     {
-        //æ÷¥œ∏ﬁ¿Ãº« Ω««‡
+        //ÔøΩ÷¥œ∏ÔøΩÔøΩÃºÔøΩ ÔøΩÔøΩÔøΩÔøΩ
         yield return new WaitForSeconds(2.0f);
         GameManager.GM.ChangeTurn();
     }

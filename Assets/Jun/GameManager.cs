@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
 {
     public static UI_Manager UM = null;
     public static GameManager GM = null;
-    public List<GameObject> Players;
+    public List<GameObject> characters;
     public FollowCamera Main_Cam;
-    public int currentPlayer =0;
+    public int curCharacter =0;
     public GameObject[,] tiles;
 
 
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         GM = this;
         UM = GetComponent<UI_Manager>();
         GenerateAllTiles(1, columns, rows);
-        Players = new List<GameObject>();
+        characters = new List<GameObject>();
     }
     
     public void GameStart()
@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
         Main_Cam.enabled = true;
         Main_Cam.SetCam(0);
 
-        if (Players != null)
+        if (characters != null)
         {
-            Players[0].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            characters[0].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
             CurrentSkill();
         }
 
@@ -42,28 +42,29 @@ public class GameManager : MonoBehaviour
     //Player
     public void OnMove()
     {
-        Players[currentPlayer].GetComponent<Player>().OnMove();
-
+        characters[curCharacter].GetComponent<CharactorMovement>().OnMove();
     }
     public void ChangeTurn()
     {
-        Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.IDLE);
+        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.IDLE);
         
-        currentPlayer = (++currentPlayer) % (Players.Count);
-        Main_Cam.SetCam(currentPlayer);
-        Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+        curCharacter = (++curCharacter) % (characters.Count);
+        Main_Cam.SetCam(curCharacter);
+        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.ACTION);
         CurrentSkill();
 
 
     }
     private void CurrentSkill()
     {
-        UM.currentSkillSet.SkillList.Clear();
-        UM.skill_Count = 0;
-        foreach (var skill in Players[currentPlayer].GetComponent<Player>().skilList)
-            UM.AddSkills(skill);
-        
-        
+        if (characters[curCharacter].GetComponent<CharactorMovement>().myType == OB_TYPES.PLAYER)
+        {
+            if (UM.currentSkillSet.SkillList != null)
+                UM.currentSkillSet.SkillList.Clear();
+            UM.skill_Count = 0;
+            foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
+                UM.AddSkills(skill);
+        }
     }
     // Update is called once per frame
     

@@ -40,7 +40,6 @@ public class Character : ScriptableObject
 
     [SerializeField]
     private int _actionPoint;
-    public int ActionPoint { get { return _actionPoint; 
-        } }
+    public int ActionPoint { get { return _actionPoint; } }
 
 }

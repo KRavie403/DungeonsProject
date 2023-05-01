@@ -16,11 +16,13 @@ public class UI_Manager : MonoBehaviour
     public Image currentActionPoint;
     public int skill_Count = 0;
 
+    private void Start()
+    {
+        currentSkillSet = new SkillSetDB();
+    }
     public void StateUpdate(int p)
     {
-        currentActionPoint.fillAmount = GameManager.GM.Players[p].GetComponent<Player>().CheckAP() / 10.0f;
-
-
+        currentActionPoint.fillAmount = GameManager.GM.characters[p].GetComponent<CharactorMovement>().CheckAP() / 10.0f;
     }
     public void AddPlayer(Sprite _spt)
     {

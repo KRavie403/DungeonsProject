@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 
-public class CharactorProperty : MonoBehaviour
+public abstract class CharactorProperty : MonoBehaviour
 {
 
     public List<SkillSet> skilList;
@@ -63,4 +63,6 @@ public class CharactorProperty : MonoBehaviour
             return _anim;
         }
     }
+
+    virtual public void SetPlayer() { }
 }

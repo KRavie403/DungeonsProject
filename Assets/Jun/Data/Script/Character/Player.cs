@@ -1,15 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : CharactorMovement
 {
-    public enum STATE
-    {
-        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE
-    }
-    public STATE _bfState;
-    public STATE _curState = STATE.CREATE;
+
     public SkillSet currSkill = null;
     // Start is called before the first frame update
     void Start()
@@ -18,12 +15,12 @@ public class Player : CharactorMovement
         StartCoroutine(SetPos());
     }
 
-    void SetPlayer()
+    public override void SetPlayer()
     {
         myType = OB_TYPES.PLAYER;
         if(skilList == null)
             skilList = new List<SkillSet>();
-        GameManager.GM.Players.Add(this.gameObject);
+        GameManager.GM.characters.Add(this.gameObject);
     }
     IEnumerator SetPos()
     {
@@ -94,7 +91,7 @@ public class Player : CharactorMovement
         }
     }
 
-    public void ChangeState(STATE s)
+    public override void ChangeState(STATE s)
     {
         if (_curState == s) return;
         _bfState = _curState;
@@ -120,10 +117,7 @@ public class Player : CharactorMovement
 
         }
     }
-    public STATE GetState()
-    {
-        return _curState;
-    }
+  
     public void Picked(Vector2Int tile)
     {
         OB_TYPES tmp = GameManager.GM.tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
@@ -139,16 +133,33 @@ public class Player : CharactorMovement
                 break;
         }
     }
-    public void CastingSkill(Vector2Int[] targets)
+
+    public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
-        //애니메이션 재생
+        //애니메이션 재생 (casting end)
+        //목표 회전
+        Vector3 dir = new Vector3((target.x + GameManager.GM.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.GM.scale / 2.0f) * _mySize) - transform.position;
+        StartCoroutine(CastingSkill(dir, targets));
+    }
+    IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
+    {
+        bool rote = false;
+        Roatate(dir, () => rote = true);
+        while (!rote)
+        {
+            yield return null;
+        }
+
+        //애니메이션 재생 (action start)
+
+        //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
             GameObject target = GameManager.GM.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
 
-            if(target != null && target.GetComponent<BossMonster>()!= null)
+            if (target != null && target.GetComponent<BossMonster>() != null)
             {
-                target.GetComponent<BossMonster>().OnDamage(10.0f);
+                target.GetComponent<BossMonster>().TakeDamage(10.0f);
             }
         }
     }
@@ -158,18 +169,17 @@ public class Player : CharactorMovement
         InitTileDistance();
         gameObject.GetComponent<Picking>().enabled = true;
     }
-    public void OnSkillCast(SkillSet skill)
+    public void OnSkilCastStart(SkillSet skill)
     {
+        //애니메이션 재생 (casting)
         ChangeState(STATE.SKILL_CAST);
         currSkill = skill;
         InitTileDistance();
         gameObject.GetComponent<Picking>().enabled = true;
     }
 
-    public void OnMove()
+    public override void OnMove()
     {
-        //InitMoveStart();
-        //MoveToTile(tile);
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
@@ -183,16 +193,5 @@ public class Player : CharactorMovement
         MoveByPath(tile);
     }
 
-    void InitTileDistance()
-    {
-        Start_X = my_Pos.x;
-        Start_Y = my_Pos.y;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().reSetTile();
-
-    }
-
-    public float CheckAP()
-    {
-        return curAP;
-    }
+    
 }
