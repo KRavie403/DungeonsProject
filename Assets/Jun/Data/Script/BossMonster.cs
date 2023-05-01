@@ -76,31 +76,13 @@ public class BossMonster : CharactorMovement
                 break;
 
             case STATE.ACTION:
-                //추후 UI 조작과 연결
-
-                //임시
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    Guard();
-                    ChangeState(STATE.GUARD_UP);
-                }
 
 
                 break;
             case STATE.MOVE:
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    InitTileDistance();
-                    ChangeState(_bfState);
-                }
                 break;
 
             case STATE.SKILL_CAST:
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    InitTileDistance();
-                    ChangeState(_bfState);
-                }
                 break;
         }
     }
@@ -116,12 +98,10 @@ public class BossMonster : CharactorMovement
                 break;
 
             case STATE.IDLE:
-                gameObject.GetComponent<Picking>().enabled = false;
 
                 break;
 
             case STATE.ACTION:
-                gameObject.GetComponent<Picking>().enabled = true;
 
 
                 break;
@@ -129,22 +109,6 @@ public class BossMonster : CharactorMovement
 
                 break;
 
-        }
-    }
-
-    public void Picked(Vector2Int tile)
-    {
-        OB_TYPES tmp = GameManager.GM.tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
-        switch (tmp)
-        {
-            case OB_TYPES.NONE:
-                OnMoveByPath(tile);
-                break;
-            case OB_TYPES.MONSTER:
-                OnAttack(tile);
-                break;
-            case OB_TYPES.PLAYER:
-                break;
         }
     }
 
@@ -181,12 +145,10 @@ public class BossMonster : CharactorMovement
     {
         ChangeState(STATE.ATTACK);
         InitTileDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
     }
     public void OnSkilCastStart(SkillSet skill)
     {
         //애니메이션 재생 (casting)
-        gameObject.GetComponent<Picking>().enabled = true;
     }
 
 

@@ -44625,59 +44625,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5058719939646081048, guid: ce5d8a6a80749a840b1c2a72b481f307, type: 3}
   m_PrefabInstance: {fileID: 1290921260}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1294546644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-  m_PrefabInstance: {fileID: 1579579342}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1294546646 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 738821168, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-  m_PrefabInstance: {fileID: 1579579342}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294546644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53057d6c87cd4ce46975533c03d19c5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1294546649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294546644}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39ab96f9a9680a449a32c1ea67c67940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickMask:
-    serializedVersion: 2
-    m_Bits: 776
-  TP:
-    serializedVersion: 2
-    m_Bits: 0
-  TPUI: {fileID: 0}
-  clickToMove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1294546646}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: Picked
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  clickToSkill:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &1295810655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55631,25 +55578,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4903280135492467362, guid: d243557d47c822e41ba2c809df30c538, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
       propertyPath: m_LocalPosition.x
@@ -55690,6 +55633,10 @@ PrefabInstance:
     - target: {fileID: 6359686612413033023, guid: d243557d47c822e41ba2c809df30c538, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6848584416251239287, guid: d243557d47c822e41ba2c809df30c538, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d243557d47c822e41ba2c809df30c538, type: 3}
@@ -55835,9 +55782,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eafde842fb5c0fb4cbb7110a511c6911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Players: []
+  characters: []
   Main_Cam: {fileID: 1337284519}
-  currentPlayer: 0
+  curCharacter: 0
   rows: 10
   columns: 10
   scale: 1
@@ -76638,6 +76585,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6380405505036529264, guid: 61690a8971d1b02418f5f7b37de092f3, type: 3}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 6842431276467786003, guid: 61690a8971d1b02418f5f7b37de092f3, type: 3}
       propertyPath: TPUI
       value: 
