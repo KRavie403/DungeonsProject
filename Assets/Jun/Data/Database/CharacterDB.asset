@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee4da881497b7844b908939212f7fccb, type: 3}
   m_Name: CharacterDB
   m_EditorClassIdentifier: 
-  CharacterList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  characterList:
+  - {fileID: 11400000, guid: e75c27eca0ece70419e4fff262a6059c, type: 2}
+  - {fileID: 11400000, guid: fbcfc574470b5224aafd85746cfcdaa4, type: 2}
+  - {fileID: 11400000, guid: 483bb440f334325458132be087a265bc, type: 2}
+  - {fileID: 11400000, guid: 666cec5641ecfad448257c0c8cc70caf, type: 2}
