@@ -56054,8 +56054,8 @@ MonoBehaviour:
   Players: []
   Main_Cam: {fileID: 1337284519}
   currentPlayer: 0
-  rows: 20
-  columns: 20
+  rows: 10
+  columns: 10
   scale: 1
   tileMat: {fileID: 2100000, guid: 3bbe6b640ca7ba64d9663b2f85e31c09, type: 2}
   LBLocation: {x: 0, y: 0, z: 0}
@@ -56082,6 +56082,8 @@ MonoBehaviour:
   - {fileID: 906971832}
   - {fileID: 694744469}
   - {fileID: 1956719040}
+  currentHP: {fileID: 0}
+  currentActionPoint: {fileID: 0}
   skill_Count: 0
 --- !u!1001 &1584371344
 PrefabInstance:
