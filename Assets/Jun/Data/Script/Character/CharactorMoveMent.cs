@@ -4,17 +4,39 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CharactorMovement : CharactorProperty
+public abstract class CharactorMovement : CharactorProperty
 {
-    enum Direction { Front, Left, Right, Back}
+    enum Direction { Front, Left, Right, Back }
+    public enum STATE
+    {
+        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE, SEARCH
+    }
+    public STATE _bfState;
+    public STATE _curState = STATE.CREATE;
+
     public bool findPath = false;
 
     protected int Start_X, Start_Y;
     public List<GameObject> path = new List<GameObject>();
-    
+
     Coroutine coMove = null;
 
-    //¿Ãµø
+    virtual public void ChangeState(STATE s) { }
+    public STATE GetState()
+    {
+        return _curState;
+    }
+    virtual public void OnMove() { }
+    protected void InitTileDistance()
+    {
+        Start_X = my_Pos.x;
+        Start_Y = my_Pos.y;
+        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().reSetTile();
+    }
+    public float CheckAP()
+    {
+        return curAP;
+    }
     protected void MoveToTile(Vector2Int target, UnityAction done = null)
     {
         if (coMove != null)
@@ -24,14 +46,21 @@ public class CharactorMovement : CharactorProperty
         }
         coMove = StartCoroutine(MovingToTile(target, done));
     }
-    protected void MoveByPath(Vector2Int tile)
+    protected void Roatate(Vector3 dir, UnityAction done = null)
+    {
+        StartCoroutine(Rotating(dir, done));
+    }
+    protected void MoveByPath(Vector2Int tile, UnityAction done = null)
     {
         StopAllCoroutines();
 
 
         SetPath(tile);
         if (findPath)
-            StartCoroutine(MovingByPath());
+            StartCoroutine(MovingByPath(done));
+        
+        my_Pos = tile;
+
     }
     bool CastDirectionTile(int x, int y, int step, Direction dir)
     {
@@ -61,24 +90,36 @@ public class CharactorMovement : CharactorProperty
         if(GameManager.GM.tiles[x, y])
             GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited = step;
     }
-    protected void SetDistance()
+    virtual public void SetDistance()
     {
-        for (int step = 1; step <= curActionPoint; step++)
+        List<GameObject> searchTileArea = new List<GameObject>();
+
+        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
         {
-            foreach (GameObject obj in GameManager.GM.tiles)
+            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
+            {
+                Vector2Int pos = new Vector2Int(i, j);
+                if (!GameManager.GM.CheckIncludedIndex(pos))
+                    break;
+                searchTileArea.Add(GameManager.GM.tiles[i, j]);
+            }
+        }
+        for (int step = 1; step <= curAP; step++)
+        {
+            foreach (GameObject obj in searchTileArea)
             {
                 if (obj.GetComponent<TileState>().isVisited == step - 1)
                 {
                     TestAllDirection(obj.GetComponent<TileState>().pos.x, obj.GetComponent<TileState>().pos.y, step);
                     obj.layer = 9;
                 }
-                if (obj.GetComponent<TileState>().isVisited == step )
+                if (obj.GetComponent<TileState>().isVisited == step)
                     obj.layer = 9;
             }
         }
-        
+
     }
-    void TestAllDirection(int x, int y, int step)
+    protected void TestAllDirection(int x, int y, int step)
     {
         if (CastDirectionTile(x, y, -1, Direction.Front))
             SetVisited(x, y + 1, step);
@@ -127,8 +168,8 @@ public class CharactorMovement : CharactorProperty
         findPath = true;
         return;
     }
-    GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
-    {
+     GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
+     {
         float currentDinstance = GameManager.GM.scale * GameManager.GM.rows * GameManager.GM.columns;
         int indexNum = 0;
         for (int i = 0; i < list.Count; i++)
@@ -147,22 +188,24 @@ public class CharactorMovement : CharactorProperty
         float dist = dir.magnitude;
         dir.Normalize();
 
-        StartCoroutine(Rotating(dir));
+        bool rote = false;
+        Roatate(dir, () => rote = true);
+        while (!rote)
+        {
+            yield return null;
+        }
 
         //myAnim.SetBool("isMoving", true);
 
         while (dist > 0.0f)
         {
-            //if (!myAnim.GetBool("isAttacking"))
-            //{
-                float delta = MoveSpeed * Time.deltaTime;
-                if (dist - delta < 0.0f)
-                {
-                    delta = dist;
-                }
-                dist -= delta;
-                transform.Translate(dir * delta, Space.World);
-            //}
+            float delta = MoveSpeed * Time.deltaTime;
+            if (dist - delta < 0.0f)
+            {
+                delta = dist;
+            }
+            dist -= delta;
+            transform.Translate(dir * delta, Space.World);
             yield return null;
         }
 
@@ -170,7 +213,7 @@ public class CharactorMovement : CharactorProperty
         done?.Invoke();
 
     }
-    IEnumerator MovingByPath()
+    IEnumerator MovingByPath(UnityAction arrive)
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
         for (int i = path.Count - 1; i >= 0;)
@@ -182,33 +225,39 @@ public class CharactorMovement : CharactorProperty
             {
                 yield return null;
             }
-            curActionPoint--;
+            curAP--;
+            GameManager.UM.StateUpdate(GameManager.GM.curCharacter);
             i--;
         }
 
-
-
-        if (curActionPoint <= 0)
+        if (curAP <= 0)
         {
             GameManager.GM.ChangeTurn();
-            curActionPoint = ActionPoint;
+            curAP = 10;
         }
         else
         {
-            this.GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            if(myType == OB_TYPES.PLAYER)
+               GetComponent<Player>().ChangeState(STATE.ACTION);
+            else 
+               GetComponent<BossMonster>().ChangeState(STATE.ACTION);
         }
-    
+
         GameManager.GM.Init();
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_target = this.gameObject;
+        GameManager.GM.ChangeTurn();
 
         //myAnim.SetFloat("Speed", 0);
+        arrive?.Invoke();
+
     }
-    IEnumerator Rotating(Vector3 dir)
+    IEnumerator Rotating(Vector3 dir, UnityAction roatate)
     {
-        float angle = Vector3.Angle(transform.forward, dir);
+        Transform target = transform.Find("Model").GetComponent<Transform>(); 
+        float angle = Vector3.Angle(target.forward, dir);
         float rotDir = 1.0f;
-        if (Vector3.Dot(transform.right, dir) < 0.0f)
+        if (Vector3.Dot(target.right, dir) < 0.0f)
         {
             rotDir = -1.0f;
         }
@@ -220,12 +269,13 @@ public class CharactorMovement : CharactorProperty
                 delta = angle;
             }
             angle -= delta;
-            transform.Rotate(Vector3.up * rotDir * delta);
+            target.Rotate(Vector3.up * rotDir * delta);
             yield return null;
         }
+        roatate?.Invoke();
     }
-
-    //«‡µø
+    
+    //ÔøΩ‡µø
     void GettingItem()
     {
 
@@ -234,7 +284,12 @@ public class CharactorMovement : CharactorProperty
     {
 
     }
-
+    public void TakeDamage(float dmg)
+    {
+        //
+        curHP -= dmg;
+        Debug.Log($"Get Damage, Current HP : {curHP}");
+    }
     protected void Guard()
     {
         if (coMove != null)
@@ -246,7 +301,7 @@ public class CharactorMovement : CharactorProperty
     }
     IEnumerator GuardUpCast()
     {
-        //æ÷¥œ∏ﬁ¿Ãº« Ω««‡
+        //ÔøΩ÷¥œ∏ÔøΩÔøΩÃºÔøΩ ÔøΩÔøΩÔøΩÔøΩ
         yield return new WaitForSeconds(2.0f);
         GameManager.GM.ChangeTurn();
     }

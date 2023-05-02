@@ -7,44 +7,64 @@ public class GameManager : MonoBehaviour
 {
     public static UI_Manager UM = null;
     public static GameManager GM = null;
-    public List<GameObject> Players;
+    public List<GameObject> characters;
     public FollowCamera Main_Cam;
-    public int currentPlayer =0;
+    public int curCharacter =0;
     public GameObject[,] tiles;
 
-    // Start is called before the first frame update
+
     private void Awake()
     {
         GM = this;
         UM = GetComponent<UI_Manager>();
         GenerateAllTiles(1, columns, rows);
-        Players = new List<GameObject>();
+        characters = new List<GameObject>();
     }
     
     public void GameStart()
     {
-        UM.TurnSystemUI.gameObject.SetActive(true);
+        UM.InGameUI.gameObject.SetActive(true);
         UM.start_button.gameObject.SetActive(false);
         Main_Cam.enabled = true;
-        if (Players != null)
+        Main_Cam.SetCam(0);
+
+        if (characters != null)
         {
-            Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            characters[0].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            CurrentSkill();
         }
-        
+
     }
     void Update()
     {
     }
 
     //Player
-
+    public void OnMove()
+    {
+        characters[curCharacter].GetComponent<CharactorMovement>().OnMove();
+    }
     public void ChangeTurn()
     {
-        Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.IDLE);
-        currentPlayer = (++currentPlayer) % (Players.Count);
-        Main_Cam.myTarget = Players[currentPlayer].transform.Find("ViewPoint").transform;
-        Players[currentPlayer].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.IDLE);
+        
+        curCharacter = (++curCharacter) % (characters.Count);
+        Main_Cam.SetCam(curCharacter);
+        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.ACTION);
+        CurrentSkill();
 
+
+    }
+    private void CurrentSkill()
+    {
+        if (characters[curCharacter].GetComponent<CharactorMovement>().myType == OB_TYPES.PLAYER)
+        {
+            if (UM.currentSkillSet.SkillList != null)
+                UM.currentSkillSet.SkillList.Clear();
+            UM.skill_Count = 0;
+            foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
+                UM.AddSkills(skill);
+        }
     }
     // Update is called once per frame
     
@@ -112,12 +132,14 @@ public class GameManager : MonoBehaviour
     {
         foreach (GameObject obj in tiles)
         {
-            if (obj != null && obj.GetComponent<TileState>().isVisited != -5)
-            {
-                obj.GetComponent<TileState>().isVisited = -1;
-                obj.layer = 3;
-            }
+            obj.GetComponent<TileState>().isVisited = -1;
+            obj.layer = 3;
         }
+    }
+    public void InitTarget(Vector2Int tile)
+    {
+        tiles[tile.x, tile.y].GetComponent<TileState>().isVisited = -1;
+        tiles[tile.x, tile.y].layer = 3;
     }
     void VisitedTile(int X, int Y)
     {
@@ -126,6 +148,16 @@ public class GameManager : MonoBehaviour
     public int CheckTileVisited(int X, int Y)
     {
         return tiles[X, Y].GetComponent<TileState>().isVisited;
+    }
+
+    public bool CheckIncludedIndex(Vector2Int pos)
+    {
+        if (pos.x >= columns || pos.x < 0)
+            return false;
+        if (pos.y >= rows || pos.y < 0)
+            return false;
+
+        return true;
     }
     public Vector2Int GetTileIndex(GameObject hitInfo)
     {

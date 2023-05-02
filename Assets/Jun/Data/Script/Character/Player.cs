@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using static UnityEngine.GraphicsBuffer;
 
 public class Player : CharactorMovement
 {
-    public enum STATE
-    {
-        CREATE, ACTION, MOVE, ATTACK_CAST, GUARD_UP, IDLE
-    }
-    STATE _curState = STATE.CREATE;
 
-
+    public SkillSet currSkill = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,27 +15,31 @@ public class Player : CharactorMovement
         StartCoroutine(SetPos());
     }
 
-    void SetPlayer()
+    public override void SetPlayer()
     {
         myType = OB_TYPES.PLAYER;
-        GameManager.GM.Players.Add(this.gameObject);
+        if(skilList == null)
+            skilList = new List<SkillSet>();
+        GameManager.GM.characters.Add(this.gameObject);
     }
     IEnumerator SetPos()
     {
-        int x = Random.Range(0, GameManager.GM.rows);
-        int y = Random.Range(0, GameManager.GM.columns);
-        while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5)
+        int x, y;
+
+        do
         {
-            x = Random.Range(0, GameManager.GM.rows);
-            y = Random.Range(0, GameManager.GM.columns);
-        }
-        my_Pos = new Vector2Int(x, y);
+            x = Random.Range(0, GameManager.GM.columns);
+            y = Random.Range(0, GameManager.GM.rows);
+        } while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5);
+
+
+        my_Pos = new Vector2Int(y, x);
 
         float half = GameManager.GM.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
-        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_target = this.gameObject;
+        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SettingTarget(this.gameObject);
         GameManager.UM.AddPlayer(my_Sprite);
 
         yield return null;
@@ -69,22 +70,31 @@ public class Player : CharactorMovement
                     Guard();
                     ChangeState(STATE.GUARD_UP);
                 }
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    InitMoveStart();
-                    SetDistance();
-                    ChangeState(STATE.MOVE);
-                }
-
+                
 
                 break;
+            case STATE.MOVE:
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    InitTileDistance();
+                    ChangeState(_bfState);
+                }
+                break;
 
+            case STATE.SKILL_CAST:
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    InitTileDistance();
+                    ChangeState(_bfState);
+                }
+                break;
         }
     }
 
-    public void ChangeState(STATE s)
+    public override void ChangeState(STATE s)
     {
         if (_curState == s) return;
+        _bfState = _curState;
         _curState = s;
         switch (_curState)
         {
@@ -97,23 +107,20 @@ public class Player : CharactorMovement
                 break;
 
             case STATE.ACTION:
+                gameObject.GetComponent<Picking>().enabled = true;
 
 
                 break;
             case STATE.MOVE:
-                gameObject.GetComponent<Picking>().enabled = true;
 
                 break;
 
         }
     }
-    public STATE GetState()
-    {
-        return _curState;
-    }
+  
     public void Picked(Vector2Int tile)
     {
-        OB_TYPES tmp = GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_obj;
+        OB_TYPES tmp = GameManager.GM.tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
         switch (tmp)
         {
             case OB_TYPES.NONE:
@@ -126,33 +133,65 @@ public class Player : CharactorMovement
                 break;
         }
     }
+
+    public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
+    {
+        //애니메이션 재생 (casting end)
+        //목표 회전
+        Vector3 dir = new Vector3((target.x + GameManager.GM.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.GM.scale / 2.0f) * _mySize) - transform.position;
+        StartCoroutine(CastingSkill(dir, targets));
+    }
+    IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
+    {
+        bool rote = false;
+        Roatate(dir, () => rote = true);
+        while (!rote)
+        {
+            yield return null;
+        }
+
+        //애니메이션 재생 (action start)
+
+        //애니메이션이 끝나고 실행
+        foreach (var index in targets)
+        {
+            GameObject target = GameManager.GM.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
+
+            if (target != null && target.GetComponent<BossMonster>() != null)
+            {
+                target.GetComponent<BossMonster>().TakeDamage(10.0f);
+            }
+        }
+    }
     public void OnAttack(Vector2Int tile)
     {
-
+        ChangeState(STATE.ATTACK);
+        InitTileDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
+    }
+    public void OnSkilCastStart(SkillSet skill)
+    {
+        //애니메이션 재생 (casting)
+        ChangeState(STATE.SKILL_CAST);
+        currSkill = skill;
+        InitTileDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
     }
 
-    public void OnMove(Vector2Int tile)
+    public override void OnMove()
     {
-        InitMoveStart();
-        MoveToTile(tile);
+        ChangeState(STATE.MOVE);
+        InitTileDistance();
+        SetDistance();
+        gameObject.GetComponent<Picking>().enabled = true;
     }
     public void OnMoveByPath(Vector2Int tile)
     {
         Debug.Log($"Target : {tile}");
         Debug.Log($"Start : {Start_X},{Start_Y}");
-        my_Pos = tile;
 
         MoveByPath(tile);
     }
 
-    void InitMoveStart()
-    {
-        Start_X = my_Pos.x;
-        Start_Y = my_Pos.y;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().isVisited = 0;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_obj = OB_TYPES.NONE;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().my_target = null;
-
-    }
-
+    
 }

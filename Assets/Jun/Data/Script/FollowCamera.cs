@@ -21,15 +21,22 @@ public class FollowCamera : MonoBehaviour
 
     private void Awake()
     {
+        //transform.LookAt(myTarget);
+        //dir = transform.position - myTarget.position;
+        //targetDist = Dist = dir.magnitude;
+        //dir.Normalize();
+        //dir = transform.InverseTransformDirection(dir);
+
+    }
+    public void SetCam(int num)
+    {
+        myTarget = GameManager.GM.characters[num].transform.Find("ViewPoint").transform;
         transform.LookAt(myTarget);
         dir = transform.position - myTarget.position;
         targetDist = Dist = dir.magnitude;
         dir.Normalize();
         dir = transform.InverseTransformDirection(dir);
-
     }
-
-    // Start is called before the first frame update
     void Start()
     {
         transform.position = myTarget.position + Quaternion.Euler(MinAngle, 0, 0) * dir * Dist;
