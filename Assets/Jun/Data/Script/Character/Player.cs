@@ -6,12 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Player : CharactorMovement
 {
-    public enum STATE
-    {
-        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE
-    }
-    public STATE _bfState;
-    public STATE _curState = STATE.CREATE;
+
     public SkillSet currSkill = null;
     // Start is called before the first frame update
     void Start()
@@ -20,12 +15,12 @@ public class Player : CharactorMovement
         StartCoroutine(SetPos());
     }
 
-    void SetPlayer()
+    public override void SetPlayer()
     {
         myType = OB_TYPES.PLAYER;
         if(skilList == null)
             skilList = new List<SkillSet>();
-        GameManager.GM.Players.Add(this.gameObject);
+        GameManager.GM.characters.Add(this.gameObject);
     }
     IEnumerator SetPos()
     {
@@ -96,7 +91,7 @@ public class Player : CharactorMovement
         }
     }
 
-    public void ChangeState(STATE s)
+    public override void ChangeState(STATE s)
     {
         if (_curState == s) return;
         _bfState = _curState;
@@ -122,10 +117,7 @@ public class Player : CharactorMovement
 
         }
     }
-    public STATE GetState()
-    {
-        return _curState;
-    }
+  
     public void Picked(Vector2Int tile)
     {
         OB_TYPES tmp = GameManager.GM.tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
@@ -186,10 +178,8 @@ public class Player : CharactorMovement
         gameObject.GetComponent<Picking>().enabled = true;
     }
 
-    public void OnMove()
+    public override void OnMove()
     {
-        //InitMoveStart();
-        //MoveToTile(tile);
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
@@ -203,16 +193,5 @@ public class Player : CharactorMovement
         MoveByPath(tile);
     }
 
-    void InitTileDistance()
-    {
-        Start_X = my_Pos.x;
-        Start_Y = my_Pos.y;
-        GameManager.GM.tiles[Start_X, Start_Y].GetComponent<TileState>().reSetTile();
-
-    }
-
-    public float CheckAP()
-    {
-        return curAP;
-    }
+    
 }

@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterSlot : MonoBehaviour
+public interface IObjectItem
 {
-    public Character data;
-   
+    ItemSet TriggerItem();
 }

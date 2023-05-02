@@ -32,6 +32,16 @@ public class IntroManager : MonoBehaviour //UI관련??메인타이틀??
         Settings.SetActive(false);
     }
 
+    public void OpenGraphicSettingMenu()
+    {
+
+    }
+
+    public void CloseGraphicSettingMenu()
+    {
+
+    }
+
     public void OpenStartMenu() //Start
     {
         MapPanel.SetActive(true);

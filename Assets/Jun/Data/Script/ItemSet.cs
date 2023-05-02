@@ -12,6 +12,10 @@ public class ItemSet : ScriptableObject
     public ItemType myType { get { return _type; } }
 
     [SerializeField]
+    private float _power;
+    public float power { get { return _power; } }
+
+    [SerializeField]
     private Sprite _sprite;
     public Sprite MySprite { get { return _sprite; } }
 

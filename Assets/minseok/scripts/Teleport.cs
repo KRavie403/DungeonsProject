@@ -10,7 +10,7 @@ public class Teleport : MonoBehaviour
     public List<TileState> tiles;
     void Start()
     {
-        //Create_obj_System.main_teleport.teleporters.Add(this);
+        TeleportSystem.main_teleport.teleporters.Add(this);
         Setting();
     }
     void Update()
@@ -36,7 +36,6 @@ public class Teleport : MonoBehaviour
                 if (_curState == Player.STATE.ACTION)
                 {
                     tile.my_target.transform.position = new Vector3(5.5f, 0, 8.5f);
-                    tile.my_target.GetComponent<Player>().my_Pos = new Vector2Int(5, 8);
                 }
             }
         }
