@@ -9,7 +9,7 @@ public abstract class CharactorMovement : CharactorProperty
     enum Direction { Front, Left, Right, Back }
     public enum STATE
     {
-        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE, TRACE
+        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE, SEARCH
     }
     public STATE _bfState;
     public STATE _curState = STATE.CREATE;
@@ -90,24 +90,36 @@ public abstract class CharactorMovement : CharactorProperty
         if(GameManager.GM.tiles[x, y])
             GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited = step;
     }
-    protected void SetDistance()
+    virtual public void SetDistance()
     {
+        List<GameObject> searchTileArea = new List<GameObject>();
+
+        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
+        {
+            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
+            {
+                Vector2Int pos = new Vector2Int(i, j);
+                if (!GameManager.GM.CheckIncludedIndex(pos))
+                    break;
+                searchTileArea.Add(GameManager.GM.tiles[i, j]);
+            }
+        }
         for (int step = 1; step <= curAP; step++)
         {
-            foreach (GameObject obj in GameManager.GM.tiles)
+            foreach (GameObject obj in searchTileArea)
             {
                 if (obj.GetComponent<TileState>().isVisited == step - 1)
                 {
                     TestAllDirection(obj.GetComponent<TileState>().pos.x, obj.GetComponent<TileState>().pos.y, step);
                     obj.layer = 9;
                 }
-                if (obj.GetComponent<TileState>().isVisited == step )
+                if (obj.GetComponent<TileState>().isVisited == step)
                     obj.layer = 9;
             }
         }
-        
+
     }
-    void TestAllDirection(int x, int y, int step)
+    protected void TestAllDirection(int x, int y, int step)
     {
         if (CastDirectionTile(x, y, -1, Direction.Front))
             SetVisited(x, y + 1, step);
@@ -156,8 +168,8 @@ public abstract class CharactorMovement : CharactorProperty
         findPath = true;
         return;
     }
-    GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
-    {
+     GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
+     {
         float currentDinstance = GameManager.GM.scale * GameManager.GM.rows * GameManager.GM.columns;
         int indexNum = 0;
         for (int i = 0; i < list.Count; i++)
@@ -187,16 +199,13 @@ public abstract class CharactorMovement : CharactorProperty
 
         while (dist > 0.0f)
         {
-            //if (!myAnim.GetBool("isAttacking"))
-            //{
-                float delta = MoveSpeed * Time.deltaTime;
-                if (dist - delta < 0.0f)
-                {
-                    delta = dist;
-                }
-                dist -= delta;
-                transform.Translate(dir * delta, Space.World);
-            //}
+            float delta = MoveSpeed * Time.deltaTime;
+            if (dist - delta < 0.0f)
+            {
+                delta = dist;
+            }
+            dist -= delta;
+            transform.Translate(dir * delta, Space.World);
             yield return null;
         }
 
@@ -237,7 +246,7 @@ public abstract class CharactorMovement : CharactorProperty
         GameManager.GM.Init();
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
         GameManager.GM.tiles[path[0].GetComponent<TileState>().pos.x, path[0].GetComponent<TileState>().pos.y].GetComponent<TileState>().my_target = this.gameObject;
-
+        GameManager.GM.ChangeTurn();
 
         //myAnim.SetFloat("Speed", 0);
         arrive?.Invoke();

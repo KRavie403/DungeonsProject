@@ -7,13 +7,15 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     public GameObject InGameUI;
-    public Transform TurnSystem;
-    public GameObject char_Frame;
-    public SkillSetDB currentSkillSet;
     public GameObject start_button;
+    public GameObject char_Frame;
+
+    public Transform TurnSystem;
+    public SkillSetDB currentSkillSet;
     public List<GameObject> skillSlots;
     public TMPro.TextContainer currentHP;
     public Image currentActionPoint;
+    
     public int skill_Count = 0;
 
     private void Start()
