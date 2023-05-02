@@ -56197,8 +56197,8 @@ MonoBehaviour:
   characters: []
   Main_Cam: {fileID: 1337284519}
   curCharacter: 0
-  rows: 10
-  columns: 10
+  rows: 100
+  columns: 100
   scale: 1
   tileMat: {fileID: 2100000, guid: 3bbe6b640ca7ba64d9663b2f85e31c09, type: 2}
   LBLocation: {x: 0, y: 0, z: 0}
@@ -56215,10 +56215,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InGameUI: {fileID: 2019539186}
-  TurnSystem: {fileID: 834339909}
-  char_Frame: {fileID: 7690504195504836123, guid: d10492553eb56f548867821f48a753a5, type: 3}
-  currentSkillSet: {fileID: 0}
   start_button: {fileID: 411040046}
+  char_Frame: {fileID: 7690504195504836123, guid: d10492553eb56f548867821f48a753a5, type: 3}
+  TurnSystem: {fileID: 834339909}
+  currentSkillSet: {fileID: 0}
   skillSlots:
   - {fileID: 1903974371}
   - {fileID: 452539028}
