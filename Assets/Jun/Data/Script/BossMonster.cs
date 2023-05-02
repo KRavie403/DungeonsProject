@@ -52,13 +52,49 @@ public class BossMonster : CharactorMovement
 
         yield return null;
     }
+    override public void SetDistance()
+    {
+        List<GameObject> searchTileArea = new List<GameObject>();
 
+        
+        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
+        {
+            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
+            {
+                Vector2Int pos = new Vector2Int(i, j);
+                if (!GameManager.GM.CheckIncludedIndex(pos))
+                    break;
+                searchTileArea.Add(GameManager.GM.tiles[i, j]);
+            }
+        }
+        
+        for (int step = 1; step <= curAP; step++)
+        {
+            foreach (GameObject obj in searchTileArea)
+            {
+                if (obj.GetComponent<TileState>().isVisited == step - 1)
+                {
+                    TestAllDirection(obj.GetComponent<TileState>().pos.x, obj.GetComponent<TileState>().pos.y, step);
+                    //obj 주변 x+1 / y + 1방향도 step값 변경, 예외처리 필요
+                    //if 인접타일이 못가는 곳인가 ? step 날림
+                    obj.layer = 9;
+                }
+                if (obj.GetComponent<TileState>().isVisited == step)
+                    obj.layer = 9;
+            }
+        }
+
+    }
     public override void OnMove()
     {
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
+
+        //Vector2Int target;
+        //FindingPlayer()?.MoveByPath(target);
+        
+
     }
     void Update()
     {
