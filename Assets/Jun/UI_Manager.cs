@@ -4,25 +4,22 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class UI_Manager : MonoBehaviour
+public class UI_Manager : Singleton<UI_Manager>
 {
     public GameObject InGameUI;
-    public Transform TurnSystem;
-    public GameObject char_Frame;
-    public SkillSetDB currentSkillSet;
     public GameObject start_button;
-    public List<GameObject> skillSlots;
-    public TMPro.TextContainer currentHP;
-    public Image currentActionPoint;
-    public int skill_Count = 0;
+    public GameObject char_Frame;
 
-    private void Start()
-    {
-        currentSkillSet = new SkillSetDB();
-    }
+    public Transform TurnSystem;
+    public SkillSetDB currentSkillSet;
+    public List<GameObject> skillSlots;
+    //public TMPro.TextContainer currentHP;
+    public Image currentActionPoint;
+    
+    public int skill_Count = 0;
     public void StateUpdate(int p)
     {
-        //currentActionPoint.fillAmount = GameManager.GM.characters[p].GetComponent<CharactorMovement>().CheckAP() / 10.0f;
+        currentActionPoint.fillAmount = GameManager.Inst.characters[p].GetComponent<CharactorMovement>().CheckAP() / 10.0f;
     }
     public void AddPlayer(Sprite _spt)
     {

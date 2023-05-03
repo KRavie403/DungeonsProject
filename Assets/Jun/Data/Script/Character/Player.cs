@@ -20,7 +20,7 @@ public class Player : CharactorMovement
         myType = OB_TYPES.PLAYER;
         if(skilList == null)
             skilList = new List<SkillSet>();
-        GameManager.GM.characters.Add(this.gameObject);
+        GameManager.Inst.characters.Add(this.gameObject);
     }
     IEnumerator SetPos()
     {
@@ -28,19 +28,19 @@ public class Player : CharactorMovement
 
         do
         {
-            x = Random.Range(0, GameManager.GM.columns);
-            y = Random.Range(0, GameManager.GM.rows);
-        } while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5);
+            x = Random.Range(0, GameManager.Inst.columns);
+            y = Random.Range(0, GameManager.Inst.rows);
+        } while (GameManager.Inst.tiles[x, y].GetComponent<TileState>().isVisited == -5);
 
 
         my_Pos = new Vector2Int(y, x);
 
-        float half = GameManager.GM.scale * 0.5f;
+        float half = GameManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
-        GameManager.GM.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SettingTarget(this.gameObject);
-        GameManager.UM.AddPlayer(my_Sprite);
+        GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
+        GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SettingTarget(this.gameObject);
+        UI_Manager.Inst.AddPlayer(my_Sprite);
 
         yield return null;
     }
@@ -120,7 +120,7 @@ public class Player : CharactorMovement
   
     public void Picked(Vector2Int tile)
     {
-        OB_TYPES tmp = GameManager.GM.tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
+        OB_TYPES tmp = GameManager.Inst.tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
         switch (tmp)
         {
             case OB_TYPES.NONE:
@@ -138,7 +138,7 @@ public class Player : CharactorMovement
     {
         //애니메이션 재생 (casting end)
         //목표 회전
-        Vector3 dir = new Vector3((target.x + GameManager.GM.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.GM.scale / 2.0f) * _mySize) - transform.position;
+        Vector3 dir = new Vector3((target.x + GameManager.Inst.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.Inst.scale / 2.0f) * _mySize) - transform.position;
         StartCoroutine(CastingSkill(dir, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
@@ -155,7 +155,7 @@ public class Player : CharactorMovement
         //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
-            GameObject target = GameManager.GM.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
+            GameObject target = GameManager.Inst.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
 
             if (target != null && target.GetComponent<BossMonster>() != null)
             {

@@ -7,5 +7,5 @@ using UnityEngine;
 public class CharacterDB : ScriptableObject
 {
     [SerializeField]
-    public List<Character> CharacterList = new List<Character>();
+    public List<Character> characterList = new List<Character>();
 }

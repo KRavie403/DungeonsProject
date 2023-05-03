@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static UI_Manager UM = null;
-    public static GameManager GM = null;
     public List<GameObject> characters;
     public FollowCamera Main_Cam;
     public int curCharacter =0;
@@ -15,16 +13,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        GM = this;
-        UM = GetComponent<UI_Manager>();
         GenerateAllTiles(1, columns, rows);
         characters = new List<GameObject>();
     }
     
     public void GameStart()
     {
-        UM.InGameUI.gameObject.SetActive(true);
-        UM.start_button.gameObject.SetActive(false);
+        UI_Manager.Inst.InGameUI.SetActive(true);
+        UI_Manager.Inst.start_button.SetActive(false);
         Main_Cam.enabled = true;
         Main_Cam.SetCam(0);
 
@@ -59,11 +55,11 @@ public class GameManager : MonoBehaviour
     {
         if (characters[curCharacter].GetComponent<CharactorMovement>().myType == OB_TYPES.PLAYER)
         {
-            if (UM.currentSkillSet.SkillList != null)
-                UM.currentSkillSet.SkillList.Clear();
-            UM.skill_Count = 0;
+            if (UI_Manager.Inst.currentSkillSet.SkillList != null)
+                UI_Manager.Inst.currentSkillSet.SkillList.Clear();
+            UI_Manager.Inst.skill_Count = 0;
             foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
-                UM.AddSkills(skill);
+                UI_Manager.Inst.AddSkills(skill);
         }
     }
     // Update is called once per frame

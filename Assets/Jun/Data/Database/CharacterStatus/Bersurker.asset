@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51054bdc61c4f8f44902817509320211, type: 3}
   m_Name: Bersurker
   m_EditorClassIdentifier: 
+  _name: 
   _damage: 0
   _sprite: {fileID: 0}
-  _class: 0
+  _class: 1
   _maxHP: 0
   _attackPower: 0
   _deffencePower: 0
