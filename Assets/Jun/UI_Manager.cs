@@ -22,7 +22,7 @@ public class UI_Manager : MonoBehaviour
     }
     public void StateUpdate(int p)
     {
-        currentActionPoint.fillAmount = GameManager.GM.characters[p].GetComponent<CharactorMovement>().CheckAP() / 10.0f;
+        //currentActionPoint.fillAmount = GameManager.GM.characters[p].GetComponent<CharactorMovement>().CheckAP() / 10.0f;
     }
     public void AddPlayer(Sprite _spt)
     {

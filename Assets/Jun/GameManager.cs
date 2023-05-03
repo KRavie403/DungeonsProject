@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     //Player
     public void OnMove()
     {
-        characters[curCharacter].GetComponent<CharactorMovement>().OnMove();
+        characters[curCharacter].GetComponent<Player>()?.OnMove();
     }
     public void ChangeTurn()
     {

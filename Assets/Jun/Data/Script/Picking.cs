@@ -9,6 +9,8 @@ public class Picking : MonoBehaviour
     public LayerMask pickMask; //누를수있는 레이어추가
     public LayerMask TP;
     public GameObject TPUI;
+    public LayerMask Chest;
+    public GameObject ChestUI;
     public UnityEvent<Vector2Int> clickToMove = null;   //Player스크립트에있는 OnMoveByPath불러오기
     public UnityEvent<Vector2Int,Vector2Int[]> clickToSkill = null;
 
@@ -70,18 +72,25 @@ public class Picking : MonoBehaviour
             }
             if (_curState == Player.STATE.ACTION)
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if ((1 << hit.transform.gameObject.layer & TP) != 0)
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        if (hit.transform.position.x - this.transform.position.x <= 1.5f && hit.transform.position.x - this.transform.position.x >= -1.5f
-                            && hit.transform.position.z - this.transform.position.z <= 1.5f && hit.transform.position.z - this.transform.position.z >= -1.5f)
+                        Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+
+                        if (hitPos.x - GetComponent<Player>().my_Pos.x <= 1.5f && hitPos.x - GetComponent<Player>().my_Pos.x >= -1.5f
+                            && hitPos.y - GetComponent<Player>().my_Pos.y <= 1.5f && hitPos.y - GetComponent<Player>().my_Pos.y >= -1.5f)
                         {
-                            TPUI.SetActive(true);
-                            TeleportSystem.main_teleport.testtarget(hit.transform);
+                            if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.TELEPORT)
+                            {
+                                TPUI.SetActive(true);
+                                Create_obj_System.main_teleport.TPtarget(hit.transform);
+                            }
+                            if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.CHEST)
+                            {
+                                ChestUI.SetActive(true);
+                                Create_obj_System.main_teleport.Chesttarget(hit.transform);
+                            }
                         }
                     }
-                }
                 else
                 {
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
