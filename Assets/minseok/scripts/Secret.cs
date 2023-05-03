@@ -14,8 +14,8 @@ public class Secret : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
-            pos = GameManager.GM.GetTileIndex(other.gameObject);
-            tiles = (GameManager.GM.tiles[pos.x, pos.y].GetComponent<TileState>());
+            pos = GameManager.Inst.GetTileIndex(other.gameObject);
+            tiles = (GameManager.Inst.tiles[pos.x, pos.y].GetComponent<TileState>());
             this.GetComponent<SphereCollider>().isTrigger = false;
         }
     }

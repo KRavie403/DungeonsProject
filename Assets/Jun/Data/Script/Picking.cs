@@ -74,17 +74,17 @@ public class Picking : MonoBehaviour
             {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+                        Vector2Int hitPos = GameManager.Inst.GetTileIndex(hit.transform.gameObject);
 
                         if (hitPos.x - GetComponent<Player>().my_Pos.x <= 1.5f && hitPos.x - GetComponent<Player>().my_Pos.x >= -1.5f
                             && hitPos.y - GetComponent<Player>().my_Pos.y <= 1.5f && hitPos.y - GetComponent<Player>().my_Pos.y >= -1.5f)
                         {
-                            if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.TELEPORT)
+                            if (GameManager.Inst.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.TELEPORT)
                             {
                                 TPUI.SetActive(true);
                                 Create_obj_System.main_teleport.TPtarget(hit.transform);
                             }
-                            if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.CHEST)
+                            if (GameManager.Inst.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.CHEST)
                             {
                                 ChestUI.SetActive(true);
                                 Create_obj_System.main_teleport.Chesttarget(hit.transform);

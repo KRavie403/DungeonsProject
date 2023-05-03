@@ -2331,55 +2331,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 381541819}
   m_CullTransparentMesh: 1
---- !u!1 &407124593
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 407124595}
-  - component: {fileID: 407124594}
-  m_Layer: 12
-  m_Name: Global Post-Processing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &407124594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407124593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: 8586f23b8d1defd4ea80ffc786b70cb9, type: 2}
---- !u!4 &407124595
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 407124593}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.630966, y: 14.995636, z: -18.068787}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &415638731
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11216,18 +11167,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 954323607}
-        m_TargetAssemblyTypeName: MapSet, Assembly-CSharp
-        m_MethodName: CharacterSelect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1865573602}
         m_TargetAssemblyTypeName: CharacterSlot, Assembly-CSharp
         m_MethodName: SendIndex
@@ -14972,7 +14911,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD504\uB9AC\uC2A4\uD2B8"
+  m_text: "\uBCA0\uB974\uC138\uB974\uD06C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
   m_sharedMaterial: {fileID: 5408064240930060975, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
@@ -15496,6 +15435,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 367244570}
+        m_TargetAssemblyTypeName: CharacterSlotDB, Assembly-CSharp
+        m_MethodName: DeleteCharacters
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4274646604996430544
 GameObject:
   m_ObjectHideFlags: 0
@@ -15573,6 +15524,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MapSet, Assembly-CSharp
         m_MethodName: CharacterSelection
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 367244570}
+        m_TargetAssemblyTypeName: CharacterSlotDB, Assembly-CSharp
+        m_MethodName: DeleteCharacters
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15659,7 +15622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD504\uB9AC\uC2A4\uD2B8"
+  m_text: "\uAC00\uB514\uC5B8"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
   m_sharedMaterial: {fileID: 5408064240930060975, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
@@ -16305,7 +16268,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD504\uB9AC\uC2A4\uD2B8"
+  m_text: "\uD314\uB77C\uB518"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
   m_sharedMaterial: {fileID: 5408064240930060975, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
@@ -16415,7 +16378,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD504\uB9AC\uC2A4\uD2B8"
+  m_text: "\uB808\uC778\uC800"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
   m_sharedMaterial: {fileID: 5408064240930060975, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
@@ -17396,6 +17359,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 367244570}
+        m_TargetAssemblyTypeName: CharacterSlotDB, Assembly-CSharp
+        m_MethodName: DeleteCharacters
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &8711248641364025055
 Animator:
   serializedVersion: 5
@@ -17555,6 +17530,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: MapSet, Assembly-CSharp
         m_MethodName: CharacterSelect
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 367244570}
+        m_TargetAssemblyTypeName: CharacterSlotDB, Assembly-CSharp
+        m_MethodName: DeleteCharacters
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -21,7 +21,7 @@ public class Chest : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
-            pos = GameManager.GM.GetTileIndex(other.gameObject);
+            pos = GameManager.Inst.GetTileIndex(other.gameObject);
 
             this.GetComponent<BoxCollider>().isTrigger = false;
         }
@@ -50,7 +50,7 @@ public class Chest : MonoBehaviour
                 {
                     continue;
                 }
-                tiles.Add(GameManager.GM.tiles[pos.x + i, pos.y + j].GetComponent<TileState>());
+                tiles.Add(GameManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileState>());
             }
         }
     }

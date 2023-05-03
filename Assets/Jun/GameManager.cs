@@ -90,7 +90,7 @@ public class GameManager : Singleton<GameManager>
 
 
     //public Transform[] _MapTiles = null;
-    
+
 
 
     void GenerateAllTiles(float tileSize, int tileCount_X, int tileCount_Y)

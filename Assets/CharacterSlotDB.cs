@@ -21,9 +21,8 @@ public class CharacterSlotDB : MonoBehaviour
         cdb = this;
     }
 
-    private void Update(int idx)
+    private void Update()
     {
-        ChosenCharacters(idx);
     }
 
 
@@ -31,26 +30,34 @@ public class CharacterSlotDB : MonoBehaviour
     {
         chosenDB.characterList.Add(charDB.characterList[idx]);
         chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
+
+        if (!ChosenChar1.activeSelf) ChosenChar1.SetActive(true);
+        else if (!ChosenChar2.activeSelf) ChosenChar2.SetActive(true);
+        else if (!ChosenChar3.activeSelf) ChosenChar3.SetActive(true);
+        else ChosenChar4.SetActive(true);
     }
 
-    public void ChosenCharacters(int idx)
+    public void DeleteCharacters(int idx)
     {
-        switch (idx)
+        if (ChosenChar1.activeSelf)
         {
-            case 0:
-                ChosenChar1.SetActive(true);
-                break;
-            case 1:
-                ChosenChar2.SetActive(true);
-                break;
-            case 2:
-                ChosenChar3.SetActive(true);
-                break;
-            case 3:
-                ChosenChar4.SetActive(true);
-                break;
-            default:
-                break;
+            ChosenChar1.SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
+        }
+        else if (ChosenChar2.activeSelf)
+        {
+            ChosenChar2.SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
+        }
+        else if (ChosenChar3.activeSelf)
+        {
+            ChosenChar3.SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
+        }
+        else
+        {
+            ChosenChar4.SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
         }
     }
 }
