@@ -9,6 +9,8 @@ public class Picking : MonoBehaviour
     public LayerMask pickMask; //누를수있는 레이어추가
     public LayerMask TP;
     public GameObject TPUI;
+    public LayerMask Chest;
+    public GameObject ChestUI;
     public UnityEvent<Vector2Int> clickToMove = null;   //Player스크립트에있는 OnMoveByPath불러오기
     public UnityEvent<Vector2Int,Vector2Int[]> clickToSkill = null;
 
@@ -42,7 +44,7 @@ public class Picking : MonoBehaviour
                     if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
                     {
                         Debug.Log($"Hit Layer : {hit.transform.gameObject.layer}");
-                        clickToMove?.Invoke(GameManager.GM.GetTileIndex(hit.transform.gameObject));
+                        clickToMove?.Invoke(GameManager.Inst.GetTileIndex(hit.transform.gameObject));
                     }
                     
                 }
@@ -50,55 +52,62 @@ public class Picking : MonoBehaviour
                 {
                     
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
-                    Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+                    Vector2Int hitPos = GameManager.Inst.GetTileIndex(hit.transform.gameObject);
                     if (currentHover == -Vector2Int.one)
                     {
                         currentHover = hitPos;
-                        GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
+                        GameManager.Inst.tiles[hitPos.x, hitPos.y].layer = 8;
                     }
                     if (currentHover != hitPos)
                     {
-                        if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) == -1)
-                            GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
+                        if (GameManager.Inst.CheckTileVisited(currentHover.x, currentHover.y) == -1)
+                            GameManager.Inst.tiles[currentHover.x, currentHover.y].layer = 3;
                         else
-                            GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 9;
+                            GameManager.Inst.tiles[currentHover.x, currentHover.y].layer = 9;
                         currentHover = hitPos;
-                        GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
+                        GameManager.Inst.tiles[hitPos.x, hitPos.y].layer = 8;
                     }
                     
                 }
             }
             if (_curState == Player.STATE.ACTION)
             {
-                if (Input.GetMouseButtonDown(0))
-                {
-                    if ((1 << hit.transform.gameObject.layer & TP) != 0)
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        if (hit.transform.position.x - this.transform.position.x <= 1.5f && hit.transform.position.x - this.transform.position.x >= -1.5f
-                            && hit.transform.position.z - this.transform.position.z <= 1.5f && hit.transform.position.z - this.transform.position.z >= -1.5f)
+                        Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+
+                        if (hitPos.x - GetComponent<Player>().my_Pos.x <= 1.5f && hitPos.x - GetComponent<Player>().my_Pos.x >= -1.5f
+                            && hitPos.y - GetComponent<Player>().my_Pos.y <= 1.5f && hitPos.y - GetComponent<Player>().my_Pos.y >= -1.5f)
                         {
-                            TPUI.SetActive(true);
-                            TeleportSystem.main_teleport.testtarget(hit.transform);
+                            if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.TELEPORT)
+                            {
+                                TPUI.SetActive(true);
+                                Create_obj_System.main_teleport.TPtarget(hit.transform);
+                            }
+                            if (GameManager.GM.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.CHEST)
+                            {
+                                ChestUI.SetActive(true);
+                                Create_obj_System.main_teleport.Chesttarget(hit.transform);
+                            }
                         }
                     }
-                }
                 else
                 {
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
-                    Vector2Int hitPos = GameManager.GM.GetTileIndex(hit.transform.gameObject);
+                    Vector2Int hitPos = GameManager.Inst.GetTileIndex(hit.transform.gameObject);
                     if (currentHover == -Vector2Int.one)
                     {
                         currentHover = hitPos;
-                        GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
+                        GameManager.Inst.tiles[hitPos.x, hitPos.y].layer = 8;
                     }
                     if (currentHover != hitPos)
                     {
-                        if (GameManager.GM.CheckTileVisited(currentHover.x, currentHover.y) == -1)
-                            GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
+                        if (GameManager.Inst.CheckTileVisited(currentHover.x, currentHover.y) == -1)
+                            GameManager.Inst.tiles[currentHover.x, currentHover.y].layer = 3;
                         else
-                            GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 9;
+                            GameManager.Inst.tiles[currentHover.x, currentHover.y].layer = 9;
                         currentHover = hitPos;
-                        GameManager.GM.tiles[hitPos.x, hitPos.y].layer = 8;
+                        GameManager.Inst.tiles[hitPos.x, hitPos.y].layer = 8;
                     }
 
                 }
@@ -120,7 +129,7 @@ public class Picking : MonoBehaviour
                     {
                         foreach(var init in curTargets)
                         {
-                            GameManager.GM.InitTarget(init);
+                            GameManager.Inst.InitTarget(init);
                         }
                     }
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
@@ -142,10 +151,10 @@ public class Picking : MonoBehaviour
                         {
                             Vector2Int tmp = GetComponent<Player>().my_Pos + new Vector2Int(v.y, v.x);
 
-                            if (GameManager.GM.CheckIncludedIndex(tmp))
+                            if (GameManager.Inst.CheckIncludedIndex(tmp))
                             {
                                 curTargets.Add(tmp);
-                                GameManager.GM.tiles[tmp.x, tmp.y].layer = 8;
+                                GameManager.Inst.tiles[tmp.x, tmp.y].layer = 8;
                             }
                         }
                     }
@@ -158,10 +167,10 @@ public class Picking : MonoBehaviour
                         {
                             Vector2Int tmp = GetComponent<Player>().my_Pos + v * is_front;
 
-                            if (GameManager.GM.CheckIncludedIndex(tmp))
+                            if (GameManager.Inst.CheckIncludedIndex(tmp))
                             {
                                 curTargets.Add(tmp);
-                                GameManager.GM.tiles[tmp.x, tmp.y].layer = 8;
+                                GameManager.Inst.tiles[tmp.x, tmp.y].layer = 8;
                             }
 
                         }
@@ -175,10 +184,10 @@ public class Picking : MonoBehaviour
                         {
                             Vector2Int tmp = GetComponent<Player>().my_Pos - new Vector2Int(v.y, v.x);
 
-                            if (GameManager.GM.CheckIncludedIndex(tmp))
+                            if (GameManager.Inst.CheckIncludedIndex(tmp))
                             {
                                 curTargets.Add(tmp);
-                                GameManager.GM.tiles[tmp.x, tmp.y].layer = 8;
+                                GameManager.Inst.tiles[tmp.x, tmp.y].layer = 8;
                             }
 
                         }
@@ -196,7 +205,7 @@ public class Picking : MonoBehaviour
         {
             if (currentHover != -Vector2Int.one)
             {
-                GameManager.GM.tiles[currentHover.x, currentHover.y].layer = 3;
+                GameManager.Inst.tiles[currentHover.x, currentHover.y].layer = 3;
                 currentHover = -Vector2Int.one;
             }
         }

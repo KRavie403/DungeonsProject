@@ -42,4 +42,8 @@ public class Character : ScriptableObject
     private int _actionPoint;
     public int ActionPoint { get { return _actionPoint; } }
 
+    [SerializeField]
+    private GameObject _preb;
+    public GameObject Preb { get { return _preb; } }
+
 }

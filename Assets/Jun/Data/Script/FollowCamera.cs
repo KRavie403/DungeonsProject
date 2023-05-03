@@ -30,7 +30,7 @@ public class FollowCamera : MonoBehaviour
     }
     public void SetCam(int num)
     {
-        myTarget = GameManager.GM.characters[num].transform.Find("ViewPoint").transform;
+        myTarget = GameManager.Inst.characters[num].transform.Find("ViewPoint").transform;
         transform.LookAt(myTarget);
         dir = transform.position - myTarget.position;
         targetDist = Dist = dir.magnitude;

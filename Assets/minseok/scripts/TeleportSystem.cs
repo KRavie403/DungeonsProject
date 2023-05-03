@@ -62,7 +62,7 @@ public class TeleportSystem : MonoBehaviour
 
         Vector2Int my_Pos = new Vector2Int(x, y);
 
-        float half = GameManager.GM.scale * 0.5f;
+        float half = GameManager.Inst.scale * 0.5f;
         testpos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         pos = new Vector2Int(x, y);
@@ -94,23 +94,14 @@ public class TeleportSystem : MonoBehaviour
         
         GameObject obj1 = Instantiate(orgObject, new Vector3(8.5f,0,8.5f), Quaternion.identity);
         GameObject obj2 = Instantiate(orgObject, new Vector3(2.5f, 0, 2.5f), Quaternion.identity);
-
-    }
-
-    List<int> list = new List<int>();
-
-    void Start()
-    {
-        teleportSystem();
         teleporters = new List<Teleport>();
         main_teleport = this;
     }
 
+    List<int> list = new List<int>();
+
+
     
-    void Update()
-    {
-        
-    }
 
     public  void Ontp()
     {

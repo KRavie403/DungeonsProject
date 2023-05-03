@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum OB_TYPES { PLAYER, MONSTER, TELEPORT, NONE }
+public enum OB_TYPES { PLAYER, MONSTER, TELEPORT, CHEST, NONE }
 
 public class TileState : MonoBehaviour
 {
@@ -24,6 +24,12 @@ public class TileState : MonoBehaviour
             my_obj = OB_TYPES.TELEPORT;
             my_target = other.gameObject;
             isVisited = -3;
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Chest"))
+        {
+            my_obj = OB_TYPES.CHEST;
+            my_target = other.gameObject;
+            isVisited = -4;
         }
     }
     public void SettingTarget(GameObject target)

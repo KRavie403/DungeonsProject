@@ -8,47 +8,42 @@ public class BossMonster : CharactorMovement
     // Start is called before the first frame update
     public Slider _bossHPUI;
     private float Hp;
-    private void Start()
-    {
-        
-        SetPlayer();
-        StartCoroutine(SetPos());
-    }
-    public override void SetPlayer()
+
+    public override void SetPos()
     {
         myType = OB_TYPES.MONSTER;
         if (skilList == null)
             skilList = new List<SkillSet>();
-        GameManager.GM.characters.Add(this.gameObject);
+        StartCoroutine(SettingPos());
+
     }
-    IEnumerator SetPos()
+    IEnumerator SettingPos()
     {
-        //GameManager.GM.Players.Add(this.gameObject);
         
         int x, y;
 
         do
         {
-            x = Random.Range(0, GameManager.GM.columns);
-            y = Random.Range(0, GameManager.GM.rows);
-        } while (GameManager.GM.tiles[x, y].GetComponent<TileState>().isVisited == -5);
+            x = Random.Range(0, GameManager.Inst.columns);
+            y = Random.Range(0, GameManager.Inst.rows);
+        } while (GameManager.Inst.tiles[x, y].GetComponent<TileState>().isVisited == -5);
 
 
         my_Pos = new Vector2Int(y, x);
 
-        float half = GameManager.GM.scale * 0.5f;
+        float half = GameManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         for (int i = 0; i <= 1; i++)
         {
             for (int j = 0; j <= 1; j++)
             {
-                GameManager.GM.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().my_obj = myType;
-                GameManager.GM.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().isVisited = -2;
-                GameManager.GM.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().SettingTarget(this.gameObject);
+                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().my_obj = myType;
+                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().isVisited = -2;
+                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().SettingTarget(this.gameObject);
             }
         }
-        GameManager.UM.AddPlayer(my_Sprite);
+        UI_Manager.Inst.AddPlayer(my_Sprite);
 
         yield return null;
     }
@@ -62,9 +57,9 @@ public class BossMonster : CharactorMovement
             for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
             {
                 Vector2Int pos = new Vector2Int(i, j);
-                if (!GameManager.GM.CheckIncludedIndex(pos))
+                if (!GameManager.Inst.CheckIncludedIndex(pos))
                     break;
-                searchTileArea.Add(GameManager.GM.tiles[i, j]);
+                searchTileArea.Add((GameObject)GameManager.Inst.tiles[i, j]);
             }
         }
         
@@ -152,7 +147,7 @@ public class BossMonster : CharactorMovement
     {
         //애니메이션 재생 (casting end)
         //목표 회전
-        Vector3 dir = new Vector3((target.x + GameManager.GM.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.GM.scale / 2.0f) * _mySize) - transform.position;
+        Vector3 dir = new Vector3((target.x + GameManager.Inst.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.Inst.scale / 2.0f) * _mySize) - transform.position;
         StartCoroutine(CastingSkill(dir, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
@@ -169,7 +164,7 @@ public class BossMonster : CharactorMovement
         //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
-            GameObject target = GameManager.GM.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
+            GameObject target = GameManager.Inst.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
 
             if (target != null && target.GetComponent<BossMonster>() != null)
             {

@@ -3,28 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static UI_Manager UM = null;
-    public static GameManager GM = null;
     public List<GameObject> characters;
     public FollowCamera Main_Cam;
     public int curCharacter =0;
     public GameObject[,] tiles;
 
+    [SerializeField]
+    CharacterDB selectedChars;
+    [SerializeField]
+    GameObject boss;
 
     private void Awake()
     {
-        GM = this;
-        UM = GetComponent<UI_Manager>();
         GenerateAllTiles(1, columns, rows);
         characters = new List<GameObject>();
     }
     
     public void GameStart()
     {
-        UM.InGameUI.gameObject.SetActive(true);
-        UM.start_button.gameObject.SetActive(false);
+        GameObject obj;
+        foreach (var chosen in selectedChars.characterList)
+        {
+            obj = Instantiate(chosen.Preb);
+            obj.GetComponent<CharactorMovement>().SetPos();
+            characters.Add(obj);
+
+        }
+        obj = Instantiate(boss);
+        obj.GetComponent<CharactorMovement>().SetPos();
+        characters.Add(obj);
+
+        UI_Manager.Inst.GameStart();
         Main_Cam.enabled = true;
         Main_Cam.SetCam(0);
 
@@ -42,12 +53,12 @@ public class GameManager : MonoBehaviour
     //Player
     public void OnMove()
     {
-        characters[curCharacter].GetComponent<CharactorMovement>().OnMove();
+        characters[curCharacter].GetComponent<Player>().OnMove();
     }
+
     public void ChangeTurn()
     {
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.IDLE);
-        
         curCharacter = (++curCharacter) % (characters.Count);
         Main_Cam.SetCam(curCharacter);
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.ACTION);
@@ -59,11 +70,11 @@ public class GameManager : MonoBehaviour
     {
         if (characters[curCharacter].GetComponent<CharactorMovement>().myType == OB_TYPES.PLAYER)
         {
-            if (UM.currentSkillSet.SkillList != null)
-                UM.currentSkillSet.SkillList.Clear();
-            UM.skill_Count = 0;
+            if (UI_Manager.Inst.currentSkillSet.SkillList != null)
+                UI_Manager.Inst.currentSkillSet.SkillList.Clear();
+            UI_Manager.Inst.skill_Count = 0;
             foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
-                UM.AddSkills(skill);
+                UI_Manager.Inst.AddSkills(skill);
         }
     }
     // Update is called once per frame
@@ -75,10 +86,7 @@ public class GameManager : MonoBehaviour
     public float scale = 1.0f;
 
     public Material tileMat;
-
-
     public Vector3 LBLocation = new Vector3(0, 0, 0);
-
 
 
     //public Transform[] _MapTiles = null;
@@ -133,6 +141,13 @@ public class GameManager : MonoBehaviour
         foreach (GameObject obj in tiles)
         {
             obj.GetComponent<TileState>().isVisited = -1;
+            obj.layer = 3;
+        }
+    }
+    public void InitLayer()
+    {
+        foreach (GameObject obj in tiles)
+        {
             obj.layer = 3;
         }
     }
