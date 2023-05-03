@@ -18,15 +18,17 @@ public class ResolutionControl : MonoBehaviour
 
     }
 
+    int count = 0;
     public void ResolutionSetting()
     {
         if (ani.GetBool("isMovingRight"))
         {
             ani.SetBool("isMovingRight", false);
-            ani.SetBool("isMovingLeft", true);
         }
         else
+        {
             ani.SetBool("isMovingRight", true);
-            ani.SetBool("isMovingLeft", false);
+        }
+
     }
 }

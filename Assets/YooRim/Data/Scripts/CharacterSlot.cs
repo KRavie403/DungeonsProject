@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterSlot : MonoBehaviour
 {
-    public Character data;
-   
+    public int idx;
+    public void SendIndex()
+    {
+        CharacterSlotDB.cdb.ChooseCharacters(idx);
+    }
 }
