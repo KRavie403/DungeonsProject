@@ -33,6 +33,12 @@ public class UI_Manager : Singleton<UI_Manager>
         skillSlots[skill_Count].GetComponent<Image>().sprite = _set.MySprite;
         skillSlots[skill_Count++].GetComponent<SkillSlot>()._my_skill = _set;
     }
+    public void GameStart()
+    {
+        
+        InGameUI.SetActive(true);
+        start_button.SetActive(false);
 
+    }
 
 }

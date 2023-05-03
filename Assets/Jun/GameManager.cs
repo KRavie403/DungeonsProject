@@ -10,6 +10,10 @@ public class GameManager : Singleton<GameManager>
     public int curCharacter =0;
     public GameObject[,] tiles;
 
+    [SerializeField]
+    CharacterDB selectedChars;
+    [SerializeField]
+    GameObject boss;
 
     private void Awake()
     {
@@ -19,8 +23,19 @@ public class GameManager : Singleton<GameManager>
     
     public void GameStart()
     {
-        UI_Manager.Inst.InGameUI.SetActive(true);
-        UI_Manager.Inst.start_button.SetActive(false);
+        GameObject obj;
+        foreach (var chosen in selectedChars.characterList)
+        {
+            obj = Instantiate(chosen.Preb);
+            obj.GetComponent<CharactorMovement>().SetPos();
+            characters.Add(obj);
+
+        }
+        obj = Instantiate(boss);
+        obj.GetComponent<CharactorMovement>().SetPos();
+        characters.Add(obj);
+
+        UI_Manager.Inst.GameStart();
         Main_Cam.enabled = true;
         Main_Cam.SetCam(0);
 
@@ -38,12 +53,12 @@ public class GameManager : Singleton<GameManager>
     //Player
     public void OnMove()
     {
-        characters[curCharacter].GetComponent<CharactorMovement>().OnMove();
+        characters[curCharacter].GetComponent<Player>().OnMove();
     }
+
     public void ChangeTurn()
     {
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.IDLE);
-        
         curCharacter = (++curCharacter) % (characters.Count);
         Main_Cam.SetCam(curCharacter);
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.ACTION);
@@ -71,10 +86,7 @@ public class GameManager : Singleton<GameManager>
     public float scale = 1.0f;
 
     public Material tileMat;
-
-
     public Vector3 LBLocation = new Vector3(0, 0, 0);
-
 
 
     //public Transform[] _MapTiles = null;
@@ -129,6 +141,13 @@ public class GameManager : Singleton<GameManager>
         foreach (GameObject obj in tiles)
         {
             obj.GetComponent<TileState>().isVisited = -1;
+            obj.layer = 3;
+        }
+    }
+    public void InitLayer()
+    {
+        foreach (GameObject obj in tiles)
+        {
             obj.layer = 3;
         }
     }

@@ -94,23 +94,14 @@ public class TeleportSystem : MonoBehaviour
         
         GameObject obj1 = Instantiate(orgObject, new Vector3(8.5f,0,8.5f), Quaternion.identity);
         GameObject obj2 = Instantiate(orgObject, new Vector3(2.5f, 0, 2.5f), Quaternion.identity);
-
-    }
-
-    List<int> list = new List<int>();
-
-    void Start()
-    {
-        teleportSystem();
         teleporters = new List<Teleport>();
         main_teleport = this;
     }
 
+    List<int> list = new List<int>();
+
+
     
-    void Update()
-    {
-        
-    }
 
     public  void Ontp()
     {

@@ -8,22 +8,17 @@ public class BossMonster : CharactorMovement
     // Start is called before the first frame update
     public Slider _bossHPUI;
     private float Hp;
-    private void Start()
-    {
-        
-        SetPlayer();
-        StartCoroutine(SetPos());
-    }
-    public override void SetPlayer()
+
+    public override void SetPos()
     {
         myType = OB_TYPES.MONSTER;
         if (skilList == null)
             skilList = new List<SkillSet>();
-        GameManager.Inst.characters.Add(this.gameObject);
+        StartCoroutine(SettingPos());
+
     }
-    IEnumerator SetPos()
+    IEnumerator SettingPos()
     {
-        //GameManager.GM.Players.Add(this.gameObject);
         
         int x, y;
 

@@ -8,7 +8,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
 	public static T Inst{
 		get
 		{
-			if(_inst = null)
+			if(_inst == null)
 			{
 				_inst = FindAnyObjectByType<T>();
 				if (_inst == null)
