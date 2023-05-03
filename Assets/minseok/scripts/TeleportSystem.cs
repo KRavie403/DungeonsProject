@@ -62,7 +62,7 @@ public class TeleportSystem : MonoBehaviour
 
         Vector2Int my_Pos = new Vector2Int(x, y);
 
-        float half = GameManager.GM.scale * 0.5f;
+        float half = GameManager.Inst.scale * 0.5f;
         testpos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         pos = new Vector2Int(x, y);

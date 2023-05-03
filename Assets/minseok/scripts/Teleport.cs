@@ -21,7 +21,7 @@ public class Teleport : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
-            pos = GameManager.GM.GetTileIndex(other.gameObject);
+            pos = GameManager.Inst.GetTileIndex(other.gameObject);
             
             this.GetComponent<CapsuleCollider>().isTrigger = false;
         }
@@ -46,8 +46,8 @@ public class Teleport : MonoBehaviour
         {
             for (int j = -1; j <= 1; j++)
             {
-                if(i!=0 && j!= 0 && GameManager.GM.CheckIncludedIndex(new Vector2Int(pos.x+i,pos.y+j)))
-                   tiles.Add(GameManager.GM.tiles[pos.x + i, pos.y + j].GetComponent<TileState>());
+                if(i!=0 && j!= 0 && GameManager.Inst.CheckIncludedIndex(new Vector2Int(pos.x+i,pos.y+j)))
+                   tiles.Add(GameManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileState>());
             }
         }
     }
