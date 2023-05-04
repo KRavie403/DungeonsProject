@@ -12,7 +12,7 @@ public abstract class CharactorProperty : MonoBehaviour
     public Sprite my_Sprite;
     public OB_TYPES myType;
     public Vector2Int my_Pos;
-    public float MaxHP = 100.0f;
+            public float MaxHP = 100.0f;
     public float my_Size = 1.0f;
     public float _mySize = 1.0f;
     public float MoveSpeed = 1.0f;
@@ -64,5 +64,5 @@ public abstract class CharactorProperty : MonoBehaviour
         }
     }
 
-    virtual public void SetPlayer() { }
+    virtual public void SetPos() { }
 }

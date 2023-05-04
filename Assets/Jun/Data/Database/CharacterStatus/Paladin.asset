@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51054bdc61c4f8f44902817509320211, type: 3}
-  m_Name: test 2
+  m_Name: Paladin
   m_EditorClassIdentifier: 
   _name: 
   _damage: 0
@@ -21,3 +21,4 @@ MonoBehaviour:
   _deffencePower: 0
   _speed: 0
   _actionPoint: 0
+  _preb: {fileID: 7259076325901609923, guid: 61690a8971d1b02418f5f7b37de092f3, type: 3}
