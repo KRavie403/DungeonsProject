@@ -21,7 +21,8 @@ public class CharacterSlotDB : MonoBehaviour
         cdb = this;
     }
 
-    private void Update(int idx)
+    
+    private void CharacterUpdate(int idx)
     {
         ChosenCharacters(idx);
     }

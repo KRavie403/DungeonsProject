@@ -9,7 +9,6 @@ public class GameManager : Singleton<GameManager>
     public FollowCamera Main_Cam;
     public int curCharacter =0;
     public GameObject[,] tiles;
-
     [SerializeField]
     CharacterDB selectedChars;
     [SerializeField]
@@ -60,6 +59,7 @@ public class GameManager : Singleton<GameManager>
     {
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.IDLE);
         curCharacter = (++curCharacter) % (characters.Count);
+        UI_Manager.Inst.StateUpdate(curCharacter);
         Main_Cam.SetCam(curCharacter);
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.ACTION);
         CurrentSkill();
@@ -140,7 +140,10 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (GameObject obj in tiles)
         {
-            obj.GetComponent<TileState>().isVisited = -1;
+            
+            int step = obj.GetComponent<TileState>().isVisited;
+            if(step > -1)
+                obj.GetComponent<TileState>().isVisited  = -1;
             obj.layer = 3;
         }
     }

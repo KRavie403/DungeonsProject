@@ -16,7 +16,7 @@ public class TileState : MonoBehaviour
         Debug.Log("Enter");
         if (other.gameObject.layer == LayerMask.NameToLayer("Structures"))
         {
-            isVisited = -5;
+            isVisited = -100;
         }
 
         else if (other.gameObject.layer == LayerMask.NameToLayer("Teleport"))
@@ -32,7 +32,7 @@ public class TileState : MonoBehaviour
             isVisited = -4;
         }
     }
-    public void SettingTarget(GameObject target)
+    public void SetTarget(GameObject target)
     {
         my_target = target;
     }

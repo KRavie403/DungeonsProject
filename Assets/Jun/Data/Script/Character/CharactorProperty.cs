@@ -65,4 +65,8 @@ public abstract class CharactorProperty : MonoBehaviour
     }
 
     virtual public void SetPos() { }
+    protected static GameManager GetGMInst()
+    {
+        return GameManager.Inst;
+    }
 }

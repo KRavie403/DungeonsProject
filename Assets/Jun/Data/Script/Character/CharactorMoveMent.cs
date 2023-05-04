@@ -58,8 +58,6 @@ public abstract class CharactorMovement : CharactorProperty
         SetPath(tile);
         if (findPath)
             StartCoroutine(MovingByPath(done));
-        
-        my_Pos = tile;
 
     }
     bool CastDirectionTile(int x, int y, int step, Direction dir)
@@ -92,35 +90,24 @@ public abstract class CharactorMovement : CharactorProperty
     }
     virtual public void SetDistance()
     {
-        List<GameObject> searchTileArea = new List<GameObject>();
 
-        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
-        {
-            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
-            {
-                Vector2Int pos = new Vector2Int(i, j);
-                if (!GetGMInst().CheckIncludedIndex(pos))
-                    break;
-                searchTileArea.Add(GetGMInst().tiles[i, j]);
-            }
-        }
-        Debug.Log(searchTileArea.Count);
+        
         for (int step = 1; step <= curAP; step++)
         {
-            foreach (GameObject obj in searchTileArea)
+            foreach (GameObject obj in GetGMInst().tiles)
             {
                 if (obj.GetComponent<TileState>().isVisited == step - 1)
                     TestAllDirection(obj.GetComponent<TileState>().pos.x, obj.GetComponent<TileState>().pos.y, step);
             }
         }
 
-        Refresh(searchTileArea);
+        RefreshArea();
 
     }
 
-    private static void Refresh(List<GameObject> searchTileArea)
+    private void RefreshArea()
     {
-        foreach (GameObject obj in searchTileArea)
+        foreach (GameObject obj in GetGMInst().tiles)
         {
             if (obj.GetComponent<TileState>().isVisited > -1)
                 obj.layer = 9;
@@ -224,7 +211,7 @@ public abstract class CharactorMovement : CharactorProperty
     IEnumerator MovingByPath(UnityAction arrive = null)
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
-        Vector2Int dest_pos = Vector2Int.zero;
+        Vector2Int dest_pos = my_Pos;
         for (int i = path.Count - 2; i >= 0;)
         {
             bool done = false;
@@ -237,19 +224,20 @@ public abstract class CharactorMovement : CharactorProperty
             dest_pos = tilePos;
 
             curAP--;
-            if (curAP <= 0)
-            {
-                GetGMInst().ChangeTurn();
-                curAP = 10;
-                GetComponent<Player>().ChangeState(STATE.IDLE);
-                break;
-            }
             UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
+            if (curAP == 10)
+                break;
             i--;
         }
-        GetComponent<Player>().ChangeState(STATE.ACTION);
+
+        if (curAP == 10)
+            GetGMInst().ChangeTurn();
+        
+        else
+            GetComponent<Player>().ChangeState(STATE.ACTION);
 
         GetGMInst().Init();
+        my_Pos = dest_pos;
         GetGMInst().tiles[dest_pos.x, dest_pos.y].GetComponent<TileState>().my_obj = OB_TYPES.PLAYER;
         GetGMInst().tiles[dest_pos.x, dest_pos.y].GetComponent<TileState>().my_target = this.gameObject;
 
@@ -258,10 +246,7 @@ public abstract class CharactorMovement : CharactorProperty
 
     }
 
-    protected static GameManager GetGMInst()
-    {
-        return GameManager.Inst;
-    }
+    
 
     IEnumerator Rotating(Vector3 dir, UnityAction roatate)
     {
@@ -280,7 +265,7 @@ public abstract class CharactorMovement : CharactorProperty
                 delta = angle;
             }
             angle -= delta;
-            target.Rotate(Vector3.up * rotDir * delta);
+            target.Rotate(Vector3.up * rotDir * delta, Space.World);
             yield return null;
         }
         roatate?.Invoke();
