@@ -2,29 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class CharacterSlotDB : MonoBehaviour
 {
+
     public CharacterDB chosenDB;
     public CharacterDB charDB;       
 
     static public CharacterSlotDB cdb = null;
 
     //ChosenCharList
-    public GameObject ChosenChar1;
-    public GameObject ChosenChar2;
-    public GameObject ChosenChar3;
-    public GameObject ChosenChar4;
+    public GameObject[] ChosenCharList;
+
+    //text
+    public TMP_Text[] chosenCharTextList;
 
     private void Start()
     {
         cdb = this;
-    }
 
-    
-    private void CharacterUpdate(int idx)
+        for(int i = 0; i<4; i++)
+        {
+            chosenCharTextList[i].text = "0";
+        }
+}
+
+    private void Update()
     {
-        ChosenCharacters(idx);
     }
 
 
@@ -32,26 +38,40 @@ public class CharacterSlotDB : MonoBehaviour
     {
         chosenDB.characterList.Add(charDB.characterList[idx]);
         chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
+
+        //버튼활성화 비활성화
+        if (!ChosenCharList[0].activeSelf) ChosenCharList[0].SetActive(true);
+        else if (!ChosenCharList[1].activeSelf) ChosenCharList[1].SetActive(true);
+        else if (!ChosenCharList[2].activeSelf) ChosenCharList[2].SetActive(true);
+        else ChosenCharList[3].SetActive(true);
+
+        //텍스트 수정
+        int number = int.Parse(chosenCharTextList[0].text) + 1;
+        chosenCharTextList[0].text = number.ToString();
+
     }
 
-    public void ChosenCharacters(int idx)
+    public void DeleteCharacters(int idx)
     {
-        switch (idx)
+        if (ChosenCharList[0].activeSelf)
         {
-            case 0:
-                ChosenChar1.SetActive(true);
-                break;
-            case 1:
-                ChosenChar2.SetActive(true);
-                break;
-            case 2:
-                ChosenChar3.SetActive(true);
-                break;
-            case 3:
-                ChosenChar4.SetActive(true);
-                break;
-            default:
-                break;
+            ChosenCharList[0].SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
+        }
+        else if (ChosenCharList[1].activeSelf)
+        {
+            ChosenCharList[1].SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
+        }
+        else if (ChosenCharList[2].activeSelf)
+        {
+            ChosenCharList[2].SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
+        }
+        else
+        {
+            ChosenCharList[3].SetActive(false);
+            chosenDB.characterList.Remove(charDB.characterList[idx]);
         }
     }
 }
