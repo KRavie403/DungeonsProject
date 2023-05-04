@@ -8,35 +8,34 @@ public class Player : CharactorMovement
 {
 
     public SkillSet currSkill = null;
-
     public override void SetPos()
     {
         myType = OB_TYPES.PLAYER;
         if(skilList == null)
             skilList = new List<SkillSet>();
-        StartCoroutine(SettingPos());
+        SettingPos();
     }
-    IEnumerator SettingPos()
+    public void SettingPos()
     {
-        int x, y;
-
+        int x, y, step;
         do
         {
-            x = Random.Range(0, GetGMInst().columns);
-            y = Random.Range(0, GetGMInst().rows);
-        } while (GetGMInst().tiles[x, y].GetComponent<TileState>().isVisited == -5);
+            x = Random.Range(0, GetGMInst().rows);
+            y = Random.Range(0, GetGMInst().columns);
+            step = GetGMInst().tiles[x, y].GetComponent<TileState>().isVisited;
+        } while (step == -5 || step == 0 );
 
 
-        my_Pos = new Vector2Int(y, x);
+        my_Pos = new Vector2Int(x, y);
 
         float half = GameManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
-        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SettingTarget(this.gameObject);
+        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited = 1;
+        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
-        yield return null;
     }
     // Update is called once per frame
     void Update()
@@ -71,6 +70,7 @@ public class Player : CharactorMovement
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
                     InitTileDistance();
+                    GetGMInst().InitLayer();
                     ChangeState(_bfState);
                 }
                 break;
@@ -79,6 +79,7 @@ public class Player : CharactorMovement
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
                     InitTileDistance();
+                    GetGMInst().InitLayer();
                     ChangeState(_bfState);
                 }
                 break;
@@ -130,7 +131,9 @@ public class Player : CharactorMovement
     {
         //애니메이션 재생 (casting end)
         //목표 회전
-        Vector3 dir = new Vector3((target.x + GetGMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetGMInst().scale / 2.0f) * _mySize) - transform.position;
+        Transform model = transform.Find("Model").GetComponent<Transform>();
+        Vector3 dir = new Vector3((target.x + GetGMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetGMInst().scale / 2.0f) * _mySize) - model.position;
+        dir.Normalize();
         StartCoroutine(CastingSkill(dir, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
