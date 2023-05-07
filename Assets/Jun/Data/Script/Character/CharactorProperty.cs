@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 
-public class CharactorProperty : MonoBehaviour
+public abstract class CharactorProperty : MonoBehaviour
 {
+
     public List<SkillSet> skilList;
     public Sprite my_Sprite;
     public OB_TYPES myType;
     public Vector2Int my_Pos;
-    public float MaxHP = 100.0f;
+            public float MaxHP = 100.0f;
     public float my_Size = 1.0f;
     public float _mySize = 1.0f;
     public float MoveSpeed = 1.0f;
@@ -22,9 +23,17 @@ public class CharactorProperty : MonoBehaviour
     public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
 
-    public int ActionPoint = 8;
+    private int ActionPoint = 10;
+    public int _curActionPoint;
+    protected int curAP {
+        get
+        {
+            if (_curActionPoint == 0) _curActionPoint = ActionPoint;
 
-    public int curActionPoint = 8;
+            return _curActionPoint;
+        }
+        set => _curActionPoint = value;
+    }
 
 
     protected float curHP
@@ -37,7 +46,6 @@ public class CharactorProperty : MonoBehaviour
         }
         set => _curHP = Mathf.Clamp(value, 0.0f, MaxHP);
     }
-    
     Animator _anim = null;
 
     protected Animator myAnim
@@ -54,5 +62,11 @@ public class CharactorProperty : MonoBehaviour
             }
             return _anim;
         }
+    }
+
+    virtual public void SetPos() { }
+    protected static GameManager GetGMInst()
+    {
+        return GameManager.Inst;
     }
 }

@@ -26,4 +26,5 @@ public class SkillSet : ScriptableObject
     [SerializeField]
     public List<Vector2Int> AttackIndex;
 
+    
 }
