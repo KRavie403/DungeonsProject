@@ -7,10 +7,7 @@ using UnityEngine.Events;
 public abstract class CharactorMovement : CharactorProperty
 {
     enum Direction { Front, Left, Right, Back }
-    public enum STATE
-    {
-        CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE, SEARCH
-    }
+    
     public STATE _bfState;
     public STATE _curState = STATE.CREATE;
 

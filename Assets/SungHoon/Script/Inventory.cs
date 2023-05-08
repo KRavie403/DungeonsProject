@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    
+    [SerializeField]
     public List<ItemSet> items;
 
     [SerializeField]
     private Transform slotParent;
     [SerializeField]
     private Slot[] slots;
+    [SerializeField]
+    public Player myPlayer;
+
 
     private void OnValidate()
     {
@@ -20,11 +23,15 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         FreshSlot();
+        for (int i = 0; i < slots.Length; i++)
+        {
+            items.Add(null);
+        }
     }
 
     public void FreshSlot()
     {
-        int i = 0;
+        int i = 0;  
         for (; i < items.Count && i < slots.Length; i++)
         {
             slots[i].item = items[i];
@@ -34,17 +41,38 @@ public class Inventory : MonoBehaviour
             slots[i].item = null;
         }
     }
-
+    int count = 0;
     public void AddItem(ItemSet _item)
     {
-        if (items.Count < slots.Length)
+        count++;
+        for (int i = 0; i < slots.Length;)
         {
-            items.Add(_item);
-            FreshSlot();
+            if (items[i] == null)
+            {
+                items[i] = _item;
+                FreshSlot();
+                break;
+            }
+            else
+            {
+                i++;
+            }
         }
-        else
-        {
-            print("½½·ÔÀÌ °¡µæ Â÷ ÀÖ½À´Ï´Ù.");
-        }
+        //if (items.Count < slots.Length)
+        //{
+        //    items.Add(_item);
+        //    Debug.Log($"{count}¹ø ÀÎµ¦½º Ãß°¡");
+        //    FreshSlot();
+        //}
+        //else
+        //{
+        //    print("½½·ÔÀÌ °¡µæ Â÷ ÀÖ½À´Ï´Ù.");
+        //}
+    }
+    
+    public void DestroyItem(int index) 
+    {
+        //items.RemoveAt(index);
+        items[index] = null;
     }
 }

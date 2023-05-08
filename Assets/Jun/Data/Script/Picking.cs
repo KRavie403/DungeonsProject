@@ -38,8 +38,8 @@ public class Picking : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, 1000.0f, pickMask)) //커서가있는곳에 1000거리만큼의레이저를 쏘고 Ground만 인식하게함
         {
             
-            CharactorMovement.STATE _curState = this.GetComponent<CharactorMovement>().GetState(); //플레이어에 열거형에있는 STATE값을가져옴
-            if (_curState == CharactorMovement.STATE.MOVE) //플레이어상태가 MOVE상태라면 실행 (E키누르면 Player스크립트로 인해 무브로바뀜)
+            STATE _curState = this.GetComponent<CharactorMovement>().GetState(); //플레이어에 열거형에있는 STATE값을가져옴
+            if (_curState == STATE.MOVE) //플레이어상태가 MOVE상태라면 실행 (E키누르면 Player스크립트로 인해 무브로바뀜)
             {
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -71,7 +71,7 @@ public class Picking : MonoBehaviour
                     
                 }
             }
-            if (_curState == CharactorMovement.STATE.ACTION)
+            if (_curState == STATE.ACTION)
             {
                     if (Input.GetMouseButtonDown(0))
                     {
@@ -113,7 +113,7 @@ public class Picking : MonoBehaviour
 
                 }
             }
-            if (_curState == Player.STATE.SKILL_CAST)
+            if (_curState == STATE.SKILL_CAST)
             {
 
                 if (Input.GetMouseButtonDown(0))

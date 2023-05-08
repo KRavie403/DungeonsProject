@@ -4,10 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Slot : MonoBehaviour, IDropHandler
+public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
 {
-    [SerializeField] Image image;
+    public Image image;
+
+    public Sprite defaltSprite;
+
+    public Inventory myInventory;
+
     private ItemSet _item;
+
+    public DragItem myItem;
+
+  
+
+    public int index;
+
+    private void Start()
+    {
+        myItem = GetComponentInChildren<DragItem>();
+        image = myItem.GetComponent<Image>();
+        index = int.Parse(myItem.gameObject.name)-1;
+    }
+   
+
     public ItemSet item
     {
         get { return _item; }
@@ -28,6 +48,7 @@ public class Slot : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
+        
         DragItem newItem = eventData.pointerDrag.GetComponent<DragItem>();
         DragItem curItem = GetComponentInChildren<DragItem>();
         if (curItem != null)
@@ -36,4 +57,32 @@ public class Slot : MonoBehaviour, IDropHandler
         }
         newItem.ChageParent(transform);
     }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        
+        if ( eventData.clickCount == 2)
+        {
+            myItem = GetComponentInChildren<DragItem>();
+            image = myItem.GetComponent<Image>();
+            index = int.Parse(myItem.gameObject.name) - 1;
+            image.sprite = defaltSprite;
+            image.color = new Color(1, 1, 1, 0);
+            switch (myInventory.items[index].myType)
+            {
+                case ItemSet.ItemType.Power:
+                    Debug.Log("Power UP");
+                    myInventory.myPlayer.AttackPower += myInventory.items[index].power;
+                    myInventory.DestroyItem(index);
+                    break;
+                case ItemSet.ItemType.Armor:
+                    Debug.Log("Defence UP");
+                    myInventory.myPlayer.DeffencePower += myInventory.items[index].power;
+                    myInventory.DestroyItem(index);
+                    break;
+            }
+            
+        }
+    }
+
 }

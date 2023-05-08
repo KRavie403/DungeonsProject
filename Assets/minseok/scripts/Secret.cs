@@ -19,18 +19,14 @@ public class Secret : MonoBehaviour
             this.GetComponent<SphereCollider>().isTrigger = false;
         }
     }
-    void Start()
-    {
-
-    }
 
 
     void Update()
     {
         if (tiles.my_obj == OB_TYPES.PLAYER)
         {
-            Player.STATE _curState = tiles.my_target.GetComponent<Player>().GetState();
-            if (_curState == Player.STATE.ACTION)
+            STATE _curState = tiles.my_target.GetComponent<Player>().GetState();
+            if (_curState == STATE.ACTION)
             {
                 SecretItemUI.SetActive(true);
                 Destroy(transform.parent.gameObject);
