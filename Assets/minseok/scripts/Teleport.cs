@@ -35,8 +35,8 @@ public class Teleport : MonoBehaviour
             if (tile.my_obj == OB_TYPES.PLAYER)
             {
                 Debug.Log("bb");
-                Player.STATE _curState = tile.my_target.GetComponent<Player>().GetState();
-                if (_curState == Player.STATE.ACTION)
+                STATE _curState = tile.my_target.GetComponent<Player>().GetState();
+                if (_curState == STATE.ACTION)
                 {
                     Debug.Log("cc");
                     tile.my_target.transform.position = new Vector3(5.5f, 0, 8.5f);

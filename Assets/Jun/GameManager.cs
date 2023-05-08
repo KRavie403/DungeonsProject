@@ -40,7 +40,7 @@ public class GameManager : Singleton<GameManager>
 
         if (characters != null)
         {
-            characters[0].GetComponent<Player>().ChangeState(Player.STATE.ACTION);
+            characters[0].GetComponent<Player>().ChangeState(STATE.ACTION);
             CurrentSkill();
         }
 
@@ -57,11 +57,11 @@ public class GameManager : Singleton<GameManager>
 
     public void ChangeTurn()
     {
-        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.IDLE);
+        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(STATE.IDLE);
         curCharacter = (++curCharacter) % (characters.Count);
         UI_Manager.Inst.StateUpdate(curCharacter);
         Main_Cam.SetCam(curCharacter);
-        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(CharactorMovement.STATE.ACTION);
+        characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(STATE.ACTION);
         CurrentSkill();
 
 
