@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
     //Player
     public void OnMove()
     {
-        characters[curCharacter].GetComponent<Player>().OnMove();
+        characters[curCharacter].GetComponent<Player>()?.OnMove();
     }
 
     public void ChangeTurn()
