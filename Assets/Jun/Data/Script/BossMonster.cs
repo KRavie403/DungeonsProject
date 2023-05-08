@@ -24,12 +24,12 @@ public class BossMonster : CharactorMovement
 
         do
         {
-            x = Random.Range(0, GameManager.Inst.columns);
-            y = Random.Range(0, GameManager.Inst.rows);
+            x = Random.Range(0, GameManager.Inst.rows);
+            y = Random.Range(0, GameManager.Inst.columns);
         } while (GameManager.Inst.tiles[x, y].GetComponent<TileState>().isVisited == -5);
 
 
-        my_Pos = new Vector2Int(y, x);
+        my_Pos = new Vector2Int(x, y);
 
         float half = GameManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
@@ -40,7 +40,7 @@ public class BossMonster : CharactorMovement
             {
                 GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().my_obj = myType;
                 GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().isVisited = -2;
-                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().SettingTarget(this.gameObject);
+                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().SetTarget(this.gameObject);
             }
         }
         UI_Manager.Inst.AddPlayer(my_Sprite);

@@ -6,6 +6,8 @@ using UnityEngine.Events;
 
 public class Picking : MonoBehaviour
 {
+    [Header("picking Inspector")]
+    [SerializeField]
     public LayerMask pickMask; //누를수있는 레이어추가
     public LayerMask TP;
     public GameObject TPUI;
@@ -18,17 +20,17 @@ public class Picking : MonoBehaviour
 
     private Vector2Int currentHover;
     private List<Vector2Int> curTargets;
-    private Vector2Int targetDir;
+    private Vector2Int targetPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        targetDir = Vector2Int.zero; 
+        targetPos = Vector2Int.zero; 
         curTargets = new List<Vector2Int>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //카메라기준으로 마우스커서의움직일때마다 좌표값을 ray에 기입
@@ -50,7 +52,6 @@ public class Picking : MonoBehaviour
                 }
                 else
                 {
-                    
                     //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
                     Vector2Int hitPos = GameManager.Inst.GetTileIndex(hit.transform.gameObject);
                     if (currentHover == -Vector2Int.one)
@@ -60,7 +61,7 @@ public class Picking : MonoBehaviour
                     }
                     if (currentHover != hitPos)
                     {
-                        if (GameManager.Inst.CheckTileVisited(currentHover.x, currentHover.y) == -1)
+                        if (GameManager.Inst.CheckTileVisited(currentHover.x, currentHover.y) <= -1)
                             GameManager.Inst.tiles[currentHover.x, currentHover.y].layer = 3;
                         else
                             GameManager.Inst.tiles[currentHover.x, currentHover.y].layer = 9;
@@ -70,7 +71,7 @@ public class Picking : MonoBehaviour
                     
                 }
             }
-            if (_curState == Player.STATE.ACTION)
+            if (_curState == CharactorMovement.STATE.ACTION)
             {
                     if (Input.GetMouseButtonDown(0))
                     {
@@ -119,7 +120,7 @@ public class Picking : MonoBehaviour
                 {
                     if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
                     {
-                        clickToSkill?.Invoke(targetDir, curTargets.ToArray());
+                        clickToSkill?.Invoke(targetPos, curTargets.ToArray());
                     }
 
                 }
@@ -146,7 +147,7 @@ public class Picking : MonoBehaviour
                     if(angle <= 45.0f)
                     {
                         //right
-                        targetDir = GetComponent<Player>().my_Pos + new Vector2Int(1, 0);
+                        targetPos = GetComponent<Player>().my_Pos + new Vector2Int(1, 0);
                         foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
                         {
                             Vector2Int tmp = GetComponent<Player>().my_Pos + new Vector2Int(v.y, v.x);
@@ -161,7 +162,7 @@ public class Picking : MonoBehaviour
                     else if(angle <= 135.0f)
                     {
                         //foward, back;
-                        targetDir = GetComponent<Player>().my_Pos + new Vector2Int(0, is_front);
+                        targetPos = GetComponent<Player>().my_Pos + new Vector2Int(0, is_front);
 
                         foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
                         {
@@ -178,7 +179,7 @@ public class Picking : MonoBehaviour
                     else
                     {
                         //left
-                        targetDir = GetComponent<Player>().my_Pos + new Vector2Int(-1, 0);
+                        targetPos = GetComponent<Player>().my_Pos + new Vector2Int(-1, 0);
 
                         foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
                         {
