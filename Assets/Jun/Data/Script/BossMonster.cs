@@ -70,8 +70,8 @@ public class BossMonster : CharactorMovement
                 if (obj.GetComponent<TileState>().isVisited == step - 1)
                 {
                     TestAllDirection(obj.GetComponent<TileState>().pos.x, obj.GetComponent<TileState>().pos.y, step);
-                    //obj ÁÖº¯ x+1 / y + 1¹æÇâµµ step°ª º¯°æ, ¿¹¿ÜÃ³¸® ÇÊ¿ä
-                    //if ÀÎÁ¢Å¸ÀÏÀÌ ¸ø°¡´Â °÷ÀÎ°¡ ? step ³¯¸²
+                    //obj ï¿½Öºï¿½ x+1 / y + 1ï¿½ï¿½ï¿½âµµ stepï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½Ê¿ï¿½
+                    //if ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ? step ï¿½ï¿½ï¿½ï¿½
                     obj.layer = 9;
                 }
                 if (obj.GetComponent<TileState>().isVisited == step)
@@ -91,7 +91,7 @@ public class BossMonster : CharactorMovement
         
 
     }
-    void Update()
+    void FixedUpdate()
     {
         StateProcess();
     }
@@ -103,7 +103,6 @@ public class BossMonster : CharactorMovement
                 break;
 
             case STATE.IDLE:
-
                 break;
 
             case STATE.ACTION:
@@ -145,8 +144,8 @@ public class BossMonster : CharactorMovement
 
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (casting end)
-        //¸ñÇ¥ È¸Àü
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ (casting end)
+        //ï¿½ï¿½Ç¥ È¸ï¿½ï¿½
         Vector3 dir = new Vector3((target.x + GameManager.Inst.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.Inst.scale / 2.0f) * _mySize) - transform.position;
         StartCoroutine(CastingSkill(dir, targets));
     }
@@ -159,9 +158,9 @@ public class BossMonster : CharactorMovement
             yield return null;
         }
 
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (action start)
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ (action start)
 
-        //¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³ª°í ½ÇÇà
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (var index in targets)
         {
             GameObject target = GameManager.Inst.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
@@ -179,7 +178,7 @@ public class BossMonster : CharactorMovement
     }
     public void OnSkilCastStart(SkillSet skill)
     {
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (casting)
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ (casting)
     }
 
 
