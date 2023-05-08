@@ -22,6 +22,5 @@ public class ItemPickUp : MonoBehaviour
             print($"{item.name}");
             inventory.AddItem(item);
         }
-        Destroy(other);
     }
 }
