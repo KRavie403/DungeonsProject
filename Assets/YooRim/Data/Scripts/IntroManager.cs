@@ -10,6 +10,8 @@ public class IntroManager : MonoBehaviour //UI관련??메인타이틀??
     public GameObject MapPanel;
     public GameObject CharacterPanel;
     public GameObject Settings;
+    public GameObject CharacterSet;
+
     void Start()
     {
         StartCoroutine(DelayTime(4));
@@ -45,12 +47,13 @@ public class IntroManager : MonoBehaviour //UI관련??메인타이틀??
     public void OpenStartMenu() //Start
     {
         MapPanel.SetActive(true);
+        CharacterSet.SetActive(false);
         //SceneManager.LoadScene("MainGameScene");
     }
 
     public void QuitStartMenu()
     {
-        MapPanel.SetActive(true);
+        MapPanel.SetActive(false);
     }
     public void CloseGame() //Quit
     {
