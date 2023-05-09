@@ -28,7 +28,6 @@ public class GameManager : Singleton<GameManager>
             obj = Instantiate(chosen.Preb);
             obj.GetComponent<CharactorMovement>().SetPos();
             characters.Add(obj);
-
         }
         obj = Instantiate(boss);
         obj.GetComponent<CharactorMovement>().SetPos();
@@ -43,6 +42,7 @@ public class GameManager : Singleton<GameManager>
             characters[0].GetComponent<Player>().ChangeState(STATE.ACTION);
             CurrentSkill();
         }
+
 
     }
     void Update()
@@ -133,7 +133,7 @@ public class GameManager : Singleton<GameManager>
         tile.AddComponent<TileState>();
         tile.GetComponent<TileState>().isVisited = -1;
         tile.GetComponent<TileState>().pos = new Vector2Int(x, y);
-
+        tile.gameObject.isStatic = true;
         return tile;
     }
     public void Init()
