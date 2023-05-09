@@ -8,6 +8,7 @@ public class Teleport : MonoBehaviour
     public Vector2Int pos;
     public LayerMask pickMask;
     public List<TileState> tiles;
+    public GameObject TPEffect;
     void Start()
     {
         //Create_obj_System.main_teleport.teleporters.Add(this);
@@ -28,18 +29,16 @@ public class Teleport : MonoBehaviour
     }
     public void tp()
     {
-        Debug.Log("00");
         foreach (var tile in tiles)
         {
-            Debug.Log("aa");
             if (tile.my_obj == OB_TYPES.PLAYER)
             {
-                Debug.Log("bb");
                 Player.STATE _curState = tile.my_target.GetComponent<Player>().GetState();
                 if (_curState == Player.STATE.ACTION)
                 {
-                    Debug.Log("cc");
+                    GameObject obj1 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
                     tile.my_target.transform.position = new Vector3(5.5f, 0, 8.5f);
+                    GameObject obj2 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
                     tile.my_target.GetComponent<Player>().my_Pos = new Vector2Int(5, 8);
                 }
             }

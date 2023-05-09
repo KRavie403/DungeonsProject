@@ -27,6 +27,8 @@ public class Picking : MonoBehaviour
     {
         targetPos = Vector2Int.zero; 
         curTargets = new List<Vector2Int>();
+        TPUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("TPUI").gameObject;
+        ChestUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("ChestUI").gameObject;
     }
 
     // Update is called once per frame
@@ -83,12 +85,12 @@ public class Picking : MonoBehaviour
                             if (GameManager.Inst.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.TELEPORT)
                             {
                                 TPUI.SetActive(true);
-                                Create_obj_System.main_teleport.TPtarget(hit.transform);
+                                Create_obj_System.main_obj_create.TPtarget(hit.transform);
                             }
                             if (GameManager.Inst.tiles[hitPos.x, hitPos.y].GetComponent<TileState>().my_obj == OB_TYPES.CHEST)
                             {
                                 ChestUI.SetActive(true);
-                                Create_obj_System.main_teleport.Chesttarget(hit.transform);
+                                Create_obj_System.main_obj_create.Chesttarget(hit.transform);
                             }
                         }
                     }

@@ -28,7 +28,6 @@ public class GameManager : Singleton<GameManager>
             obj = Instantiate(chosen.Preb);
             obj.GetComponent<CharactorMovement>().SetPos();
             characters.Add(obj);
-
         }
         obj = Instantiate(boss);
         obj.GetComponent<CharactorMovement>().SetPos();

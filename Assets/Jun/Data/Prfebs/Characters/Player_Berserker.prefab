@@ -119,6 +119,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   TPUI: {fileID: 0}
+  Chest:
+    serializedVersion: 2
+    m_Bits: 16384
+  ChestUI: {fileID: 0}
   clickToMove:
     m_PersistentCalls:
       m_Calls:

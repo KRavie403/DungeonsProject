@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Create_obj_System : MonoBehaviour
 {
-    public static Create_obj_System main_teleport = null;
+    public static Create_obj_System main_obj_create = null;
 
     public GameObject TeleportObj;
     public GameObject ChestObj;
     public GameObject TPUI;
-    //public GameObject ChestUI;
+    public GameObject ChestUI;
     public GameObject SecretObj;
     Vector2Int pos = Vector2Int.zero;
-    Vector3 testpos = Vector3.zero;
+    Vector3 mypos = Vector3.zero;
     public List<Teleport> teleporters;
     public GameObject myTPtarget = null;
     public GameObject myChesttarget = null;
@@ -42,7 +42,7 @@ public class Create_obj_System : MonoBehaviour
         Vector2Int my_Pos = new Vector2Int(x, y);
 
         float half = GameManager.Inst.scale * 0.5f;
-        testpos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+        mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         pos = new Vector2Int(x, y);
     }
@@ -67,13 +67,13 @@ public class Create_obj_System : MonoBehaviour
         for (int i = 0; i < 5; ++i)
         {
             random(list[i]);
-            GameObject obj1 = Instantiate(TeleportObj, testpos, Quaternion.identity);
+            GameObject obj1 = Instantiate(TeleportObj, mypos, Quaternion.identity);
             obj1.GetComponent<Teleport>().pos = pos;
         }
         for (int i = 5; i < 15; ++i)
         {
             random(list[i]);
-            GameObject obj2 = Instantiate(ChestObj, testpos, Quaternion.identity);
+            GameObject obj2 = Instantiate(ChestObj, mypos, Quaternion.identity);
             obj2.GetComponent<Chest>().pos = pos;
         }
         
@@ -88,7 +88,7 @@ public class Create_obj_System : MonoBehaviour
     {
         teleportSystem();
         //teleporters = new List<Teleport>();
-        main_teleport = this;
+        main_obj_create = this;
     }
 
     
@@ -106,13 +106,14 @@ public class Create_obj_System : MonoBehaviour
     {
         myTPtarget = target.GetComponent<TileState>().my_target.gameObject;
     }
-    /*public void OnChest()
+    public void OnChest()
     {
         ChestUI.SetActive(false);
         myChesttarget.GetComponent<Chest>().chest();
-    }*/
+    }
     public void Chesttarget(Transform target)
     {
         myChesttarget = target.GetComponent<TileState>().my_target.gameObject;
+        myChesttarget.GetComponent<Animator>().SetTrigger("OPEN");
     }
 }

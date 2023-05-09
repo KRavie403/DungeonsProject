@@ -21,7 +21,8 @@ public class Secret : MonoBehaviour
     }
     void Start()
     {
-
+        SecretItemUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("SecretItemtUI").gameObject;
+        this.gameObject.SetActive(false);
     }
 
 
