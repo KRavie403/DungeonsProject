@@ -23,10 +23,10 @@ public class Chest : MonoBehaviour
         {
             pos = GameManager.Inst.GetTileIndex(other.gameObject);
 
-            this.GetComponent<BoxCollider>().isTrigger = false;
+            this.GetComponent<SphereCollider>().isTrigger = false;
         }
     }
-    /*public void chest()
+    public void chest()
     {
         foreach (var tile in tiles)
         {
@@ -39,7 +39,8 @@ public class Chest : MonoBehaviour
                 }
             }
         }
-    }*/
+        Destroy(gameObject);
+    }
     public void Setting()
     {
         for (int i = -1; i <= 1; i++)
