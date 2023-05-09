@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51054bdc61c4f8f44902817509320211, type: 3}
   m_Name: Guardian
   m_EditorClassIdentifier: 
-  _name: 
+  _name: "\uAC00\uB514\uC5B8"
   _damage: 0
   _sprite: {fileID: 0}
   _class: 1
