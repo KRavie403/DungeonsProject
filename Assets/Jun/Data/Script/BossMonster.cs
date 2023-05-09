@@ -91,10 +91,6 @@ public class BossMonster : CharactorMovement
         
 
     }
-    void Update()
-    {
-        StateProcess();
-    }
     void StateProcess()
     {
         switch (_curState)
@@ -142,7 +138,6 @@ public class BossMonster : CharactorMovement
 
         }
     }
-
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
         //애니메이션 재생 (casting end)
@@ -181,8 +176,6 @@ public class BossMonster : CharactorMovement
     {
         //애니메이션 재생 (casting)
     }
-
-
     public void OnMoveByPath(Vector2Int tile)
     {
         Debug.Log($"Target : {tile}");
@@ -191,4 +184,15 @@ public class BossMonster : CharactorMovement
         MoveByPath(tile);
     }
 
-}
+    IEnumerator GenerateFSM()
+    {
+        bool turnEnd = false;
+        while (!turnEnd)
+        {
+            StateProcess();
+
+            yield return null;
+        }
+
+    }
+  }

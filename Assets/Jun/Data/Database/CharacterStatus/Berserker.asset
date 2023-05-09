@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51054bdc61c4f8f44902817509320211, type: 3}
+  m_Name: Berserker
+  m_EditorClassIdentifier: 
+  _name: "\uBCA0\uB974\uC138\uB974\uD06C"
+  _damage: 0
+  _sprite: {fileID: 0}
+  _class: 1
+  _maxHP: 0
+  _attackPower: 0
+  _deffencePower: 0
+  _speed: 0
+  _actionPoint: 0
+  _preb: {fileID: 7259076325901609923, guid: 61690a8971d1b02418f5f7b37de092f3, type: 3}

@@ -5,14 +5,12 @@ using UnityEngine.UI;
 
 public class CharacterButtonSlot : MonoBehaviour
 {
-    private Animator ani;
     public Button[] characterButtonList;
 
     private int count = 0;
 
-    public void SendIndex()
+    public void Start()
     {
-        ani = GetComponent<Animator>();
     }
 
     public void DeactiveCharacters(int idx)
@@ -30,12 +28,5 @@ public class CharacterButtonSlot : MonoBehaviour
                 count++;
             }
         }
-
-        if (ani.GetBool("isChange"))
-        {
-            ani.SetBool("isChange", false);
-        }
-        else
-            ani.SetBool("isChange", true);
     }
 }
