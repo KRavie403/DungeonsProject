@@ -21,4 +21,4 @@ MonoBehaviour:
   _deffencePower: 0
   _speed: 0
   _actionPoint: 0
-  _preb: {fileID: 7259076325901609923, guid: 61690a8971d1b02418f5f7b37de092f3, type: 3}
+  _preb: {fileID: 7259076325901609923, guid: b852f3ed9ff6c8d4aa506453331ffe91, type: 3}

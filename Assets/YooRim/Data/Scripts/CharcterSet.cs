@@ -10,16 +10,22 @@ public class CharcterSet : MonoBehaviour
     public GameObject ResetButton;
     public GameObject ApplyButton;
 
+
+    int charIdx = 0;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    public void SendIdx(int Idx)
+    {
+        charIdx = Idx;
     }
     public void SkillSetting()
     {
@@ -33,6 +39,7 @@ public class CharcterSet : MonoBehaviour
     public void ClickApplyButton() //Settings
     {
         CharacterSet.SetActive(false);
+        CharacterSlotDB.cdb.ChooseCharacters(charIdx);
     }
 
 }

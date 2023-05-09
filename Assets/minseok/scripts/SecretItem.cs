@@ -27,7 +27,6 @@ public class SecretItem : MonoBehaviour
         test = GameObject.Find("Canvas");
         this.transform.GetChild(1).gameObject.transform.parent = test.transform;
 
-
     }
 
     void Update()
