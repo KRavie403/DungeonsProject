@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Tree;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 public class BossMonster : CharactorMovement
 {
     // Start is called before the first frame update
@@ -88,31 +89,8 @@ public class BossMonster : CharactorMovement
 
         //Vector2Int target;
         //FindingPlayer()?.MoveByPath(target);
-        
-
     }
-    void StateProcess()
-    {
-        switch (_curState)
-        {
-            case STATE.CREATE:
-                break;
 
-            case STATE.IDLE:
-
-                break;
-
-            case STATE.ACTION:
-
-
-                break;
-            case STATE.MOVE:
-                break;
-
-            case STATE.SKILL_CAST:
-                break;
-        }
-    }
 
     public override void ChangeState(STATE s)
     {
@@ -184,15 +162,61 @@ public class BossMonster : CharactorMovement
         MoveByPath(tile);
     }
 
+    public void StartFSM()
+    {
+
+        StartCoroutine(GenerateFSM());
+    }
     IEnumerator GenerateFSM()
     {
         bool turnEnd = false;
+        bool is_done = false;
         while (!turnEnd)
         {
-            StateProcess();
+            if (curAP <= 0)
+            {
+                GameManager.Inst.ChangeTurn();
+                turnEnd = true;
+                StopAllCoroutines();
+            }
+            switch (_curState)
+            {
+                case STATE.CREATE:
+                    break;
 
+                case STATE.IDLE:
+                    break;
+
+                case STATE.ACTION:
+                    ChangeState(STATE.SEARCH);
+                    is_done = true;
+                    break;
+                case STATE.SEARCH:
+                    SearchingPlayer(() => is_done = true);
+                    
+                    break;
+                case STATE.MOVE:
+                    break;
+
+                case STATE.SKILL_CAST:
+                    break;
+            }
+
+            while (!is_done)
+                yield return null;
+            curAP--;
             yield return null;
         }
 
+    }
+    IEnumerator SearchingPlayer(UnityAction done = null)
+    {
+        bool foundPlayer = false;
+
+        yield return new WaitForSeconds(5.0f);
+
+        ChangeState(STATE.ACTION);
+
+        done?.Invoke();
     }
   }

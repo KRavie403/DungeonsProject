@@ -13,7 +13,7 @@ public class TileState : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter");
+        //Debug.Log($"Enter : {other.gameObject.layer}");
         if (other.gameObject.layer == LayerMask.NameToLayer("Structures"))
         {
             isVisited = -100;
