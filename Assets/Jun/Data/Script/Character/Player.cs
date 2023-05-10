@@ -110,7 +110,7 @@ public class Player : CharactorMovement
                 break;
 
             case STATE.ACTION:
-                gameObject.GetComponent<Picking>().enabled = false;
+                gameObject.GetComponent<Picking>().enabled = true;
                 //gameObject.GetComponent<Picking>().enabled = true;
                 break;
             case STATE.MOVE:

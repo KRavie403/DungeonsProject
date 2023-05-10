@@ -32,14 +32,29 @@ public class Teleport : MonoBehaviour
     
     public void tp()
     {
-        x = Random.Range(1, 21);
-        y = Random.Range(1, 21);
+        x = Random.Range(1, 7);
+        y = Random.Range(1, 7);
 
         Vector2Int my_Pos = new Vector2Int(x, y);
 
         float half = GameManager.Inst.scale * 0.5f;
         mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
-        pos = new Vector2Int(x, y);
+
+        while (GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited < -1 ||
+            GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited == 0)
+        {
+            Debug.Log("X"+ x + "Y" + y);
+            x = Random.Range(1, 7);
+            y = Random.Range(1, 7);
+
+            my_Pos.x = x;
+            my_Pos.y = y;
+
+            half = GameManager.Inst.scale * 0.5f;
+            mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+        }
+
+            pos = new Vector2Int(x, y);
 
         foreach (var tile in tiles)
         {
