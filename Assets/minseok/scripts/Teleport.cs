@@ -8,6 +8,7 @@ public class Teleport : MonoBehaviour
     public Vector2Int pos;
     public LayerMask pickMask;
     public List<TileState> tiles;
+    public GameObject TPEffect;
     void Start()
     {
         //Create_obj_System.main_teleport.teleporters.Add(this);
@@ -26,21 +27,33 @@ public class Teleport : MonoBehaviour
             this.GetComponent<CapsuleCollider>().isTrigger = false;
         }
     }
+    Vector3 mypos = Vector3.zero;
+    int x = 0, y = 0;
+    
     public void tp()
     {
-        Debug.Log("00");
+        x = Random.Range(1, 21);
+        y = Random.Range(1, 21);
+
+        Vector2Int my_Pos = new Vector2Int(x, y);
+
+        float half = GameManager.Inst.scale * 0.5f;
+        mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+        pos = new Vector2Int(x, y);
+
         foreach (var tile in tiles)
         {
-            Debug.Log("aa");
             if (tile.my_obj == OB_TYPES.PLAYER)
             {
-                Debug.Log("bb");
                 STATE _curState = tile.my_target.GetComponent<Player>().GetState();
                 if (_curState == STATE.ACTION)
                 {
-                    Debug.Log("cc");
-                    tile.my_target.transform.position = new Vector3(5.5f, 0, 8.5f);
-                    tile.my_target.GetComponent<Player>().my_Pos = new Vector2Int(5, 8);
+                    GameObject obj1 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
+                    
+                    tile.my_target.transform.position = mypos;
+                    tile.my_target.GetComponent<Player>().my_Pos = pos;
+
+                    GameObject obj2 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
                 }
             }
         }
