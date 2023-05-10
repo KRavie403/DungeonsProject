@@ -62,6 +62,10 @@ public class GameManager : Singleton<GameManager>
         UI_Manager.Inst.StateUpdate(curCharacter);
         Main_Cam.SetCam(curCharacter);
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(STATE.ACTION);
+
+        if(characters[curCharacter].TryGetComponent(out BossMonster boss))
+            boss.StartFSM();
+
         CurrentSkill();
 
 

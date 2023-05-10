@@ -87,8 +87,6 @@ public abstract class CharactorMovement : CharactorProperty
     }
     virtual public void SetDistance()
     {
-
-        
         for (int step = 1; step <= curAP; step++)
         {
             foreach (GameObject obj in GetGMInst().tiles)
@@ -254,6 +252,7 @@ public abstract class CharactorMovement : CharactorProperty
         {
             rotDir = -1.0f;
         }
+        Debug.Log($"Angle : { angle }");
         while (angle > 0.0f)
         {
             float delta = RotSpeed * Time.deltaTime;

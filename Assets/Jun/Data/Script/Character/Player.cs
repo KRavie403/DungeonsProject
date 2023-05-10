@@ -134,6 +134,7 @@ public class Player : CharactorMovement
         Transform model = transform.Find("Model").GetComponent<Transform>();
         Vector3 dir = new Vector3((target.x + GetGMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetGMInst().scale / 2.0f) * _mySize) - model.position;
         dir.Normalize();
+        StopAllCoroutines();
         StartCoroutine(CastingSkill(dir, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
