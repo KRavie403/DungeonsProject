@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: CurrentCharacterDB
   m_EditorClassIdentifier: 
   characterList:
-  - {fileID: 11400000, guid: fbcfc574470b5224aafd85746cfcdaa4, type: 2}
   - {fileID: 11400000, guid: 483bb440f334325458132be087a265bc, type: 2}
-  - {fileID: 11400000, guid: 666cec5641ecfad448257c0c8cc70caf, type: 2}

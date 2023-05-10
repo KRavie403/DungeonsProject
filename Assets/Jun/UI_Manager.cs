@@ -29,7 +29,7 @@ public class UI_Manager : Singleton<UI_Manager>
     }
     public void AddSkills(SkillSet _set)
     {
-        currentSkillSet.SkillList.Add(_set);
+        currentSkillSet.List.Add(_set);
         skillSlots[skill_Count].GetComponent<Image>().sprite = _set.MySprite;
         skillSlots[skill_Count++].GetComponent<SkillSlot>()._my_skill = _set;
     }

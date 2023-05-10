@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
 {
     public Image image;
-
+    
     public Sprite defaltSprite;
 
     public Inventory myInventory;
@@ -15,13 +15,17 @@ public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
     private ItemSet _item;
 
     public DragItem myItem;
-
-  
+    
 
     public int index;
 
+    private GameManager GetGmInst()
+    {
+        return GameManager.Inst;
+    }
     private void Start()
     {
+        
         myItem = GetComponentInChildren<DragItem>();
         image = myItem.GetComponent<Image>();
         index = int.Parse(myItem.gameObject.name)-1;
@@ -60,12 +64,16 @@ public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
-        if ( eventData.clickCount == 2)
+        myInventory.myObj = GetGmInst().characters[GetGmInst().curCharacter];
+        myInventory.myPlayer = myInventory.myObj.GetComponent<Player>();
+        myItem = GetComponentInChildren<DragItem>();
+        image = myItem.GetComponent<Image>();
+        index = int.Parse(myItem.gameObject.name) - 1;
+        if (myInventory.items[index] !=null && eventData.clickCount == 2)
         {
-            myItem = GetComponentInChildren<DragItem>();
-            image = myItem.GetComponent<Image>();
-            index = int.Parse(myItem.gameObject.name) - 1;
+            //myItem = GetComponentInChildren<DragItem>();
+            //image = myItem.GetComponent<Image>();
+            //index = int.Parse(myItem.gameObject.name) - 1;
             image.sprite = defaltSprite;
             image.color = new Color(1, 1, 1, 0);
             switch (myInventory.items[index].myType)

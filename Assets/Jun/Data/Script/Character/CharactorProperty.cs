@@ -12,7 +12,7 @@ public abstract class CharactorProperty : MonoBehaviour
     public Sprite my_Sprite;
     public OB_TYPES myType;
     public Vector2Int my_Pos;
-            public float MaxHP = 100.0f;
+    public float MaxHP = 100.0f;
     public float my_Size = 1.0f;
     public float _mySize = 1.0f;
     public float MoveSpeed = 1.0f;
@@ -23,7 +23,7 @@ public abstract class CharactorProperty : MonoBehaviour
     public float speed = 1.0f; //전투 우선도 
     float _curHP = -100.0f;
 
-    private int ActionPoint = 10;
+    protected int ActionPoint = 10;
     public int _curActionPoint;
     protected int curAP {
         get
@@ -64,9 +64,10 @@ public abstract class CharactorProperty : MonoBehaviour
         }
     }
 
-    virtual public void SetPos() { }
     protected static GameManager GetGMInst()
     {
         return GameManager.Inst;
     }
+
+
 }

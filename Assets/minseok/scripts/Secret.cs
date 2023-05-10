@@ -19,7 +19,11 @@ public class Secret : MonoBehaviour
             this.GetComponent<SphereCollider>().isTrigger = false;
         }
     }
-
+    void Start()
+    {
+        SecretItemUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("SecretItemUI").gameObject;
+        this.gameObject.SetActive(false);
+    }
 
     void Update()
     {

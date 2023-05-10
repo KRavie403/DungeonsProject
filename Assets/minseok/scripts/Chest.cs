@@ -32,8 +32,8 @@ public class Chest : MonoBehaviour
         {
             if (tile.my_obj == OB_TYPES.PLAYER)
             {
-                Player.STATE _curState = tile.my_target.GetComponent<Player>().GetState();
-                if (_curState == Player.STATE.ACTION)
+                STATE _curState = tile.my_target.GetComponent<Player>().GetState();
+                if (_curState == STATE.ACTION)
                 {
 
                 }

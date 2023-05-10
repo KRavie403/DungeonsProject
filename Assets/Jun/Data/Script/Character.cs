@@ -45,7 +45,7 @@ public class Character : ScriptableObject
     [SerializeField]
     private GameObject _preb;
     public GameObject Preb { get { return _preb; } }
-
+    
     [SerializeField]
-    private SkillSetDB skillList;
+    public SkillSetDB Skill;
 }
