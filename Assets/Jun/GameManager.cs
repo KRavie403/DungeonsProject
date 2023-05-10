@@ -1,7 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Pool;
+
+
+
 
 public class GameManager : Singleton<GameManager>
 {
@@ -10,7 +14,7 @@ public class GameManager : Singleton<GameManager>
     public int curCharacter =0;
     public GameObject[,] tiles;
     [SerializeField]
-    CharacterDB selectedChars;
+    CharacterDB selectedOrgChars;
     [SerializeField]
     GameObject boss;
 
@@ -23,14 +27,16 @@ public class GameManager : Singleton<GameManager>
     public void GameStart()
     {
         GameObject obj;
-        foreach (var chosen in selectedChars.characterList)
+        foreach (var chosen in selectedOrgChars.characterList)
         {
             obj = Instantiate(chosen.Preb);
-            obj.GetComponent<CharactorMovement>().SetPos();
+            obj.GetComponent<Player>().PlayerSetting(chosen);
+
             characters.Add(obj);
         }
+
         obj = Instantiate(boss);
-        obj.GetComponent<CharactorMovement>().SetPos();
+        obj.GetComponent<BossMonster>().PlayerSetting();
         characters.Add(obj);
 
         UI_Manager.Inst.GameStart();
@@ -74,8 +80,8 @@ public class GameManager : Singleton<GameManager>
     {
         if (characters[curCharacter].GetComponent<CharactorMovement>().myType == OB_TYPES.PLAYER)
         {
-            if (UI_Manager.Inst.currentSkillSet.SkillList != null)
-                UI_Manager.Inst.currentSkillSet.SkillList.Clear();
+            if (UI_Manager.Inst.currentSkillSet.List != null)
+                UI_Manager.Inst.currentSkillSet.List.Clear();
             UI_Manager.Inst.skill_Count = 0;
             foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
                 UI_Manager.Inst.AddSkills(skill);
