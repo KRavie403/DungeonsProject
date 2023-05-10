@@ -78,7 +78,7 @@ public class Create_obj_System : MonoBehaviour
         }
         
         GameObject obj3 = Instantiate(ChestObj, new Vector3(8.5f,0,8.5f), Quaternion.identity);
-        GameObject obj4 = Instantiate(TeleportObj, new Vector3(2.5f, 0, 2.5f), Quaternion.identity);
+        GameObject obj4 = Instantiate(TeleportObj, new Vector3(5.5f, 0, 5.5f), Quaternion.identity);
         GameObject obj5 = Instantiate(SecretObj, new Vector3(16.5f, 0, 3.5f), Quaternion.identity);
     }
 

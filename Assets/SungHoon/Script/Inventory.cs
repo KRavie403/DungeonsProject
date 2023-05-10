@@ -10,10 +10,12 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Transform slotParent;
     [SerializeField]
-    private Slot[] slots;
+    public Slot[] slots;
+    [SerializeField]
+    public GameObject myObj;
+
     [SerializeField]
     public Player myPlayer;
-
 
     private void OnValidate()
     {
