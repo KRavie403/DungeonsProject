@@ -27,8 +27,20 @@ public class Teleport : MonoBehaviour
             this.GetComponent<CapsuleCollider>().isTrigger = false;
         }
     }
+    Vector3 mypos = Vector3.zero;
+    int x = 0, y = 0;
+    
     public void tp()
     {
+        x = Random.Range(1, 21);
+        y = Random.Range(1, 21);
+
+        Vector2Int my_Pos = new Vector2Int(x, y);
+
+        float half = GameManager.Inst.scale * 0.5f;
+        mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+        pos = new Vector2Int(x, y);
+
         foreach (var tile in tiles)
         {
             if (tile.my_obj == OB_TYPES.PLAYER)
@@ -37,9 +49,11 @@ public class Teleport : MonoBehaviour
                 if (_curState == STATE.ACTION)
                 {
                     GameObject obj1 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
-                    tile.my_target.transform.position = new Vector3(5.5f, 0, 8.5f);
+                    
+                    tile.my_target.transform.position = mypos;
+                    tile.my_target.GetComponent<Player>().my_Pos = pos;
+
                     GameObject obj2 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
-                    tile.my_target.GetComponent<Player>().my_Pos = new Vector2Int(5, 8);
                 }
             }
         }
