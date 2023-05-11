@@ -11,6 +11,7 @@ public class IntroManager : MonoBehaviour //UI관련??메인타이틀??
     public GameObject CharacterPanel;
     public GameObject Settings;
     public GameObject CharacterSet;
+    public GameObject darkImg;
 
     void Start()
     {
@@ -46,6 +47,7 @@ public class IntroManager : MonoBehaviour //UI관련??메인타이틀??
 
     public void OpenStartMenu() //Start
     {
+        darkImg.SetActive(true);
         MapPanel.SetActive(true);
         CharacterSet.SetActive(false);
         //SceneManager.LoadScene("MainGameScene");
