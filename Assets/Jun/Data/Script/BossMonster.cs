@@ -10,7 +10,7 @@ public class BossMonster : CharactorMovement
     public Slider _bossHPUI;
     private float Hp;
 
-    public override void SetPos()
+    public void PlayerSetting()
     {
         myType = OB_TYPES.MONSTER;
         if (skilList == null)
@@ -173,12 +173,7 @@ public class BossMonster : CharactorMovement
         bool is_done = false;
         while (!turnEnd)
         {
-            if (curAP <= 0)
-            {
-                GameManager.Inst.ChangeTurn();
-                turnEnd = true;
-                StopAllCoroutines();
-            }
+            
             switch (_curState)
             {
                 case STATE.CREATE:
@@ -204,7 +199,15 @@ public class BossMonster : CharactorMovement
 
             while (!is_done)
                 yield return null;
+
             curAP--;
+
+            if (curAP == 10)
+            {
+                GameManager.Inst.ChangeTurn();
+                StopAllCoroutines();
+                turnEnd = true;
+            }
             yield return null;
         }
 

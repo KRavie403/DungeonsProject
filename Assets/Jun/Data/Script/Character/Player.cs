@@ -8,11 +8,19 @@ public class Player : CharactorMovement
 {
 
     public SkillSet currSkill = null;
-    public override void SetPos()
+    public void PlayerSetting(Character data)
     {
         myType = OB_TYPES.PLAYER;
-        if(skilList == null)
-            skilList = new List<SkillSet>();
+        name = data.name;
+        my_Sprite = data.Sprite;
+        AttackPower = data.AttackPower;
+        DeffencePower = data.DeffencePower;
+        speed = data.Speed;
+        ActionPoint = data.ActionPoint;
+        skilList.Clear();
+        if(data.Skill != null)
+            foreach (var skill in data.Skill.List)
+                skilList.Add(skill);
         SettingPos();
     }
     public void SettingPos()
@@ -43,6 +51,7 @@ public class Player : CharactorMovement
         StateProcess();
     }
 
+    
     void StateProcess()
     {
         switch (_curState)
@@ -102,6 +111,7 @@ public class Player : CharactorMovement
 
             case STATE.ACTION:
                 gameObject.GetComponent<Picking>().enabled = true;
+                //gameObject.GetComponent<Picking>().enabled = true;
                 break;
             case STATE.MOVE:
                 gameObject.GetComponent<Picking>().enabled = true;
