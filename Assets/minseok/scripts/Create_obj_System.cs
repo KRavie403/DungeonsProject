@@ -105,6 +105,7 @@ public class Create_obj_System : MonoBehaviour
     public void TPtarget(Transform target)
     {
         myTPtarget = target.GetComponent<TileState>().my_target.gameObject;
+        myTPtarget.GetComponent<Animator>().SetTrigger("TP");
     }
     public void OnChest()
     {
