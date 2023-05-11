@@ -108,7 +108,6 @@ public class BossMonster : CharactorMovement
 
             case STATE.ACTION:
 
-
                 break;
             case STATE.MOVE:
 
@@ -215,11 +214,22 @@ public class BossMonster : CharactorMovement
     IEnumerator SearchingPlayer(UnityAction done = null)
     {
         bool foundPlayer = false;
+        float searchTIme = 10.0f;
+        GameObject target = FindClosest(transform, GameManager.Inst.characters);
+        while (Mathf.Approximately(searchTIme, 0.0f)){
 
-        yield return new WaitForSeconds(5.0f);
+
+
+            searchTIme -= Time.deltaTime;
+            yield return null;
+        }
+        if (!foundPlayer) ChangeState(STATE.WANDER);
 
         ChangeState(STATE.ACTION);
-
+         
+        
         done?.Invoke();
     }
+
+    
   }
