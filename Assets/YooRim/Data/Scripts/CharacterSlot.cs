@@ -8,6 +8,5 @@ public class CharacterSlot : MonoBehaviour
     public void SendIndex()
     {
             CharacterSlotDB.cdb.ChooseCharacters(idx);
-            CharacterSlotDB.cdb.CharacterSelection(idx); //스킬창 charName.text변경
     }
 }

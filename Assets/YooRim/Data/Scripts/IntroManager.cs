@@ -56,6 +56,7 @@ public class IntroManager : MonoBehaviour //UI관련??메인타이틀??
     public void QuitStartMenu()
     {
         MapPanel.SetActive(false);
+        darkImg.SetActive(false);
     }
     public void CloseGame() //Quit
     {
