@@ -32,8 +32,8 @@ public class Teleport : MonoBehaviour
     
     public void tp()
     {
-        x = Random.Range(1, 7);
-        y = Random.Range(1, 7);
+        x = Random.Range(1, 20);
+        y = Random.Range(1, 20);
 
         Vector2Int my_Pos = new Vector2Int(x, y);
 
@@ -44,8 +44,8 @@ public class Teleport : MonoBehaviour
             GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited == 0)
         {
             Debug.Log("X"+ x + "Y" + y);
-            x = Random.Range(1, 7);
-            y = Random.Range(1, 7);
+            x = Random.Range(1, 20);
+            y = Random.Range(1, 20);
 
             my_Pos.x = x;
             my_Pos.y = y;

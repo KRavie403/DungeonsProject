@@ -24,8 +24,8 @@ public class SecretItem : MonoBehaviour
     {
         Setting();
         Find = StartCoroutine(FindPlayer());
-        test = GameObject.Find("Canvas");
-        this.transform.GetChild(1).gameObject.transform.parent = test.transform;
+        //test = GameObject.Find("Canvas");
+        //this.transform.GetChild(1).gameObject.transform.parent = test.transform;
 
     }
 
