@@ -31,21 +31,41 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -21.962172
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 400006, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.9626007
+      value: 7.170212
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000071525574
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.9822164
+      value: 4.9615936
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: b48e647b25cdea24e83bbf62473dedfd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -133,3 +153,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 776
   tiles: []
+  ChestObj: {fileID: 8846000833825839585}

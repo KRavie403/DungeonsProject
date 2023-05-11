@@ -11,7 +11,7 @@ public class SecretItem : MonoBehaviour
     public GameObject test = null;
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //자기타일 인식시키기
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
@@ -24,8 +24,8 @@ public class SecretItem : MonoBehaviour
     {
         Setting();
         Find = StartCoroutine(FindPlayer());
-        test = GameObject.Find("Canvas");
-        this.transform.GetChild(1).gameObject.transform.parent = test.transform;
+        //test = GameObject.Find("Canvas");
+        //this.transform.GetChild(1).gameObject.transform.parent = test.transform;
 
     }
 
@@ -33,7 +33,7 @@ public class SecretItem : MonoBehaviour
     {
 
     }
-    void Setting()
+    void Setting() //자기주변 기준으로 5x5인식
     {
         for (int i = -3; i <= 3; i++)
         {
@@ -43,7 +43,7 @@ public class SecretItem : MonoBehaviour
             }
         }
     }
-    IEnumerator FindPlayer()
+    IEnumerator FindPlayer() //인식한범위안에 플레이어가 들어오면 실행
     {
         while (true)
         {

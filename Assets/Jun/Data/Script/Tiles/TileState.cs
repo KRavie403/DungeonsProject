@@ -32,6 +32,8 @@ public class TileState : MonoBehaviour
             isVisited = -4;
         }
     }
+
+
     public void SetTarget(GameObject target)
     {
         my_target = target;
