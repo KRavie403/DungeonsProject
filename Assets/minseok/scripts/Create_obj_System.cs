@@ -46,7 +46,7 @@ public class Create_obj_System : MonoBehaviour
 
         Vector2Int my_Pos = new Vector2Int(x, y);
 
-        float half = GameManager.Inst.scale * 0.5f;
+        float half = MapManager.Inst.scale * 0.5f;
         mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         //pos = new Vector2Int(x, y);
@@ -88,11 +88,11 @@ public class Create_obj_System : MonoBehaviour
 
             Vector2Int my_Pos = new Vector2Int(x, y);
 
-            float half = GameManager.Inst.scale * 0.5f;
+            float half = MapManager.Inst.scale * 0.5f;
             mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-            while (GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited < -1 ||
-                GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited == 0)
+            while (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
+                MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0)
             {
                 x = Random.Range(2, 99);
                 y = Random.Range(2, 99);
@@ -100,7 +100,7 @@ public class Create_obj_System : MonoBehaviour
                 my_Pos.x = x;
                 my_Pos.y = y;
 
-                half = GameManager.Inst.scale * 0.5f;
+                half = MapManager.Inst.scale * 0.5f;
                 mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
             }
 
@@ -142,7 +142,7 @@ public class Create_obj_System : MonoBehaviour
     }
     public void TPtarget(Transform target) //TP오브젝트 클릭시여기로 클릭한 오브젝트 저장
     {
-        myTPtarget = target.GetComponent<TileState>().my_target.gameObject;
+        myTPtarget = target.GetComponent<TileStatus>().my_target.gameObject;
         myTPtarget.GetComponent<Animator>().SetTrigger("TP");
     }
     public void OnChest() //ChestUI 확인누를시
@@ -152,7 +152,7 @@ public class Create_obj_System : MonoBehaviour
     }
     public void Chesttarget(Transform target) //Chest오브젝트 클릭시여기로 클릭한 오브젝트 저장
     {
-        myChesttarget = target.GetComponent<TileState>().my_target.gameObject;
+        myChesttarget = target.GetComponent<TileStatus>().my_target.gameObject;
         myChesttarget.GetComponent<Animator>().SetBool("OPEN", true);
     }
 }

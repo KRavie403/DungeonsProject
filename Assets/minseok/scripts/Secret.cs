@@ -7,7 +7,7 @@ public class Secret : MonoBehaviour
     public LayerMask pickMask;
     public GameObject SecretItemUI;
     public Vector2Int pos;
-    public TileState tiles;
+    public TileStatus tiles;
     public GameObject SecretItemObj;
 
 
@@ -15,8 +15,8 @@ public class Secret : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
-            pos = GameManager.Inst.GetTileIndex(other.gameObject);
-            tiles = (GameManager.Inst.tiles[pos.x, pos.y].GetComponent<TileState>());
+            pos = MapManager.Inst.GetTileIndex(other.gameObject);
+            tiles = (MapManager.Inst.tiles[pos]);
             this.GetComponent<SphereCollider>().isTrigger = false;
         }
     }
