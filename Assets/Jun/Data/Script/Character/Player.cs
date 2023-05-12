@@ -30,7 +30,8 @@ public class Player : CharactorMovement
         {
             x = Random.Range(0, GetMMInst().rows);
             y = Random.Range(0, GetMMInst().columns);
-            step = GetMMInst().tiles[x, y].GetComponent<TileStatus>().isVisited;
+            
+            step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
         } while (step == -5 || step == 0 );
 
 
@@ -39,9 +40,9 @@ public class Player : CharactorMovement
         float half = MapManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-        GetMMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().my_obj = myType;
-        GetMMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited = 1;
-        GetMMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().SetTarget(this.gameObject);
+        GetMMInst().tiles[my_Pos].my_obj = myType;
+        GetMMInst().tiles[my_Pos].isVisited = 1;
+        GetMMInst().tiles[my_Pos].SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
     }
@@ -123,7 +124,7 @@ public class Player : CharactorMovement
   
     public void Picked(Vector2Int tile)
     {
-        OB_TYPES tmp = GetMMInst().tiles[tile.x, tile.y].GetComponent<TileStatus>().my_obj;
+        OB_TYPES tmp = GetMMInst().tiles[tile].gameObject.GetComponent<TileStatus>().my_obj;
         switch (tmp)
         {
             case OB_TYPES.NONE:
@@ -161,7 +162,7 @@ public class Player : CharactorMovement
         //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
-            GameObject target = GetMMInst().tiles[index.x, index.y].GetComponent<TileStatus>().OnMyTarget();
+            GameObject target = GetMMInst().tiles[index].gameObject.GetComponent<TileStatus>().OnMyTarget();
 
             if (target != null && target.GetComponent<BossMonster>() != null)
             {

@@ -39,7 +39,7 @@ public class SecretItem : MonoBehaviour
         {
             for (int j = -3; j <= 3; j++)
             {
-                tiles.Add(MapManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileStatus>());
+                tiles.Add(MapManager.Inst.tiles[pos + new Vector2Int(i,j)]);
             }
         }
     }

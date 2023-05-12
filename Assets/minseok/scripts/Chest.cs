@@ -42,9 +42,9 @@ public class Chest : MonoBehaviour
                 }
             }
         }
-        MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().my_target = null;
-        MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().my_obj = OB_TYPES.NONE;
-        MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().isVisited = -1;
+        MapManager.Inst.tiles[pos].GetComponent<TileStatus>().my_target = null;
+        MapManager.Inst.tiles[pos].GetComponent<TileStatus>().my_obj = OB_TYPES.NONE;
+        MapManager.Inst.tiles[pos].GetComponent<TileStatus>().isVisited = -1;
 
 
 
@@ -56,8 +56,8 @@ public class Chest : MonoBehaviour
         float half = MapManager.Inst.scale * 0.5f;
         mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-        while (MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited < -1 ||
-            MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited == 0)
+        while (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
+            MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0)
         {
             x = Random.Range(1, 20);
             y = Random.Range(1, 20);
@@ -86,7 +86,8 @@ public class Chest : MonoBehaviour
                 {
                     continue;
                 }
-                tiles.Add(MapManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileStatus>());
+                Vector2Int newPos = pos + new Vector2Int(i, j);
+                tiles.Add(MapManager.Inst.tiles[newPos]);
             }
         }
     }

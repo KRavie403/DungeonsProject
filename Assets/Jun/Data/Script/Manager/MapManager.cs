@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapManager : Singleton<MapManager>
 {
     //GameMap
-    public GameObject[,] tiles;
+    public Dictionary<Vector2Int, TileStatus> tiles;
     public int rows = 10;
     public int columns = 10;
     public float scale = 1.0f;
@@ -25,14 +26,15 @@ public class MapManager : Singleton<MapManager>
 
     void GenerateAllTiles(float tileSize, int tileCount_X, int tileCount_Y)
     {
-        tiles = new GameObject[tileCount_X, tileCount_Y];
+        tiles = new Dictionary<Vector2Int, TileStatus>();
 
         Debug.Log("Generating All Tiles");
         for (int x = 0; x < tileCount_X; x++)
         {
             for (int y = 0; y < tileCount_Y; y++)
             {
-                tiles[x, y] = GenerateSingleTile(tileSize, x, y);
+                tiles.Add(new Vector2Int(x, y), GenerateSingleTile(tileSize, x, y).GetComponent<TileStatus>());
+
                 //obj.SetActive(false);
             }
         }
@@ -68,34 +70,36 @@ public class MapManager : Singleton<MapManager>
     }
     public void Init()
     {
-        foreach (GameObject obj in tiles)
+        foreach (TileStatus tile in tiles.Values)
         {
-
-            int step = obj.GetComponent<TileStatus>().isVisited;
+            int step = tile.isVisited;
             if (step > -1)
-                obj.GetComponent<TileStatus>().isVisited = -1;
-            obj.layer = 3;
+                tile.isVisited = -1;
+            tile.gameObject.layer = 3;
         }
     }
     public void InitLayer()
     {
-        foreach (GameObject obj in tiles)
+        foreach (TileStatus tile in tiles.Values)
         {
-            obj.layer = 3;
+            tile.gameObject.layer = 3;
         }
     }
     public void InitTarget(Vector2Int tile)
     {
-        tiles[tile.x, tile.y].GetComponent<TileStatus>().isVisited = -1;
-        tiles[tile.x, tile.y].layer = 3;
+
+        tiles[tile].isVisited = -1;
+        tiles[tile].gameObject.layer = 3;
     }
     void VisitedTile(int X, int Y)
     {
-        tiles[X, Y].GetComponent<TileStatus>().isVisited = 0;
+        Vector2Int pos = new Vector2Int(X, Y);
+        tiles[pos].isVisited = 0;
     }
     public int CheckTileVisited(int X, int Y)
     {
-        return tiles[X, Y].GetComponent<TileStatus>().isVisited;
+        Vector2Int pos = new Vector2Int(X, Y);
+        return tiles[pos].isVisited;
     }
 
     public bool CheckIncludedIndex(Vector2Int pos)
@@ -109,14 +113,9 @@ public class MapManager : Singleton<MapManager>
     }
     public Vector2Int GetTileIndex(GameObject hitInfo)
     {
-        for (int x = 0; x < columns; x++)
-        {
-            for (int y = 0; y < rows; y++)
-            {
-                if (tiles[x, y] == hitInfo)
-                    return new Vector2Int(x, y);
-            }
-        }
+        Vector2Int tile = hitInfo.GetComponent<TileStatus>().pos;
+        if (tiles.ContainsKey(tile) == hitInfo)
+            return tile;
         return -Vector2Int.one;
     }
 

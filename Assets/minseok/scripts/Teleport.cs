@@ -40,8 +40,8 @@ public class Teleport : MonoBehaviour
         float half = MapManager.Inst.scale * 0.5f;
         mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-        while (MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited < -1 ||
-            MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited == 0)
+        while (MapManager.Inst.tiles[pos].GetComponent<TileStatus>().isVisited < -1 ||
+            MapManager.Inst.tiles[pos].GetComponent<TileStatus>().isVisited == 0)
         {
             x = Random.Range(1, 20);
             y = Random.Range(1, 20);
@@ -72,12 +72,12 @@ public class Teleport : MonoBehaviour
 
                     GameObject obj2 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
 
-                    MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().my_target = tile.my_target.gameObject;
-                    MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().my_obj = tile.my_target.GetComponent<Player>().myType;
-                    MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().isVisited = 0;
-                    MapManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileStatus>().my_target = null;
-                    MapManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileStatus>().my_obj = OB_TYPES.NONE;
-                    MapManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileStatus>().isVisited = -1;
+                    MapManager.Inst.tiles[pos].my_target = tile.my_target.gameObject;
+                    MapManager.Inst.tiles[pos].my_obj = tile.my_target.GetComponent<Player>().myType;
+                    MapManager.Inst.tiles[pos].isVisited = 0;
+                    MapManager.Inst.tiles[pos].my_target = null;
+                    MapManager.Inst.tiles[pos].my_obj = OB_TYPES.NONE;
+                    MapManager.Inst.tiles[pos].isVisited = -1;
 
                     
                 }
@@ -94,7 +94,8 @@ public class Teleport : MonoBehaviour
                 {
                     continue;
                 }
-                tiles.Add(MapManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileStatus>());
+                Vector2Int newPos = pos + new Vector2Int(i, j);
+                tiles.Add(MapManager.Inst.tiles[newPos]);
             }
         }
     }
