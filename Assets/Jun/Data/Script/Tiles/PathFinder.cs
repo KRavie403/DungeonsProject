@@ -21,7 +21,47 @@ public class PathFinder : MonoBehaviour
             {
                  //
             }
+            var neigbourTile = GetNeighborTiles(currentTile);
         }
         return openlist;
+    }
+    private object GetNeighborTiles(TileStatus currentTile)
+    {
+        var map = MapManager.Inst.tiles;
+
+        List<TileStatus> neighborTile = new List<TileStatus>();
+
+
+        //left
+        Vector2Int loctaion2Check = new Vector2Int(currentTile.pos.x - 1, currentTile.pos.y);
+
+        if (map.ContainsKey(loctaion2Check))
+        {
+            neighborTile.Add(map[loctaion2Check]);
+        }
+        //right
+        loctaion2Check = new Vector2Int(currentTile.pos.x + 1, currentTile.pos.y);
+
+        if (map.ContainsKey(loctaion2Check))
+        {
+            neighborTile.Add(map[loctaion2Check]);
+        }
+        //foward
+        loctaion2Check = new Vector2Int(currentTile.pos.x, currentTile.pos.y + 1);
+
+        if (map.ContainsKey(loctaion2Check))
+        {
+            neighborTile.Add(map[loctaion2Check]);
+        }
+        //backward
+        loctaion2Check = new Vector2Int(currentTile.pos.x, currentTile.pos.y - 1);
+
+        if (map.ContainsKey(loctaion2Check))
+        {
+            neighborTile.Add(map[loctaion2Check]);
+        }
+        return neighborTile;
+
+
     }
 }

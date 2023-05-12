@@ -23,6 +23,7 @@ public class TileStatus : MonoBehaviour
         //Debug.Log($"Enter : {other.gameObject.layer}");
         if (other.gameObject.layer == LayerMask.NameToLayer("Structures"))
         {
+            is_blocked = true;
             isVisited = -100;
         }
 
