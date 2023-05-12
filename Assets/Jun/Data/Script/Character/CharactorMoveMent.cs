@@ -158,7 +158,7 @@ public abstract class CharactorMovement : CharactorProperty
         findPath = true;
         return;
     }
-     GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
+     protected GameObject FindClosest(Transform targetLoctaion, List<GameObject> list)
      {
         float currentDinstance = GetGMInst().scale * GetGMInst().rows * GetGMInst().columns;
         int indexNum = 0;

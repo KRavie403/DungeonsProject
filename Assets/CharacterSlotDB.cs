@@ -60,24 +60,28 @@ public class CharacterSlotDB : MonoBehaviour
             ChosenCharList[0].SetActive(true);
             chosenCharTextList[0].text = charDB.characterList[idx].Name;
             temp[0] = idx;
+            CharacterSelection(0);
         }
         else if (!ChosenCharList[1].activeSelf)
         {
             ChosenCharList[1].SetActive(true);
             chosenCharTextList[1].text = charDB.characterList[idx].Name;
             temp[1] = idx;
+            CharacterSelection(1);
         }
         else if (!ChosenCharList[2].activeSelf)
         {
             ChosenCharList[2].SetActive(true);
             chosenCharTextList[2].text = charDB.characterList[idx].Name;
             temp[2] = idx;
+            CharacterSelection(2);
         }
-        else
+        else if(!ChosenCharList[3].activeSelf)
         {
             ChosenCharList[3].SetActive(true);
             chosenCharTextList[3].text = charDB.characterList[idx].Name;
             temp[3] = idx;
+            CharacterSelection(3);
         }
     }
 
@@ -91,10 +95,10 @@ public class CharacterSlotDB : MonoBehaviour
         }
     }
 
-    public void CharacterSelection(int idx) //Settings
+    public void CharacterSelection(int i) //Settings
     {
-        charSet.gameObject.SetActive(true);        
-        CharacterSkillSetText.text = charDB.characterList[temp[idx]].Name;
+        charSet.gameObject.SetActive(true);
+        CharacterSkillSetText.text = charDB.characterList[temp[i]].Name; //스킬창 charName.text변경
     }
 
     public void ClickSkills()
@@ -102,7 +106,7 @@ public class CharacterSlotDB : MonoBehaviour
         skill1.interactable = false;
     }
 
-    public void DeactiveCharacters(int idx)
+    public void ActiveCharacters(int idx)
     {
         if (!characterButtonList[temp[idx]].interactable)
         {
@@ -110,7 +114,11 @@ public class CharacterSlotDB : MonoBehaviour
             count--;
             Debug.Log(count);
         }
-        else
+    }
+
+    public void DeactiveCharacters(int idx)
+    {
+        if (characterButtonList[idx].interactable)
         {
             if (count < 4)
             {
