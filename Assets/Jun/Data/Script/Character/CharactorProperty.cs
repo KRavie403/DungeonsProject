@@ -64,10 +64,13 @@ public abstract class CharactorProperty : MonoBehaviour
         }
     }
 
+    protected static MapManager GetMMInst()
+    {
+        return MapManager.Inst;
+    }
     protected static GameManager GetGMInst()
     {
         return GameManager.Inst;
     }
-
 
 }

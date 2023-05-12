@@ -28,20 +28,20 @@ public class Player : CharactorMovement
         int x, y, step;
         do
         {
-            x = Random.Range(0, GetGMInst().rows);
-            y = Random.Range(0, GetGMInst().columns);
-            step = GetGMInst().tiles[x, y].GetComponent<TileState>().isVisited;
+            x = Random.Range(0, GetMMInst().rows);
+            y = Random.Range(0, GetMMInst().columns);
+            step = GetMMInst().tiles[x, y].GetComponent<TileStatus>().isVisited;
         } while (step == -5 || step == 0 );
 
 
         my_Pos = new Vector2Int(x, y);
 
-        float half = GameManager.Inst.scale * 0.5f;
+        float half = MapManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
-        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited = 1;
-        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SetTarget(this.gameObject);
+        GetMMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().my_obj = myType;
+        GetMMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited = 1;
+        GetMMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
     }
@@ -79,7 +79,7 @@ public class Player : CharactorMovement
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
                     InitTileDistance();
-                    GetGMInst().InitLayer();
+                    GetMMInst().InitLayer();
                     ChangeState(_bfState);
                 }
                 break;
@@ -88,7 +88,7 @@ public class Player : CharactorMovement
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
                     InitTileDistance();
-                    GetGMInst().InitLayer();
+                    GetMMInst().InitLayer();
                     ChangeState(_bfState);
                 }
                 break;
@@ -123,7 +123,7 @@ public class Player : CharactorMovement
   
     public void Picked(Vector2Int tile)
     {
-        OB_TYPES tmp = GetGMInst().tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
+        OB_TYPES tmp = GetMMInst().tiles[tile.x, tile.y].GetComponent<TileStatus>().my_obj;
         switch (tmp)
         {
             case OB_TYPES.NONE:
@@ -142,7 +142,7 @@ public class Player : CharactorMovement
         //애니메이션 재생 (casting end)
         //목표 회전
         Transform model = transform.Find("Model").GetComponent<Transform>();
-        Vector3 dir = new Vector3((target.x + GetGMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetGMInst().scale / 2.0f) * _mySize) - model.position;
+        Vector3 dir = new Vector3((target.x + GetMMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetMMInst().scale / 2.0f) * _mySize) - model.position;
         dir.Normalize();
         StopAllCoroutines();
         StartCoroutine(CastingSkill(dir, targets));
@@ -161,14 +161,14 @@ public class Player : CharactorMovement
         //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
-            GameObject target = GetGMInst().tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
+            GameObject target = GetMMInst().tiles[index.x, index.y].GetComponent<TileStatus>().OnMyTarget();
 
             if (target != null && target.GetComponent<BossMonster>() != null)
             {
                 target.GetComponent<BossMonster>().TakeDamage(10.0f);
             }
         }
-        GetGMInst().InitLayer();
+        GetMMInst().InitLayer();
         ChangeState(STATE.IDLE);
     }
     public void OnAttack(Vector2Int tile)

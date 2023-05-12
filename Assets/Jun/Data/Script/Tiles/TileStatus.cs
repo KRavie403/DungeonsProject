@@ -4,8 +4,15 @@ using UnityEngine;
 
 public enum OB_TYPES { PLAYER, MONSTER, TELEPORT, CHEST, NONE }
 
-public class TileState : MonoBehaviour
+public class TileStatus : MonoBehaviour
 {
+    public int G, H;
+    public int F { get { return G + H; } }
+
+    public bool is_blocked = false;
+
+    public TileStatus prevTile;
+
     public int isVisited;
     public Vector2Int pos;
     public OB_TYPES my_obj = OB_TYPES.NONE;

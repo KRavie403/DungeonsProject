@@ -6,7 +6,7 @@ public class SecretItem : MonoBehaviour
 {
     public Vector2Int pos;
     public LayerMask pickMask;
-    public List<TileState> tiles;
+    public List<TileStatus> tiles;
     Coroutine Find = null;
     public GameObject test = null;
 
@@ -15,7 +15,7 @@ public class SecretItem : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
-            pos = GameManager.Inst.GetTileIndex(other.gameObject);
+            pos = MapManager.Inst.GetTileIndex(other.gameObject);
 
             this.GetComponent<SphereCollider>().isTrigger = false;
         }
@@ -39,7 +39,7 @@ public class SecretItem : MonoBehaviour
         {
             for (int j = -3; j <= 3; j++)
             {
-                tiles.Add(GameManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileState>());
+                tiles.Add(MapManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileStatus>());
             }
         }
     }

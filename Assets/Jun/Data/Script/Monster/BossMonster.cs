@@ -25,23 +25,23 @@ public class BossMonster : CharactorMovement
 
         do
         {
-            x = Random.Range(0, GameManager.Inst.rows);
-            y = Random.Range(0, GameManager.Inst.columns);
-        } while (GameManager.Inst.tiles[x, y].GetComponent<TileState>().isVisited == -5);
+            x = Random.Range(0, MapManager.Inst.rows);
+            y = Random.Range(0, MapManager.Inst.columns);
+        } while (MapManager.Inst.tiles[x, y].GetComponent<TileStatus>().isVisited == -5);
 
 
         my_Pos = new Vector2Int(x, y);
 
-        float half = GameManager.Inst.scale * 0.5f;
+        float half = MapManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         for (int i = 0; i <= 1; i++)
         {
             for (int j = 0; j <= 1; j++)
             {
-                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().my_obj = myType;
-                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().isVisited = -2;
-                GameManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileState>().SetTarget(this.gameObject);
+                MapManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileStatus>().my_obj = myType;
+                MapManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileStatus>().isVisited = -2;
+                MapManager.Inst.tiles[my_Pos.x + i, my_Pos.y + j].GetComponent<TileStatus>().SetTarget(this.gameObject);
             }
         }
         UI_Manager.Inst.AddPlayer(my_Sprite);
@@ -58,9 +58,9 @@ public class BossMonster : CharactorMovement
             for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
             {
                 Vector2Int pos = new Vector2Int(i, j);
-                if (!GameManager.Inst.CheckIncludedIndex(pos))
+                if (!MapManager.Inst.CheckIncludedIndex(pos))
                     break;
-                searchTileArea.Add((GameObject)GameManager.Inst.tiles[i, j]);
+                searchTileArea.Add((GameObject)MapManager.Inst.tiles[i, j]);
             }
         }
         
@@ -68,14 +68,14 @@ public class BossMonster : CharactorMovement
         {
             foreach (GameObject obj in searchTileArea)
             {
-                if (obj.GetComponent<TileState>().isVisited == step - 1)
+                if (obj.GetComponent<TileStatus>().isVisited == step - 1)
                 {
-                    TestAllDirection(obj.GetComponent<TileState>().pos.x, obj.GetComponent<TileState>().pos.y, step);
+                    TestAllDirection(obj.GetComponent<TileStatus>().pos.x, obj.GetComponent<TileStatus>().pos.y, step);
                     //obj 주변 x+1 / y + 1방향도 step값 변경, 예외처리 필요
                     //if 인접타일이 못가는 곳인가 ? step 날림
                     obj.layer = 9;
                 }
-                if (obj.GetComponent<TileState>().isVisited == step)
+                if (obj.GetComponent<TileStatus>().isVisited == step)
                     obj.layer = 9;
             }
         }
@@ -119,7 +119,7 @@ public class BossMonster : CharactorMovement
     {
         //애니메이션 재생 (casting end)
         //목표 회전
-        Vector3 dir = new Vector3((target.x + GameManager.Inst.scale / 2.0f) * _mySize, transform.position.y, (target.y + GameManager.Inst.scale / 2.0f) * _mySize) - transform.position;
+        Vector3 dir = new Vector3((target.x + MapManager.Inst.scale / 2.0f) * _mySize, transform.position.y, (target.y + MapManager.Inst.scale / 2.0f) * _mySize) - transform.position;
         StartCoroutine(CastingSkill(dir, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
@@ -136,7 +136,7 @@ public class BossMonster : CharactorMovement
         //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
-            GameObject target = GameManager.Inst.tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
+            GameObject target = MapManager.Inst.tiles[index.x, index.y].GetComponent<TileStatus>().OnMyTarget();
 
             if (target != null && target.GetComponent<BossMonster>() != null)
             {

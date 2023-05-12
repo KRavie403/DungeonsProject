@@ -7,7 +7,7 @@ public class Teleport : MonoBehaviour
 {
     public Vector2Int pos;
     public LayerMask pickMask;
-    public List<TileState> tiles;
+    public List<TileStatus> tiles;
     public GameObject TPEffect;
     void Start()
     {
@@ -22,7 +22,7 @@ public class Teleport : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & pickMask) != 0)
         {
-            pos = GameManager.Inst.GetTileIndex(other.gameObject);
+            pos = MapManager.Inst.GetTileIndex(other.gameObject);
             
             this.GetComponent<CapsuleCollider>().isTrigger = false;
         }
@@ -37,11 +37,11 @@ public class Teleport : MonoBehaviour
 
         Vector2Int my_Pos = new Vector2Int(x, y);
 
-        float half = GameManager.Inst.scale * 0.5f;
+        float half = MapManager.Inst.scale * 0.5f;
         mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-        while (GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited < -1 ||
-            GameManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited == 0)
+        while (MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited < -1 ||
+            MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited == 0)
         {
             x = Random.Range(1, 20);
             y = Random.Range(1, 20);
@@ -49,7 +49,7 @@ public class Teleport : MonoBehaviour
             my_Pos.x = x;
             my_Pos.y = y;
 
-            half = GameManager.Inst.scale * 0.5f;
+            half = MapManager.Inst.scale * 0.5f;
             mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
         }
 
@@ -72,12 +72,12 @@ public class Teleport : MonoBehaviour
 
                     GameObject obj2 = Instantiate(TPEffect, tile.my_target.transform.position, Quaternion.identity);
 
-                    GameManager.Inst.tiles[pos.x, pos.y].GetComponent<TileState>().my_target = tile.my_target.gameObject;
-                    GameManager.Inst.tiles[pos.x, pos.y].GetComponent<TileState>().my_obj = tile.my_target.GetComponent<Player>().myType;
-                    GameManager.Inst.tiles[pos.x, pos.y].GetComponent<TileState>().isVisited = 0;
-                    GameManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileState>().my_target = null;
-                    GameManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileState>().my_obj = OB_TYPES.NONE;
-                    GameManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileState>().isVisited = -1;
+                    MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().my_target = tile.my_target.gameObject;
+                    MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().my_obj = tile.my_target.GetComponent<Player>().myType;
+                    MapManager.Inst.tiles[pos.x, pos.y].GetComponent<TileStatus>().isVisited = 0;
+                    MapManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileStatus>().my_target = null;
+                    MapManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileStatus>().my_obj = OB_TYPES.NONE;
+                    MapManager.Inst.tiles[pos2.x, pos2.y].GetComponent<TileStatus>().isVisited = -1;
 
                     
                 }
@@ -94,7 +94,7 @@ public class Teleport : MonoBehaviour
                 {
                     continue;
                 }
-                tiles.Add(GameManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileState>());
+                tiles.Add(MapManager.Inst.tiles[pos.x + i, pos.y + j].GetComponent<TileStatus>());
             }
         }
     }
