@@ -6,12 +6,16 @@ using UnityEngine.SceneManagement;
 public class CharcterSet : MonoBehaviour
 {
     public GameObject CharacterSet;
-    public GameObject Map;
+    public GameObject CharacterSkill;
+    public GameObject ResetButton;
+    public GameObject ApplyButton;
+
+
+    int charIdx = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -19,14 +23,23 @@ public class CharcterSet : MonoBehaviour
     {
         
     }
-
-    public void OpenMapSet() //Settings
+    public void SendIdx(int Idx)
     {
-        Map.SetActive(true);
+        charIdx = Idx;
+    }
+    public void SkillSetting()
+    {
+
     }
 
-    public void StartGame()
+    public void ClickResetButton() //Settings
     {
-        SceneManager.LoadScene("MainGameScene");
+    }    
+    
+    public void ClickApplyButton() //Settings
+    {
+        CharacterSet.SetActive(false);
+        CharacterSlotDB.cdb.ChooseCharacters(charIdx);
     }
+
 }

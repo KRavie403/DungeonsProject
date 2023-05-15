@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c05d5ecf8a80244b5ee1c238ef4f4e, type: 3}
   m_Name: ItemDataBase
   m_EditorClassIdentifier: 
-  SkillList: []
+  ItemList:
+  - {fileID: 11400000, guid: bd31c4c1f2456bb41bd95a63dda6f2a6, type: 2}

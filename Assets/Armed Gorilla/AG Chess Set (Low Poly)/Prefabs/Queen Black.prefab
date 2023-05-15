@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3907266859454381633}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3974127413309999574
 GameObject:
@@ -62,7 +62,6 @@ Transform:
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 543450653202184451}
   - {fileID: 1404307610}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -93,19 +92,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4a9c85f82832046b8f3ba3c653e873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pos_x: 0
-  pos_y: 0
-  ActionPoint: 8
+  skilList: []
+  my_Sprite: {fileID: 0}
+  myType: 0
+  my_Pos: {x: 0, y: 0}
+  MaxHP: 100
+  my_Size: 1
+  _mySize: 1
   MoveSpeed: 1
   RotSpeed: 1
   AttackPower: 10
   DeffencePower: 10
-  MaxHP: 100
   jclass: 1
   speed: 1
-  GameMapManger: {fileID: 0}
   findPath: 0
   path: []
+  _bfState: 0
+  _curState: 0
+  currSKill: {fileID: 0}
 --- !u!114 &967911461442466566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,96 +125,13 @@ MonoBehaviour:
   pickMask:
     serializedVersion: 2
     m_Bits: 776
-  clickAction:
+  TP:
+    serializedVersion: 2
+    m_Bits: 0
+  TPUI: {fileID: 0}
+  clickToMove:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1705864131}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnMoveByPath
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1001 &531406568
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 3907266859454381633}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.0001
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-      propertyPath: m_Name
-      value: bigpone
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
---- !u!4 &543450653202184451 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: be4d1b478fb59f54cb4e885e2e6ab390, type: 3}
-  m_PrefabInstance: {fileID: 531406568}
-  m_PrefabAsset: {fileID: 0}
+      m_Calls: []
+  clickToSkill:
+    m_PersistentCalls:
+      m_Calls: []

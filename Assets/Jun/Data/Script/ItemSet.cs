@@ -6,20 +6,18 @@ using UnityEngine;
 
 public class ItemSet : ScriptableObject
 {
-    public enum SkillType { Buff, MoveAttack, DirectAttack, Heal }
+    public enum ItemType { Power, Armor, Potion, Accessories }
     [SerializeField]
-    private SkillType _type;
-    public SkillType myType { get { return _type; } }
+    private ItemType _type;
+    public ItemType myType { get { return _type; } }
 
     [SerializeField]
-    private int _damage;
-    public int Damage { get { return _damage; } }
+    private float _power;
+    public float power { get { return _power; } }
 
     [SerializeField]
-    private GameObject _effect;
-    public GameObject Effect { get { return _effect; } }
+    private Sprite _sprite;
+    public Sprite MySprite { get { return _sprite; } }
 
-    [SerializeField]
-    public List<Vector2Int> AttackIndex;
 
 }
