@@ -10,6 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51054bdc61c4f8f44902817509320211, type: 3}
+<<<<<<<< HEAD:Assets/Jun/Data/Database/CharacterStatus/Healer/Priest.asset
+  m_Name: Priest
+  m_EditorClassIdentifier: 
+  _name: 
+  _damage: 0
+  _sprite: {fileID: 0}
+  _class: 2
+  _maxHP: 3
+  _attackPower: 4
+  _deffencePower: 3
+  _speed: 7
+  _actionPoint: 8
+========
   m_Name: Ranger
   m_EditorClassIdentifier: 
   _name: "\uB808\uC778\uC800"
@@ -23,3 +36,4 @@ MonoBehaviour:
   _actionPoint: 10
   _preb: {fileID: 7259076325901609923, guid: b852f3ed9ff6c8d4aa506453331ffe91, type: 3}
   Skill: {fileID: 0}
+>>>>>>>> origin/main:Assets/Jun/Data/Database/CharacterStatus/Ranger.asset
