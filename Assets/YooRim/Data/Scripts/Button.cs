@@ -19,6 +19,10 @@ public class Button : MonoBehaviour
     {
         
     }
+    public void onClick()
+    {
+
+    }
 
     public void Next() //Settings
     {
