@@ -27,7 +27,7 @@ public class BossMonster : CharactorMovement
         {
             my_Pos.x = Random.Range(0, MapManager.Inst.rows);
             my_Pos.y = Random.Range(0, MapManager.Inst.columns);
-        } while (MapManager.Inst.tiles[my_Pos].isVisited == -5);
+        } while (MapManager.Inst.tiles.ContainsKey(my_Pos) && MapManager.Inst.tiles[my_Pos].isVisited == -5);
 
 
 
@@ -38,9 +38,12 @@ public class BossMonster : CharactorMovement
         {
             for (int j = 0; j <= 1; j++)
             {
-                MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
-                MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = -2;
-                MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
+                if (MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(i, j)))
+                {
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = -2;
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
+                }
             }
         }
         UI_Manager.Inst.AddPlayer(my_Sprite);
@@ -69,7 +72,7 @@ public class BossMonster : CharactorMovement
             {
                 if (tile.isVisited == step - 1)
                 {
-                    TestAllDirection(tile.pos.x, tile.pos.y, step);
+                    TestAllDirection(tile.gridPos.x, tile.gridPos.y, step);
                     //obj 주변 x+1 / y + 1방향도 step값 변경, 예외처리 필요
                     //if 인접타일이 못가는 곳인가 ? step 날림
                     tile.gameObject.layer = 9;

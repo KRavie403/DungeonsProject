@@ -16,7 +16,7 @@ public class Picking : MonoBehaviour
     public UnityEvent<Vector2Int> clickToMove = null;   //Player스크립트에있는 OnMoveByPath불러오기
     public UnityEvent<Vector2Int,Vector2Int[]> clickToSkill = null;
 
-
+    private PathFinder pathfinder;
 
     private Vector2Int currentHover;
     private List<Vector2Int> curTargets;
@@ -29,6 +29,7 @@ public class Picking : MonoBehaviour
         curTargets = new List<Vector2Int>();
         TPUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("TPUI").gameObject;
         ChestUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("ChestUI").gameObject;
+        pathfinder = new PathFinder();
     }
 
     // Update is called once per frame
@@ -59,18 +60,16 @@ public class Picking : MonoBehaviour
                     if (currentHover == -Vector2Int.one)
                     {
                         currentHover = hitPos;
-                        if(MapManager.Inst.tiles.ContainsKey(hitPos))
-                         MapManager.Inst.tiles[hitPos].gameObject.layer = 8;
-                    }
-                    if (currentHover != hitPos)
-                    {
-                        if (MapManager.Inst.CheckTileVisited(currentHover.x, currentHover.y) <= -1)
-                            MapManager.Inst.tiles[currentHover].gameObject.layer = 3;
-                        else
-                            MapManager.Inst.tiles[currentHover].gameObject.layer = 9;
-                        currentHover = hitPos;
+                        var pos = GetComponent<CharactorMovement>().my_Pos;
+                        TileStatus start = MapManager.Inst.tiles[pos]; 
+                        TileStatus end = MapManager.Inst.tiles[hitPos]; 
+
                         if (MapManager.Inst.tiles.ContainsKey(hitPos))
-                            MapManager.Inst.tiles[hitPos].gameObject.layer = 8;
+                        {
+                            var path = pathfinder.FindPath(start, end);
+                            foreach(var Tpos in path)
+                                MapManager.Inst.tiles[Tpos.gridPos].gameObject.layer = 8;
+                        }
                     }
                     
                 }
