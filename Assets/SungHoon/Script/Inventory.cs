@@ -17,6 +17,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     public Player myPlayer;
 
+    public ItemSetDB myItemDB;
+
     private void OnValidate()
     {
         slots = slotParent.GetComponentsInChildren<Slot>();
@@ -44,7 +46,7 @@ public class Inventory : MonoBehaviour
         }
     }
     int count = 0;
-    public void AddItem(ItemSet _item)
+    public void AddItem(ItemSet _item,ItemSet.ItemGrade itemGrade)
     {
         count++;
         for (int i = 0; i < slots.Length;)
@@ -53,6 +55,7 @@ public class Inventory : MonoBehaviour
             {
                 items[i] = _item;
                 FreshSlot();
+                slots[i].myItemGrade = itemGrade;
                 break;
             }
             else

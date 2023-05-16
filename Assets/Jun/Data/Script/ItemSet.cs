@@ -7,9 +7,14 @@ using UnityEngine;
 public class ItemSet : ScriptableObject
 {
     public enum ItemType { Power, Armor, Potion, Accessories }
+    public enum ItemGrade { Rare, Legendary, Epic, Myth }
     [SerializeField]
     private ItemType _type;
     public ItemType myType { get { return _type; } }
+
+    [SerializeField]
+    private ItemGrade _Grade;
+    public ItemGrade myGrade { get { return _Grade; } set {  } }
 
     [SerializeField]
     private float _power;
