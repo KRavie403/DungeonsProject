@@ -62,19 +62,20 @@ public abstract class CharactorMovement : CharactorProperty
         switch (dir)
         {
             case Direction.Left:
-                if (x - 1 > -1 && GetMMInst().tiles[new Vector2Int(x - 1, y)] &&
+                if (x - 1 > -1 && GetMMInst().tiles.ContainsKey(new Vector2Int(x - 1, y)) &&
                     GetMMInst().tiles[new Vector2Int(x - 1, y)].isVisited == step) return true;
                 break;
             case Direction.Right:
-                if (x + 1 < GetMMInst().columns && GetMMInst().tiles[new Vector2Int(x + 1, y)] &&
+                if (x + 1 < GetMMInst().columns && GetMMInst().tiles.ContainsKey(new Vector2Int(x + 1, y)) &&
                     GetMMInst().tiles[new Vector2Int(x + 1, y)].isVisited == step) return true;
                 break;
             case Direction.Back:
-                if (y - 1 > -1 && GetMMInst().tiles[new Vector2Int(x, y - 1)] &&
+                if (y - 1 > -1 && GetMMInst().tiles.ContainsKey(new Vector2Int(x, y - 1)) &&
                     GetMMInst().tiles[new Vector2Int(x, y - 1)].isVisited == step) return true;
                 break;
             case Direction.Front:
-                if (y + 1 < GetMMInst().rows && GetMMInst().tiles[new Vector2Int(x, y + 1)] && GetMMInst().tiles[new Vector2Int(x, y + 1)].isVisited == step) return true;
+                if (y + 1 < GetMMInst().rows && GetMMInst().tiles.ContainsKey(new Vector2Int(x, y - 1)) &&
+                    GetMMInst().tiles[new Vector2Int(x, y + 1)].isVisited == step) return true;
                 break;
         }
         return false;
@@ -91,7 +92,7 @@ public abstract class CharactorMovement : CharactorProperty
             foreach (TileStatus tile in GetMMInst().tiles.Values)
             {
                 if (tile.isVisited == step - 1)
-                    TestAllDirection(tile.pos.x, tile.pos.y, step);
+                    TestAllDirection(tile.gridPos.x, tile.gridPos.y, step);
             }
         }
 
@@ -148,8 +149,8 @@ public abstract class CharactorMovement : CharactorProperty
 
             TileStatus tmp = FindClosest(GetMMInst().tiles[target].transform, tempList);
             path.Add(tmp);
-            target.x = tmp.pos.x;
-            target.y = tmp.pos.y;
+            target.x = tmp.gridPos.x;
+            target.y = tmp.gridPos.y;
             tempList.Clear();
         }
         findPath = true;
@@ -207,7 +208,7 @@ public abstract class CharactorMovement : CharactorProperty
         for (int i = path.Count - 2; i >= 0;)
         {
             bool done = false;
-            Vector2Int tilePos = new Vector2Int(path[i].GetComponent<TileStatus>().pos.x, path[i].GetComponent<TileStatus>().pos.y);
+            Vector2Int tilePos = new Vector2Int(path[i].GetComponent<TileStatus>().gridPos.x, path[i].GetComponent<TileStatus>().gridPos.y);
             MoveToTile(tilePos, () => done = true);
             while (!done)
             {
