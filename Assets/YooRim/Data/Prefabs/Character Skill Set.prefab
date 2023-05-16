@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: 3283886609757562036}
   - component: {fileID: 3283886609757562037}
   m_Layer: 5
-  m_Name: Character Set
+  m_Name: Character Skill Set
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
