@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BloodSoul
   m_EditorClassIdentifier: 
   _type: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 70573ad27d14c264a8c07354ae1f41e5, type: 3}
   _damage: 0
   _effect: {fileID: 0}
   AttackIndex: []

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PaladinSkillDB
   m_EditorClassIdentifier: 
   List:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 265561c5ff257614d9dc6cfd290efcb5, type: 2}
+  - {fileID: 11400000, guid: 23cbb255373f18c4ebece4caa447f4df, type: 2}
+  - {fileID: 11400000, guid: 6b2832f1fdc63304dbcae7f6cdbdb2bc, type: 2}
+  - {fileID: 11400000, guid: 33a06528daa2507409da1f6b1e63ee46, type: 2}
+  - {fileID: 11400000, guid: a7dfbf7f61f39194b8535a852f44d9ea, type: 2}
+  - {fileID: 11400000, guid: 6aabdc6de2743bc4d9f26aa9905d5d15, type: 2}
+  - {fileID: 11400000, guid: 6e14474456a7537488cc6affbaffe42d, type: 2}
+  - {fileID: 11400000, guid: 1831560d935b0c544b74f21c4dabc347, type: 2}
