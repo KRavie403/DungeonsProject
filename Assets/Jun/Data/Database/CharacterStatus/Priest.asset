@@ -22,4 +22,4 @@ MonoBehaviour:
   _speed: 60
   _actionPoint: 10
   _preb: {fileID: 7259076325901609923, guid: cbdb16a6f7d859f4cb0bd12ccd61ad60, type: 3}
-  Skill: {fileID: 0}
+  Skill: {fileID: 11400000, guid: a0432ba7137f0a34483fecdb143a6fa5, type: 2}
