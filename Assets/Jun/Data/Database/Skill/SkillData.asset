@@ -9,15 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51054bdc61c4f8f44902817509320211, type: 3}
-  m_Name: Assassin
+  m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
+  m_Name: SkillData
   m_EditorClassIdentifier: 
-  _name: 
-  _damage: 0
+  _type: 0
   _sprite: {fileID: 0}
-  _class: 0
-  _maxHP: 5
-  _attackPower: 4
-  _deffencePower: 4
-  _speed: 10
-  _actionPoint: 8
+  _damage: 0
+  _effect: {fileID: 0}
+  AttackIndex: []

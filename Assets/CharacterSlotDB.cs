@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -50,13 +51,14 @@ public class CharacterSlotDB : MonoBehaviour
 
         if (chosenDB.characterList.Count < 4)
         {
-            chosenDB.characterList.Add(charDB.characterList[idx]);
-            chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
+            charSet.SendIdx(idx);
         }
     }
 
     public void ChosenCharacterButtonsActive(int idx)
     {
+        chosenDB.characterList.Add(charDB.characterList[idx]);
+        chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
         //버튼활성화 비활성화 && 텍스트 수정
         if (!ChosenCharList[0].activeSelf)
         {
@@ -119,7 +121,7 @@ public class CharacterSlotDB : MonoBehaviour
 
     public void DeactiveCharacters(int idx)
     {
-        if (characterButtonList[idx].interactable)
+        if (characterButtonList[Array.IndexOf(temp,idx)].interactable)
         {
             if (count < 4)
             {

@@ -39,8 +39,8 @@ public class CharcterSet : MonoBehaviour
     public void ClickApplyButton() //Settings
     {
         this.gameObject.SetActive(false);
-        CharacterSlotDB.cdb.ChooseCharacters(charIdx);
         CharacterSlotDB.cdb.ChosenCharacterButtonsActive(charIdx);
+        CharacterSlotDB.cdb.DeactiveCharacters(charIdx);
     }
 
 }
