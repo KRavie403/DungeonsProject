@@ -1,8 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/YuRi/Materials/Berserk_Body_.mat.meta
+guid: 9a788f47b515b3f4ca4948d3aff6b274
+========
 guid: c9d8e7accb024a04b8e0129febae8016
+>>>>>>>> origin/main:Assets/Jun/Data/Database/CurrentSkillDB.asset.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 11400000
+  mainObjectFileID: 2100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 
