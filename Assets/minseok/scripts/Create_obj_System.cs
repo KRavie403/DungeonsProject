@@ -91,8 +91,8 @@ public class Create_obj_System : MonoBehaviour
             float half = MapManager.Inst.scale * 0.5f;
             mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-            while (MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited < -1 ||
-                MapManager.Inst.tiles[my_Pos.x, my_Pos.y].GetComponent<TileStatus>().isVisited == 0)
+            while (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
+                MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0)
             {
                 x = Random.Range(2, 99);
                 y = Random.Range(2, 99);

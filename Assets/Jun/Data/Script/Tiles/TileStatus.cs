@@ -14,19 +14,20 @@ public class TileStatus : MonoBehaviour
     public TileStatus prevTile;
 
     public int isVisited;
-    public Vector2Int pos;
+    public Vector2Int gridPos;
     public OB_TYPES my_obj = OB_TYPES.NONE;
     public GameObject my_target = null;
 
     public void OnTriggerEnter(Collider other)
     {
         //Debug.Log($"Enter : {other.gameObject.layer}");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Structures"))
-        {
-            isVisited = -100;
-        }
+        //if (other.gameObject.layer == LayerMask.NameToLayer("Structures"))
+        //{
+        //    is_blocked = true;
+        //    isVisited = -100;
+        //}
 
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Teleport"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Teleport"))
         {
             my_obj = OB_TYPES.TELEPORT;
             my_target = other.gameObject;
