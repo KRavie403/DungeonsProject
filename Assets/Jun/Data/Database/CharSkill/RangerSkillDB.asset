@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: RangerSkillDB
   m_EditorClassIdentifier: 
   List:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 54236349db63320489914c91aad17b35, type: 2}
+  - {fileID: 11400000, guid: b2b3c688faaedfd4c83a02d631ecfc42, type: 2}
+  - {fileID: 11400000, guid: 58d8c768de1d3c0468cadb44c6a3f617, type: 2}
+  - {fileID: 11400000, guid: d5396a2eff86e884c9a0d98c452780a8, type: 2}
+  - {fileID: 11400000, guid: 4461e9178de47104c88533aafa164dc0, type: 2}
+  - {fileID: 11400000, guid: 33a2e88780bf1a04bb770ee6016d6fa7, type: 2}
+  - {fileID: 11400000, guid: ffebe522452a9d045bcba699cb6df830, type: 2}
+  - {fileID: 11400000, guid: 19d8c6fcb8f962341ba64100126803c9, type: 2}

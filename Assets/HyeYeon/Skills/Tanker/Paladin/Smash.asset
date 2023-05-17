@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smash
   m_EditorClassIdentifier: 
   _type: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 1c059a8e42114214d9620c7cb64d558a, type: 3}
   _damage: 0
   _effect: {fileID: 0}
   AttackIndex: []
