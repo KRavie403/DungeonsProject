@@ -17,7 +17,6 @@ public class Picking : MonoBehaviour
     public UnityEvent<Vector2Int> clickToMove = null;   //Player스크립트에있는 OnMoveByPath불러오기
     public UnityEvent<Vector2Int,Vector2Int[]> clickToSkill = null;
 
-    private PathFinder pathfinder;
     private Vector2Int currentHover;
     private List<Vector2Int> curTargets;
     private Vector2Int targetPos;
@@ -66,7 +65,8 @@ public class Picking : MonoBehaviour
                         if (MapManager.Inst.tiles.ContainsKey(hitPos))
                         {
                             MapManager.Inst.InitLayer();
-                            foreach(var Tpos in pathfinder.FindPath(start, end))
+                            
+                            foreach (var Tpos in PathFinder.Inst.FindPath(start, end))
                                 MapManager.Inst.tiles[Tpos.gridPos].gameObject.layer = 8;
                         }
                     }

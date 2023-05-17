@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -14,17 +15,16 @@ public class CharacterSlotDB : MonoBehaviour
 
     static public CharacterSlotDB cdb = null;
     
-    public TMP_Text CharacterSkillSetText;
 
     //ChosenCharList
     public GameObject[] ChosenCharList;
 
     //text
     public TMP_Text[] chosenCharTextList;
+    public TMP_Text CharacterSkillSetText;
+
 
     public Button[] characterButtonList;
-
-    public Button skill1;
 
     int count = 0;
     int[] temp = new int[4];
@@ -50,13 +50,14 @@ public class CharacterSlotDB : MonoBehaviour
 
         if (chosenDB.characterList.Count < 4)
         {
-            chosenDB.characterList.Add(charDB.characterList[idx]);
-            chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
+            charSet.SendIdx(idx);
         }
     }
 
     public void ChosenCharacterButtonsActive(int idx)
     {
+        chosenDB.characterList.Add(charDB.characterList[idx]);
+        chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
         //버튼활성화 비활성화 && 텍스트 수정
         if (!ChosenCharList[0].activeSelf)
         {
@@ -102,11 +103,6 @@ public class CharacterSlotDB : MonoBehaviour
         CharacterSkillSetText.text = charDB.characterList[i].Name; //스킬창 charName.text변경
     }
 
-    public void ClickSkills()
-    {
-        skill1.interactable = false;
-    }
-
     public void ActiveCharacters(int idx)
     {
         if (!characterButtonList[temp[idx]].interactable)
@@ -119,7 +115,7 @@ public class CharacterSlotDB : MonoBehaviour
 
     public void DeactiveCharacters(int idx)
     {
-        if (characterButtonList[idx].interactable)
+        if (characterButtonList[Array.IndexOf(temp,idx)].interactable)
         {
             if (count < 4)
             {

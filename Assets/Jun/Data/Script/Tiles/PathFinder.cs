@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PathFinder : Singleton<PathFinder>
 {
-    List<TileStatus> openlist = new List<TileStatus>();
+    public List<TileStatus> openlist = new List<TileStatus>();
 
     public List<TileStatus> FindPath(TileStatus start, TileStatus end)
     {

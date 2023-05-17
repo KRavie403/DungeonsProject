@@ -13,13 +13,7 @@ MonoBehaviour:
   m_Name: Teleport
   m_EditorClassIdentifier: 
   _type: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 0ccf83822a19cdf468e31644d008e057, type: 3}
   _damage: 0
   _effect: {fileID: 0}
-  AttackIndex:
-  - {x: 0, y: 1}
-  - {x: 0, y: 2}
-  - {x: 0, y: 3}
-  - {x: 0, y: 4}
-  - {x: 0, y: 5}
-  - {x: 0, y: 6}
+  AttackIndex: []
