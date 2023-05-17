@@ -48,8 +48,8 @@ public class ChestUI : MonoBehaviour
         int randItem;
         for (int i=0; i < slots.Count;i++)
         {
-            randItem = UnityEngine.Random.Range(0,myItemDB.ItemList.Count);
-            items.Add(myItemDB.ItemList[randItem]);
+            //randItem = UnityEngine.Random.Range(0,myItemDB.ItemList.Count);
+            //items.Add(myItemDB.ItemList[randItem]);
         }
     }
     // Update is called once per frame
