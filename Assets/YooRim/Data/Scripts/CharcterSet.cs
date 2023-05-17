@@ -10,7 +10,6 @@ using TMPro;
 public class CharcterSet : MonoBehaviour
 {
     public GameObject CharacterSet;
-    public GameObject CharacterSkill;
     public GameObject ResetButton;
     public GameObject ApplyButton;
 
@@ -25,11 +24,18 @@ public class CharcterSet : MonoBehaviour
 
     int charIdx = 0;
     int count = 0;
+    string[] file = new string[7];
 
     // Start is called before the first frame update
     void Start()
     {
         ani = GetComponent<Animator>();
+        skillDB = Resources.Load<SkillSetDB>($"Assets / Jun / Data / Database / Resources/{file[charIdx]}");
+
+        for (int i = 0; i < skillDB.skillList.Count; i++)
+        {
+            //skillButtonList[i] = skillDB.skillList.GetType[i];
+        }
     }
 
     // Update is called once per frame
@@ -37,9 +43,35 @@ public class CharcterSet : MonoBehaviour
     {
         
     }
-    public void SendIdx(int Idx)
+    public void SendIdx(int idx)
     {
-        charIdx = Idx;
+        charIdx = idx;
+        switch(idx)
+        {
+            case 0:
+                file[0] = "BerserkerSkillDB";
+                break;
+            case 1:
+                file[1] = "PaladinSkillDB";
+                break;
+            case 2:
+                file[2] = "GuardianSkillDB";
+                break;
+            case 3:
+                file[3] = "RangerSkillDB";
+                break;
+            case 4:
+                file[4] = "SorceressSkillDB";
+                break;
+            case 5:
+                file[5] = "AssassinSkillDB";
+                break;
+            case 6:
+                file[6] = "PriestSkillDB";
+                break;
+            default:
+                break;
+        }
     }
     public void SkillSetting()
     {

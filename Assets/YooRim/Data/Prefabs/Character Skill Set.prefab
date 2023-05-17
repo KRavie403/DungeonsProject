@@ -235,7 +235,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278199295
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -782,7 +782,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterSet: {fileID: 3283886609757562035}
-  CharacterSkill: {fileID: 0}
   ResetButton: {fileID: 3283886611623699360}
   ApplyButton: {fileID: 3283886609917361306}
   skillButtonList:
@@ -794,7 +793,7 @@ MonoBehaviour:
   - {fileID: 1274257928247012594}
   - {fileID: 3401015174835038399}
   - {fileID: 5949796792589819636}
-  chosenSkillDB: {fileID: 0}
+  chosenSkillDB: {fileID: 11400000, guid: 9a788f47b515b3f4ca4948d3aff6b274, type: 2}
   skillDB: {fileID: 0}
   countSkills: {fileID: 6377821245094498637}
 --- !u!222 &3283886609757562036
@@ -2641,7 +2640,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281414143
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
