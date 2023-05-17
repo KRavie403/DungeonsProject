@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Sprites;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -30,11 +31,11 @@ public class CharcterSet : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
-        skillDB = Resources.Load<SkillSetDB>($"Assets / Jun / Data / Resources/ Database /{file[charIdx]}");
+        skillDB = Resources.Load<SkillSetDB>($"Assets/Jun/Data/Resources/Database/CharSkill/{file[charIdx]}");
 
         for (int i = 0; i < skillDB.List.Count; i++)
         {
-            //skillButtonList[i] = skillDB.List.GetType[i];
+            skillButtonList[i].gameObject.GetComponentInChildren<Image>().sprite = skillDB.List[i].MySprite;
         }
     }
 
