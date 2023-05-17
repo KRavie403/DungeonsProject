@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: BerserkerSkillDB
   m_EditorClassIdentifier: 
   List:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 845df21f1253f7442b76bffc1fc9a3e8, type: 2}
+  - {fileID: 11400000, guid: 59511187d122cab4f8a88adabb0daf62, type: 2}
+  - {fileID: 11400000, guid: bed0d48cfd5f94a458227aaeac7b51aa, type: 2}
+  - {fileID: 11400000, guid: 39ebaeb72c1e406438acc450a66657ce, type: 2}
+  - {fileID: 11400000, guid: dd65ee9731cb0374dab5b87ef5ca7580, type: 2}
+  - {fileID: 11400000, guid: 4036abc4af9b21342be61bfd8a188fa6, type: 2}
+  - {fileID: 11400000, guid: fae692aa6caafd343a523c3469f337f4, type: 2}
+  - {fileID: 11400000, guid: ee905448bf5def441a8a49de7496199b, type: 2}

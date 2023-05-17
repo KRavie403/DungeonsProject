@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: SorceressSkillDB
   m_EditorClassIdentifier: 
   List:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: bc60ac7b7b434fc4b81e08b8aedf485e, type: 2}
+  - {fileID: 11400000, guid: ece7ff0c53e260043a742e6116361999, type: 2}
+  - {fileID: 11400000, guid: b76e599bb00cbcb4fb27e77be336cbed, type: 2}
+  - {fileID: 11400000, guid: a816188b76d447146bdc0c9204337427, type: 2}
+  - {fileID: 11400000, guid: 299f4cabfb0e25b4989b78d02ee11297, type: 2}
+  - {fileID: 11400000, guid: 50deccdb414d9fe4789dc88b58fbc33f, type: 2}
+  - {fileID: 11400000, guid: 5bb229a6e43a0a4448dfae78781d1ae7, type: 2}
+  - {fileID: 11400000, guid: 56903eff42032674e9c0d850661192f5, type: 2}
