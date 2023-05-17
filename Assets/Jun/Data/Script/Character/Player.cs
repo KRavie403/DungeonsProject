@@ -19,7 +19,7 @@ public class Player : CharactorMovement
         ActionPoint = data.ActionPoint;
         skilList.Clear();
         if(data.Skill != null)
-            foreach (var skill in data.Skill.List)
+            foreach (var skill in data.Skill.skillList)
                 skilList.Add(skill);
         SettingPos();
     }
