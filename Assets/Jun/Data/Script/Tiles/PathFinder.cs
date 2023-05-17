@@ -1,35 +1,37 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PathFinder : MonoBehaviour
+public class PathFinder : Singleton<PathFinder>
 {
+    List<TileStatus> openlist = new List<TileStatus>();
+
     public List<TileStatus> FindPath(TileStatus start, TileStatus end)
     {
-        List<TileStatus> openlist = new List<TileStatus>();
+        openlist.Clear();
         List<TileStatus> closeList = new List<TileStatus>();
         openlist.Add(start);
-        while(openlist.Count > 0)
+        while (openlist.Count > 0)
         {
             TileStatus currentTile = openlist.OrderBy(x => x.H).First();
 
             openlist.Remove(currentTile);
             closeList.Add(currentTile);
 
-            if(currentTile == end)
+            if (currentTile == end)
             {
                 //finallize path
                 return GetFinishedList(start, end);
             }
             var neighbourTiles = GetNeighborTiles(currentTile);
-            foreach(TileStatus neighbourTile in neighbourTiles)
+            foreach (TileStatus neighbourTile in neighbourTiles)
             {
-                if(neighbourTile.is_blocked || closeList.Contains(neighbourTile))
+                if (neighbourTile.is_blocked || closeList.Contains(neighbourTile))
                     continue;
                 neighbourTile.G = GetManhattenDistance(start, neighbourTile);
                 neighbourTile.H = GetManhattenDistance(end, neighbourTile);
+
+                neighbourTile.prevTile = currentTile;
 
                 if (!openlist.Contains(neighbourTile))
                 {
@@ -44,7 +46,7 @@ public class PathFinder : MonoBehaviour
     {
         List<TileStatus> finishedList = new List<TileStatus>();
         TileStatus currentTile = end;
-        while(currentTile != start)
+        while (currentTile != start)
         {
             finishedList.Add(currentTile);
             currentTile = currentTile.prevTile;
@@ -97,4 +99,10 @@ public class PathFinder : MonoBehaviour
 
 
     }
+    public List<TileStatus> GetPath()
+    {
+        return openlist;
+    }
+
+
 }
