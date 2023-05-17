@@ -25,8 +25,6 @@ public class CharacterSlotDB : MonoBehaviour
 
     public Button[] characterButtonList;
 
-    public Button skill1;
-
     int count = 0;
     int[] temp = new int[4];
 
@@ -102,11 +100,6 @@ public class CharacterSlotDB : MonoBehaviour
     {
         charSet.gameObject.SetActive(true);
         CharacterSkillSetText.text = charDB.characterList[i].Name; //스킬창 charName.text변경
-    }
-
-    public void ClickSkills()
-    {
-        skill1.interactable = false;
     }
 
     public void ActiveCharacters(int idx)
