@@ -30,7 +30,7 @@ public class CharcterSet : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
-        skillDB = Resources.Load<SkillSetDB>($"Assets / Jun / Data / Database / Resources/{file[charIdx]}");
+        skillDB = Resources.Load<SkillSetDB>($"Assets / Jun / Data / Resources/ Database /{file[charIdx]}");
 
         for (int i = 0; i < skillDB.List.Count; i++)
         {
