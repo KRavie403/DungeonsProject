@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/YooRim/Data/Anim/Notify.anim.meta
 guid: 9aa9c335c437cdc4f88db65af0c4ba02
+========
+guid: 2dc470567a6e7b443b8b16af461164d4
+>>>>>>>> test:Assets/Jun/Data/Database/Skill/SkillData.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 7400000

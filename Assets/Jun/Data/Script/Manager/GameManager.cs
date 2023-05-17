@@ -78,8 +78,8 @@ public class GameManager : Singleton<GameManager>
     {
         if (characters[curCharacter].GetComponent<CharactorMovement>().myType == OB_TYPES.PLAYER)
         {
-            if (UI_Manager.Inst.currentSkillSet.skillList != null)
-                UI_Manager.Inst.currentSkillSet.skillList.Clear();
+            if (UI_Manager.Inst.currentSkillSet.List != null)
+                UI_Manager.Inst.currentSkillSet.List.Clear();
             UI_Manager.Inst.skill_Count = 0;
             foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
                 UI_Manager.Inst.AddSkills(skill);
