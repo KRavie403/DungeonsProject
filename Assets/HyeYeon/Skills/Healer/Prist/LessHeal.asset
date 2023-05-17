@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 3
   _sprite: {fileID: 21300000, guid: a2893219d09103f4bb0191fdf3330bd9, type: 3}
-  _damage: -1
+  _damage: -80
   _effect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05, type: 3}
   AttackIndex: []
