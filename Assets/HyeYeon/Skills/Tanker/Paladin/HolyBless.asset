@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HolyBless
   m_EditorClassIdentifier: 
   _type: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: a7f17e2b27d955746b321e76912b4ced, type: 3}
   _damage: 0
   _effect: {fileID: 0}
   AttackIndex: []

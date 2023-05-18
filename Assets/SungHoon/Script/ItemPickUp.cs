@@ -20,7 +20,7 @@ public class ItemPickUp : MonoBehaviour
         {
             ItemSet item = itemObj.TriggerItem();
             print($"{item.name}");
-            inventory.AddItem(item);
+            //inventory.AddItem(item);
         }
     }
 }

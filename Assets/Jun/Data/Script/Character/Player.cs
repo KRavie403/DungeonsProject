@@ -25,13 +25,13 @@ public class Player : CharactorMovement
     }
     public void SettingPos()
     {
-        int x, y, step;
+        int x, y, step = 0;
         do
         {
             x = Random.Range(0, GetMMInst().rows);
             y = Random.Range(0, GetMMInst().columns);
-            
-            step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
+            if(GetMMInst().tiles.ContainsKey(new Vector2Int(x,y)))
+                step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
         } while (step == -5 || step == 0 );
 
 
@@ -111,7 +111,7 @@ public class Player : CharactorMovement
                 break;
 
             case STATE.ACTION:
-                gameObject.GetComponent<Picking>().enabled = true;
+                gameObject.GetComponent<Picking>().enabled = false;
                 //gameObject.GetComponent<Picking>().enabled = true;
                 break;
             case STATE.MOVE:

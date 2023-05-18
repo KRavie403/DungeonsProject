@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShieldOfTheArchon
   m_EditorClassIdentifier: 
   _type: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: a0b8363afc787f443afd78bf10ae6683, type: 3}
   _damage: 0
   _effect: {fileID: 0}
   AttackIndex: []
