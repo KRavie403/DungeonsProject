@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.PlayerSettings;
 
 
 public class Picking : MonoBehaviour
@@ -16,8 +17,6 @@ public class Picking : MonoBehaviour
     public UnityEvent<Vector2Int> clickToMove = null;   //Player스크립트에있는 OnMoveByPath불러오기
     public UnityEvent<Vector2Int,Vector2Int[]> clickToSkill = null;
 
-    private PathFinder pathfinder;
-
     private Vector2Int currentHover;
     private List<Vector2Int> curTargets;
     private Vector2Int targetPos;
@@ -29,11 +28,10 @@ public class Picking : MonoBehaviour
         curTargets = new List<Vector2Int>();
         TPUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("TPUI").gameObject;
         ChestUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("ChestUI").gameObject;
-        pathfinder = new PathFinder();
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //카메라기준으로 마우스커서의움직일때마다 좌표값을 ray에 기입
@@ -66,8 +64,9 @@ public class Picking : MonoBehaviour
 
                         if (MapManager.Inst.tiles.ContainsKey(hitPos))
                         {
-                            var path = pathfinder.FindPath(start, end);
-                            foreach(var Tpos in path)
+                            MapManager.Inst.InitLayer();
+                            
+                            foreach (var Tpos in PathFinder.Inst.FindPath(start, end))
                                 MapManager.Inst.tiles[Tpos.gridPos].gameObject.layer = 8;
                         }
                     }

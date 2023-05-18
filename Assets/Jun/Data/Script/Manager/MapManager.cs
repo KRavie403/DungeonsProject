@@ -7,8 +7,8 @@ public class MapManager : Singleton<MapManager>
 {
     //GameMap
     public Dictionary<Vector2Int, TileStatus> tiles;
-    public int rows = 10;
-    public int columns = 10;
+    public int rows = 100;
+    public int columns = 100;
     public float scale = 1.0f;
 
     public LayerMask crashMask;
@@ -22,18 +22,6 @@ public class MapManager : Singleton<MapManager>
 
 
     //public Transform[] _MapTiles = null;
-    private void Update()
-    {
-        for (int x = 0; x < 100; x++)
-        {
-            for (int y = 0; y < 100; y++)
-            {
-                Vector3 start = new Vector3(x + 0.5f, -0.1f, y + 0.5f);
-                Debug.DrawRay(start, new Vector3(0, 1, 0) * 3.0f, Color.yellow);
-            }
-        }
-    }
-
 
     void GenerateAllTiles(float tileSize, int tileCount_X, int tileCount_Y)
     {

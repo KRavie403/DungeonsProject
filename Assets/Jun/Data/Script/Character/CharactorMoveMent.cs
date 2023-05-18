@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.Events;
 using static UnityEngine.GraphicsBuffer;
 
@@ -15,10 +16,9 @@ public abstract class CharactorMovement : CharactorProperty
     public bool findPath = false;
 
     protected int Start_X, Start_Y;
-    public List<TileStatus> path = new List<TileStatus>();
 
     Coroutine coMove = null;
-
+    List<TileStatus> path;
     virtual public void ChangeState(STATE s) { }
     public STATE GetState()
     {
@@ -51,8 +51,11 @@ public abstract class CharactorMovement : CharactorProperty
     {
         StopAllCoroutines();
 
+        path = PathFinder.Inst.GetPath();
+        
+        if (path != null)
+            findPath = true;
 
-        SetPath(tile);
         if (findPath)
             StartCoroutine(MovingByPath(done));
 
@@ -74,7 +77,7 @@ public abstract class CharactorMovement : CharactorProperty
                     GetMMInst().tiles[new Vector2Int(x, y - 1)].isVisited == step) return true;
                 break;
             case Direction.Front:
-                if (y + 1 < GetMMInst().rows && GetMMInst().tiles.ContainsKey(new Vector2Int(x, y - 1)) &&
+                if (y + 1 < GetMMInst().rows && GetMMInst().tiles.ContainsKey(new Vector2Int(x, y + 1)) &&
                     GetMMInst().tiles[new Vector2Int(x, y + 1)].isVisited == step) return true;
                 break;
         }
@@ -120,56 +123,7 @@ public abstract class CharactorMovement : CharactorProperty
         if (CastDirectionTile(x, y, -1, Direction.Back))
             SetVisited(x, y - 1, step);
     }
-    void SetPath(Vector2Int target)
-    {
-        int step;
-        List<TileStatus> tempList = new List<TileStatus>();
-        path.Clear();
-        if(GetMMInst().tiles[target] && GetMMInst().tiles[target].isVisited > 0)
-        {
-            path.Add(GetMMInst().tiles[target]);
-            step = GetMMInst().tiles[target].GetComponent<TileStatus>().isVisited - 1;
-        }
-        else
-        {
-            Debug.Log("Nope");
-            findPath = false;
-            return;
-        }
-        for(int i = step; step > -1; step--)
-        {
-            if (CastDirectionTile(target.x, target.y, step, Direction.Front))
-                tempList.Add(GetMMInst().tiles[target + new Vector2Int(0,1)]);
-            if (CastDirectionTile(target.x, target.y, step, Direction.Back))
-                tempList.Add(GetMMInst().tiles[target + new Vector2Int(0, -1)]);
-            if (CastDirectionTile(target.x, target.y, step, Direction.Left))
-                tempList.Add(GetMMInst().tiles[target + new Vector2Int(-1, 0)]);
-            if (CastDirectionTile(target.x, target.y, step, Direction.Right))
-                tempList.Add(GetMMInst().tiles[target + new Vector2Int(1, 0)]);
-
-            TileStatus tmp = FindClosest(GetMMInst().tiles[target].transform, tempList);
-            path.Add(tmp);
-            target.x = tmp.gridPos.x;
-            target.y = tmp.gridPos.y;
-            tempList.Clear();
-        }
-        findPath = true;
-        return;
-    }
-     protected TileStatus FindClosest(Transform targetLoctaion, List<TileStatus> list)
-     {
-        float currentDinstance = GetMMInst().scale * GetMMInst().rows * GetMMInst().columns;
-        int indexNum = 0;
-        for (int i = 0; i < list.Count; i++)
-        {
-            if (Vector3.Distance(targetLoctaion.position, list[i].transform.position) < currentDinstance)
-            {
-                currentDinstance = Vector3.Distance(targetLoctaion.position, list[i].transform.position);
-                indexNum = i;
-            }
-        }
-        return list[indexNum];
-    }
+   
     IEnumerator MovingToTile(Vector2Int target, UnityAction done)
     {
         Vector3 dir = new Vector3((target.x + GetMMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + MapManager.Inst.scale / 2.0f) * _mySize) - transform.position;
@@ -205,22 +159,21 @@ public abstract class CharactorMovement : CharactorProperty
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
         Vector2Int dest_pos = my_Pos;
-        for (int i = path.Count - 2; i >= 0;)
+        for (int i = 0; i < path.Count;)
         {
             bool done = false;
-            Vector2Int tilePos = new Vector2Int(path[i].GetComponent<TileStatus>().gridPos.x, path[i].GetComponent<TileStatus>().gridPos.y);
-            MoveToTile(tilePos, () => done = true);
+            MoveToTile(path[i].GetComponent<TileStatus>().gridPos, () => done = true);
             while (!done)
             {
                 yield return null;
             }
-            dest_pos = tilePos;
+            dest_pos = path[i].GetComponent<TileStatus>().gridPos;
 
             curAP--;
             UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
             if (curAP == 10)
                 break;
-            i--;
+            i++;
         }
 
         if (curAP == 10)
