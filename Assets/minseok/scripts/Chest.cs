@@ -86,8 +86,10 @@ public class Chest : MonoBehaviour
                 {
                     continue;
                 }
+                
                 Vector2Int newPos = pos + new Vector2Int(i, j);
-                tiles.Add(MapManager.Inst.tiles[newPos]);
+                if(MapManager.Inst.tiles.ContainsKey(newPos))
+                    tiles.Add(MapManager.Inst.tiles[newPos]);
             }
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Sprites;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -30,23 +31,23 @@ public class CharcterSet : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
-        skillDB = Resources.Load<SkillSetDB>($"Assets / Jun / Data / Database / Resources/{file[charIdx]}");
+        skillDB = Resources.Load<SkillSetDB>($"Assets/Jun/Data/Resources/Database/CharSkill/{file[charIdx]}");
 
-        for (int i = 0; i < skillDB.skillList.Count; i++)
+        for (int i = 0; i < skillDB.List.Count; i++)
         {
-            //skillButtonList[i] = skillDB.skillList.GetType[i];
+            skillButtonList[i].gameObject.GetComponentInChildren<Image>().sprite = skillDB.List[i].MySprite;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void SendIdx(int idx)
     {
         charIdx = idx;
-        switch(idx)
+        switch (idx)
         {
             case 0:
                 file[0] = "BerserkerSkillDB";
@@ -80,11 +81,11 @@ public class CharcterSet : MonoBehaviour
 
     public void ClickResetButton() //Settings
     {
-    }    
-    
+    }
+
     public void ClickApplyButton() //Settings
     {
-        if(count == 4)
+        if (count == 4)
         {
             this.gameObject.SetActive(false);
             CharacterSlotDB.cdb.ChosenCharacterButtonsActive(charIdx);
@@ -98,10 +99,10 @@ public class CharcterSet : MonoBehaviour
 
     public void SetSkillList()
     {
-        if(chosenSkillDB.skillList.Count < 16)
+        if (chosenSkillDB.List.Count < 16)
         {
-            chosenSkillDB.skillList.Add(skillDB.skillList[charIdx]);
-            chosenSkillDB.skillList = skillDB.skillList.Distinct().ToList();
+            chosenSkillDB.List.Add(skillDB.List[charIdx]);
+            chosenSkillDB.List = skillDB.List.Distinct().ToList();
         }
     }
 

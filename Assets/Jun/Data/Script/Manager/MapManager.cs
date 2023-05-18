@@ -7,8 +7,8 @@ public class MapManager : Singleton<MapManager>
 {
     //GameMap
     public Dictionary<Vector2Int, TileStatus> tiles;
-    public int rows = 10;
-    public int columns = 10;
+    public int rows = 100;
+    public int columns = 100;
     public float scale = 1.0f;
 
     public LayerMask crashMask;
