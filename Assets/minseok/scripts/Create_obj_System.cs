@@ -83,26 +83,18 @@ public class Create_obj_System : MonoBehaviour
         }
         for (int i = 0; i <= 150; ++i)
         {
-            x = Random.Range(2, 99);
-            y = Random.Range(2, 99);
-
-            Vector2Int my_Pos = new Vector2Int(x, y);
-
             float half = MapManager.Inst.scale * 0.5f;
-            mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+            Vector2Int my_Pos = Vector2Int.zero;
 
-            while (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
-                MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0)
+            do
             {
-                x = Random.Range(2, 99);
-                y = Random.Range(2, 99);
-
-                my_Pos.x = x;
-                my_Pos.y = y;
-
-                half = MapManager.Inst.scale * 0.5f;
-                mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
-            }
+                x = Random.Range(4, 97);
+                y = Random.Range(4, 97);
+                my_Pos = new Vector2Int(x, y);
+            } while (!MapManager.Inst.tiles.ContainsKey(my_Pos) || (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
+                MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0));
+            
+            mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
             //pos = new Vector2Int(x, y);
             GameObject obj3 = Instantiate(SecretObj, mypos, Quaternion.identity);
