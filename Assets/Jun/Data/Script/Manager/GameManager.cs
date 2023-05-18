@@ -58,7 +58,10 @@ public class GameManager : Singleton<GameManager>
     {
         characters[curCharacter].GetComponent<Player>()?.OnMove();
     }
-
+    public void OnInteraction()
+    {
+        characters[curCharacter].GetComponent<Player>()?.OnInteract();
+    }
     public void ChangeTurn()
     {
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(STATE.IDLE);

@@ -9,6 +9,8 @@ public class UI_Manager : Singleton<UI_Manager>
     public GameObject InGameUI;
     public GameObject start_button;
     public GameObject char_Frame;
+    public GameObject TPUI;
+    public GameObject ChestUI;
 
     public Transform TurnSystem;
     public SkillSetDB currentSkillSet;
@@ -35,7 +37,8 @@ public class UI_Manager : Singleton<UI_Manager>
     }
     public void GameStart()
     {
-        
+        TPUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("TPUI").gameObject;
+        ChestUI = GameObject.Find("Canvas").transform.Find("InGameUIs").transform.Find("ChestUI").gameObject;
         InGameUI.SetActive(true);
         start_button.SetActive(false);
 

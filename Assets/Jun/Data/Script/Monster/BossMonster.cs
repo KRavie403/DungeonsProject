@@ -155,12 +155,12 @@ public class BossMonster : CharactorMovement
     {
         //애니메이션 재생 (casting)
     }
-    public void OnMoveByPath(Vector2Int tile)
+    public void OnMoveByPath(List<TileStatus> path)
     {
-        Debug.Log($"Target : {tile}");
+        Debug.Log($"Target : {path}");
         Debug.Log($"Start : {Start_X},{Start_Y}");
 
-        MoveByPath(tile);
+        MoveByPath(path);
     }
 
     public void StartFSM()

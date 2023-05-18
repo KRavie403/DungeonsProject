@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 1
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -44117,6 +44117,7 @@ MonoBehaviour:
   - {fileID: 1148015026}
   myObj: {fileID: 0}
   myPlayer: {fileID: 0}
+  myItemDB: {fileID: 0}
 --- !u!1001 &1267586605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51097,6 +51098,8 @@ MonoBehaviour:
   InGameUI: {fileID: 2019539186}
   start_button: {fileID: 411040046}
   char_Frame: {fileID: 7690504195504836123, guid: d10492553eb56f548867821f48a753a5, type: 3}
+  TPUI: {fileID: 0}
+  ChestUI: {fileID: 0}
   TurnSystem: {fileID: 834339909}
   currentSkillSet: {fileID: 11400000, guid: 315da2a20aa593c41b73a42b1f7e642a, type: 2}
   skillSlots:
@@ -56318,11 +56321,6 @@ MonoBehaviour:
   curCharacter: 0
   selectedOrgChars: {fileID: 11400000, guid: dd8a01636edd7b34c9ab81e49450a8e1, type: 2}
   boss: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
-  rows: 100
-  columns: 100
-  scale: 1
-  tileMat: {fileID: 2100000, guid: 3bbe6b640ca7ba64d9663b2f85e31c09, type: 2}
-  LBLocation: {x: 0, y: 0, z: 0}
 --- !u!1001 &1584371344
 PrefabInstance:
   m_ObjectHideFlags: 0
