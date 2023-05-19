@@ -7,8 +7,8 @@ public class MapManager : Singleton<MapManager>
 {
     //GameMap
     public Dictionary<Vector2Int, TileStatus> tiles;
-    public int rows = 10;
-    public int columns = 10;
+    public int rows = 100;
+    public int columns = 100;
     public float scale = 1.0f;
 
     public LayerMask crashMask;
@@ -55,7 +55,7 @@ public class MapManager : Singleton<MapManager>
         tile.AddComponent<MeshRenderer>().material = tileMat;
 
         tile.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        tile.GetComponent<MeshRenderer>().receiveShadows = true;
+        tile.GetComponent<MeshRenderer>().receiveShadows = false;
         Vector3[] vertices = new Vector3[4];
         vertices[0] = new Vector3(0, 0.1f, tileSize);
         vertices[1] = new Vector3(tileSize, 0.1f, tileSize);

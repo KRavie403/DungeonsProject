@@ -17,7 +17,7 @@ public class Create_obj_System : MonoBehaviour
     public GameObject myTPtarget = null;
     public GameObject myChesttarget = null;
     int x = 0, y = 0;
-    public void random(int rd)//·£´ý ÁÂÇ¥ ¼³Á¤
+    public Vector3 random(int rd)//·£´ý ÁÂÇ¥ ¼³Á¤
     {
 
         switch (rd)
@@ -47,9 +47,9 @@ public class Create_obj_System : MonoBehaviour
         Vector2Int my_Pos = new Vector2Int(x, y);
 
         float half = MapManager.Inst.scale * 0.5f;
-        mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
+       
 
-        //pos = new Vector2Int(x, y);
+        return new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
     }
     void teleportSystem() //¿ÀºêÁ§Æ®¼³Ä¡
     {
@@ -68,56 +68,40 @@ public class Create_obj_System : MonoBehaviour
                 j++;
             }
         }
-
+        GameObject obj;
         for (int i = 0; i < 10; ++i)
         {
-            random(list[i]);
-            GameObject obj1 = Instantiate(TeleportObj, mypos, Quaternion.identity);
+            obj = Instantiate(TeleportObj, random(list[i]), Quaternion.identity);
+            obj.transform.parent = transform;
             //obj1.GetComponent<Teleport>().pos = pos;
         }
         for (int i = 10; i < 20; ++i)
         {
-            random(list[i]);
-            GameObject obj2 = Instantiate(ChestObj, mypos, Quaternion.identity);
+            obj = Instantiate(ChestObj, random(list[i]), Quaternion.identity);
+            obj.transform.parent = transform;
             //obj2.GetComponent<Chest>().pos = pos;
         }
         for (int i = 0; i <= 150; ++i)
         {
-            x = Random.Range(2, 99);
-            y = Random.Range(2, 99);
-
-            Vector2Int my_Pos = new Vector2Int(x, y);
-
             float half = MapManager.Inst.scale * 0.5f;
-            mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
-
-            while (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
-                MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0)
+            Vector2Int my_Pos;
+            do
             {
                 x = Random.Range(2, 99);
                 y = Random.Range(2, 99);
-
-                my_Pos.x = x;
-                my_Pos.y = y;
-
+                my_Pos = new Vector2Int(x, y);
                 half = MapManager.Inst.scale * 0.5f;
                 mypos = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
-            }
+            } while (!MapManager.Inst.tiles.ContainsKey(my_Pos) || (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
+                MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0));
 
-            //pos = new Vector2Int(x, y);
-            GameObject obj3 = Instantiate(SecretObj, mypos, Quaternion.identity);
+                //pos = new Vector2Int(x, y);
+                GameObject obj3 = Instantiate(SecretObj, mypos, Quaternion.identity);
             //obj3.GetComponent<SecretItem>().pos = pos;
             obj3.transform.SetParent(this.transform);
         }
 
 
-
-
-        //GameObject obj4 = Instantiate(ChestObj, new Vector3(8.5f,0,8.5f), Quaternion.identity);
-        //GameObject obj5 = Instantiate(TeleportObj, new Vector3(5.5f, 0, 5.5f), Quaternion.identity);
-        //GameObject obj6 = Instantiate(SecretObj, new Vector3(16.5f, 0, 3.5f), Quaternion.identity);
-        //GameObject obj8 = Instantiate(SecretObj, new Vector3(14.5f, 0, 3.5f), Quaternion.identity);
-        //GameObject obj7 = Instantiate(SecretObj, new Vector3(5.5f, 0, 5.5f), Quaternion.identity);
     }
 
     List<int> list = new List<int>();
