@@ -7,10 +7,11 @@ public class MapManager : Singleton<MapManager>
 {
     //GameMap
     public Dictionary<Vector2Int, TileStatus> tiles;
-    public int rows = 10;
-    public int columns = 10;
+    public int rows = 100;
+    public int columns = 100;
     public float scale = 1.0f;
 
+    public LayerMask crashMask;
     public Material tileMat;
     public Vector3 LBLocation = new Vector3(0, 0, 0);
 
@@ -22,8 +23,6 @@ public class MapManager : Singleton<MapManager>
 
     //public Transform[] _MapTiles = null;
 
-
-
     void GenerateAllTiles(float tileSize, int tileCount_X, int tileCount_Y)
     {
         tiles = new Dictionary<Vector2Int, TileStatus>();
@@ -33,7 +32,11 @@ public class MapManager : Singleton<MapManager>
         {
             for (int y = 0; y < tileCount_Y; y++)
             {
-                tiles.Add(new Vector2Int(x, y), GenerateSingleTile(tileSize, x, y).GetComponent<TileStatus>());
+                Vector3 start = new Vector3(x + 0.5f, -0.5f, y + 0.5f);
+                Ray ray = new Ray(start, new Vector3(0, 1, 0));
+
+                if (!Physics.Raycast(ray, 10.0f, crashMask))
+                    tiles.Add(new Vector2Int(x, y), GenerateSingleTile(tileSize, x, y).GetComponent<TileStatus>());
 
                 //obj.SetActive(false);
             }
@@ -46,16 +49,19 @@ public class MapManager : Singleton<MapManager>
         GameObject tile = new GameObject(string.Format("X : {0}, Y:{1}", x, y));
         tile.transform.parent = gameObject.transform;
         tile.layer = 3;
+        tile.transform.position = new Vector3(x, 0, y);
         Mesh mesh = new Mesh();
         tile.AddComponent<MeshFilter>().mesh = mesh;
         tile.AddComponent<MeshRenderer>().material = tileMat;
 
+        tile.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        tile.GetComponent<MeshRenderer>().receiveShadows = true;
         Vector3[] vertices = new Vector3[4];
-        vertices[0] = new Vector3(x * tileSize, 0.1f, y * tileSize);
-        vertices[1] = new Vector3(x * tileSize, 0.1f, (y + 1) * tileSize);
-        vertices[2] = new Vector3((x + 1) * tileSize, 0.1f, y * tileSize);
-        vertices[3] = new Vector3((x + 1) * tileSize, 0.1f, (y + 1) * tileSize);
-        int[] tris = new int[] { 0, 1, 2, 1, 3, 2 };
+        vertices[0] = new Vector3(0, 0.1f, tileSize);
+        vertices[1] = new Vector3(tileSize, 0.1f, tileSize);
+        vertices[2] = new Vector3(tileSize, 0.1f, 0);
+        vertices[3] = new Vector3(0, 0.1f, 0);
+        int[] tris = new int[] { 0, 1, 2, 0, 2, 3 };
         mesh.vertices = vertices;
         mesh.triangles = tris;
 
@@ -64,7 +70,7 @@ public class MapManager : Singleton<MapManager>
 
         tile.AddComponent<TileStatus>();
         tile.GetComponent<TileStatus>().isVisited = -1;
-        tile.GetComponent<TileStatus>().pos = new Vector2Int(x, y);
+        tile.GetComponent<TileStatus>().gridPos = new Vector2Int(x, y);
         tile.gameObject.isStatic = true;
         return tile;
     }
@@ -113,7 +119,7 @@ public class MapManager : Singleton<MapManager>
     }
     public Vector2Int GetTileIndex(GameObject hitInfo)
     {
-        Vector2Int tile = hitInfo.GetComponent<TileStatus>().pos;
+        Vector2Int tile = hitInfo.GetComponent<TileStatus>().gridPos;
         if (tiles.ContainsKey(tile) == hitInfo)
             return tile;
         return -Vector2Int.one;

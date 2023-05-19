@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum STATE
 {
-    CREATE, ACTION, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE, SEARCH, WANDER
+    CREATE, ACTION, INTERACT, MOVE, ATTACK, SKILL_CAST, GUARD_UP, IDLE, SEARCH, WANDER
 }
 
 public abstract class BattleState

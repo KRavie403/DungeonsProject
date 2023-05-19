@@ -25,13 +25,13 @@ public class Player : CharactorMovement
     }
     public void SettingPos()
     {
-        int x, y, step;
+        int x, y, step = 0;
         do
         {
             x = Random.Range(0, GetMMInst().rows);
             y = Random.Range(0, GetMMInst().columns);
-            
-            step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
+            if(GetMMInst().tiles.ContainsKey(new Vector2Int(x,y)))
+                step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
         } while (step == -5 || step == 0 );
 
 
@@ -63,10 +63,7 @@ public class Player : CharactorMovement
             case STATE.IDLE:
                 
                 break;
-
             case STATE.ACTION:
-                //추후 UI 조작과 연결
-
                 //임시
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
@@ -74,17 +71,9 @@ public class Player : CharactorMovement
                     ChangeState(STATE.GUARD_UP);
                 }
                 
-
                 break;
+            case STATE.INTERACT:
             case STATE.MOVE:
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    InitTileDistance();
-                    GetMMInst().InitLayer();
-                    ChangeState(_bfState);
-                }
-                break;
-
             case STATE.SKILL_CAST:
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
@@ -103,16 +92,15 @@ public class Player : CharactorMovement
         _curState = s;
         switch (_curState)
         {
-            case STATE.CREATE:
+            case STATE.ACTION:
+                gameObject.GetComponent<Picking>().enabled = false;
                 break;
 
             case STATE.IDLE:
                 gameObject.GetComponent<Picking>().enabled = false;
                 break;
-
-            case STATE.ACTION:
+            case STATE.INTERACT:
                 gameObject.GetComponent<Picking>().enabled = true;
-                //gameObject.GetComponent<Picking>().enabled = true;
                 break;
             case STATE.MOVE:
                 gameObject.GetComponent<Picking>().enabled = true;
@@ -127,11 +115,12 @@ public class Player : CharactorMovement
         OB_TYPES tmp = GetMMInst().tiles[tile].gameObject.GetComponent<TileStatus>().my_obj;
         switch (tmp)
         {
-            case OB_TYPES.NONE:
-                OnMoveByPath(tile);
+            case OB_TYPES.CHEST: 
+                UI_Manager.Inst.ChestUI.SetActive(true);
                 break;
-            case OB_TYPES.MONSTER:
-                OnAttack(tile);
+            case OB_TYPES.TELEPORT:
+                UI_Manager.Inst.TPUI.SetActive(true);
+
                 break;
             case OB_TYPES.PLAYER:
                 break;
@@ -176,7 +165,6 @@ public class Player : CharactorMovement
     {
         ChangeState(STATE.ATTACK);
         InitTileDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
     }
     public void OnSkilCastStart(SkillSet skill)
     {
@@ -184,7 +172,6 @@ public class Player : CharactorMovement
         ChangeState(STATE.SKILL_CAST);
         currSkill = skill;
         InitTileDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
     }
 
     public override void OnMove()
@@ -192,14 +179,17 @@ public class Player : CharactorMovement
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
     }
-    public void OnMoveByPath(Vector2Int tile)
+    public override void OnInteract()
     {
-        Debug.Log($"Target : {tile}");
+        ChangeState(STATE.INTERACT);
+    }
+    public void OnMoveByPath(List<TileStatus> path)
+    {
+        Debug.Log($"Target : {path}");
         Debug.Log($"Start : {Start_X},{Start_Y}");
 
-        MoveByPath(tile);
+        MoveByPath(path);
     }
 
     
