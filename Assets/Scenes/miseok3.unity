@@ -44285,6 +44285,7 @@ MonoBehaviour:
   - {fileID: 908350440}
   - {fileID: 401445260}
   - {fileID: 1148015026}
+  myObj: {fileID: 0}
   myPlayer: {fileID: 0}
 --- !u!1001 &1267586605
 PrefabInstance:
@@ -56485,7 +56486,7 @@ MonoBehaviour:
   characters: []
   Main_Cam: {fileID: 1337284519}
   curCharacter: 0
-  selectedChars: {fileID: 11400000, guid: ec82a85bfbe1bcd4bb1ed5207147fa30, type: 2}
+  selectedOrgChars: {fileID: 0}
   boss: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
   rows: 20
   columns: 20
