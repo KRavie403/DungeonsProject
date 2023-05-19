@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class Test_Instancing : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject orgObj;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        for(int i = 0; i < 100; ++i)
+        {
+            Instantiate(orgObj, new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f)), Quaternion.identity);
+        }
     }
 }
