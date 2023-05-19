@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fdf41a2940efdf54bae6ed50250f1237
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ChestSlotParent: {instanceID: 0}
+  - myInventory: {instanceID: 0}
+  - myItemDB: {fileID: 11400000, guid: 30f61b3b0cef5fa47b50483ded1b9637, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,7 +15,9 @@ public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
     private ItemSet _item;
 
     public DragItem myItem;
-    
+
+    [SerializeField]
+    public ItemSet.ItemGrade myItemGrade;
 
     public int index;
 
@@ -61,7 +63,7 @@ public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
         }
         newItem.ChageParent(transform);
     }
-
+    float Power;
     public void OnPointerClick(PointerEventData eventData)
     {
         myInventory.myObj = GetGmInst().characters[GetGmInst().curCharacter];
@@ -76,16 +78,28 @@ public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
             //index = int.Parse(myItem.gameObject.name) - 1;
             image.sprite = defaltSprite;
             image.color = new Color(1, 1, 1, 0);
+            switch (myItemGrade)
+            {
+                case ItemSet.ItemGrade.Rare:
+                    Power= myInventory.items[index].power*1.0f;
+                    break;
+                case ItemSet.ItemGrade.Epic:
+                    Power = myInventory.items[index].power * 2.0f;
+                    break;
+                case ItemSet.ItemGrade.Legendary:
+                    Power = myInventory.items[index].power * 3.0f;
+                    break;
+            }
             switch (myInventory.items[index].myType)
             {
                 case ItemSet.ItemType.Power:
                     Debug.Log("Power UP");
-                    myInventory.myPlayer.AttackPower += myInventory.items[index].power;
+                    myInventory.myPlayer.AttackPower += Power;
                     myInventory.DestroyItem(index);
                     break;
                 case ItemSet.ItemType.Armor:
                     Debug.Log("Defence UP");
-                    myInventory.myPlayer.DeffencePower += myInventory.items[index].power;
+                    myInventory.myPlayer.DeffencePower += Power;
                     myInventory.DestroyItem(index);
                     break;
             }

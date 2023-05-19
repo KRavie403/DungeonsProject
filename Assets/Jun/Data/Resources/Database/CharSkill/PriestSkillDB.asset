@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed66bbd37bc741f47862ed0b84bdeb58, type: 3}
+  m_Name: PriestSkillDB
+  m_EditorClassIdentifier: 
+  List:
+  - {fileID: 11400000, guid: 11d27ddc58410bd4795893697e5137af, type: 2}
+  - {fileID: 11400000, guid: 974c5547eb8891e4daed743fd5a8119b, type: 2}
+  - {fileID: 11400000, guid: 5d18511f6d05e9e45b52643a3a2b9fdc, type: 2}
+  - {fileID: 11400000, guid: 801be12b77ecae74eb250bf8e1aa254e, type: 2}
+  - {fileID: 11400000, guid: 281450170d1e9af46809b4a1d4200085, type: 2}
+  - {fileID: 11400000, guid: 436c6b5b075787f4bb58dd2f26af63c1, type: 2}
+  - {fileID: 11400000, guid: adb1b905ded89724bb323bc8c2f498d5, type: 2}
+  - {fileID: 11400000, guid: fb3efad1f9c31a549918dc08448caf52, type: 2}
