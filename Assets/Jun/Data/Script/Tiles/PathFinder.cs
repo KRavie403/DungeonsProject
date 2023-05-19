@@ -5,11 +5,13 @@ using UnityEngine;
 public class PathFinder : Singleton<PathFinder>
 {
     public List<TileStatus> openlist = new List<TileStatus>();
+    List<TileStatus> closeList = new List<TileStatus>();
 
     public List<TileStatus> FindPath(TileStatus start, TileStatus end)
     {
         openlist.Clear();
-        List<TileStatus> closeList = new List<TileStatus>();
+        closeList.Clear();
+
         openlist.Add(start);
         while (openlist.Count > 0)
         {
