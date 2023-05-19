@@ -14,6 +14,7 @@ public class CharcterSet : MonoBehaviour
     public GameObject ResetButton;
     public GameObject ApplyButton;
 
+    public GameObject ProfileImage;
     public Button[] skillButtonList;
 
     public SkillSetDB chosenSkillDB;
@@ -33,6 +34,7 @@ public class CharcterSet : MonoBehaviour
         ani = GetComponent<Animator>();
         skillDB = Resources.Load<SkillSetDB>($"Assets/Jun/Data/Resources/Database/CharSkill/{file[charIdx]}");
 
+        ProfileImage.gameObject.GetComponentInChildren<SpriteRenderer>().sprite = Resources.Load<Sprite>($"Assets/YooRim/Data/Resources/Profiles/Assassin.png");
         for (int i = 0; i < skillDB.List.Count; i++)
         {
             skillButtonList[i].gameObject.GetComponentInChildren<Image>().sprite = skillDB.List[i].MySprite;
