@@ -55,7 +55,7 @@ public class MapManager : Singleton<MapManager>
         tile.AddComponent<MeshRenderer>().material = tileMat;
 
         tile.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        tile.GetComponent<MeshRenderer>().receiveShadows = false    ;
+        tile.GetComponent<MeshRenderer>().receiveShadows = false;
         Vector3[] vertices = new Vector3[4];
         vertices[0] = new Vector3(0, 0.1f, tileSize);
         vertices[1] = new Vector3(tileSize, 0.1f, tileSize);
