@@ -25,23 +25,25 @@ public class Player : CharactorMovement
     }
     public void SettingPos()
     {
-        int x, y, step;
+        int x, y, step = 0;
         do
         {
-            x = Random.Range(0, GetGMInst().rows);
-            y = Random.Range(0, GetGMInst().columns);
-            step = GetGMInst().tiles[x, y].GetComponent<TileState>().isVisited;
+            x = Random.Range(0, GetMMInst().rows);
+            y = Random.Range(0, GetMMInst().columns);
+            if(GetMMInst().tiles.ContainsKey(new Vector2Int(x,y)))
+                step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
         } while (step == -5 || step == 0 );
 
 
         my_Pos = new Vector2Int(x, y);
 
-        float half = GameManager.Inst.scale * 0.5f;
+        float half = MapManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
-        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().my_obj = myType;
-        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().isVisited = 1;
-        GetGMInst().tiles[my_Pos.x, my_Pos.y].GetComponent<TileState>().SetTarget(this.gameObject);
+        GetMMInst().tiles[my_Pos].my_obj = myType;
+        GetMMInst().tiles[my_Pos].isVisited = 1;
+        GetMMInst().tiles[my_Pos].is_blocked = true;
+        GetMMInst().tiles[my_Pos].SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
     }
@@ -62,10 +64,7 @@ public class Player : CharactorMovement
             case STATE.IDLE:
                 
                 break;
-
             case STATE.ACTION:
-                //추후 UI 조작과 연결
-
                 //임시
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
@@ -73,22 +72,14 @@ public class Player : CharactorMovement
                     ChangeState(STATE.GUARD_UP);
                 }
                 
-
                 break;
+            case STATE.INTERACT:
             case STATE.MOVE:
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    InitTileDistance();
-                    GetGMInst().InitLayer();
-                    ChangeState(_bfState);
-                }
-                break;
-
             case STATE.SKILL_CAST:
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
                     InitTileDistance();
-                    GetGMInst().InitLayer();
+                    GetMMInst().InitLayer();
                     ChangeState(_bfState);
                 }
                 break;
@@ -102,16 +93,15 @@ public class Player : CharactorMovement
         _curState = s;
         switch (_curState)
         {
-            case STATE.CREATE:
+            case STATE.ACTION:
+                gameObject.GetComponent<Picking>().enabled = false;
                 break;
 
             case STATE.IDLE:
                 gameObject.GetComponent<Picking>().enabled = false;
                 break;
-
-            case STATE.ACTION:
+            case STATE.INTERACT:
                 gameObject.GetComponent<Picking>().enabled = true;
-                //gameObject.GetComponent<Picking>().enabled = true;
                 break;
             case STATE.MOVE:
                 gameObject.GetComponent<Picking>().enabled = true;
@@ -123,14 +113,15 @@ public class Player : CharactorMovement
   
     public void Picked(Vector2Int tile)
     {
-        OB_TYPES tmp = GetGMInst().tiles[tile.x, tile.y].GetComponent<TileState>().my_obj;
+        OB_TYPES tmp = GetMMInst().tiles[tile].gameObject.GetComponent<TileStatus>().my_obj;
         switch (tmp)
         {
-            case OB_TYPES.NONE:
-                OnMoveByPath(tile);
+            case OB_TYPES.CHEST: 
+                UI_Manager.Inst.ChestUI.SetActive(true);
                 break;
-            case OB_TYPES.MONSTER:
-                OnAttack(tile);
+            case OB_TYPES.TELEPORT:
+                UI_Manager.Inst.TPUI.SetActive(true);
+
                 break;
             case OB_TYPES.PLAYER:
                 break;
@@ -142,7 +133,7 @@ public class Player : CharactorMovement
         //애니메이션 재생 (casting end)
         //목표 회전
         Transform model = transform.Find("Model").GetComponent<Transform>();
-        Vector3 dir = new Vector3((target.x + GetGMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetGMInst().scale / 2.0f) * _mySize) - model.position;
+        Vector3 dir = new Vector3((target.x + GetMMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetMMInst().scale / 2.0f) * _mySize) - model.position;
         dir.Normalize();
         StopAllCoroutines();
         StartCoroutine(CastingSkill(dir, targets));
@@ -161,21 +152,20 @@ public class Player : CharactorMovement
         //애니메이션이 끝나고 실행
         foreach (var index in targets)
         {
-            GameObject target = GetGMInst().tiles[index.x, index.y].GetComponent<TileState>().OnMyTarget();
+            GameObject target = GetMMInst().tiles[index].gameObject.GetComponent<TileStatus>().OnMyTarget();
 
             if (target != null && target.GetComponent<BossMonster>() != null)
             {
                 target.GetComponent<BossMonster>().TakeDamage(10.0f);
             }
         }
-        GetGMInst().InitLayer();
+        GetMMInst().InitLayer();
         ChangeState(STATE.IDLE);
     }
     public void OnAttack(Vector2Int tile)
     {
         ChangeState(STATE.ATTACK);
         InitTileDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
     }
     public void OnSkilCastStart(SkillSet skill)
     {
@@ -183,7 +173,6 @@ public class Player : CharactorMovement
         ChangeState(STATE.SKILL_CAST);
         currSkill = skill;
         InitTileDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
     }
 
     public override void OnMove()
@@ -191,14 +180,17 @@ public class Player : CharactorMovement
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
-        gameObject.GetComponent<Picking>().enabled = true;
     }
-    public void OnMoveByPath(Vector2Int tile)
+    public override void OnInteract()
     {
-        Debug.Log($"Target : {tile}");
+        ChangeState(STATE.INTERACT);
+    }
+    public void OnMoveByPath(List<TileStatus> path)
+    {
+        Debug.Log($"Target : {path}");
         Debug.Log($"Start : {Start_X},{Start_Y}");
 
-        MoveByPath(tile);
+        MoveByPath(path);
     }
 
     

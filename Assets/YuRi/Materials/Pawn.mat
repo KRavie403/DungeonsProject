@@ -324,7 +324,7 @@ Material:
     - _Tweak_SystemShadowsLevel: 0
     - _Tweak_transparency: 0
     - _Unlit_Intensity: 1
-    - _Use_1stAs2nd: 0
+    - _Use_1stAs2nd: 1
     - _Use_BaseAs1st: 1
     - _WaveAmplitude: 0.5
     - _WaveIntensity: 0.15
@@ -340,12 +340,12 @@ Material:
     - _utsVersionY: 5
     - _utsVersionZ: 1
     m_Colors:
-    - _1st_ShadeColor: {r: 0.69085974, g: 0.70587844, b: 0.7075472, a: 1}
-    - _2nd_ShadeColor: {r: 0.35230508, g: 0.36162636, b: 0.3679245, a: 1}
+    - _1st_ShadeColor: {r: 0.028301895, g: 0.019357428, b: 0.019773757, a: 1}
+    - _2nd_ShadeColor: {r: 0.06510325, g: 0.08443842, b: 0.103773594, a: 1}
     - _AngelRing_Color: {r: 1, g: 1, b: 1, a: 1}
     - _Ap_RimLightColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.1509434, g: 0.12032752, b: 0.1239445, a: 1}
+    - _Color: {r: 0.15094337, g: 0.12032748, b: 0.12394447, a: 1}
     - _ColorShift: {r: 0, g: 0, b: 0, a: 1}
     - _DeepColor: {r: 0, g: 0.33333328, b: 0.8509804, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
