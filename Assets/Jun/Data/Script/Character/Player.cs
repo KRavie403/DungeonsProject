@@ -42,6 +42,7 @@ public class Player : CharactorMovement
 
         GetMMInst().tiles[my_Pos].my_obj = myType;
         GetMMInst().tiles[my_Pos].isVisited = 1;
+        GetMMInst().tiles[my_Pos].is_blocked = true;
         GetMMInst().tiles[my_Pos].SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
 

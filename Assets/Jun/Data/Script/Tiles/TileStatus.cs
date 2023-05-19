@@ -18,30 +18,6 @@ public class TileStatus : MonoBehaviour
     public OB_TYPES my_obj = OB_TYPES.NONE;
     public GameObject my_target = null;
 
-    public void OnTriggerEnter(Collider other)
-    {
-        //Debug.Log($"Enter : {other.gameObject.layer}");
-        //if (other.gameObject.layer == LayerMask.NameToLayer("Structures"))
-        //{
-        //    is_blocked = true;
-        //    isVisited = -100;
-        //}
-
-        if (other.gameObject.layer == LayerMask.NameToLayer("Teleport"))
-        {
-            my_obj = OB_TYPES.TELEPORT;
-            my_target = other.gameObject;
-            isVisited = -3;
-        }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Chest"))
-        {
-            my_obj = OB_TYPES.CHEST;
-            my_target = other.gameObject;
-            isVisited = -4;
-        }
-    }
-
-
     public void SetTarget(GameObject target)
     {
         my_target = target;
