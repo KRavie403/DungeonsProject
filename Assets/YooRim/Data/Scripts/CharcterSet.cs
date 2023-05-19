@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Sprites;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 
 public class CharcterSet : MonoBehaviour
@@ -14,31 +13,43 @@ public class CharcterSet : MonoBehaviour
     public GameObject ResetButton;
     public GameObject ApplyButton;
 
+    public GameObject ProfileImage;
     public Button[] skillButtonList;
 
+    public Character chosenDB;
     public SkillSetDB chosenSkillDB;
     public SkillSetDB skillDB;
 
     public TMP_Text countSkills;
+    public TMP_Text charName;
 
     private Animator ani;
 
     int charIdx = 0;
     int count = 0;
     string[] file = new string[7];
+    string[] profileImg = new string[7];
 
     // Start is called before the first frame update
     void Start()
     {
         ani = GetComponent<Animator>();
-        skillDB = Resources.Load<SkillSetDB>($"Assets/Jun/Data/Resources/Database/CharSkill/{file[charIdx]}");
 
-        for (int i = 0; i < skillDB.List.Count; i++)
+    }
+    void Setting()
+    {
+        Debug.Log("CHARIDX" + charIdx);
+        string path = "Database\\CharacterStatus\\" + file[charIdx];
+        UnityEngine.Object obj = Resources.Load(path);
+        chosenDB = obj as Character;
+
+        charName.text = chosenDB.Name;
+        ProfileImage.gameObject.GetComponentInChildren<Image>().sprite = chosenDB.Sprite;
+        for (int i = 0; i < chosenDB.Skill.List.Count; i++)
         {
-            skillButtonList[i].gameObject.GetComponentInChildren<Image>().sprite = skillDB.List[i].MySprite;
+            skillButtonList[i].gameObject.GetComponentInChildren<Image>().sprite = chosenDB.Skill.List[i].MySprite;
         }
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -50,29 +61,30 @@ public class CharcterSet : MonoBehaviour
         switch (idx)
         {
             case 0:
-                file[0] = "BerserkerSkillDB";
+                file[0] = "Berserker";
                 break;
             case 1:
-                file[1] = "PaladinSkillDB";
+                file[1] = "Paladin";
                 break;
             case 2:
-                file[2] = "GuardianSkillDB";
+                file[2] = "Guardian";
                 break;
             case 3:
-                file[3] = "RangerSkillDB";
+                file[3] = "Ranger";
                 break;
             case 4:
-                file[4] = "SorceressSkillDB";
+                file[4] = "Sorceress";
                 break;
             case 5:
-                file[5] = "AssassinSkillDB";
+                file[5] = "Assassin";
                 break;
             case 6:
-                file[6] = "PriestSkillDB";
+                file[6] = "Priest";
                 break;
             default:
                 break;
         }
+        Setting();
     }
     public void SkillSetting()
     {
