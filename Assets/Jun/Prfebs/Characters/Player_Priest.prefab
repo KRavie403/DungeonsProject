@@ -112,14 +112,6 @@ MonoBehaviour:
   pickMask:
     serializedVersion: 2
     m_Bits: 776
-  TP:
-    serializedVersion: 2
-    m_Bits: 8192
-  TPUI: {fileID: 0}
-  Chest:
-    serializedVersion: 2
-    m_Bits: 0
-  ChestUI: {fileID: 0}
   clickToMove:
     m_PersistentCalls:
       m_Calls:
@@ -268,7 +260,7 @@ Animator:
   m_GameObject: {fileID: 4655827475780125114}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4150761568dc8f044adafaee126f0482, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 92b57ccc4dc26a9488fa29991f9444e7, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
