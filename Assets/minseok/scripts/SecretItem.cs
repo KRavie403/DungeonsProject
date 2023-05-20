@@ -39,7 +39,8 @@ public class SecretItem : MonoBehaviour
         {
             for (int j = -3; j <= 3; j++)
             {
-                tiles.Add(MapManager.Inst.tiles[pos + new Vector2Int(i,j)]);
+                if(MapManager.Inst.tiles.ContainsKey(pos + new Vector2Int(i, j)))
+                    tiles.Add(MapManager.Inst.tiles[pos + new Vector2Int(i,j)]);
             }
         }
     }

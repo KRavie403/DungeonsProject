@@ -1,6 +1,15 @@
 fileFormatVersion: 2
-guid: 09d6060b257d090468e62dd8225a66b6
+<<<<<<< HEAD
+<<<<<<<< HEAD:Assets/YuRi/Base Modeling/Paladin.fbm.meta
+guid: 26a28dbed1144404db1d0a3fd729a165
 folderAsset: yes
+========
+guid: e8a3d3ea00a5e9e4c8b259968a7146ed
+>>>>>>>> origin/main:Assets/Scenes/Profiles.unity.meta
+=======
+guid: 3d16f53001f0d6449873f85e0b39ce31
+folderAsset: yes
+>>>>>>> origin/main
 DefaultImporter:
   externalObjects: {}
   userData: 

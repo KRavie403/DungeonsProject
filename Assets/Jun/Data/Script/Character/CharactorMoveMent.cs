@@ -18,13 +18,13 @@ public abstract class CharactorMovement : CharactorProperty
     protected int Start_X, Start_Y;
 
     Coroutine coMove = null;
-    List<TileStatus> path;
     virtual public void ChangeState(STATE s) { }
     public STATE GetState()
     {
         return _curState;
     }
     virtual public void OnMove() { }
+    virtual public void OnInteract() { }
     protected void InitTileDistance()
     {
         Vector2Int Start = my_Pos;
@@ -47,17 +47,16 @@ public abstract class CharactorMovement : CharactorProperty
     {
         StartCoroutine(Rotating(dir, done));
     }
-    protected void MoveByPath(Vector2Int tile, UnityAction done = null)
+    protected void MoveByPath(List<TileStatus> path = null, UnityAction done = null)
     {
         StopAllCoroutines();
 
-        path = PathFinder.Inst.GetPath();
         
         if (path != null)
             findPath = true;
 
         if (findPath)
-            StartCoroutine(MovingByPath(done));
+            StartCoroutine(MovingByPath(path, done));
 
     }
     bool CastDirectionTile(int x, int y, int step, Direction dir)
@@ -155,9 +154,11 @@ public abstract class CharactorMovement : CharactorProperty
         done?.Invoke();
 
     }
-    IEnumerator MovingByPath(UnityAction arrive = null)
+    IEnumerator MovingByPath(List<TileStatus> path, UnityAction arrive = null)
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
+        GetMMInst().tiles[my_Pos].is_blocked = false;
+
         Vector2Int dest_pos = my_Pos;
         for (int i = 0; i < path.Count;)
         {
@@ -186,6 +187,7 @@ public abstract class CharactorMovement : CharactorProperty
         my_Pos = dest_pos;
         GetMMInst().tiles[dest_pos].my_obj = OB_TYPES.PLAYER;
         GetMMInst().tiles[dest_pos].my_target = this.gameObject;
+        GetMMInst().tiles[dest_pos].is_blocked = true;
 
         //myAnim.SetFloat("Speed", 0);
         arrive?.Invoke();

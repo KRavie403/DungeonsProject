@@ -58,7 +58,10 @@ public class GameManager : Singleton<GameManager>
     {
         characters[curCharacter].GetComponent<Player>()?.OnMove();
     }
-
+    public void OnInteraction()
+    {
+        characters[curCharacter].GetComponent<Player>()?.OnInteract();
+    }
     public void ChangeTurn()
     {
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(STATE.IDLE);
@@ -78,8 +81,8 @@ public class GameManager : Singleton<GameManager>
     {
         if (characters[curCharacter].GetComponent<CharactorMovement>().myType == OB_TYPES.PLAYER)
         {
-            if (UI_Manager.Inst.currentSkillSet.List != null)
-                UI_Manager.Inst.currentSkillSet.List.Clear();
+            if (UI_Manager.Inst.currentSkillSet != null)
+                UI_Manager.Inst.currentSkillSet.Clear();
             UI_Manager.Inst.skill_Count = 0;
             foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
                 UI_Manager.Inst.AddSkills(skill);
