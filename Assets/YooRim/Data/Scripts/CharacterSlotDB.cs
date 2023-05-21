@@ -47,7 +47,6 @@ public class CharacterSlotDB : MonoBehaviour
 
     public void ChooseCharacters(int idx)
     {
-
         if (chosenDB.characterList.Count < 4)
         {
             charSet.SendIdx(idx);

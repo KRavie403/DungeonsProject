@@ -18,7 +18,7 @@ public class CharcterSet : MonoBehaviour
 
     public Character chosenDB;
     public SkillSetDB chosenSkillDB;
-    public SkillSetDB skillDB;
+    public SkillSetDB tempChosenSkillDB;
 
     public TMP_Text countSkills;
     public TMP_Text charName;
@@ -34,14 +34,19 @@ public class CharcterSet : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
-
-    }
-    void Setting()
-    {
-        Debug.Log("CHARIDX" + charIdx);
+        tempChosenSkillDB.List.Clear();
         string path = "Database\\CharacterStatus\\" + file[charIdx];
         UnityEngine.Object obj = Resources.Load(path);
         chosenDB = obj as Character;
+    }
+    void Setting()
+    {
+        foreach (var item in skillButtonList)
+        {
+            item.interactable = true;
+        }
+        count = 0;
+        Debug.Log("CHARIDX" + charIdx);
 
         charName.text = chosenDB.Name;
         ProfileImage.gameObject.GetComponentInChildren<Image>().sprite = chosenDB.Sprite;
@@ -100,6 +105,10 @@ public class CharcterSet : MonoBehaviour
         if (count == 4)
         {
             this.gameObject.SetActive(false);
+            foreach(var temp in tempChosenSkillDB.List)
+            {
+                chosenSkillDB.List.Add(temp);
+            }
             CharacterSlotDB.cdb.ChosenCharacterButtonsActive(charIdx);
             CharacterSlotDB.cdb.DeactiveCharacters(charIdx);
         }
@@ -109,12 +118,12 @@ public class CharcterSet : MonoBehaviour
         }
     }
 
-    public void SetSkillList()
+    public void SetSkillList(int idx)
     {
-        if (chosenSkillDB.List.Count < 16)
+        if(chosenSkillDB.List.Count < 16 && tempChosenSkillDB.List.Count < 4)
         {
-            chosenSkillDB.List.Add(skillDB.List[charIdx]);
-            chosenSkillDB.List = skillDB.List.Distinct().ToList();
+            tempChosenSkillDB.List.Add(chosenDB.Skill.List[idx]);
+            tempChosenSkillDB.List = chosenDB.Skill.List.Distinct().ToList();
         }
     }
 

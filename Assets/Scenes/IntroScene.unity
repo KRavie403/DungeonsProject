@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1273174, g: 0.13414761, b: 0.12107885, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10209,7 +10209,7 @@ GameObject:
   - component: {fileID: 1088710862}
   - component: {fileID: 1088710861}
   m_Layer: 5
-  m_Name: Image1
+  m_Name: Image1(Mask)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11954,6 +11954,7 @@ GameObject:
   - component: {fileID: 1270108357}
   - component: {fileID: 1270108356}
   - component: {fileID: 1270108359}
+  - component: {fileID: 1270108360}
   m_Layer: 5
   m_Name: Character Skill Set
   m_TagString: Untagged
@@ -12053,8 +12054,8 @@ MonoBehaviour:
   - {fileID: 1915989013716211429}
   - {fileID: 8150648383600684646}
   chosenDB: {fileID: 0}
-  chosenSkillDB: {fileID: 11400000, guid: 315da2a20aa593c41b73a42b1f7e642a, type: 2}
-  skillDB: {fileID: 0}
+  chosenSkillDB: {fileID: 11400000, guid: 9a788f47b515b3f4ca4948d3aff6b274, type: 2}
+  tempChosenSkillDB: {fileID: 11400000, guid: 315da2a20aa593c41b73a42b1f7e642a, type: 2}
   countSkills: {fileID: 8073427188001176187}
   charName: {fileID: 386855472}
 --- !u!114 &1270108359
@@ -12072,6 +12073,27 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 27.53, y: 18.46}
   m_UseGraphicAlpha: 1
+--- !u!95 &1270108360
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270108354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd8fa0f674d8b2c4088e600726775f93, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1282341185
 GameObject:
   m_ObjectHideFlags: 0
@@ -17246,7 +17268,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -17280,6 +17302,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19841,7 +19875,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -19875,6 +19909,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20152,7 +20198,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -20186,6 +20232,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20465,7 +20523,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6622916708124951197}
   - component: {fileID: 3383008186662112308}
-  - component: {fileID: 8572614933706545160}
   m_Layer: 5
   m_Name: CountSkills
   m_TagString: Untagged
@@ -20516,7 +20573,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -20550,6 +20607,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20890,7 +20959,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -20924,6 +20993,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21558,7 +21639,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -21592,6 +21673,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22159,7 +22252,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -22193,6 +22286,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23370,7 +23475,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.3882353, g: 0.34509805, b: 0.34509805, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 0.49803922}
+    m_DisabledColor: {r: 0.1792453, g: 0.14457993, b: 0.14457993, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -23404,6 +23509,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1270108358}
         m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
         m_MethodName: DeactiveSkills
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1270108358}
+        m_TargetAssemblyTypeName: CharcterSet, Assembly-CSharp
+        m_MethodName: SetSkillList
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23457,27 +23574,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7303559600588898051}
   m_CullTransparentMesh: 1
---- !u!95 &8572614933706545160
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2907515070609613315}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dd8fa0f674d8b2c4088e600726775f93, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8579881140890494986
 GameObject:
   m_ObjectHideFlags: 0
