@@ -79,11 +79,11 @@ public class Picking : MonoBehaviour
                         {
                             if (MapManager.Inst.tiles[hitPos].gameObject.GetComponent<TileStatus>().my_obj == OB_TYPES.TELEPORT)
                             {
-                                Create_obj_System.main_obj_create.TPtarget(hit.transform);
+                                Create_obj_System.Inst.TPtarget(hit.transform);
                             }
                             if (MapManager.Inst.tiles[hitPos].gameObject.GetComponent<TileStatus>().my_obj == OB_TYPES.CHEST)
                             {
-                                Create_obj_System.main_obj_create.Chesttarget(hit.transform);
+                                Create_obj_System.Inst.Chesttarget(hit.transform);
                             }
                             clickToInteract?.Invoke(hitPos);
                         }
