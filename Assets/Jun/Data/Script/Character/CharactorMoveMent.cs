@@ -231,7 +231,6 @@ public abstract class CharactorMovement : CharactorProperty
     }
     public void TakeDamage(float dmg)
     {
-        //
         curHP -= dmg;
         Debug.Log($"Get Damage, Current HP : {curHP}");
     }
@@ -246,10 +245,8 @@ public abstract class CharactorMovement : CharactorProperty
     }
     IEnumerator GuardUpCast()
     {
-        //�ִϸ��̼� ����
         yield return new WaitForSeconds(2.0f);
         GetGMInst().ChangeTurn();
     }
-
 }
 

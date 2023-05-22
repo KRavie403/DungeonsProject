@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
-public class Player : CharactorMovement, IBattle
+public class Player : Battle
 {
 
     public SkillSet currSkill = null;
@@ -119,7 +117,6 @@ public class Player : CharactorMovement, IBattle
                 break;
             case OB_TYPES.TELEPORT:
                 UI_Manager.Inst.TPUI.SetActive(true);
-
                 break;
             case OB_TYPES.PLAYER:
                 break;
@@ -146,20 +143,16 @@ public class Player : CharactorMovement, IBattle
         }
 
         //애니메이션 재생 (action start)
+        StartCoroutine(Damaging(currSkill.Effect, currSkill.Damage, targets));
+
 
         //애니메이션이 끝나고 실행
-        foreach (var index in targets)
-        {
-            GameObject target = GetMMInst().tiles[index].gameObject.GetComponent<TileStatus>().OnMyTarget();
-
-            if (target != null && target.GetComponent<BossMonster>() != null)
-            {
-                target.GetComponent<BossMonster>().TakeDamage(10.0f);
-            }
-        }
         GetMMInst().InitLayer();
         ChangeState(STATE.IDLE);
     }
+    
+
+
     public void OnAttack(Vector2Int tile)
     {
         ChangeState(STATE.ATTACK);
