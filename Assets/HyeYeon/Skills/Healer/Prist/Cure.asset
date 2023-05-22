@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Cure
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 1
   _sprite: {fileID: 21300000, guid: 46532051285b31d4d9d6cc9328bc3bdd, type: 3}
   _damage: 0
-  _effect: {fileID: 0}
+  _effect: {fileID: 7584578495231632141, guid: 488773a91333a434b8b3370f7fe7e8c2, type: 3}
   AttackIndex:
   - {x: -7, y: 7}
   - {x: -6, y: 7}
@@ -241,3 +241,4 @@ MonoBehaviour:
   - {x: 5, y: -7}
   - {x: 6, y: -7}
   - {x: 7, y: -7}
+  _distance: 5

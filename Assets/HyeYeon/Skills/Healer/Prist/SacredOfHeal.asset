@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: SacredOfHeal
   m_EditorClassIdentifier: 
-  _type: 3
+  _type: 1
   _sprite: {fileID: 21300000, guid: 3bd3c8dc87104ea459be09d6750d1029, type: 3}
   _damage: 0
-  _effect: {fileID: 0}
+  _effect: {fileID: 7973380007119544672, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
   AttackIndex:
   - {x: -5, y: 5}
   - {x: -4, y: 5}
@@ -137,3 +137,4 @@ MonoBehaviour:
   - {x: 3, y: -5}
   - {x: 4, y: -5}
   - {x: 5, y: -5}
+  _distance: 5

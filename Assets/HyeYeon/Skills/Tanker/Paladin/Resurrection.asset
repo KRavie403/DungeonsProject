@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Resurrection
   m_EditorClassIdentifier: 
-  _type: 3
+  _type: 2
   _sprite: {fileID: 21300000, guid: 82fb870fae6434a499a293c05ebdcd4c, type: 3}
   _damage: -1
-  _effect: {fileID: 0}
+  _effect: {fileID: 3293440752789046805, guid: b9e4eed730f50534492f3d78651b0f89, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
+  _distance: 5

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Madness
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 2
   _sprite: {fileID: 21300000, guid: 6b4f87b4ace4bf248aef5dcdd0873ddf, type: 3}
   _damage: 0
-  _effect: {fileID: 0}
+  _effect: {fileID: 4660421582378653366, guid: e78b0715bdc89f14392618521c89b4ad, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
+  _distance: 5
