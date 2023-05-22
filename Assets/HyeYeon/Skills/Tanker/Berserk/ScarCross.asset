@@ -16,4 +16,28 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: bcc00d8b5e2809140b893ec5926b3f7a, type: 3}
   _damage: 32
   _effect: {fileID: 0}
-  AttackIndex: []
+  AttackIndex:
+  - {x: -2, y: 2}
+  - {x: -1, y: 2}
+  - {x: 0, y: 2}
+  - {x: 1, y: 2}
+  - {x: 2, y: 2}
+  - {x: -2, y: 1}
+  - {x: -1, y: 1}
+  - {x: 0, y: 1}
+  - {x: 1, y: 1}
+  - {x: 2, y: 1}
+  - {x: -2, y: 0}
+  - {x: -1, y: 0}
+  - {x: 1, y: 0}
+  - {x: 2, y: 0}
+  - {x: -2, y: -1}
+  - {x: -1, y: -1}
+  - {x: 0, y: -1}
+  - {x: 1, y: -1}
+  - {x: 2, y: -1}
+  - {x: -2, y: -2}
+  - {x: -1, y: -2}
+  - {x: 0, y: -2}
+  - {x: 1, y: -2}
+  - {x: 2, y: -2}
