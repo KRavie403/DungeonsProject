@@ -42,7 +42,9 @@ public class BossMonster : CharactorMovement
                 {
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = -2;
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
+
                 }
             }
         }
@@ -85,6 +87,14 @@ public class BossMonster : CharactorMovement
     }
     public override void OnMove()
     {
+        for (int i = 0; i <= 1; i++)
+        {
+            for (int j = 0; j <= 1; j++)
+            {
+                if (MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(i, j)))
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
+            }
+        }
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
