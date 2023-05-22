@@ -1,35 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public interface IBattle
+public abstract class Battle : CharactorMovement
 {
-    public IEnumerator Damaging(GameObject effect, float damage ,List<Vector2Int> Indexs)
+    protected IEnumerator Damaging(GameObject effect, float damage ,Vector2Int[] Indexs)
     {
-        List<GameObject> targets = new List<GameObject>();
+        //effect Àç»ý
+        Dictionary<GameObject, OB_TYPES> targets = new Dictionary<GameObject, OB_TYPES>();
         foreach(var i in Indexs)
         {
             GameObject target = MapManager.Inst.tiles[i].GetComponent<TileStatus>().my_target;
-            if(!targets.Contains(target))
-                targets.Add(target);
+            Instantiate(effect, MapManager.Inst.tiles[i].transform);
+
+            if (target != null && !targets.ContainsKey(target))
+                targets.Add(target, target.GetComponent<CharactorProperty>().myType);
         }
-        foreach(GameObject target in targets)
+        foreach(var target in targets)
         {
-            var p = target.GetComponent<Player>().IsUnityNull();
+            if (target.Key != null)
+            {
+                if (target.Value == OB_TYPES.MONSTER && myType == OB_TYPES.PLAYER)
+                {
+                    target.Key.GetComponent<BossMonster>().TakeDamage(damage);
+
+                }
+                else if (target.Value == OB_TYPES.PLAYER && myType == OB_TYPES.MONSTER)
+                {
+                    target.Key.GetComponent<Player>().TakeDamage(damage);
+
+                }
+            }
         }
 
         yield return null;
     }
-    public IEnumerator StatModifiring(GameObject effect, StatModifire statm, List<Vector2Int> Indexs) 
+    protected IEnumerator StatModifiring(GameObject effect, StatModifire statm, Vector2Int[] Indexs) 
     {
        
         yield return null;
     }
 
 
-    public IEnumerator ActionPointDraining(GameObject effect, List<Vector2Int> Indexs)
+    protected IEnumerator ActionPointDraining(GameObject effect, Vector2Int[] Indexs)
     {
 
         yield return null;

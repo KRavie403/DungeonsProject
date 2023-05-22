@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class BossMonster : CharactorMovement
+public class BossMonster : Battle
 {
     // Start is called before the first frame update
     public Slider _bossHPUI;
@@ -130,9 +130,7 @@ public class BossMonster : CharactorMovement
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
         //애니메이션 재생 (casting end)
-        //목표 회전
-        Vector3 dir = new Vector3((target.x + MapManager.Inst.scale / 2.0f) * _mySize, transform.position.y, (target.y + MapManager.Inst.scale / 2.0f) * _mySize) - transform.position;
-        StartCoroutine(CastingSkill(dir, targets));
+        StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
     {

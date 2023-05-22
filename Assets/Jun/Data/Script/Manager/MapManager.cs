@@ -114,7 +114,8 @@ public class MapManager : Singleton<MapManager>
             return false;
         if (pos.y >= rows || pos.y < 0)
             return false;
-
+        if (!Inst.tiles.ContainsKey(pos))
+            return false;
         return true;
     }
     public Vector2Int GetTileIndex(GameObject hitInfo)

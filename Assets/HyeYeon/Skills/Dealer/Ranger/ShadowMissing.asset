@@ -16,4 +16,5 @@ MonoBehaviour:
   _sprite: {fileID: 21300000, guid: c4c1307abbeb97c45940e6ea93df64d0, type: 3}
   _damage: 0
   _effect: {fileID: 0}
-  AttackIndex: []
+  AttackIndex:
+  - {x: 0, y: 0}
