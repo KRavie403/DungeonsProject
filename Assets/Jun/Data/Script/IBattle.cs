@@ -4,7 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public abstract class IBattle
+public interface IBattle
 {
     public IEnumerator Damaging(GameObject effect, float damage ,List<Vector2Int> Indexs)
     {

@@ -38,6 +38,7 @@ public class CharacterSlotDB : MonoBehaviour
         {
             chosenCharTextList[i].text = "0";
         }
+        count = 0;
 }
 
     private void Update()
