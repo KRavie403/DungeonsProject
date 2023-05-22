@@ -30,4 +30,7 @@ public class SkillSet : ScriptableObject
     private int _distance = 5;
     public int Distance { get { return _distance; } }
 
+    [SerializeField]
+    private int _cost = 1;
+    public int Cost { get { return _cost; } }
 }

@@ -229,11 +229,7 @@ public abstract class CharactorMovement : CharactorProperty
     {
 
     }
-    public void TakeDamage(float dmg)
-    {
-        curHP -= dmg;
-        Debug.Log($"Get Damage, Current HP : {curHP}");
-    }
+    protected virtual void TakeDamage(float dmg) { }
     protected void Guard()
     {
         if (coMove != null)

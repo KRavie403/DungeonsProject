@@ -22,6 +22,7 @@ public class UI_Manager : Singleton<UI_Manager>
     public GameObject char_Frame;
     public GameObject TPUI;
     public GameObject ChestUI;
+    public GameObject MonsterUI;
 
     public Transform TurnSystem;
     public List<SSkill> currentSkillSet;
