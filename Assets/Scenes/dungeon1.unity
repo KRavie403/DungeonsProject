@@ -271,7 +271,7 @@ Transform:
   - {fileID: 1094222956}
   - {fileID: 1964681719}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &44876658
 GameObject:
@@ -784,7 +784,7 @@ Transform:
   - {fileID: 1497668701}
   - {fileID: 1482817929}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &210662639
 GameObject:
@@ -2784,7 +2784,7 @@ Transform:
   - {fileID: 1160524208}
   - {fileID: 738211690}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &844295308
 GameObject:
@@ -3233,7 +3233,7 @@ Transform:
   - {fileID: 5268575204820817514}
   - {fileID: 3754305808528879651}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &871385170
 GameObject:
@@ -3782,7 +3782,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -2.531, y: 46.915, z: 0}
 --- !u!114 &963194231
 MonoBehaviour:
@@ -6624,7 +6624,7 @@ Transform:
   - {fileID: 1396656617}
   - {fileID: 2095656774}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1528781969
 GameObject:
@@ -37265,63 +37265,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &3225253401091619586
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3753201091190490483, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7973380007119544672, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
-      propertyPath: m_Name
-      value: "\uC138\uD06C\uB9AC\uB4DC\uC624\uBE0C\uD790"
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8990dc2937e224b46a083abd6f7a4e80, type: 3}
 --- !u!23 &3255395725871116281
 MeshRenderer:
   m_ObjectHideFlags: 0
