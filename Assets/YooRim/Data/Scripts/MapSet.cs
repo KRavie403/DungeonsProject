@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Windows;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -7,11 +9,15 @@ using TMPro;
 public class MapSet : MonoBehaviour
 {
     public GameObject CharacterSet;
+    public GameObject Caution;
+    public CharacterDB currentCharacterDB;
+
+    private Animator ani;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,10 +34,18 @@ public class MapSet : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("MainGameScene");
-        this.gameObject.SetActive(false); //스테이지 비활
+        if(currentCharacterDB.characterList.Count < 4)
+        {
+            Caution.SetActive(true);
+            ani.SetTrigger("warning");
+            Caution.SetActive(false);
+        }
+        else
+        {
+            SceneManager.LoadScene("MainGameScene");
+            this.gameObject.SetActive(false); //스테이지 비활
+        }
     }
-
 }
 
 

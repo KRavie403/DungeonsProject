@@ -15,7 +15,7 @@ MonoBehaviour:
   _type: 2
   _sprite: {fileID: 21300000, guid: e8393a65dacbb78478b346104a8c9c44, type: 3}
   _damage: 7
-  _effect: {fileID: 0}
+  _effect: {fileID: 3536181103569538454, guid: 2870f42d349c22c40bfdcad03b344484, type: 3}
   AttackIndex:
   - {x: 0, y: 1}
   - {x: 0, y: 2}
@@ -67,3 +67,4 @@ MonoBehaviour:
   - {x: 0, y: 48}
   - {x: 0, y: 49}
   - {x: 0, y: 50}
+  _distance: 5
