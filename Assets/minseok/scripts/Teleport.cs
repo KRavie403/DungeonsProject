@@ -12,6 +12,8 @@ public class Teleport : MonoBehaviour
     void Start()
     {
         //Create_obj_System.main_teleport.teleporters.Add(this);
+        
+
         Setting();
     }
     void Update()
@@ -95,9 +97,17 @@ public class Teleport : MonoBehaviour
                     continue;
                 }
                 Vector2Int newPos = pos + new Vector2Int(i, j);
-                if(MapManager.Inst.tiles.ContainsKey(newPos))
+                if (MapManager.Inst.tiles.ContainsKey(newPos))
+                {
+                    MapManager.Inst.tiles[newPos].my_obj = OB_TYPES.TELEPORT;
+                    MapManager.Inst.tiles[newPos].my_target = this.gameObject;
+                    MapManager.Inst.tiles[newPos].is_blocked = true;
                     tiles.Add(MapManager.Inst.tiles[newPos]);
+                }
             }
         }
+        
+            
+
     }
 }

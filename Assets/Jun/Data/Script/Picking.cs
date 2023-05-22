@@ -41,6 +41,7 @@ public class Picking : MonoBehaviour
             STATE _curState = this.GetComponent<CharactorMovement>().GetState(); //플레이어에 열거형에있는 STATE값을가져옴
             if (_curState == STATE.MOVE) //플레이어상태가 MOVE상태라면 실행 (E키누르면 Player스크립트로 인해 무브로바뀜)
             {
+                pos = GetComponent<CharactorMovement>().my_Pos;
                 Vector2Int hitPos = MapManager.Inst.GetTileIndex(hit.transform.gameObject);
                 TileStatus start = MapManager.Inst.tiles[pos];
                 TileStatus end = MapManager.Inst.tiles[hitPos];
@@ -78,11 +79,11 @@ public class Picking : MonoBehaviour
                         {
                             if (MapManager.Inst.tiles[hitPos].gameObject.GetComponent<TileStatus>().my_obj == OB_TYPES.TELEPORT)
                             {
-                                Create_obj_System.main_obj_create.TPtarget(hit.transform);
+                                Create_obj_System.Inst.TPtarget(hit.transform);
                             }
                             if (MapManager.Inst.tiles[hitPos].gameObject.GetComponent<TileStatus>().my_obj == OB_TYPES.CHEST)
                             {
-                                Create_obj_System.main_obj_create.Chesttarget(hit.transform);
+                                Create_obj_System.Inst.Chesttarget(hit.transform);
                             }
                             clickToInteract?.Invoke(hitPos);
                         }
@@ -203,7 +204,8 @@ public class Picking : MonoBehaviour
         {
             if (currentHover != -Vector2Int.one)
             {
-                MapManager.Inst.tiles[currentHover].gameObject.layer = 3;
+                if(MapManager.Inst.tiles.ContainsKey(currentHover))
+                    MapManager.Inst.tiles[currentHover].gameObject.layer = 3;
                 currentHover = -Vector2Int.one;
             }
         }
