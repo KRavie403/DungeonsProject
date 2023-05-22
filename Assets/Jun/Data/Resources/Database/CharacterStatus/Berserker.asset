@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: "\uBCA0\uB974\uC138\uB974\uD06C"
   _damage: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 8247ff8aa82f0d244a225fee83e01fd5, type: 3}
   _class: 1
   _maxHP: 100
   _attackPower: 10

@@ -53,6 +53,11 @@ public class UI_Manager : Singleton<UI_Manager>
         skill._damage = _set.Damage;
         skill._type = _set.myType;
         skill._AttackIndex = _set.AttackIndex;
+        if (skill_Count < skillSlots.Count)
+        {
+            skillSlots[skill_Count].GetComponent<Image>().sprite = _set.MySprite;
+            skillSlots[skill_Count].GetComponentInChildren<SkillSlot>()._my_skill = _set;
+        }
         currentSkillSet.Add(skill);
         skill_Count++;
     }

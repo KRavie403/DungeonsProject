@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/YuRi/Animation/Assassin@Idle.fbx.meta
+guid: 4727d716093d68f46af92afc8c33a9fe
+========
 guid: 7a41db306d0f2b44aa9b4c2cf8489ac6
+>>>>>>>> origin/main:Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Models/Ring_01.fbx.meta
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []

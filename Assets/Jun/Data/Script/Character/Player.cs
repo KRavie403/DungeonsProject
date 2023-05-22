@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using static UnityEngine.GraphicsBuffer;
 
-public class Player : CharactorMovement
+public class Player : CharactorMovement, IBattle
 {
 
     public SkillSet currSkill = null;
@@ -18,9 +18,10 @@ public class Player : CharactorMovement
         speed = data.Speed;
         ActionPoint = data.ActionPoint;
         skilList.Clear();
-        if(data.Skill != null)
-            foreach (var skill in data.Skill.List)
-                skilList.Add(skill);
+
+        //선택된 스킬 리스트 입력 필요 
+        foreach (var skill in data.Skill.List)
+            skilList.Add(skill);
         SettingPos();
     }
     public void SettingPos()
@@ -42,11 +43,15 @@ public class Player : CharactorMovement
 
         GetMMInst().tiles[my_Pos].my_obj = myType;
         GetMMInst().tiles[my_Pos].isVisited = 1;
+        GetMMInst().tiles[my_Pos].is_blocked = true;
         GetMMInst().tiles[my_Pos].SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
     }
-    // Update is called once per frame
+    void Start()
+    {
+    }
+
     void Update()
     {
         StateProcess();
@@ -61,7 +66,6 @@ public class Player : CharactorMovement
                 break;
 
             case STATE.IDLE:
-                
                 break;
             case STATE.ACTION:
                 //임시
@@ -93,18 +97,13 @@ public class Player : CharactorMovement
         switch (_curState)
         {
             case STATE.ACTION:
-                gameObject.GetComponent<Picking>().enabled = false;
-                break;
-
             case STATE.IDLE:
                 gameObject.GetComponent<Picking>().enabled = false;
                 break;
             case STATE.INTERACT:
-                gameObject.GetComponent<Picking>().enabled = true;
-                break;
             case STATE.MOVE:
+            case STATE.SKILL_CAST:
                 gameObject.GetComponent<Picking>().enabled = true;
-
                 break;
 
         }

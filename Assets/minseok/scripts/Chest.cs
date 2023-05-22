@@ -86,10 +86,15 @@ public class Chest : MonoBehaviour
                 {
                     continue;
                 }
-                
+
                 Vector2Int newPos = pos + new Vector2Int(i, j);
-                if(MapManager.Inst.tiles.ContainsKey(newPos))
+                if (MapManager.Inst.tiles.ContainsKey(newPos))
+                {
+                    MapManager.Inst.tiles[newPos].my_obj = OB_TYPES.TELEPORT;
+                    MapManager.Inst.tiles[newPos].my_target = this.gameObject;
+                    MapManager.Inst.tiles[newPos].is_blocked = true;
                     tiles.Add(MapManager.Inst.tiles[newPos]);
+                }
             }
         }
     }
