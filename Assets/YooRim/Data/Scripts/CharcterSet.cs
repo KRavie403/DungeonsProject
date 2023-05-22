@@ -35,9 +35,9 @@ public class CharcterSet : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         tempChosenSkillDB.List.Clear();
-        string path = "Database\\CharacterStatus\\" + file[charIdx];
-        UnityEngine.Object obj = Resources.Load(path);
-        chosenDB = obj as Character;
+        chosenSkillDB.List.Clear();
+
+
     }
     void Setting()
     {
@@ -48,6 +48,9 @@ public class CharcterSet : MonoBehaviour
         count = 0;
         Debug.Log("CHARIDX" + charIdx);
 
+        string path = "Database\\CharacterStatus\\" + file[charIdx];
+        UnityEngine.Object obj = Resources.Load(path);
+        chosenDB = obj as Character;
         charName.text = chosenDB.Name;
         ProfileImage.gameObject.GetComponentInChildren<Image>().sprite = chosenDB.Sprite;
         for (int i = 0; i < chosenDB.Skill.List.Count; i++)
@@ -122,8 +125,9 @@ public class CharcterSet : MonoBehaviour
     {
         if(chosenSkillDB.List.Count < 16 && tempChosenSkillDB.List.Count < 4)
         {
-            tempChosenSkillDB.List.Add(chosenDB.Skill.List[idx]);
-            tempChosenSkillDB.List = chosenDB.Skill.List.Distinct().ToList();
+            SkillSet temp = chosenDB.Skill.List[idx];
+            tempChosenSkillDB.List.Add(temp);
+            tempChosenSkillDB.List = tempChosenSkillDB.List.Distinct().ToList();
         }
     }
 
