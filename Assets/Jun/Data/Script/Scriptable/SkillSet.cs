@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SkillData", menuName = "ScriptableObjects/Skillset", order = 1)]
 public class SkillSet : ScriptableObject
 {
-    public enum SkillType  {Buff, MoveAttack, DirectAttack, Heal }
+    public enum SkillType  {Moveable, Targeting, Directing }
     [SerializeField]
     private SkillType _type;
     public SkillType myType { get { return _type; } }
@@ -26,5 +26,8 @@ public class SkillSet : ScriptableObject
     [SerializeField]
     public List<Vector2Int> AttackIndex;
 
-    
+    [SerializeField]
+    private int _distance = 5;
+    public int Distance { get { return _distance; } }
+
 }

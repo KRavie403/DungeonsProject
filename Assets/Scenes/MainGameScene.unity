@@ -96624,6 +96624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f6a3f32c4ceae41a6bd4e633642d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Obj_Count: 20
   TeleportObj: {fileID: 1203873298855349869, guid: 3fce741d14b9a40469c193be62e01ffc, type: 3}
   ChestObj: {fileID: 8846000833825839585, guid: 828891605c3699a45b021620cb666480, type: 3}
   TPUI: {fileID: 190225897}

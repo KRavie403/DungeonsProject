@@ -70,7 +70,7 @@ public class Picking : MonoBehaviour
             }
             if (_curState == STATE.INTERACT)
             {
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonUp(0))
                     {
                         Vector2Int hitPos = MapManager.Inst.GetTileIndex(hit.transform.gameObject);
 
@@ -114,7 +114,7 @@ public class Picking : MonoBehaviour
             if (_curState == STATE.SKILL_CAST)
             {
 
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonUp(0))
                 {
                     if ((1 << hit.transform.gameObject.layer & pickMask) != 0)
                     {
@@ -124,79 +124,120 @@ public class Picking : MonoBehaviour
                 }
                 else
                 {
-                    if(curTargets != null)
+                    SkillSet.SkillType type = GetComponent<Player>().currSkill.myType;
+                    if (curTargets != null)
                     {
-                        foreach(var init in curTargets)
+                        foreach (var init in curTargets)
                         {
                             MapManager.Inst.InitTarget(init);
                         }
                     }
-                    //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
+                    curTargets.Clear();
                     Vector3 pPos = this.transform.position;
                     Vector3 dir = hit.point - pPos;
                     dir.Normalize();
                     int is_front = 1;
                     float dot = Vector3.Dot(Vector3.forward, dir);
-                    float angle= Vector3.Angle(Vector3.right, dir);
+                    float angle = Vector3.Angle(Vector3.right, dir);
 
-
-                    if (dot < 0) 
-                        is_front = -1;
-                    if(angle <= 45.0f)
+                    switch (type)
                     {
-                        //right
-                        targetPos = GetComponent<Player>().my_Pos + new Vector2Int(1, 0);
-                        foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
-                        {
-                            Vector2Int tmp = GetComponent<Player>().my_Pos + new Vector2Int(v.y, v.x);
-
-                            if (MapManager.Inst.CheckIncludedIndex(tmp))
+                        case SkillSet.SkillType.Directing:
                             {
-                                curTargets.Add(tmp);
-                                MapManager.Inst.tiles[tmp].gameObject.layer = 8;
+                                
+                                //Debug.Log(GB.GetTileIndex(hit.transform.gameObject));
+                                
+
+                                if (dot < 0)
+                                    is_front = -1;
+                                if (angle <= 45.0f)
+                                {
+                                    //right
+                                    targetPos = GetComponent<Player>().my_Pos + new Vector2Int(1, 0);
+                                    foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
+                                    {
+                                        Vector2Int tmp = GetComponent<Player>().my_Pos + new Vector2Int(v.y, v.x);
+
+                                        if (MapManager.Inst.CheckIncludedIndex(tmp))
+                                        {
+                                            curTargets.Add(tmp);
+                                            MapManager.Inst.tiles[tmp].gameObject.layer = 8;
+                                        }
+                                    }
+                                }
+                                else if (angle <= 135.0f)
+                                {
+                                    //foward, back;
+                                    targetPos = GetComponent<Player>().my_Pos + new Vector2Int(0, is_front);
+
+                                    foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
+                                    {
+                                        Vector2Int tmp = GetComponent<Player>().my_Pos + v * is_front;
+
+                                        if (MapManager.Inst.CheckIncludedIndex(tmp))
+                                        {
+                                            curTargets.Add(tmp);
+                                            MapManager.Inst.tiles[tmp].gameObject.layer = 8;
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    //left
+                                    targetPos = GetComponent<Player>().my_Pos + new Vector2Int(-1, 0);
+
+                                    foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
+                                    {
+                                        Vector2Int tmp = GetComponent<Player>().my_Pos - new Vector2Int(v.y, v.x);
+
+                                        if (MapManager.Inst.CheckIncludedIndex(tmp))
+                                        {
+                                            curTargets.Add(tmp);
+                                            MapManager.Inst.tiles[tmp].gameObject.layer = 8;
+                                        }
+
+                                    }
+                                }
+
+
+                                Debug.Log($"Front : {is_front}, Direction {angle}");
                             }
-                        }
-                    }
-                    else if(angle <= 135.0f)
-                    {
-                        //foward, back;
-                        targetPos = GetComponent<Player>().my_Pos + new Vector2Int(0, is_front);
-
-                        foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
-                        {
-                            Vector2Int tmp = GetComponent<Player>().my_Pos + v * is_front;
-
-                            if (MapManager.Inst.CheckIncludedIndex(tmp))
+                            break;
+                        case SkillSet.SkillType.Targeting:
                             {
-                                curTargets.Add(tmp);
-                                MapManager.Inst.tiles[tmp].gameObject.layer = 8;
+                                if (dot < 0)
+                                    is_front = -1;
+                                if (angle <= 45.0f)
+                                {
+                                    //right
+                                    targetPos = GetComponent<Player>().my_Pos + new Vector2Int(1, 0);
+                                }
+                                else if (angle <= 135.0f)
+                                {
+                                    //foward, back;
+                                    targetPos = GetComponent<Player>().my_Pos + new Vector2Int(0, is_front);
+                                }
+                                else
+                                {
+                                    //left
+                                    targetPos = GetComponent<Player>().my_Pos + new Vector2Int(-1, 0);
+                                }
+
+                                Vector2Int hitPos = MapManager.Inst.GetTileIndex(hit.transform.gameObject);
+                                foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
+                                {
+                                    Vector2Int tmp = hitPos + new Vector2Int(v.y, v.x);
+
+                                    if (MapManager.Inst.CheckIncludedIndex(tmp))
+                                    {
+                                        curTargets.Add(tmp);
+                                        MapManager.Inst.tiles[tmp].gameObject.layer = 8;
+                                    }
+                                }
                             }
-
-                        }
+                            break;
                     }
-                    else
-                    {
-                        //left
-                        targetPos = GetComponent<Player>().my_Pos + new Vector2Int(-1, 0);
-
-                        foreach (Vector2Int v in GetComponent<Player>().currSkill.AttackIndex)
-                        {
-                            Vector2Int tmp = GetComponent<Player>().my_Pos - new Vector2Int(v.y, v.x);
-
-                            if (MapManager.Inst.CheckIncludedIndex(tmp))
-                            {
-                                curTargets.Add(tmp);
-                                MapManager.Inst.tiles[tmp].gameObject.layer = 8;
-                            }
-
-                        }
-                    }
-
-
-                    Debug.Log($"Front : {is_front}, Direction {angle}");
-
-
-
                 }
             }
         }
