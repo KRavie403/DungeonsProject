@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: LuckyDice
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 2
   _sprite: {fileID: 21300000, guid: 0f182fb2863faa7449e020de33b77e68, type: 3}
   _damage: 0
   _effect: {fileID: 0}
   AttackIndex:
   - {x: 0, y: 0}
+  _distance: 5

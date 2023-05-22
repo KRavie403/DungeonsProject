@@ -62,7 +62,6 @@ public class Player : Battle
         {
             case STATE.CREATE:
                 break;
-
             case STATE.IDLE:
                 break;
             case STATE.ACTION:
@@ -72,7 +71,6 @@ public class Player : Battle
                     Guard();
                     ChangeState(STATE.GUARD_UP);
                 }
-                
                 break;
             case STATE.INTERACT:
             case STATE.MOVE:
@@ -127,6 +125,8 @@ public class Player : Battle
     {
         //애니메이션 재생 (casting end)
         //목표 회전
+        curAP -= currSkill.Cost;
+
         Transform model = transform.Find("Model").GetComponent<Transform>();
         Vector3 dir = new Vector3((target.x + GetMMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetMMInst().scale / 2.0f) * _mySize) - model.position;
         dir.Normalize();
@@ -147,6 +147,11 @@ public class Player : Battle
 
 
         //애니메이션이 끝나고 실행
+        if (curAP == 10)
+            GetGMInst().ChangeTurn();
+        
+        UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
+
         GetMMInst().InitLayer();
         ChangeState(STATE.IDLE);
     }
@@ -184,5 +189,9 @@ public class Player : Battle
         MoveByPath(path);
     }
 
-    
+    protected override void TakeDamage(float dmg)
+    {
+        Mathf.Lerp(curHP, curHP - dmg, Time.deltaTime);
+        Debug.Log($"Get Damage, Current HP : {curHP}");
+    }
 }

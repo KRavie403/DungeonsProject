@@ -13,6 +13,7 @@ public class BossMonster : Battle
     public void PlayerSetting()
     {
         myType = OB_TYPES.MONSTER;
+        _bossHPUI = UI_Manager.Inst.MonsterUI.GetComponentInChildren<Slider>();
         if (skilList == null)
             skilList = new List<SkillSet>();
         StartCoroutine(SettingPos());
@@ -166,7 +167,7 @@ public class BossMonster : Battle
     public void OnMoveByPath(List<TileStatus> path)
     {
         Debug.Log($"Target : {path}");
-        Debug.Log($"Start : {Start_X},{Start_Y}");
+        Debug.Log($"Start : {Start_X}, {Start_Y}");
 
         MoveByPath(path);
     }
@@ -221,6 +222,21 @@ public class BossMonster : Battle
         }
 
     }
+    protected override void TakeDamage(float dmg)
+    {
+        Debug.Log($"Get Damage : {dmg}");
+        StartCoroutine(TakingDamge(dmg));
+    }
 
-    
-  }
+    IEnumerator TakingDamge(float dmg)
+    {
+        float target = curHP - dmg;
+
+        while (!Mathf.Approximately(curHP, target))
+        {
+            curHP = Mathf.Lerp(curHP, target, Time.deltaTime);
+            _bossHPUI.value = curHP / MaxHP;
+            yield return null;
+        }
+    }
+}

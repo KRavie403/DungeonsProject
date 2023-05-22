@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: TimeAccele
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 2
   _sprite: {fileID: 21300000, guid: 86d981a8742aea349ad18e8b929ca7ff, type: 3}
   _damage: 0
-  _effect: {fileID: 0}
+  _effect: {fileID: 7458730997466774231, guid: 73d92bfcda3a9a84e8bd20f07188bbd7, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
+  _distance: 5
