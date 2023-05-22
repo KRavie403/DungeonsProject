@@ -1,0 +1,477 @@
+2023-5-22
+Rendering UV GBuffer for dungeon1_LM0 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA1 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA1.lz4" 2 0 1 0
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM00.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA10.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM01.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA11.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM02.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA12.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM03.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA13.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_final" 4 16 0 "gi_dungeon1_LM04.bin" "dungeon1_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_final" 4 16 1 "gi_dungeon1_LMA14.bin" "dungeon1_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "0" "dungeon1_LM0_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "1" "dungeon1_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LM0_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA1_final.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 128x128: 1
+Num alphas of 1024x1024: 1
+Done
+Rendering UV GBuffer for dungeon1_LM0 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA1 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA2 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA3 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA4 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA5 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA6 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA7 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA8 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA9 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA10 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA11 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA12 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA9.lz4" 2 0 9 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA7.lz4" 2 0 7 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA8.lz4" 2 0 8 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA10.lz4" 2 0 10 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA11.lz4" 2 0 11 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA12.lz4" 2 0 12 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA6.lz4" 2 0 6 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA5.lz4" 2 0 5 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA3.lz4" 2 0 3 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA4.lz4" 2 0 4 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA1.lz4" 2 0 1 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA2.lz4" 2 0 2 0
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9" 4 0 9 comp_9.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7" 4 0 7 comp_7.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8" 4 0 8 comp_8.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10" 4 0 10 comp_10.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11" 4 0 11 comp_11.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12" 4 0 12 comp_12.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6" 4 0 6 comp_6.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5" 4 0 5 comp_5.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3" 4 0 3 comp_3.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4" 4 0 4 comp_4.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2" 4 0 2 comp_2.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM00.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA90.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA70.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA80.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA100.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA110.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA120.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA60.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA50.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA30.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA40.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA10.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA20.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM01.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA91.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA71.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA81.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA101.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA111.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA121.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA61.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA51.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA31.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA41.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA11.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA21.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM02.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA92.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA72.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA82.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA102.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA112.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA122.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA62.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA52.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA32.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA42.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA12.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA22.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM03.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA93.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA73.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA83.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA103.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA113.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA123.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA63.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA53.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA33.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA43.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA13.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA23.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_final" 4 16 0 "gi_dungeon1_LM04.bin" "dungeon1_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_final" 4 16 9 "gi_dungeon1_LMA94.bin" "dungeon1_LMA9_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_final" 4 16 7 "gi_dungeon1_LMA74.bin" "dungeon1_LMA7_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_final" 4 16 8 "gi_dungeon1_LMA84.bin" "dungeon1_LMA8_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_final" 4 16 10 "gi_dungeon1_LMA104.bin" "dungeon1_LMA10_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_final" 4 16 11 "gi_dungeon1_LMA114.bin" "dungeon1_LMA11_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_final" 4 16 12 "gi_dungeon1_LMA124.bin" "dungeon1_LMA12_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_final" 4 16 6 "gi_dungeon1_LMA64.bin" "dungeon1_LMA6_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_final" 4 16 5 "gi_dungeon1_LMA54.bin" "dungeon1_LMA5_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_final" 4 16 3 "gi_dungeon1_LMA34.bin" "dungeon1_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_final" 4 16 4 "gi_dungeon1_LMA44.bin" "dungeon1_LMA4_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_final" 4 16 1 "gi_dungeon1_LMA14.bin" "dungeon1_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_final" 4 16 2 "gi_dungeon1_LMA24.bin" "dungeon1_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "0" "dungeon1_LM0_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA9_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA9_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "9" "dungeon1_LMA9_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA7_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA7_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "7" "dungeon1_LMA7_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA8_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA8_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "8" "dungeon1_LMA8_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA10_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA10_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "10" "dungeon1_LMA10_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA11_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA11_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "11" "dungeon1_LMA11_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA12_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA12_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "12" "dungeon1_LMA12_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA6_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA6_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "6" "dungeon1_LMA6_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA5_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA5_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "5" "dungeon1_LMA5_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA3_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA3_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "3" "dungeon1_LMA3_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA4_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA4_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "4" "dungeon1_LMA4_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "1" "dungeon1_LMA1_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA2_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA2_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "2" "dungeon1_LMA2_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LM0_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA9_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA9_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA7_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA7_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA8_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA8_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA10_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA10_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA11_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA11_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA12_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA12_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA6_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA6_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA5_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA5_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA3_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA3_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA4_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA4_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA1_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA2_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA2_final.hdr" 1024
+Symbol file LoadedFromMemory doesn't match image D:\gittest\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image D:\gittest\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 128x128: 1
+Num alphas of 1024x1024: 1
+Done
+Rendering UV GBuffer for dungeon1_LM0 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA1 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA2 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA3 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA4 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA5 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA6 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA7 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA8 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA9 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA10 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA11 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for dungeon1_LMA12 179
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA9.lz4" 2 0 9 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA7.lz4" 2 0 7 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA8.lz4" 2 0 8 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA10.lz4" 2 0 10 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA11.lz4" 2 0 11 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA12.lz4" 2 0 12 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA6.lz4" 2 0 6 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA5.lz4" 2 0 5 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA3.lz4" 2 0 3 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA4.lz4" 2 0 4 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA1.lz4" 2 0 1 0
+Running ftraceRTX fixpos12 "C:\Users\oky14\AppData\Local\Temp\frender" "uvpos_dungeon1_LMA2.lz4" 2 0 2 0
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9" 4 0 9 comp_9.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7" 4 0 7 comp_7.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8" 4 0 8 comp_8.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10" 4 0 10 comp_10.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11" 4 0 11 comp_11.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12" 4 0 12 comp_12.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6" 4 0 6 comp_6.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5" 4 0 5 comp_5.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3" 4 0 3 comp_3.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4" 4 0 4 comp_4.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX addmul "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2" 4 0 2 comp_2.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM00.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA90.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA70.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA80.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA100.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA110.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA120.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA60.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA50.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA30.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA40.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA10.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA20.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM01.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA91.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA71.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA81.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA101.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA111.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA121.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA61.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA51.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA31.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA41.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA11.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA21.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM02.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA92.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA72.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA82.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA102.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA112.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA122.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA62.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA52.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA32.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA42.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA12.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA22.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_diffuse" 4 16 0 "gi_dungeon1_LM03.bin" "dungeon1_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_diffuse" 4 16 9 "gi_dungeon1_LMA93.bin" "dungeon1_LMA9_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_diffuse" 4 16 7 "gi_dungeon1_LMA73.bin" "dungeon1_LMA7_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_diffuse" 4 16 8 "gi_dungeon1_LMA83.bin" "dungeon1_LMA8_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_diffuse" 4 16 10 "gi_dungeon1_LMA103.bin" "dungeon1_LMA10_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_diffuse" 4 16 11 "gi_dungeon1_LMA113.bin" "dungeon1_LMA11_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_diffuse" 4 16 12 "gi_dungeon1_LMA123.bin" "dungeon1_LMA12_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_diffuse" 4 16 6 "gi_dungeon1_LMA63.bin" "dungeon1_LMA6_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_diffuse" 4 16 5 "gi_dungeon1_LMA53.bin" "dungeon1_LMA5_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_diffuse" 4 16 3 "gi_dungeon1_LMA33.bin" "dungeon1_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_diffuse" 4 16 4 "gi_dungeon1_LMA43.bin" "dungeon1_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_diffuse" 4 16 1 "gi_dungeon1_LMA13.bin" "dungeon1_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_diffuse" 4 16 2 "gi_dungeon1_LMA23.bin" "dungeon1_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LM0_final" 4 16 0 "gi_dungeon1_LM04.bin" "dungeon1_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA9_final" 4 16 9 "gi_dungeon1_LMA94.bin" "dungeon1_LMA9_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA7_final" 4 16 7 "gi_dungeon1_LMA74.bin" "dungeon1_LMA7_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA8_final" 4 16 8 "gi_dungeon1_LMA84.bin" "dungeon1_LMA8_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA10_final" 4 16 10 "gi_dungeon1_LMA104.bin" "dungeon1_LMA10_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA11_final" 4 16 11 "gi_dungeon1_LMA114.bin" "dungeon1_LMA11_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA12_final" 4 16 12 "gi_dungeon1_LMA124.bin" "dungeon1_LMA12_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA6_final" 4 16 6 "gi_dungeon1_LMA64.bin" "dungeon1_LMA6_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA5_final" 4 16 5 "gi_dungeon1_LMA54.bin" "dungeon1_LMA5_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA3_final" 4 16 3 "gi_dungeon1_LMA34.bin" "dungeon1_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA4_final" 4 16 4 "gi_dungeon1_LMA44.bin" "dungeon1_LMA4_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA1_final" 4 16 1 "gi_dungeon1_LMA14.bin" "dungeon1_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\oky14\AppData\Local\Temp\frender" "dungeon1_LMA2_final" 4 16 2 "gi_dungeon1_LMA24.bin" "dungeon1_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "0" "dungeon1_LM0_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA9_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA9_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "9" "dungeon1_LMA9_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA7_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA7_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "7" "dungeon1_LMA7_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA8_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA8_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "8" "dungeon1_LMA8_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA10_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA10_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "10" "dungeon1_LMA10_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA11_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA11_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "11" "dungeon1_LMA11_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA12_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA12_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "12" "dungeon1_LMA12_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA6_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA6_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "6" "dungeon1_LMA6_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA5_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA5_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "5" "dungeon1_LMA5_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA3_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA3_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "3" "dungeon1_LMA3_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA4_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA4_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "4" "dungeon1_LMA4_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "1" "dungeon1_LMA1_final_HDR.lz4"
+Running denoiserOIDN c "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA2_final_HDR.lz4" "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA2_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\oky14\AppData\Local\Temp\frender" "2" "dungeon1_LMA2_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LM0_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LM0_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA9_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA9_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA7_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA7_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA8_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA8_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA10_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA10_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA11_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA11_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA12_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA12_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA6_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA6_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA5_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA5_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA3_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA3_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA4_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA4_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA1_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA1_final.hdr" 1024
+Running halffloat2hdr "C:\Users\oky14\AppData\Local\Temp\frender/dungeon1_LMA2_final_HDR.lz4" "D:/gittest/Assets/BakeryLightmaps/dungeon1_LMA2_final.hdr" 1024
+Symbol file LoadedFromMemory doesn't match image D:\gittest\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image D:\gittest\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image D:\gittest\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image D:\gittest\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
