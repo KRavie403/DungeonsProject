@@ -27,6 +27,7 @@ public class CharcterSet : MonoBehaviour
 
     int charIdx = 0;
     int count = 0;
+    List<int> removeNum = new List<int>(4);
     string[] file = new string[7];
     string[] profileImg = new string[7];
 
@@ -34,10 +35,7 @@ public class CharcterSet : MonoBehaviour
     void Start()
     {
         ani = GetComponent<Animator>();
-        tempChosenSkillDB.List.Clear();
         chosenSkillDB.List.Clear();
-
-
     }
     void Setting()
     {
@@ -46,6 +44,7 @@ public class CharcterSet : MonoBehaviour
             item.interactable = true;
         }
         count = 0;
+        tempChosenSkillDB.List.Clear();
         Debug.Log("CHARIDX" + charIdx);
 
         string path = "Database\\CharacterStatus\\" + file[charIdx];
@@ -108,9 +107,22 @@ public class CharcterSet : MonoBehaviour
         if (count == 4)
         {
             this.gameObject.SetActive(false);
-            foreach(var temp in tempChosenSkillDB.List)
+            if(removeNum.Count != 0)
             {
-                chosenSkillDB.List.Add(temp);
+                removeNum.Sort();
+                for(int i = 0; i < 4; i++)
+                {
+                    chosenSkillDB.List[removeNum[0] * 4 + i] = tempChosenSkillDB.List[i];
+                }  
+                removeNum.Remove(0);
+                removeNum.Sort();
+            }
+            else
+            {
+                foreach (var temp in tempChosenSkillDB.List)
+                {
+                    chosenSkillDB.List.Add(temp);
+                }
             }
             CharacterSlotDB.cdb.ChosenCharacterButtonsActive(charIdx);
             CharacterSlotDB.cdb.DeactiveCharacters(charIdx);
@@ -155,7 +167,17 @@ public class CharcterSet : MonoBehaviour
             }
         }
     }
-    public void CountSkillSetting()
+
+    public void RemoveSkillList(int idx)
+    {
+        removeNum.Add(idx);
+        for (int i = idx * 4; i < idx * 4 + 4; i++)
+        {
+            chosenSkillDB.List[i] = null;
+        }
+    }
+
+        public void CountSkillSetting()
     {
         ani.SetTrigger("Notify");
     }
