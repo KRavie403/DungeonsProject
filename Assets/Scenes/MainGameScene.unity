@@ -98183,6 +98183,7 @@ MonoBehaviour:
   Main_Cam: {fileID: 2120833761}
   curCharacter: 0
   selectedOrgChars: {fileID: 11400000, guid: dd8a01636edd7b34c9ab81e49450a8e1, type: 2}
+  selectedOrgSkills: {fileID: 11400000, guid: 9a788f47b515b3f4ca4948d3aff6b274, type: 2}
   boss: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
 --- !u!1 &1586710617
 GameObject:

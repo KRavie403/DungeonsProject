@@ -167,7 +167,7 @@ public class BossMonster : Battle
     public void OnMoveByPath(List<TileStatus> path)
     {
         Debug.Log($"Target : {path}");
-        Debug.Log($"Start : {Start_X},{Start_Y}");
+        Debug.Log($"Start : {Start_X}, {Start_Y}");
 
         MoveByPath(path);
     }
