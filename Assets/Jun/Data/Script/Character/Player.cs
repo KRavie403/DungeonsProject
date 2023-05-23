@@ -11,9 +11,9 @@ public class Player : Battle
         myType = OB_TYPES.PLAYER;
         name = data.name;
         my_Sprite = data.Sprite;
-        AttackPower = data.AttackPower;
-        DeffencePower = data.DeffencePower;
-        speed = data.Speed;
+        OrgAttackPower = data.AttackPower;
+        OrgDeffencePower = data.DeffencePower;
+        OrgSpeed = data.Speed;
         ActionPoint = data.ActionPoint;
         skilList.Clear();
 
@@ -143,7 +143,20 @@ public class Player : Battle
         }
 
         //애니메이션 재생 (action start)
-        StartCoroutine(Damaging(currSkill.Effect, currSkill.Damage, targets));
+        switch (currSkill.myEType)
+        {
+            case SkillSet.EffectType.DamageEffcet:
+                StartCoroutine(Damaging(currSkill, currSkill.Damage, targets));
+                break;
+            case SkillSet.EffectType.StatEffect:
+                StartCoroutine(StatModifiring(currSkill, targets));
+                break;
+            case SkillSet.EffectType.SpecialEffect:
+                //SpecialEffect(currSkill, currSkill.Damage, targets)
+                break;
+
+        }
+
 
 
         //애니메이션이 끝나고 실행
@@ -194,4 +207,6 @@ public class Player : Battle
         Mathf.Lerp(curHP, curHP - dmg, Time.deltaTime);
         Debug.Log($"Get Damage, Current HP : {curHP}");
     }
+
+    
 }

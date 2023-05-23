@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: BerserkerSoul
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: 6699a83081041fe448424cf701cbb4cc, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 1385917305486620143, guid: 539dfb973fd7d6b46bfadf5189b4e611, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
   _distance: 5
+  _cost: 1

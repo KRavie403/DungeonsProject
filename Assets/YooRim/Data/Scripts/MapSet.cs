@@ -4,7 +4,6 @@ using System;
 using System.Windows;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class MapSet : MonoBehaviour
 {
@@ -23,22 +22,29 @@ public class MapSet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
-
 
     public void backCharacterSelection() //Settings
     {
         CharacterSet.SetActive(false);
     }
 
+    void CallCaution()
+    {
+        GameObject obj = Instantiate(Caution, this.transform);
+        Destroy(obj, 2);
+    }
+
+    IEnumerator WaitForIt()
+    {
+        yield return new WaitForSeconds(2.0f);
+    }
+
     public void StartGame()
     {
         if(currentCharacterDB.characterList.Count < 4)
         {
-            Caution.SetActive(true);
-            ani.SetTrigger("warning");
-            Caution.SetActive(false);
+            CallCaution();
         }
         else
         {

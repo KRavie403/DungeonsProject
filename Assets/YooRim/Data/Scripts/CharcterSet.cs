@@ -44,6 +44,7 @@ public class CharcterSet : MonoBehaviour
             item.interactable = true;
         }
         count = 0;
+        countSkills.text = "0";
         tempChosenSkillDB.List.Clear();
         Debug.Log("CHARIDX" + charIdx);
 
@@ -93,13 +94,15 @@ public class CharcterSet : MonoBehaviour
         }
         Setting();
     }
-    public void SkillSetting()
-    {
-
-    }
 
     public void ClickResetButton() //Settings
     {
+        count = 0;
+        countSkills.text = "0";
+        foreach (var temp in skillButtonList)
+        {
+            temp.interactable = true;
+        }
     }
 
     public void ClickApplyButton() //Settings
