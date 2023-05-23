@@ -44,6 +44,7 @@ public class CharcterSet : MonoBehaviour
             item.interactable = true;
         }
         count = 0;
+        countSkills.text = "0";
         tempChosenSkillDB.List.Clear();
         Debug.Log("CHARIDX" + charIdx);
 
