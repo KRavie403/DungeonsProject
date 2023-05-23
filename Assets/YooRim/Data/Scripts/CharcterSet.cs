@@ -94,13 +94,15 @@ public class CharcterSet : MonoBehaviour
         }
         Setting();
     }
-    public void SkillSetting()
-    {
-
-    }
 
     public void ClickResetButton() //Settings
     {
+        count = 0;
+        countSkills.text = "0";
+        foreach (var temp in skillButtonList)
+        {
+            temp.interactable = true;
+        }
     }
 
     public void ClickApplyButton() //Settings
