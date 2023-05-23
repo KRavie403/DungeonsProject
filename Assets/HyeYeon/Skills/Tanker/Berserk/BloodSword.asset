@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: BloodSword
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: 70573ad27d14c264a8c07354ae1f41e5, type: 3}
   _damage: 32
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 3343325401522107417, guid: 62c97d5829d26e9459467b96c0e7a248, type: 3}
   AttackIndex:
   - {x: 0, y: 1}
@@ -23,3 +32,4 @@ MonoBehaviour:
   - {x: 0, y: 4}
   - {x: 0, y: 5}
   _distance: 5
+  _cost: 1

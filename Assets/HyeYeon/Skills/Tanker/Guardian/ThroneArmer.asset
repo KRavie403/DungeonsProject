@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: ThroneArmer
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 1
   _sprite: {fileID: 21300000, guid: b90ec9b821d8aed4c9204e1e8ea8755f, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 1193311707710560196, guid: ef710819824c0ba41912a03cdabef07c, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
   _distance: 5
+  _cost: 1
