@@ -13,20 +13,10 @@ MonoBehaviour:
   m_Name: BlizzardIcicleLance
   m_EditorClassIdentifier: 
   _type: 2
-  _Etype: 2
   _sprite: {fileID: 21300000, guid: f5ab3f534c1138f4786f23cd74103223, type: 3}
   _damage: 0
-  _LifeTime: 0
-  _exStatus:
-    Unbreakable: 0
-    Postive: 0
-    lifeTime: 0
-    AttackPower: 0
-    DeffencePower: 0
-    Speed: 0
   _effect: {fileID: 3568230135984186368, guid: 482a347c1ff18ec4b864a0320bbb3d5c, type: 3}
   AttackIndex:
-  - {x: 0, y: 0}
   - {x: -1, y: 8}
   - {x: 0, y: 8}
   - {x: 1, y: 8}
@@ -52,4 +42,4 @@ MonoBehaviour:
   - {x: 0, y: 1}
   - {x: 1, y: 1}
   _distance: 5
-  _cost: 1
+  _cost: 6

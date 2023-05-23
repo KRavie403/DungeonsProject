@@ -42,3 +42,4 @@ MonoBehaviour:
   - {x: 1, y: -2}
   - {x: 2, y: -2}
   _distance: 5
+  _cost: 0
