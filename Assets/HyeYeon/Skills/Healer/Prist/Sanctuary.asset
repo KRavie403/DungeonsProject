@@ -19,3 +19,4 @@ MonoBehaviour:
   AttackIndex:
   - {x: 0, y: 0}
   _distance: 5
+  _cost: 6

@@ -68,3 +68,4 @@ MonoBehaviour:
   - {x: 0, y: 49}
   - {x: 0, y: 50}
   _distance: 5
+  _cost: 7
