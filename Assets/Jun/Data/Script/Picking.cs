@@ -203,6 +203,7 @@ public class Picking : MonoBehaviour
                                 Debug.Log($"Front : {is_front}, Direction {angle}");
                             }
                             break;
+                        case SkillSet.SkillType.Moveable:
                         case SkillSet.SkillType.Targeting:
                             {
                                 if (dot < 0)

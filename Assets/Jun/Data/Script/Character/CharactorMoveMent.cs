@@ -110,7 +110,19 @@ public abstract class CharactorMovement : CharactorProperty
                 tile.gameObject.layer = 9;
         }
     }
+    public void RefreshStatus()
+    {
+        AttackPower = OrgAttackPower;
+        DeffencePower = OrgDeffencePower;
+        Speed = OrgSpeed;
 
+        foreach (var item in AD_stat)
+        {
+            AttackPower += item.AttackPower;
+            DeffencePower += item.DeffencePower;
+            Speed += item.Speed;
+        }
+    }
     protected void TestAllDirection(int x, int y, int step)
     {
         if (CastDirectionTile(x, y, -1, Direction.Front))
@@ -122,8 +134,8 @@ public abstract class CharactorMovement : CharactorProperty
         if (CastDirectionTile(x, y, -1, Direction.Back))
             SetVisited(x, y - 1, step);
     }
-   
-    IEnumerator MovingToTile(Vector2Int target, UnityAction done)
+
+    protected IEnumerator MovingToTile(Vector2Int target, UnityAction done = null)
     {
         Vector3 dir = new Vector3((target.x + GetMMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + MapManager.Inst.scale / 2.0f) * _mySize) - transform.position;
         float dist = dir.magnitude;

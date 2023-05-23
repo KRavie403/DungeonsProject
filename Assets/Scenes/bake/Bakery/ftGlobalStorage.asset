@@ -400,21 +400,9 @@ MonoBehaviour:
   assetList:
   - Assets/Bakery/examples/content/sponza/bush.FBX
   - Assets/Bakery/examples/content/floor_lamp.FBX
-  - Assets/YuRi/Base Modeling/Assassin_Weapon.fbx
-  - Assets/YuRi/Base Modeling/Berserk@Weapon.fbx
-  - Assets/YuRi/Base Modeling/Gaurdian_Weapon.fbx
-  - Assets/YuRi/Base Modeling/Musketeer_Weapon.fbx
-  - Assets/YuRi/Base Modeling/Paladin_Weapon.fbx
-  - Assets/YuRi/Base Modeling/Priest_Weapon.fbx
   - Assets/YuRi/Base Modeling/Sourcerer_Weapon.fbx
-  - Assets/Jun/Model/Sourcerer.fbx
-  - Assets/Jun/Model/Paladin.fbx
-  - Assets/Jun/Model/Priest.fbx
-  - Assets/Jun/Model/Musketeer.fbx
-  - Assets/Jun/Model/Gaurdian.fbx
-  - Assets/Jun/Model/Berserk.fbx
-  - Assets/Jun/Model/Assassin.fbx
-  uvOverlapAssetList: 00000000ffffffff0101000000000000010100000101000001010000010100000101000000000000000000000000000000000000000000000000000000000000
+  - Assets/YuRi/Base Modeling/Priest_Weapon.fbx
+  uvOverlapAssetList: 00000000ffffffff0101000001010000
   xatlasWarningShown: 0
   foundCompatibleSetup: 1
   gpuName: NVIDIA GeForce RTX 3080

@@ -3,13 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+[System.Serializable]
+public struct ExtendStatus
+{
+    public bool Unbreakable;
+    public bool Postive;
+    public int lifeTime;
+    public float AttackPower;
+    public float DeffencePower;
+    public int Speed;  
+}
+
 [CreateAssetMenu(fileName = "SkillData", menuName = "ScriptableObjects/Skillset", order = 1)]
+
 public class SkillSet : ScriptableObject
 {
     public enum SkillType  {Moveable, Targeting, Directing }
+    public enum EffectType  {StatEffect, SpecialEffect, DamageEffcet}
     [SerializeField]
     private SkillType _type;
     public SkillType myType { get { return _type; } }
+
+    [SerializeField]
+    private EffectType _Etype;
+    public EffectType myEType { get { return _Etype; } }
 
     [SerializeField]
     private Sprite _sprite;
@@ -18,6 +36,13 @@ public class SkillSet : ScriptableObject
     [SerializeField]
     private int _damage;
     public int Damage{ get { return _damage; } }
+
+    [SerializeField]
+    private int _LifeTime;
+    public int life_time { get { return _LifeTime; } }
+
+    public ExtendStatus _exStatus;
+
 
     [SerializeField]
     private GameObject _effect;
