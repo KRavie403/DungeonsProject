@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: Strike
   m_EditorClassIdentifier: 
   _type: 1
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: 2bfb7897e725c7544859646f238ea619, type: 3}
   _damage: 64
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 1947769070157834666, guid: f322219a31d2b994c92d511d425183c9, type: 3}
   AttackIndex:
   - {x: 0, y: 1}

@@ -21,8 +21,6 @@ public class CharacterSlotDB : MonoBehaviour
 
     //text
     public TMP_Text[] chosenCharTextList;
-    public TMP_Text CharacterSkillSetText;
-
 
     public Button[] characterButtonList;
 
@@ -48,41 +46,46 @@ public class CharacterSlotDB : MonoBehaviour
 
     public void ChooseCharacters(int idx)
     {
-        if (chosenDB.characterList.Count < 4)
-        {
-            charSet.SendIdx(idx);
-        }
+        charSet.SendIdx(idx);
     }
 
     public void ChosenCharacterButtonsActive(int idx)
     {
-        chosenDB.characterList.Add(charDB.characterList[idx]);
-        chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
-        //버튼활성화 비활성화 && 텍스트 수정
-        if (!ChosenCharList[0].activeSelf)
+        if(chosenDB.characterList.Count < 4)
         {
-            ChosenCharList[0].SetActive(true);
-            chosenCharTextList[0].text = charDB.characterList[idx].Name;
-            temp[0] = idx;
+            chosenDB.characterList.Add(charDB.characterList[idx]);
+            chosenDB.characterList = chosenDB.characterList.Distinct().ToList();
+            //버튼활성화 비활성화 && 텍스트 수정
+            if (!ChosenCharList[0].activeSelf)
+            {
+                ChosenCharList[0].SetActive(true);
+                chosenCharTextList[0].text = charDB.characterList[idx].Name;
+                temp[0] = idx;
+            }
+            else if (!ChosenCharList[1].activeSelf)
+            {
+                ChosenCharList[1].SetActive(true);
+                chosenCharTextList[1].text = charDB.characterList[idx].Name;
+                temp[1] = idx;
+            }
+            else if (!ChosenCharList[2].activeSelf)
+            {
+                ChosenCharList[2].SetActive(true);
+                chosenCharTextList[2].text = charDB.characterList[idx].Name;
+                temp[2] = idx;
+            }
+            else if (!ChosenCharList[3].activeSelf)
+            {
+                ChosenCharList[3].SetActive(true);
+                chosenCharTextList[3].text = charDB.characterList[idx].Name;
+                temp[3] = idx;
+            }
         }
-        else if (!ChosenCharList[1].activeSelf)
-        {
-            ChosenCharList[1].SetActive(true);
-            chosenCharTextList[1].text = charDB.characterList[idx].Name;
-            temp[1] = idx;
-        }
-        else if (!ChosenCharList[2].activeSelf)
-        {
-            ChosenCharList[2].SetActive(true);
-            chosenCharTextList[2].text = charDB.characterList[idx].Name;
-            temp[2] = idx;
-        }
-        else if (!ChosenCharList[3].activeSelf)
-        {
-            ChosenCharList[3].SetActive(true);
-            chosenCharTextList[3].text = charDB.characterList[idx].Name;
-            temp[3] = idx;
-        }
+    }
+
+    public void CharacterSelection(int i) //Settings
+    {
+        charSet.gameObject.SetActive(true);
     }
 
     public void DeleteCharacters(int idx)
@@ -91,16 +94,10 @@ public class CharacterSlotDB : MonoBehaviour
         {
             ChosenCharList[idx].SetActive(false);
             charSet.gameObject.SetActive(true);
-            CharacterSkillSetText.text = charDB.characterList[temp[idx]].Name; //스킬창 charName.text변경
+            ActiveCharacters(idx);
             charSet.SendIdx(temp[idx]);
             chosenDB.characterList.Remove(charDB.characterList[temp[idx]]);
         }
-    }
-
-    public void CharacterSelection(int i) //Settings
-    {
-        charSet.gameObject.SetActive(true);
-        CharacterSkillSetText.text = charDB.characterList[i].Name; //스킬창 charName.text변경
     }
 
     public void ActiveCharacters(int idx)
@@ -115,14 +112,11 @@ public class CharacterSlotDB : MonoBehaviour
 
     public void DeactiveCharacters(int idx)
     {
-        if (characterButtonList[Array.IndexOf(temp,idx)].interactable)
+        if (characterButtonList[idx].interactable && count < 4)
         {
-            if (count < 4)
-            {
-                characterButtonList[idx].interactable = false;
-                count++;
-                Debug.Log(count);
-            }
+            characterButtonList[idx].interactable = false;
+            count++;
+            Debug.Log(count);
         }
     }
 }

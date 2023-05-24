@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: HolyArmer
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 0
   _sprite: {fileID: 21300000, guid: ce7dc77fb756a72429e69b1436c576dd, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 1
+    lifeTime: 2
+    AttackPower: 0
+    DeffencePower: 30
+    Speed: 0
   _effect: {fileID: 4244695629329029167, guid: b002bc7a1af04b141987205ceeffe70f, type: 3}
   AttackIndex:
   - {x: -6, y: 6}

@@ -18,9 +18,9 @@ MonoBehaviour:
   _damage: 0
   _LifeTime: 0
   _exStatus:
-    Unbreakable: 0
+    Unbreakable: 1
     Postive: 0
-    lifeTime: 0
+    lifeTime: 2
     AttackPower: 0
     DeffencePower: 0
     Speed: 0
