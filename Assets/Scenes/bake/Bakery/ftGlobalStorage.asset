@@ -414,7 +414,21 @@ MonoBehaviour:
   - Assets/Jun/Model/Berserk.fbx
   - Assets/Jun/Model/Assassin.fbx
   - Assets/Jun/Model/Gaurdian.fbx
-  uvOverlapAssetList: 00000000ffffffff0101000001010000000000000000000001010000010100000101000000000000000000000000000001010000000000000000000000000000
+  - Assets/YuRi/Animation/Sourcerer@Idle.fbx
+  - Assets/YuRi/Animation/Berserk@Idle.fbx
+  - Assets/YuRi/Animation/Assassin@Idle.fbx
+  - Assets/YuRi/Animation/Berserk@Attack.fbx
+  - Assets/YuRi/Animation/General@Death02.fbx
+  - Assets/YuRi/Animation/Musketeer@Ready.fbx
+  - Assets/YuRi/Animation/Musketeer@Idle2.fbx
+  - Assets/YuRi/Animation/Musketeer@Idle.fbx
+  - Assets/YuRi/Animation/General@GetHit.fbx
+  - Assets/YuRi/Animation/Priest@Idle.fbx
+  - Assets/YuRi/Animation/Berserk@Attack_Transition.fbx
+  - Assets/YuRi/Animation/Gaurdian@Idle.fbx
+  - Assets/YuRi/Animation/Paladin@Idle.fbx
+  - Assets/YuRi/Animation/General@Death01.fbx
+  uvOverlapAssetList: 00000000ffffffff01010000010100000000000000000000010100000101000001010000000000000000000000000000010100000000000000000000000000000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000
   xatlasWarningShown: 0
   foundCompatibleSetup: 1
   gpuName: NVIDIA GeForce RTX 3080

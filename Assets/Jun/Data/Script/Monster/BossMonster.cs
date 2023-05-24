@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
 
-public class BossMonster : StateMachine
+public class BossMonster : Battle
 {
     // Start is called before the first frame update
     public Slider _bossHPUI;

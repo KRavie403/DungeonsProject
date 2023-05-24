@@ -22,7 +22,7 @@ public class SceneLoader : Singleton<SceneLoader>
         yield return SceneManager.LoadSceneAsync(2);
         Slider loadingSlider = FindAnyObjectByType<Slider>();  
         AsyncOperation op = SceneManager.LoadSceneAsync(i);     //return AsyncOperation operation;
-        op.allowSceneActivation = false;    //씬 로딩이 끝나면 바로 해당 씬을 바로 활성화 = > 로딩 구현 안됨
+        op.allowSceneActivation = false;    //씬 로딩이 끝나면 바로 해당 씬을 바로 활성화
 
         while (!op.isDone)
         {
