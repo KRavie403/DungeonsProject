@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class BossMonster : CharactorMovement
+public class BossMonster : Battle
 {
     // Start is called before the first frame update
     public Slider _bossHPUI;
@@ -13,6 +13,7 @@ public class BossMonster : CharactorMovement
     public void PlayerSetting()
     {
         myType = OB_TYPES.MONSTER;
+        _bossHPUI = UI_Manager.Inst.MonsterUI.GetComponentInChildren<Slider>();
         if (skilList == null)
             skilList = new List<SkillSet>();
         StartCoroutine(SettingPos());
@@ -42,7 +43,9 @@ public class BossMonster : CharactorMovement
                 {
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = -2;
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
+
                 }
             }
         }
@@ -85,6 +88,14 @@ public class BossMonster : CharactorMovement
     }
     public override void OnMove()
     {
+        for (int i = 0; i <= 1; i++)
+        {
+            for (int j = 0; j <= 1; j++)
+            {
+                if (MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(i, j)))
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
+            }
+        }
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
@@ -120,9 +131,7 @@ public class BossMonster : CharactorMovement
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
         //애니메이션 재생 (casting end)
-        //목표 회전
-        Vector3 dir = new Vector3((target.x + MapManager.Inst.scale / 2.0f) * _mySize, transform.position.y, (target.y + MapManager.Inst.scale / 2.0f) * _mySize) - transform.position;
-        StartCoroutine(CastingSkill(dir, targets));
+        StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
     {
@@ -158,7 +167,7 @@ public class BossMonster : CharactorMovement
     public void OnMoveByPath(List<TileStatus> path)
     {
         Debug.Log($"Target : {path}");
-        Debug.Log($"Start : {Start_X},{Start_Y}");
+        Debug.Log($"Start : {Start_X}, {Start_Y}");
 
         MoveByPath(path);
     }
@@ -213,6 +222,21 @@ public class BossMonster : CharactorMovement
         }
 
     }
+    protected override void TakeDamage(float dmg)
+    {
+        Debug.Log($"Get Damage : {dmg}");
+        StartCoroutine(TakingDamge(dmg));
+    }
 
-    
-  }
+    IEnumerator TakingDamge(float dmg)
+    {
+        float target = curHP - dmg;
+
+        while (!Mathf.Approximately(curHP, target))
+        {
+            curHP = Mathf.Lerp(curHP, target, Time.deltaTime);
+            _bossHPUI.value = curHP / MaxHP;
+            yield return null;
+        }
+    }
+}

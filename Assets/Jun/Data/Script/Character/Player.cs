@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
-public class Player : CharactorMovement
+public class Player : Battle
 {
 
     public SkillSet currSkill = null;
@@ -18,9 +16,10 @@ public class Player : CharactorMovement
         speed = data.Speed;
         ActionPoint = data.ActionPoint;
         skilList.Clear();
-        if(data.Skill != null)
-            foreach (var skill in data.Skill.List)
-                skilList.Add(skill);
+
+        //선택된 스킬 리스트 입력 필요 
+        foreach (var skill in data.Skill.List)
+            skilList.Add(skill);
         SettingPos();
     }
     public void SettingPos()
@@ -42,11 +41,15 @@ public class Player : CharactorMovement
 
         GetMMInst().tiles[my_Pos].my_obj = myType;
         GetMMInst().tiles[my_Pos].isVisited = 1;
+        GetMMInst().tiles[my_Pos].is_blocked = true;
         GetMMInst().tiles[my_Pos].SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
     }
-    // Update is called once per frame
+    void Start()
+    {
+    }
+
     void Update()
     {
         StateProcess();
@@ -59,9 +62,7 @@ public class Player : CharactorMovement
         {
             case STATE.CREATE:
                 break;
-
             case STATE.IDLE:
-                
                 break;
             case STATE.ACTION:
                 //임시
@@ -70,7 +71,6 @@ public class Player : CharactorMovement
                     Guard();
                     ChangeState(STATE.GUARD_UP);
                 }
-                
                 break;
             case STATE.INTERACT:
             case STATE.MOVE:
@@ -93,18 +93,13 @@ public class Player : CharactorMovement
         switch (_curState)
         {
             case STATE.ACTION:
-                gameObject.GetComponent<Picking>().enabled = false;
-                break;
-
             case STATE.IDLE:
                 gameObject.GetComponent<Picking>().enabled = false;
                 break;
             case STATE.INTERACT:
-                gameObject.GetComponent<Picking>().enabled = true;
-                break;
             case STATE.MOVE:
+            case STATE.SKILL_CAST:
                 gameObject.GetComponent<Picking>().enabled = true;
-
                 break;
 
         }
@@ -120,7 +115,6 @@ public class Player : CharactorMovement
                 break;
             case OB_TYPES.TELEPORT:
                 UI_Manager.Inst.TPUI.SetActive(true);
-
                 break;
             case OB_TYPES.PLAYER:
                 break;
@@ -131,6 +125,8 @@ public class Player : CharactorMovement
     {
         //애니메이션 재생 (casting end)
         //목표 회전
+        curAP -= currSkill.Cost;
+
         Transform model = transform.Find("Model").GetComponent<Transform>();
         Vector3 dir = new Vector3((target.x + GetMMInst().scale / 2.0f) * _mySize, transform.position.y, (target.y + GetMMInst().scale / 2.0f) * _mySize) - model.position;
         dir.Normalize();
@@ -147,20 +143,21 @@ public class Player : CharactorMovement
         }
 
         //애니메이션 재생 (action start)
+        StartCoroutine(Damaging(currSkill.Effect, currSkill.Damage, targets));
+
 
         //애니메이션이 끝나고 실행
-        foreach (var index in targets)
-        {
-            GameObject target = GetMMInst().tiles[index].gameObject.GetComponent<TileStatus>().OnMyTarget();
+        if (curAP == 10)
+            GetGMInst().ChangeTurn();
+        
+        UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
 
-            if (target != null && target.GetComponent<BossMonster>() != null)
-            {
-                target.GetComponent<BossMonster>().TakeDamage(10.0f);
-            }
-        }
         GetMMInst().InitLayer();
         ChangeState(STATE.IDLE);
     }
+    
+
+
     public void OnAttack(Vector2Int tile)
     {
         ChangeState(STATE.ATTACK);
@@ -192,5 +189,9 @@ public class Player : CharactorMovement
         MoveByPath(path);
     }
 
-    
+    protected override void TakeDamage(float dmg)
+    {
+        Mathf.Lerp(curHP, curHP - dmg, Time.deltaTime);
+        Debug.Log($"Get Damage, Current HP : {curHP}");
+    }
 }

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: PriestSkillDB
   m_EditorClassIdentifier: 
   List:
-  - {fileID: 11400000, guid: 11d27ddc58410bd4795893697e5137af, type: 2}
-  - {fileID: 11400000, guid: 974c5547eb8891e4daed743fd5a8119b, type: 2}
-  - {fileID: 11400000, guid: 5d18511f6d05e9e45b52643a3a2b9fdc, type: 2}
-  - {fileID: 11400000, guid: 801be12b77ecae74eb250bf8e1aa254e, type: 2}
+  - {fileID: 11400000, guid: fc99c78ae8d7c0b47a11194ec508dda5, type: 2}
+  - {fileID: 11400000, guid: 9808384a72385ea409b3acc890460972, type: 2}
+  - {fileID: 11400000, guid: cddaabde54c899945b6b06d46cc474e5, type: 2}
+  - {fileID: 11400000, guid: cbc81fbf62f16044e92ae652ed419377, type: 2}
   - {fileID: 11400000, guid: 281450170d1e9af46809b4a1d4200085, type: 2}
-  - {fileID: 11400000, guid: 436c6b5b075787f4bb58dd2f26af63c1, type: 2}
-  - {fileID: 11400000, guid: adb1b905ded89724bb323bc8c2f498d5, type: 2}
-  - {fileID: 11400000, guid: fb3efad1f9c31a549918dc08448caf52, type: 2}
+  - {fileID: 11400000, guid: e78d8a4f0b2247a45b16b847b41e8fef, type: 2}
+  - {fileID: 11400000, guid: 0f3bb1aa89824d943966cd09a2e51c61, type: 2}
+  - {fileID: 11400000, guid: 8ad01d47dbf5c7a45ad67ff5de3927a5, type: 2}

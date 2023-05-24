@@ -38,6 +38,7 @@ public class CharacterSlotDB : MonoBehaviour
         {
             chosenCharTextList[i].text = "0";
         }
+        count = 0;
 }
 
     private void Update()
@@ -47,7 +48,6 @@ public class CharacterSlotDB : MonoBehaviour
 
     public void ChooseCharacters(int idx)
     {
-
         if (chosenDB.characterList.Count < 4)
         {
             charSet.SendIdx(idx);

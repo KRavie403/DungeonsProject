@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Create_obj_System : MonoBehaviour
+public class Create_obj_System : Singleton<Create_obj_System>
 {
-    public static Create_obj_System main_obj_create = null;
-
+    [SerializeField]
+    private int Obj_Count = 20;
     public GameObject TeleportObj;
     public GameObject ChestObj;
     public GameObject TPUI;
@@ -17,6 +17,9 @@ public class Create_obj_System : MonoBehaviour
     public GameObject myTPtarget = null;
     public GameObject myChesttarget = null;
     int x = 0, y = 0;
+    List<int> list;
+
+
     public Vector3 random(int rd)//랜덤 좌표 설정
     {
 
@@ -55,7 +58,7 @@ public class Create_obj_System : MonoBehaviour
     {
         int rd;
 
-        for (int j = 0; j < 20;) //10번반복
+        for (int j = 0; j < Obj_Count/2;) //10번반복
         {
             rd = Random.Range(0, 20); //1-10 랜덤숫자 넣기
             if (list.Contains(rd)) //list에서 중복된숫자가있다면
@@ -75,13 +78,13 @@ public class Create_obj_System : MonoBehaviour
             obj.transform.parent = transform;
             //obj1.GetComponent<Teleport>().pos = pos;
         }
-        for (int i = 10; i < 20; ++i)
+        for (int i = 10; i < list.Count; i++)
         {
-            obj = Instantiate(ChestObj, random(list[i]), Quaternion.identity);
+            obj = Instantiate(ChestObj, random(list[i]), Quaternion.identity);  
             obj.transform.parent = transform;
             //obj2.GetComponent<Chest>().pos = pos;
         }
-        for (int i = 0; i <= 150; ++i)
+        for (int i = 0; i <= Obj_Count; ++i)
         {
             float half = MapManager.Inst.scale * 0.5f;
             Vector2Int my_Pos;
@@ -95,22 +98,21 @@ public class Create_obj_System : MonoBehaviour
             } while (!MapManager.Inst.tiles.ContainsKey(my_Pos) || (MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited < -1 ||
                 MapManager.Inst.tiles[my_Pos].GetComponent<TileStatus>().isVisited == 0));
 
-                //pos = new Vector2Int(x, y);
-                GameObject obj3 = Instantiate(SecretObj, mypos, Quaternion.identity);
+            //pos = new Vector2Int(x, y);
+            obj = Instantiate(SecretObj, mypos, Quaternion.identity);
             //obj3.GetComponent<SecretItem>().pos = pos;
-            obj3.transform.SetParent(this.transform);
+            obj.transform.SetParent(this.transform);
         }
 
 
     }
 
-    List<int> list = new List<int>();
 
     void Start()
     {
+        list = new List<int>();
         teleportSystem();
         //teleporters = new List<Teleport>();
-        main_obj_create = this;
     }
 
     

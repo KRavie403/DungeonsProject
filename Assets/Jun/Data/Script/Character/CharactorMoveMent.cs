@@ -157,6 +157,8 @@ public abstract class CharactorMovement : CharactorProperty
     IEnumerator MovingByPath(List<TileStatus> path, UnityAction arrive = null)
     {
         //myAnim.SetFloat("Speed", MoveSpeed);
+        GetMMInst().tiles[my_Pos].is_blocked = false;
+
         Vector2Int dest_pos = my_Pos;
         for (int i = 0; i < path.Count;)
         {
@@ -185,6 +187,7 @@ public abstract class CharactorMovement : CharactorProperty
         my_Pos = dest_pos;
         GetMMInst().tiles[dest_pos].my_obj = OB_TYPES.PLAYER;
         GetMMInst().tiles[dest_pos].my_target = this.gameObject;
+        GetMMInst().tiles[dest_pos].is_blocked = true;
 
         //myAnim.SetFloat("Speed", 0);
         arrive?.Invoke();
@@ -226,12 +229,7 @@ public abstract class CharactorMovement : CharactorProperty
     {
 
     }
-    public void TakeDamage(float dmg)
-    {
-        //
-        curHP -= dmg;
-        Debug.Log($"Get Damage, Current HP : {curHP}");
-    }
+    protected virtual void TakeDamage(float dmg) { }
     protected void Guard()
     {
         if (coMove != null)
@@ -243,10 +241,8 @@ public abstract class CharactorMovement : CharactorProperty
     }
     IEnumerator GuardUpCast()
     {
-        //�ִϸ��̼� ����
         yield return new WaitForSeconds(2.0f);
         GetGMInst().ChangeTurn();
     }
-
 }
 

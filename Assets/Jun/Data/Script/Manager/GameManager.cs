@@ -15,6 +15,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     CharacterDB selectedOrgChars;
     [SerializeField]
+    SkillSetDB selectedOrgSkills;
+
+    [SerializeField]
     GameObject boss;
 
     private void Awake()
@@ -84,8 +87,9 @@ public class GameManager : Singleton<GameManager>
             if (UI_Manager.Inst.currentSkillSet != null)
                 UI_Manager.Inst.currentSkillSet.Clear();
             UI_Manager.Inst.skill_Count = 0;
-            foreach (var skill in characters[curCharacter].GetComponent<Player>().skilList)
-                UI_Manager.Inst.AddSkills(skill);
+
+            for (int i = curCharacter * 4; i < curCharacter * 4 + 4; i++)
+                UI_Manager.Inst.AddSkills(selectedOrgSkills.List[i]);
         }
     }
  

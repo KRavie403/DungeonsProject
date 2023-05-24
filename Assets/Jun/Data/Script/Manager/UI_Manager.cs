@@ -12,7 +12,7 @@ public struct SSkill
     public int _damage;
     public GameObject _effect;
     public List<Vector2Int> _AttackIndex;
-
+    public int _distance;
 }
 
 public class UI_Manager : Singleton<UI_Manager>
@@ -22,6 +22,7 @@ public class UI_Manager : Singleton<UI_Manager>
     public GameObject char_Frame;
     public GameObject TPUI;
     public GameObject ChestUI;
+    public GameObject MonsterUI;
 
     public Transform TurnSystem;
     public List<SSkill> currentSkillSet;
@@ -53,6 +54,12 @@ public class UI_Manager : Singleton<UI_Manager>
         skill._damage = _set.Damage;
         skill._type = _set.myType;
         skill._AttackIndex = _set.AttackIndex;
+        skill._distance = _set.Distance;
+        if (skill_Count < skillSlots.Count)
+        {
+            skillSlots[skill_Count].GetComponent<Image>().sprite = _set.MySprite;
+            skillSlots[skill_Count].GetComponentInChildren<SkillSlot>()._my_skill = _set;
+        }
         currentSkillSet.Add(skill);
         skill_Count++;
     }

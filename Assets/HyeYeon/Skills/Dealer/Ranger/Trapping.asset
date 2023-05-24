@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Trapping
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 2
   _sprite: {fileID: 21300000, guid: 8990c20e7e0ec014ca755c21bbab2c2e, type: 3}
   _damage: 0
-  _effect: {fileID: 0}
-  AttackIndex: []
+  _effect: {fileID: 2446930069836037529, guid: 70aa021798fd63a48aacacf6ff441274, type: 3}
+  AttackIndex:
+  - {x: 0, y: 0}
+  _distance: 5

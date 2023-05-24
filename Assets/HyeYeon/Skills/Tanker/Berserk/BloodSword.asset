@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: BloodSword
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 2
   _sprite: {fileID: 21300000, guid: 70573ad27d14c264a8c07354ae1f41e5, type: 3}
   _damage: 32
-  _effect: {fileID: 0}
-  AttackIndex: []
+  _effect: {fileID: 3343325401522107417, guid: 62c97d5829d26e9459467b96c0e7a248, type: 3}
+  AttackIndex:
+  - {x: 0, y: 1}
+  - {x: 0, y: 2}
+  - {x: 0, y: 3}
+  - {x: 0, y: 4}
+  - {x: 0, y: 5}
+  _distance: 5

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Regen
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 2
   _sprite: {fileID: 21300000, guid: f99b204a1c625574dae836f10730311b, type: 3}
   _damage: 0
-  _effect: {fileID: 0}
-  AttackIndex: []
+  _effect: {fileID: 8960516968802430018, guid: 2252c548a652ede49a6c136ac06bad81, type: 3}
+  AttackIndex:
+  - {x: 0, y: 0}
+  _distance: 5

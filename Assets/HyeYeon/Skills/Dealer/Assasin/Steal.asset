@@ -12,8 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Steal
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 1
   _sprite: {fileID: 21300000, guid: 2bb02b871b3de264084da35529482ade, type: 3}
-  _damage: 0
-  _effect: {fileID: 0}
-  AttackIndex: []
+  _damage: 10
+  _effect: {fileID: 3602841574899276619, guid: af777d3554f6d0843b02c98a17b24ca9, type: 3}
+  AttackIndex:
+  - {x: -1, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: 1}
+  - {x: 0, y: -1}
+  _distance: 5
