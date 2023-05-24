@@ -125,7 +125,7 @@ public class CharacterSlotDB : MonoBehaviour
 
     public void OverCharacterList()
     {
-        if (count == 4)
+        if (chosenDB.characterList.Count == 4)
         {
             ani.SetTrigger("Notify");
         }
