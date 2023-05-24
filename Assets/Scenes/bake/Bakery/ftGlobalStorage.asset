@@ -402,21 +402,19 @@ MonoBehaviour:
   - Assets/Bakery/examples/content/floor_lamp.FBX
   - Assets/YuRi/Base Modeling/Sourcerer_Weapon.fbx
   - Assets/YuRi/Base Modeling/Priest_Weapon.fbx
-  - Assets/YuRi/Animation/General@Death01.fbx
-  - Assets/YuRi/Animation/Priest@Idle.fbx
-  - Assets/YuRi/Animation/Paladin@Idle.fbx
-  - Assets/YuRi/Animation/General@Death02.fbx
-  - Assets/YuRi/Animation/Assassin@Idle.fbx
-  - Assets/YuRi/Animation/Berserk@Attack.fbx
-  - Assets/YuRi/Animation/Berserk@Attack_Transition.fbx
-  - Assets/YuRi/Animation/Musketeer@Idle.fbx
-  - Assets/YuRi/Animation/General@GetHit.fbx
-  - Assets/YuRi/Animation/Berserk@Idle.fbx
-  - Assets/YuRi/Animation/Gaurdian@Idle.fbx
-  - Assets/YuRi/Animation/Musketeer@Ready.fbx
-  - Assets/YuRi/Animation/Musketeer@Idle2.fbx
-  - Assets/YuRi/Animation/Sourcerer@Idle.fbx
-  uvOverlapAssetList: 00000000ffffffff01010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000
+  - Assets/YuRi/Base Modeling/Berserk@Weapon.fbx
+  - Assets/Jun/Model/Priest.fbx
+  - Assets/YuRi/Base Modeling/Assassin_Weapon.fbx
+  - Assets/YuRi/Base Modeling/Musketeer_Weapon.fbx
+  - Assets/YuRi/Base Modeling/Gaurdian_Weapon.fbx
+  - Assets/Jun/Model/Sourcerer.fbx
+  - Assets/Jun/Model/Musketeer.fbx
+  - Assets/Jun/Model/Paladin.fbx
+  - Assets/YuRi/Base Modeling/Paladin_Weapon.fbx
+  - Assets/Jun/Model/Berserk.fbx
+  - Assets/Jun/Model/Assassin.fbx
+  - Assets/Jun/Model/Gaurdian.fbx
+  uvOverlapAssetList: 00000000ffffffff0101000001010000000000000000000001010000010100000101000000000000000000000000000001010000000000000000000000000000
   xatlasWarningShown: 0
   foundCompatibleSetup: 1
   gpuName: NVIDIA GeForce RTX 3080

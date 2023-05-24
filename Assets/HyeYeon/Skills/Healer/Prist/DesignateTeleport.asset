@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: DesignateTeleport
   m_EditorClassIdentifier: 
   _type: 0
+  _Etype: 1
   _sprite: {fileID: 21300000, guid: c635a4cf507adb84b95b3673791dca77, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 3545122864376722400, guid: fcba2d6b83d43ea4999d4bf730d4712a, type: 3}
   AttackIndex:
   - {x: -6, y: 6}
