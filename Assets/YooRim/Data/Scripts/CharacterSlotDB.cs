@@ -24,12 +24,15 @@ public class CharacterSlotDB : MonoBehaviour
 
     public Button[] characterButtonList;
 
+    private Animator ani;
+
     int count = 0;
     int[] temp = new int[4];
 
     private void Start()
     {
         cdb = this;
+        ani = GetComponent<Animator>();
         chosenDB.characterList.Clear();
 
         for (int i = 0; i<4; i++)
@@ -117,6 +120,14 @@ public class CharacterSlotDB : MonoBehaviour
             characterButtonList[idx].interactable = false;
             count++;
             Debug.Log(count);
+        }
+    }
+
+    public void OverCharacterList()
+    {
+        if (count == 4)
+        {
+            ani.SetTrigger("Notify");
         }
     }
 }
