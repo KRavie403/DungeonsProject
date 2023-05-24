@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: MeteorStrike
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: 3434169aea05eeb4185f2fa72c80bf31, type: 3}
-  _damage: 0
+  _damage: 100
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 3492557996716055465, guid: 31f6f071fe3b4db4aba2eb6cb8124896, type: 3}
   AttackIndex:
   - {x: -7, y: 7}

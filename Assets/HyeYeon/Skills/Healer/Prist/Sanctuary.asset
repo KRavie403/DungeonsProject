@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: Sanctuary
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: 90d1fff2a01a9424a8fbed22cbd0817e, type: 3}
-  _damage: -80
+  _damage: 80
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 5672835560281611278, guid: f785ff47717fbf34aac8526b0605cdb7, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
