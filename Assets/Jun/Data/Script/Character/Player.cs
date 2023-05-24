@@ -143,27 +143,33 @@ public class Player : Battle
         }
 
         //애니메이션 재생 (action start)
+
+        bool done = false;
+
         switch (currSkill.myEType)
         {
             case SkillSet.EffectType.DamageEffcet:
-                StartCoroutine(Damaging(currSkill, currSkill.Damage, targets));
+                StartCoroutine(Damaging(currSkill, currSkill.Damage, targets, () => done = true));
                 break;
             case SkillSet.EffectType.StatEffect:
-                StartCoroutine(StatModifiring(currSkill, targets));
+                StartCoroutine(StatModifiring(currSkill, targets, () => done = true));
                 break;
             case SkillSet.EffectType.SpecialEffect:
-                //SpecialEffect(currSkill, currSkill.Damage, targets)
+                //SpecialEffect(currSkill, currSkill.Damage, targets, () => done = true)
                 break;
 
         }
-
-
+        while (!done)
+        {
+            yield return null;
+        }
 
         //애니메이션이 끝나고 실행
+        UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
+
         if (curAP == 10)
             GetGMInst().ChangeTurn();
-        
-        UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
+
 
         GetMMInst().InitLayer();
         ChangeState(STATE.IDLE);

@@ -1,15 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Events;
+using UnityEngine.XR;
 
 public abstract class Battle : CharactorMovement
 {
-    protected IEnumerator Damaging(SkillSet skill, float damage, Vector2Int[] Indexs)
+    protected IEnumerator Damaging(SkillSet skill, float damage, Vector2Int[] Indexs, UnityAction done =null )
     {
         Dictionary<GameObject, OB_TYPES> targets = new Dictionary<GameObject, OB_TYPES>();
 
@@ -46,9 +44,9 @@ public abstract class Battle : CharactorMovement
                 }
                 break;
             case SkillSet.SkillType.Moveable:
-                bool done = false;
-                StartCoroutine(MovingToTile(Indexs[0], () => done = true));
-                while (!done)
+                bool moved = false;
+                StartCoroutine(MovingToTile(Indexs[0], () => moved = true));
+                while (!moved)
                 {
                     yield return null;
                 }
@@ -112,8 +110,10 @@ public abstract class Battle : CharactorMovement
         }
 
         yield return null;
+        done?.Invoke();
+
     }
-    protected IEnumerator StatModifiring(SkillSet skill, Vector2Int[] Indexs) 
+    protected IEnumerator StatModifiring(SkillSet skill, Vector2Int[] Indexs, UnityAction done = null) 
     {
         StatModifire item = new StatModifire();
 
@@ -184,10 +184,11 @@ public abstract class Battle : CharactorMovement
                 break;
         }
         yield return null;
+        done?.Invoke();
     }
 
 
-    protected void SpecialEffect(SkillSet effect, Vector2Int[] Indexs)
+    protected void SpecialEffect(SkillSet effect, Vector2Int[] Indexs, UnityAction done = null)
     {
 
 
