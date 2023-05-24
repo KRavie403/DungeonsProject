@@ -36,6 +36,7 @@ public class CharcterSet : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         chosenSkillDB.List.Clear();
+        removeNum.Clear();
     }
     void Setting()
     {
@@ -107,38 +108,41 @@ public class CharcterSet : MonoBehaviour
 
     public void ClickApplyButton() //Settings
     {
-        if (count == 4)
+        if(CharacterSlotDB.cdb.chosenDB.characterList.Count < 4 && (chosenSkillDB.List.Contains(null) || chosenSkillDB.List.Count < 16))
         {
-            this.gameObject.SetActive(false);
-            if(removeNum.Count != 0)
+
+            if (count == 4)
             {
-                removeNum.Sort();
-                for(int i = 0; i < 4; i++)
+                this.gameObject.SetActive(false);
+                if(removeNum.Count != 0)
                 {
-                    chosenSkillDB.List[removeNum[0] * 4 + i] = tempChosenSkillDB.List[i];
-                }  
-                removeNum.Remove(0);
-                removeNum.Sort();
+                    removeNum.Sort();
+                    for(int i = 0; i < 4; i++)
+                    {
+                        chosenSkillDB.List[removeNum[0] * 4 + i] = tempChosenSkillDB.List[i];
+                    }  
+                    removeNum.RemoveAt(0);
+                }
+                else
+                {
+                    foreach (var temp in tempChosenSkillDB.List)
+                    {
+                        chosenSkillDB.List.Add(temp);
+                    }
+                }
+                CharacterSlotDB.cdb.ChosenCharacterButtonsActive(charIdx);
+                CharacterSlotDB.cdb.DeactiveCharacters(charIdx);
             }
             else
             {
-                foreach (var temp in tempChosenSkillDB.List)
-                {
-                    chosenSkillDB.List.Add(temp);
-                }
+                CountSkillSetting();
             }
-            CharacterSlotDB.cdb.ChosenCharacterButtonsActive(charIdx);
-            CharacterSlotDB.cdb.DeactiveCharacters(charIdx);
-        }
-        else
-        {
-            CountSkillSetting();
         }
     }
 
     public void SetSkillList(int idx)
     {
-        if(chosenSkillDB.List.Count < 16 && tempChosenSkillDB.List.Count < 4)
+        if(chosenSkillDB.List.Contains(null) || (chosenSkillDB.List.Count < 16 && tempChosenSkillDB.List.Count < 4))
         {
             SkillSet temp = chosenDB.Skill.List[idx];
             tempChosenSkillDB.List.Add(temp);
