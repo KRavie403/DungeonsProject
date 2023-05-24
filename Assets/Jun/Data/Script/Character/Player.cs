@@ -14,7 +14,7 @@ public class Player : Battle
         OrgAttackPower = data.AttackPower;
         OrgDeffencePower = data.DeffencePower;
         OrgSpeed = data.Speed;
-        ActionPoint = data.ActionPoint;
+        curAP = ActionPoint = data.ActionPoint;
         skilList.Clear();
 
         //선택된 스킬 리스트 입력 필요 
@@ -24,14 +24,15 @@ public class Player : Battle
     }
     public void SettingPos()
     {
-        int x, y, step = 0;
+        int x, y;
+        bool blocked = false;
         do
         {
             x = Random.Range(0, GetMMInst().rows);
             y = Random.Range(0, GetMMInst().columns);
             if(GetMMInst().tiles.ContainsKey(new Vector2Int(x,y)))
-                step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
-        } while (step == -5 || step == 0 );
+                blocked = GetMMInst().tiles[new Vector2Int(x,y)].is_blocked;
+        } while (!blocked);
 
 
         my_Pos = new Vector2Int(x, y);
