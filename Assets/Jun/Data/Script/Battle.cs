@@ -1,23 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Events;
 
 public abstract class Battle : CharactorMovement
 {
-    protected IEnumerator Damaging(SkillSet skill, float damage, Vector2Int[] Indexs)
+    protected IEnumerator Damaging(SkillSet skill, float damage, Vector2Int[] Indexs, UnityAction done =null )
     {
         Dictionary<GameObject, OB_TYPES> targets = new Dictionary<GameObject, OB_TYPES>();
+        Vector3 dir = MapManager.Inst.tiles[Indexs[0]].transform.position - this.transform.position;
+        dir.Normalize();
+
+        GameObject obj;
 
         //effect 재생
         switch (skill.myType)
         {
             case SkillSet.SkillType.Directing:
-                Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
+                if (skill.Effect != null)
+                {
+                    obj = Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
+                    obj.transform.Rotate(dir);
+                }
                 foreach (var i in Indexs)
                 {
                     GameObject target;
@@ -46,13 +51,15 @@ public abstract class Battle : CharactorMovement
                 }
                 break;
             case SkillSet.SkillType.Moveable:
-                bool done = false;
-                StartCoroutine(MovingToTile(Indexs[0], () => done = true));
-                while (!done)
+                bool moved = false;
+                //이동 시작 애니메이션 필요
+                StartCoroutine(MovingToTile(Indexs[0], () => moved = true));
+                while (!moved)
                 {
                     yield return null;
                 }
-                Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
+                if(skill.Effect != null)
+                    obj = Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
                 foreach (var i in Indexs)
                 {
                     GameObject target;
@@ -81,7 +88,8 @@ public abstract class Battle : CharactorMovement
                 }
                 break;
             case SkillSet.SkillType.Targeting:
-                Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
+                if(skill.Effect != null)
+                    obj = Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
                 foreach (var i in Indexs)
                 {
                     GameObject target;
@@ -112,8 +120,10 @@ public abstract class Battle : CharactorMovement
         }
 
         yield return null;
+        done?.Invoke();
+
     }
-    protected IEnumerator StatModifiring(SkillSet skill, Vector2Int[] Indexs) 
+    protected IEnumerator StatModifiring(SkillSet skill, Vector2Int[] Indexs, UnityAction done = null) 
     {
         StatModifire item = new StatModifire();
 
@@ -127,7 +137,8 @@ public abstract class Battle : CharactorMovement
         switch (skill.myType)
         {
             case SkillSet.SkillType.Directing:
-                Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
+                if(skill.Effect != null)
+                    Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
                 foreach (var i in Indexs)
                 {
                     GameObject target;
@@ -155,7 +166,8 @@ public abstract class Battle : CharactorMovement
                 }
                 break;
             case SkillSet.SkillType.Targeting:
-                Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
+                if(skill.Effect != null)
+                    Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
                 foreach (var i in Indexs)
                 {
                     GameObject target;
@@ -184,10 +196,11 @@ public abstract class Battle : CharactorMovement
                 break;
         }
         yield return null;
+        done?.Invoke();
     }
 
 
-    protected void SpecialEffect(SkillSet effect, Vector2Int[] Indexs)
+    protected void SpecialEffect(SkillSet effect, Vector2Int[] Indexs, UnityAction done = null)
     {
 
 

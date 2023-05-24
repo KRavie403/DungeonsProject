@@ -48,7 +48,7 @@ public class MapSet : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("MainGameScene");
+            SceneLoader.Inst.ChangeScene(1);
             this.gameObject.SetActive(false); //스테이지 비활
         }
     }

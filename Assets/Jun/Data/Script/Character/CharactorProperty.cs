@@ -36,7 +36,7 @@ public abstract class CharactorProperty : MonoBehaviour
     protected int curAP {
         get
         {
-            if (_curActionPoint == 0) _curActionPoint = ActionPoint;
+            if (_curActionPoint <= 0) _curActionPoint = ActionPoint;
 
             return _curActionPoint;
         }

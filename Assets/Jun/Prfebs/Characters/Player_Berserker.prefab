@@ -79,19 +79,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4a9c85f82832046b8f3ba3c653e873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Aggro: 5
   skilList: []
   my_Sprite: {fileID: 21300000, guid: 73ae470741602774d895db3dfacd869d, type: 3}
   myType: 0
+  jclass: 1
   my_Pos: {x: 0, y: 0}
   MaxHP: 100
+  _curHP: -100
   my_Size: 1
   _mySize: 1
   MoveSpeed: 5
   RotSpeed: 180
+  OrgAttackPower: 10
   AttackPower: 10
+  OrgDeffencePower: 10
   DeffencePower: 10
-  jclass: 1
-  speed: 1
+  OrgSpeed: 1
+  Speed: 1
   _curActionPoint: 0
   _bfState: 0
   _curState: 0
@@ -112,14 +117,6 @@ MonoBehaviour:
   pickMask:
     serializedVersion: 2
     m_Bits: 776
-  TP:
-    serializedVersion: 2
-    m_Bits: 8192
-  TPUI: {fileID: 0}
-  Chest:
-    serializedVersion: 2
-    m_Bits: 16384
-  ChestUI: {fileID: 0}
   clickToMove:
     m_PersistentCalls:
       m_Calls:
@@ -247,10 +244,18 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7063777326920382890, guid: 0cba718cc77a9cb4baac415f8940423c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dca37d74936f2f4da5f2bb03a6654a3, type: 2}
     - target: {fileID: 919132149155446097, guid: 0cba718cc77a9cb4baac415f8940423c, type: 3}
       propertyPath: m_Name
       value: Model
       objectReference: {fileID: 0}
+    - target: {fileID: 1490051240067387703, guid: 0cba718cc77a9cb4baac415f8940423c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a0e15ea21bd56a547a5e2175202dedad, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cba718cc77a9cb4baac415f8940423c, type: 3}
 --- !u!4 &4670972855582017380 stripped

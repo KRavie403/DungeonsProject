@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Linq;
 
-public class BossMonster : Scenario
+public class BossMonster : StateMachine
 {
     // Start is called before the first frame update
     public Slider _bossHPUI;
@@ -23,12 +24,22 @@ public class BossMonster : Scenario
     {
 
         Vector2Int my_Pos = new Vector2Int();
-
+        bool[] blocked = new bool[4];
+        
+        blocked = Enumerable.Repeat(false, 4).ToArray();
+        
         do
         {
-            my_Pos.x = Random.Range(0, MapManager.Inst.rows);
-            my_Pos.y = Random.Range(0, MapManager.Inst.columns);
-        } while (MapManager.Inst.tiles.ContainsKey(my_Pos) && MapManager.Inst.tiles[my_Pos].isVisited == -5);
+            my_Pos.x = Random.Range(0, MapManager.Inst.rows-1);
+            my_Pos.y = Random.Range(0, MapManager.Inst.columns-1);
+            if (MapManager.Inst.tiles.ContainsKey(my_Pos))
+            {
+                blocked[0] = MapManager.Inst.tiles[my_Pos].is_blocked;
+                blocked[1] = MapManager.Inst.tiles[my_Pos + new Vector2Int(0,1)].is_blocked;
+                blocked[2] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 0)].is_blocked;
+                blocked[3] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 1)].is_blocked;
+            }
+        } while (!blocked[0] && !blocked[1] && !blocked[2] && !blocked[3]);
 
 
 
