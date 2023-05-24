@@ -138,3 +138,4 @@ MonoBehaviour:
   - {x: 4, y: -5}
   - {x: 5, y: -5}
   _distance: 5
+  _cost: 3

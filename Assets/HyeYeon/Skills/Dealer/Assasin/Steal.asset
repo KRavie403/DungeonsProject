@@ -13,12 +13,23 @@ MonoBehaviour:
   m_Name: Steal
   m_EditorClassIdentifier: 
   _type: 1
+  _Etype: 1
   _sprite: {fileID: 21300000, guid: 2bb02b871b3de264084da35529482ade, type: 3}
   _damage: 10
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 3602841574899276619, guid: af777d3554f6d0843b02c98a17b24ca9, type: 3}
   AttackIndex:
+  - {x: 0, y: 0}
   - {x: -1, y: 0}
   - {x: 1, y: 0}
   - {x: 0, y: 1}
   - {x: 0, y: -1}
   _distance: 5
+  _cost: 1

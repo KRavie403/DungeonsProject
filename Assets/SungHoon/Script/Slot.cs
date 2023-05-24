@@ -94,12 +94,12 @@ public class Slot : MonoBehaviour, IDropHandler ,IPointerClickHandler
             {
                 case ItemSet.ItemType.Power:
                     Debug.Log("Power UP");
-                    myInventory.myPlayer.AttackPower += Power;
+                    myInventory.myPlayer.OrgAttackPower += Power;
                     myInventory.DestroyItem(index);
                     break;
                 case ItemSet.ItemType.Armor:
                     Debug.Log("Defence UP");
-                    myInventory.myPlayer.DeffencePower += Power;
+                    myInventory.myPlayer.OrgDeffencePower += Power;
                     myInventory.DestroyItem(index);
                     break;
             }

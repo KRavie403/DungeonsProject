@@ -9,6 +9,7 @@ public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 public abstract class CharactorProperty : MonoBehaviour
 {
     [SerializeField]
+    public float Aggro = 5;
     public List<SkillSet> skilList;
     public Sprite my_Sprite;
     public OB_TYPES myType;
@@ -20,11 +21,15 @@ public abstract class CharactorProperty : MonoBehaviour
     public float _mySize = 1.0f;
     public float MoveSpeed = 1.0f;
     public float RotSpeed = 35.0f;
+
+    public float OrgAttackPower = 10.0f;
     public float AttackPower = 10.0f;
+    public float OrgDeffencePower = 10.0f;
     public float DeffencePower = 10.0f;
-    public float speed = 1.0f; //전투 우선도 
-    
-    StatModifire AD_stat = new StatModifire();
+    public float OrgSpeed = 1.0f; //전투 우선도 
+    public float Speed = 1.0f; //전투 우선도 
+
+    public List<StatModifire> AD_stat = new List<StatModifire>();
 
     protected int ActionPoint = 10;
     public int _curActionPoint;

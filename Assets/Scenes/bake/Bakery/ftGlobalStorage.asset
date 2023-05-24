@@ -400,8 +400,9 @@ MonoBehaviour:
   assetList:
   - Assets/Bakery/examples/content/sponza/bush.FBX
   - Assets/Bakery/examples/content/floor_lamp.FBX
-  - Assets/ParticleProFX/Resources/Mesh/beam.obj
-  uvOverlapAssetList: 00000000ffffffff00000000
+  - Assets/YuRi/Base Modeling/Sourcerer_Weapon.fbx
+  - Assets/YuRi/Base Modeling/Priest_Weapon.fbx
+  uvOverlapAssetList: 00000000ffffffff0101000001010000
   xatlasWarningShown: 0
   foundCompatibleSetup: 1
   gpuName: NVIDIA GeForce RTX 3080

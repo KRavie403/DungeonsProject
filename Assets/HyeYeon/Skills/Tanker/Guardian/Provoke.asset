@@ -242,3 +242,4 @@ MonoBehaviour:
   - {x: 6, y: -7}
   - {x: 7, y: -7}
   _distance: 5
+  _cost: 2
