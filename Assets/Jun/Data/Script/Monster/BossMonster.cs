@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using System.Linq;
 
-public class BossMonster : StateMachine
+public class BossMonster : Battle
 {
     // Start is called before the first frame update
     public Slider _bossHPUI;
@@ -26,7 +26,7 @@ public class BossMonster : StateMachine
         Vector2Int my_Pos = new Vector2Int();
         bool[] blocked = new bool[4];
         
-        blocked = Enumerable.Repeat(false, 4).ToArray();
+        blocked = Enumerable.Repeat(true, 4).ToArray();
         
         do
         {
@@ -39,7 +39,7 @@ public class BossMonster : StateMachine
                 blocked[2] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 0)].is_blocked;
                 blocked[3] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 1)].is_blocked;
             }
-        } while (!blocked[0] && !blocked[1] && !blocked[2] && !blocked[3]);
+        } while (blocked[0] || blocked[1] || blocked[2] || blocked[3]);
 
 
 
@@ -64,7 +64,7 @@ public class BossMonster : StateMachine
 
         yield return null;
     }
-    override public void SetDistance()
+    public override void SetDistance()
     {
         List<TileStatus> searchTileArea = new List<TileStatus>();
 
@@ -171,7 +171,7 @@ public class BossMonster : StateMachine
         ChangeState(STATE.ATTACK);
         InitTileDistance();
     }
-    public void OnSkilCastStart(SkillSet skill)
+    public void OnSkillCastStart(SkillSet skill)
     {
         //애니메이션 재생 (casting)
     }
