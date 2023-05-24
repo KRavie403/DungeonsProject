@@ -10,7 +10,26 @@ public class BossMonster : Battle
     // Start is called before the first frame update
     public Slider _bossHPUI;
     private float Hp;
-
+    //
+    // Senario idleScenario = new Senario(0, null, null);
+    // Senario attackScenario = new Senario(10, targetTile, myPosTile);
+    // Senario defendScenario = new Senario(-10, targetTile, myPosTile);
+    //
+    // if (currentState == "Idle")
+    // {
+    //     if (scenario.senarioValue > attackScenario.senarioValue)
+    //         currentState = "Attack";
+    //     else if (scenario.senarioValue < defendScenario.senarioValue)
+    //         currentState = "Defend";
+    // }
+    // else if (currentState == "Attack")
+    // {
+    //     // Attack ìƒíƒœì— ëŒ€í•œ ì „ì´ ë¡œì§
+    // }
+    // else if (currentState == "Defend")
+    // {
+    //     // Defend ìƒíƒœì— ëŒ€í•œ ì „ì´ ë¡œì§
+    // }
     public void PlayerSetting()
     {
         myType = OB_TYPES.MONSTER;
@@ -87,8 +106,8 @@ public class BossMonster : Battle
                 if (tile.isVisited == step - 1)
                 {
                     TestAllDirection(tile.gridPos.x, tile.gridPos.y, step);
-                    //obj ÁÖº¯ x+1 / y + 1¹æÇâµµ step°ª º¯°æ, ¿¹¿ÜÃ³¸® ÇÊ¿ä
-                    //if ÀÎÁ¢Å¸ÀÏÀÌ ¸ø°¡´Â °÷ÀÎ°¡ ? step ³¯¸²
+                    //obj ï¿½Öºï¿½ x+1 / y + 1ï¿½ï¿½ï¿½âµµ stepï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½Ê¿ï¿½
+                    //if ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ? step ï¿½ï¿½ï¿½ï¿½
                     tile.gameObject.layer = 9;
                 }
                 if (tile.GetComponent<TileStatus>().isVisited == step)
@@ -141,7 +160,7 @@ public class BossMonster : Battle
     }
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (casting end)
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ (casting end)
         StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
@@ -153,9 +172,9 @@ public class BossMonster : Battle
             yield return null;
         }
 
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (action start)
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ (action start)
 
-        //¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³ª°í ½ÇÇà
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (var index in targets)
         {
             GameObject target = MapManager.Inst.tiles[index].GetComponent<TileStatus>().OnMyTarget();
@@ -173,7 +192,6 @@ public class BossMonster : Battle
     }
     public void OnSkillCastStart(SkillSet skill)
     {
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (casting)
     }
     public void OnMoveByPath(List<TileStatus> path)
     {
