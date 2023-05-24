@@ -24,7 +24,7 @@ MonoBehaviour:
     AttackPower: 0
     DeffencePower: 0
     Speed: 0
-  _effect: {fileID: 0}
+  _effect: {fileID: 5750467444723686145, guid: e9c6083534f52d3429aa0e815edfff5a, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
   _distance: 5
