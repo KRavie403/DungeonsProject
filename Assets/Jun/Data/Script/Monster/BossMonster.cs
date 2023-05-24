@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class BossMonster : Battle
+public class BossMonster : Scenario
 {
     // Start is called before the first frame update
     public Slider _bossHPUI;

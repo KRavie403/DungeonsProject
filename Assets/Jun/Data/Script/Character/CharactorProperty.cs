@@ -9,6 +9,7 @@ public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
 public abstract class CharactorProperty : MonoBehaviour
 {
     [SerializeField]
+    public float Aggro = 5;
     public List<SkillSet> skilList;
     public Sprite my_Sprite;
     public OB_TYPES myType;
