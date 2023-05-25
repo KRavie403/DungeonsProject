@@ -4,7 +4,6 @@ public class Senario
     public TileStatus targettile;
     public TileStatus myPostile;
 
-
     public Senario(float senarioValue, TileStatus targettile, TileStatus myPostile)
     {
         this.senarioValue = senarioValue;
