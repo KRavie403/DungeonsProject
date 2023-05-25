@@ -24,7 +24,7 @@ public class ChestUI : MonoBehaviour
     public ItemSetDB myItemDB;
 
 
-    
+  
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +48,8 @@ public class ChestUI : MonoBehaviour
         int randItem;
         for (int i=0; i < slots.Count;i++)
         {
-            //randItem = UnityEngine.Random.Range(0,myItemDB.ItemList.Count);
-            //items.Add(myItemDB.ItemList[randItem]);
+            randItem = UnityEngine.Random.Range(0,myItemDB.ItemList.Count);
+            items.Add(myItemDB.ItemList[randItem]);
         }
     }
     // Update is called once per frame

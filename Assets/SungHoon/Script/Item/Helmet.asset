@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c1e4e0752db3ec42ac4ca42437a03f7, type: 3}
-  m_Name: Axe
+  m_Name: Helmet
   m_EditorClassIdentifier: 
-  _type: 0
+  _type: 1
   _Grade: 0
-  _EquipmentType: 1
-  _power: 10
-  _sprite: {fileID: 21300000, guid: 97eb33f17282b874aafc04781652f343, type: 3}
+  _EquipmentType: 2
+  _power: 0
+  _sprite: {fileID: 21300000, guid: 45603c38f879a314bb0baedd8f1f5eba, type: 3}

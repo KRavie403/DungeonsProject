@@ -55,7 +55,18 @@ public class ChestUISlot : MonoBehaviour, IPointerClickHandler
         if (eventData.clickCount == 2)
         {
             image.sprite = defaltSprite;
-            myInventory.AddItem(myChest.items[index],myItemGrade.grade);
+            bool flag = false;
+            for (int i = 0; i < myInventory.items.Count; i++)
+            {
+                if (myInventory.items[i] == null)
+                {
+                    flag = true;
+                }
+            }
+            if (flag == true)
+            {
+                myInventory.AddItem(myChest.items[index], myItemGrade.grade);
+            }
             myChest.DestroyItem(index);
         }
     }

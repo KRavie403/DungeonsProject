@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c1e4e0752db3ec42ac4ca42437a03f7, type: 3}
-  m_Name: SHOES
+  m_Name: Shose
   m_EditorClassIdentifier: 
   _type: 1
+  _Grade: 0
+  _EquipmentType: 4
   _power: 10
   _sprite: {fileID: 21300000, guid: cd7b401a96a069e45a2313a33309ef26, type: 3}
