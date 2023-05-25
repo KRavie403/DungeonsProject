@@ -52,11 +52,7 @@
             "m_Id": "81c57c06ed044e3baa76aa415e46fe85"
         }
     ],
-    "m_Keywords": [
-        {
-            "m_Id": "0ad6619f93b542f48fced56dd769dda3"
-        }
-    ],
+    "m_Keywords": [],
     "m_Dropdowns": [],
     "m_CategoryData": [
         {
@@ -1960,30 +1956,6 @@
     "m_ShaderOutputName": "Sampler",
     "m_StageCapability": 3,
     "m_BareResource": false
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
-    "m_ObjectId": "0ad6619f93b542f48fced56dd769dda3",
-    "m_Guid": {
-        "m_GuidSerialized": "e9b9a9b8-9e82-431d-9808-ab3b4ec40a8d"
-    },
-    "m_Name": "_RECEIVE_SHADOWS_OFF",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "_RECEIVE_SHADOWS_OFF",
-    "m_DefaultReferenceName": "_RECEIVE_SHADOWS_OFF",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_KeywordType": 0,
-    "m_KeywordDefinition": 0,
-    "m_KeywordScope": 1,
-    "m_KeywordStages": 63,
-    "m_Entries": [],
-    "m_Value": 1,
-    "m_IsEditable": true
 }
 
 {
@@ -6614,9 +6586,6 @@
         },
         {
             "m_Id": "64d3466e7bc74041b2f39d1616c1382a"
-        },
-        {
-            "m_Id": "0ad6619f93b542f48fced56dd769dda3"
         },
         {
             "m_Id": "81c57c06ed044e3baa76aa415e46fe85"

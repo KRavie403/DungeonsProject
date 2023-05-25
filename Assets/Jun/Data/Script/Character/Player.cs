@@ -14,7 +14,7 @@ public class Player : Battle
         OrgAttackPower = data.AttackPower;
         OrgDeffencePower = data.DeffencePower;
         OrgSpeed = data.Speed;
-        ActionPoint = data.ActionPoint;
+        curAP = ActionPoint = data.ActionPoint;
         skilList.Clear();
 
         //선택된 스킬 리스트 입력 필요 
@@ -24,14 +24,15 @@ public class Player : Battle
     }
     public void SettingPos()
     {
-        int x, y, step = 0;
+        int x, y;
+        bool blocked = true;
         do
         {
             x = Random.Range(0, GetMMInst().rows);
             y = Random.Range(0, GetMMInst().columns);
             if(GetMMInst().tiles.ContainsKey(new Vector2Int(x,y)))
-                step = GetMMInst().tiles[new Vector2Int(x,y)].isVisited;
-        } while (step == -5 || step == 0 );
+                blocked = GetMMInst().tiles[new Vector2Int(x,y)].is_blocked;
+        } while (blocked);
 
 
         my_Pos = new Vector2Int(x, y);
@@ -143,27 +144,31 @@ public class Player : Battle
         }
 
         //애니메이션 재생 (action start)
+
+        bool done = false;
+
         switch (currSkill.myEType)
         {
             case SkillSet.EffectType.DamageEffcet:
-                StartCoroutine(Damaging(currSkill, currSkill.Damage, targets));
-                break;
-            case SkillSet.EffectType.StatEffect:
-                StartCoroutine(StatModifiring(currSkill, targets));
+                StartCoroutine(Damaging(currSkill, currSkill.Damage, targets, () => done = true));
                 break;
             case SkillSet.EffectType.SpecialEffect:
-                //SpecialEffect(currSkill, currSkill.Damage, targets)
+                //SpecialEffect(currSkill, currSkill.Damage, targets, () => done = true)
+            case SkillSet.EffectType.StatEffect:
+                StartCoroutine(StatModifiring(currSkill, targets, () => done = true));
                 break;
-
+        }
+        while (!done)
+        {
+            yield return null;
         }
 
-
-
         //애니메이션이 끝나고 실행
+        UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
+
         if (curAP == 10)
             GetGMInst().ChangeTurn();
-        
-        UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
+
 
         GetMMInst().InitLayer();
         ChangeState(STATE.IDLE);

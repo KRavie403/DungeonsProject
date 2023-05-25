@@ -3,13 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Linq;
 
-public class BossMonster : Scenario
+public class BossMonster : Battle
 {
     // Start is called before the first frame update
     public Slider _bossHPUI;
     private float Hp;
-
+    //
+    // Senario idleScenario = new Senario(0, null, null);
+    // Senario attackScenario = new Senario(10, targetTile, myPosTile);
+    // Senario defendScenario = new Senario(-10, targetTile, myPosTile);
+    //
+    // if (currentState == "Idle")
+    // {
+    //     if (scenario.senarioValue > attackScenario.senarioValue)
+    //         currentState = "Attack";
+    //     else if (scenario.senarioValue < defendScenario.senarioValue)
+    //         currentState = "Defend";
+    // }
+    // else if (currentState == "Attack")
+    // {
+    //     // Attack ìƒíƒœì— ëŒ€í•œ ì „ì´ ë¡œì§
+    // }
+    // else if (currentState == "Defend")
+    // {
+    //     // Defend ìƒíƒœì— ëŒ€í•œ ì „ì´ ë¡œì§
+    // }
     public void PlayerSetting()
     {
         myType = OB_TYPES.MONSTER;
@@ -23,12 +43,22 @@ public class BossMonster : Scenario
     {
 
         Vector2Int my_Pos = new Vector2Int();
-
+        bool[] blocked = new bool[4];
+        
+        blocked = Enumerable.Repeat(true, 4).ToArray();
+        
         do
         {
-            my_Pos.x = Random.Range(0, MapManager.Inst.rows);
-            my_Pos.y = Random.Range(0, MapManager.Inst.columns);
-        } while (MapManager.Inst.tiles.ContainsKey(my_Pos) && MapManager.Inst.tiles[my_Pos].isVisited == -5);
+            my_Pos.x = Random.Range(0, MapManager.Inst.rows-1);
+            my_Pos.y = Random.Range(0, MapManager.Inst.columns-1);
+            if (MapManager.Inst.tiles.ContainsKey(my_Pos))
+            {
+                blocked[0] = MapManager.Inst.tiles[my_Pos].is_blocked;
+                blocked[1] = MapManager.Inst.tiles[my_Pos + new Vector2Int(0,1)].is_blocked;
+                blocked[2] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 0)].is_blocked;
+                blocked[3] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 1)].is_blocked;
+            }
+        } while (blocked[0] || blocked[1] || blocked[2] || blocked[3]);
 
 
 
@@ -53,7 +83,7 @@ public class BossMonster : Scenario
 
         yield return null;
     }
-    override public void SetDistance()
+    public override void SetDistance()
     {
         List<TileStatus> searchTileArea = new List<TileStatus>();
 
@@ -76,8 +106,8 @@ public class BossMonster : Scenario
                 if (tile.isVisited == step - 1)
                 {
                     TestAllDirection(tile.gridPos.x, tile.gridPos.y, step);
-                    //obj ÁÖº¯ x+1 / y + 1¹æÇâµµ step°ª º¯°æ, ¿¹¿ÜÃ³¸® ÇÊ¿ä
-                    //if ÀÎÁ¢Å¸ÀÏÀÌ ¸ø°¡´Â °÷ÀÎ°¡ ? step ³¯¸²
+                    //obj ï¿½Öºï¿½ x+1 / y + 1ï¿½ï¿½ï¿½âµµ stepï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ ï¿½Ê¿ï¿½
+                    //if ï¿½ï¿½ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ? step ï¿½ï¿½ï¿½ï¿½
                     tile.gameObject.layer = 9;
                 }
                 if (tile.GetComponent<TileStatus>().isVisited == step)
@@ -130,7 +160,7 @@ public class BossMonster : Scenario
     }
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (casting end)
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ (casting end)
         StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
@@ -142,9 +172,9 @@ public class BossMonster : Scenario
             yield return null;
         }
 
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (action start)
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ (action start)
 
-        //¾Ö´Ï¸ÞÀÌ¼ÇÀÌ ³¡³ª°í ½ÇÇà
+        //ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (var index in targets)
         {
             GameObject target = MapManager.Inst.tiles[index].GetComponent<TileStatus>().OnMyTarget();
@@ -160,9 +190,8 @@ public class BossMonster : Scenario
         ChangeState(STATE.ATTACK);
         InitTileDistance();
     }
-    public void OnSkilCastStart(SkillSet skill)
+    public void OnSkillCastStart(SkillSet skill)
     {
-        //¾Ö´Ï¸ÞÀÌ¼Ç Àç»ý (casting)
     }
     public void OnMoveByPath(List<TileStatus> path)
     {

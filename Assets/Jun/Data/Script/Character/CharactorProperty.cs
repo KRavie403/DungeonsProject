@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum JOB_CLASS { DEALER, TANKER, SUPPORTER}
-
 
 public abstract class CharactorProperty : MonoBehaviour
 {
@@ -12,8 +10,7 @@ public abstract class CharactorProperty : MonoBehaviour
     public float Aggro = 5;
     public List<SkillSet> skilList;
     public Sprite my_Sprite;
-    public OB_TYPES myType;
-    public JOB_CLASS jclass;
+    public OB_TYPES myType = OB_TYPES.NONE;
     public Vector2Int my_Pos;
     public float MaxHP = 100.0f;
     public float _curHP = -100.0f;
@@ -36,7 +33,7 @@ public abstract class CharactorProperty : MonoBehaviour
     protected int curAP {
         get
         {
-            if (_curActionPoint == 0) _curActionPoint = ActionPoint;
+            if (_curActionPoint <= 0) _curActionPoint = ActionPoint;
 
             return _curActionPoint;
         }

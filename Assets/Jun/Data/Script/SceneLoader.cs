@@ -6,7 +6,10 @@ using UnityEngine.UI;
 
 public class SceneLoader : Singleton<SceneLoader>
 {
-
+    public void Start()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
     public void ChangeScene(int i)
     {
         StartCoroutine(Loading(i));
@@ -16,23 +19,23 @@ public class SceneLoader : Singleton<SceneLoader>
 
     IEnumerator Loading(int i)
     {
-        yield return SceneManager.LoadSceneAsync(3);
+        yield return SceneManager.LoadSceneAsync(2);
+        Slider loadingSlider = FindAnyObjectByType<Slider>();  
         AsyncOperation op = SceneManager.LoadSceneAsync(i);     //return AsyncOperation operation;
-        op.allowSceneActivation = false;    //씬 로딩이 끝나면 바로 해당 씬을 바로 활성화 = > 로딩 구현 안됨
-        Slider loadingSlider = FindAnyObjectByType<Slider>();
+        op.allowSceneActivation = false;    //씬 로딩이 끝나면 바로 해당 씬을 바로 활성화
 
-        while (op.isDone)
+        while (!op.isDone)
         {
+            yield return new WaitForSeconds(0.5f);
             loadingSlider.value = op.progress / 0.9f;  //(0~0.9)
+            Debug.Log($"{loadingSlider.value}");
+
             if (Mathf.Approximately(loadingSlider.value, 1.0f))
             {
-                yield return new WaitForSeconds(1.0f);  //debug용 딜레이
-
                 op.allowSceneActivation = true;
             }
+            yield return new WaitForSeconds(0.5f);
 
-            yield return new WaitForSeconds(0.5f);  //debug용 딜레이
         }
-
     }
 }

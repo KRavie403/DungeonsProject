@@ -108,7 +108,8 @@ public class CharcterSet : MonoBehaviour
 
     public void ClickApplyButton() //Settings
     {
-        if(CharacterSlotDB.cdb.chosenDB.characterList.Count < 4 && (chosenSkillDB.List.Contains(null) || chosenSkillDB.List.Count < 16))
+        CharacterSlotDB.cdb.OverCharacterList();
+        if (CharacterSlotDB.cdb.chosenDB.characterList.Count < 4 && (chosenSkillDB.List.Contains(null) || chosenSkillDB.List.Count < 16))
         {
 
             if (count == 4)
@@ -184,7 +185,7 @@ public class CharcterSet : MonoBehaviour
         }
     }
 
-        public void CountSkillSetting()
+    public void CountSkillSetting()
     {
         ani.SetTrigger("Notify");
     }

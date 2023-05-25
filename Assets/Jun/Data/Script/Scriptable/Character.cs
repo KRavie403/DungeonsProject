@@ -19,10 +19,6 @@ public class Character : ScriptableObject
     public Sprite Sprite { get { return _sprite; } }
 
     [SerializeField]
-    private JOB_CLASS _class;
-    public JOB_CLASS JobClass { get { return _class; } }
-
-    [SerializeField]
     private float _maxHP;
     public float MaxHP { get { return _maxHP; } }
 
