@@ -42,6 +42,7 @@ public class MapSet : Singleton<MapSet>
         else
         {
             SceneLoader.Inst.ChangeScene(SceneIdx);
+            SceneLoaderText.Inst.Setting(SceneIdx);
             this.gameObject.SetActive(false); //스테이지 비활
         }
     }

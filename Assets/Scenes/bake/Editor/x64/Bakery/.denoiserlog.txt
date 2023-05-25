@@ -189,3 +189,19 @@ Tiles: 2
 Loading shader denoisePrepareOIDN.ptx::oxMain...
 Loading shader denoiseFinishOIDN.ptx::oxMain...
 Done
+2023-5-25
+Init...
+Error (1537): A supported NVIDIA GPU could not be found
+
+2023-5-25
+Init...
+Error (7051): OPTIX_ERROR_INVALID_DEVICE_CONTEXT
+
+2023-5-25
+Init...
+Error (1537): A supported NVIDIA GPU could not be found
+
+2023-5-25
+Init...
+Error (7051): OPTIX_ERROR_INVALID_DEVICE_CONTEXT
+
