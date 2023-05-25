@@ -99172,8 +99172,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abc1ab257d8f09459617a08c4ca827a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 10
-  columns: 10
+  rows: 100
+  columns: 100
   scale: 1
   crashMask:
     serializedVersion: 2
