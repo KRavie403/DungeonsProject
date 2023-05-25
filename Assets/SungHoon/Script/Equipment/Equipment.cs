@@ -40,7 +40,6 @@ public class Equipment : MonoBehaviour
         {
             items.Add(null);
         }
-        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -113,11 +112,11 @@ public class Equipment : MonoBehaviour
                     
                 if (myEquipmentType == ItemSet.EquipmentType.Armor)
                     {
-                        if (items[2] == null)
+                        if (items[1] == null)
                         {
-                        items[2] = myItem;
+                        items[1] = myItem;
                         this.myGrade = myGrade;
-                        slots[2].myItemGrade = myGrade;
+                        slots[1].myItemGrade = myGrade;
 
                         //myInventory.myPlayer.DeffencePower += Power;
                         //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
@@ -126,11 +125,49 @@ public class Equipment : MonoBehaviour
                         }
                         else
                         {
-                        ChangeItem(2, items[2], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                         FreshSlot();
                         }
                     }
                     if (myEquipmentType == ItemSet.EquipmentType.Boots)
+                    {
+                        if (items[1] == null)
+                        {
+                            items[1] = myItem;
+                            this.myGrade = myGrade;
+                            slots[1].myItemGrade = myGrade;
+                        myInventory.DestroyItem(Pindex);
+                        //myInventory.myPlayer.DeffencePower += Power;
+                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
+                        FreshSlot();
+                        }
+                        else
+                        {
+                            ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                            FreshSlot();
+                        }
+                    }
+                    break;
+                case ItemSet.ItemType.Accessories:
+                    if (myEquipmentType == ItemSet.EquipmentType.Ring)
+                    {
+                        if (items[2] == null)
+                        {
+                            items[2] = myItem;
+                            this.myGrade = myGrade;
+                            slots[2].myItemGrade = myGrade;
+                        myInventory.DestroyItem(Pindex);
+                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
+                        FreshSlot();
+                        }
+                        else
+                        {
+                            ChangeItem(2, items[2], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                            FreshSlot();
+                        }
+
+                    }
+                    if (myEquipmentType == ItemSet.EquipmentType.Necklace)
                     {
                         if (items[3] == null)
                         {
@@ -138,7 +175,6 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[3].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
-                        //myInventory.myPlayer.DeffencePower += Power;
                         //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         FreshSlot();
                         }
@@ -148,8 +184,6 @@ public class Equipment : MonoBehaviour
                             FreshSlot();
                         }
                     }
-                    break;
-                case ItemSet.ItemType.Accessories:
                     if (myEquipmentType == ItemSet.EquipmentType.EarRing)
                     {
                         if (items[4] == null)
@@ -166,9 +200,8 @@ public class Equipment : MonoBehaviour
                             ChangeItem(4, items[4], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
-
                     }
-                    if (myEquipmentType == ItemSet.EquipmentType.Necklace)
+                    if (myEquipmentType == ItemSet.EquipmentType.Bracelet)
                     {
                         if (items[5] == null)
                         {
@@ -182,40 +215,6 @@ public class Equipment : MonoBehaviour
                         else
                         {
                             ChangeItem(5, items[5], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
-                            FreshSlot();
-                        }
-                    }
-                    if (myEquipmentType == ItemSet.EquipmentType.Bracelet)
-                    {
-                        if (items[6] == null)
-                        {
-                            items[6] = myItem;
-                            this.myGrade = myGrade;
-                            slots[6].myItemGrade = myGrade;
-                        myInventory.DestroyItem(Pindex);
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
-                        FreshSlot();
-                        }
-                        else
-                        {
-                            ChangeItem(6, items[6], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
-                            FreshSlot();
-                        }
-                    }
-                    if (myEquipmentType == ItemSet.EquipmentType.Ring)
-                    {
-                        if (items[7] == null)
-                        {
-                            items[7] = myItem;
-                            this.myGrade = myGrade;
-                            slots[7].myItemGrade = myGrade;
-                        myInventory.DestroyItem(Pindex);
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
-                        FreshSlot();
-                        }
-                        else
-                        {
-                            ChangeItem(7, items[7], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
