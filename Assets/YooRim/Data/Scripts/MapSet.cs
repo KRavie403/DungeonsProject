@@ -5,18 +5,16 @@ using System.Windows;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MapSet : MonoBehaviour
+public class MapSet : Singleton<MapSet>
 {
     public GameObject CharacterSet;
     public GameObject Caution;
     public CharacterDB currentCharacterDB;
 
-    private Animator ani;
-
+    public int SceneIdx = 1;
     // Start is called before the first frame update
     void Start()
     {
-        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,11 +33,6 @@ public class MapSet : MonoBehaviour
         Destroy(obj, 2);
     }
 
-    IEnumerator WaitForIt()
-    {
-        yield return new WaitForSeconds(2.0f);
-    }
-
     public void StartGame()
     {
         if(currentCharacterDB.characterList.Count < 4)
@@ -48,7 +41,7 @@ public class MapSet : MonoBehaviour
         }
         else
         {
-            SceneLoader.Inst.ChangeScene(1);
+            SceneLoader.Inst.ChangeScene(SceneIdx);
             this.gameObject.SetActive(false); //스테이지 비활
         }
     }
