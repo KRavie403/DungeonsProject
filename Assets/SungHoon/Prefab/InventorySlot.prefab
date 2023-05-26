@@ -139,7 +139,12 @@ MonoBehaviour:
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
   myItem: {fileID: 0}
+  myItemGrade: 0
   index: 0
+  orgSlot: {fileID: 0}
+  orgChild: {fileID: 0}
+  ChangeChild: {fileID: 0}
+  ChangeChild2: {fileID: 0}
 --- !u!1 &8827833580587689414
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,3 +234,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4e7aaadb8e9ed42b56f850f7a84863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mySlot: {fileID: 0}
+  myIndex: 0
+  <orgParent>k__BackingField: {fileID: 0}
