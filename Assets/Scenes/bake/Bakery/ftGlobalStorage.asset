@@ -434,7 +434,142 @@ MonoBehaviour:
   - Assets/YuRi/Animation/Priest@Attack.fbx
   - Assets/YuRi/Animation/Berserk@Strike.fbx
   - Assets/YuRi/Animation/Paladin@Attack.fbx
-  uvOverlapAssetList: 00000000ffffffff01010000010100000000000000000000010100000101000001010000000000000000000000000000010100000000000000000000000000000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000
+  - Assets/minseok/paticle/Status Effects/Demo Scene/Animations/Skeleton@Idle.fbx
+  - Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Demo Scene/Animations/Skeleton@Idle.fbx
+  - Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Demo Scene/Animations/Skeleton@Buff01.fbx
+  - Assets/minseok/paticle/Status Effects/Demo Scene/Animations/Skeleton@Stunned01.fbx
+  - Assets/minseok/paticle/Status Effects/Demo Scene/Animations/Skeleton@Buff01.fbx
+  - Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Demo Scene/Animations/Skeleton@IdleWounded01.fbx
+  - Assets/minseok/paticle/Status Effects/Demo Scene/Animations/Skeleton@IdleWounded01.fbx
+  - Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Demo Scene/Animations/Skeleton@Stunned01.fbx
+  - Assets/minseok/obj/object/tree/outtree/tree6_2_low.obj
+  - Assets/minseok/obj/pone/big/bigwizard.obj
+  - Assets/minseok/obj/object/object34/object4_low.obj
+  - Assets/minseok/titleprop/props/box1.fbx
+  - Assets/minseok/titleprop/props/carriage.fbx
+  - Assets/Scenes/bake/Bakery/examples/content/logolight.FBX
+  - Assets/minseok/titleprop/props/well.fbx
+  - Assets/minseok/paticle/Status Effects/Demo Scene/Models/ClothedSkeletonModel.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    electric_arc_circle.fbx
+  - Assets/minseok/titleprop/props/carriage 1.fbx
+  - Assets/minseok/titleprop/props/box3.fbx
+  - Assets/Scenes/bake/Bakery/examples/content/floor_lamp.FBX
+  - Assets/Jun/Data/Material/sample_pone.fbx
+  - Assets/minseok/obj/object/hand/hand.obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX (legacy)/Mesh/CFX_Mesh_Circular.FBX
+  - Assets/minseok/obj/object/tex2/object3_low_2.obj
+  - Assets/YuRi/Base Modeling/Musketeer.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh star4.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh star6.fbx
+  - Assets/minseok/obj/pone/big/knife.obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX (legacy)/Mesh/CFX_Mesh_Circular2.FBX
+  - Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Demo Scene/Animations/SkeletonAnimationsAvatar.fbx
+  - Assets/minseok/obj/chest/TreasureChest/Models/chestFinal_0.FBX
+  - Assets/minseok/titleprop/island/terrain1_6_low.obj
+  - Assets/minseok/titleprop/house6.fbx
+  - Assets/minseok/titleprop/props/box2.fbx
+  - Assets/minseok/obj/object2/wall/Iwall_low.obj
+  - Assets/minseok/scripts/Resouces/p.obj
+  - Assets/minseok/obj/pone/big/bigwarrior.obj
+  - Assets/YuRi/Base Modeling/Sourcerer.fbx
+  - Assets/minseok/obj/circle/circle_low.obj
+  - Assets/minseok/paticle/Status Effects/Models/Ring_01.fbx
+  - Assets/Scenes/bake/Bakery/examples/content/sponza/bush.FBX
+  - Assets/minseok/obj/wall369/test 1.fbx
+  - Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Demo Scene/Models/ClothedSkeletonModel.fbx
+  - Assets/minseok/obj/object/tex2/object_low_2_1.obj
+  - Assets/minseok/obj/wall369/wall9.obj
+  - Assets/minseok/obj/object/tree/tree7_low.obj
+  - Assets/minseok/titleprop/rock/rock_low2.fbx
+  - Assets/minseok/obj/pone/big/bigpone.obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    particle_electric_arc_2.fbx
+  - Assets/minseok/obj/chest/TreasureChest/Models/chestFinal_2.FBX
+  - Assets/minseok/obj/wall369/wall369_2/36wall_22.obj
+  - Assets/HyeYeon/SkillEffects/dd/Travis Game Assets/Status Effects/Models/Ring_01.fbx
+  - Assets/minseok/titleprop/props/cart.fbx
+  - Assets/minseok/titleprop/props/ladder.fbx
+  - Assets/minseok/titleprop/house5.fbx
+  - Assets/minseok/titleprop/house1.fbx
+  - Assets/minseok/obj/object/object_low.obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh disk.fbx
+  - Assets/minseok/obj/pone/big/Crown.obj
+  - Assets/YuRi/Base Modeling/Berserk.fbx
+  - Assets/minseok/titleprop/props/bucket.fbx
+  - Assets/minseok/titleprop/props/table.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh sword_slashes.fbx
+  - Assets/Jun/Animation/Snake_dragon_V4_IDLE.fbx
+  - Assets/minseok/titleprop/Tree/newTree.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh leave.fbx
+  - Assets/minseok/obj/object2/ground 2/hole/plane_low2.obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    particle_electric_arc.fbx
+  - Assets/minseok/obj/pone/big/circle/circle_low.obj
+  - Assets/minseok/titleprop/props/chair.fbx
+  - Assets/YuRi/Base Modeling/Assassin.fbx
+  - Assets/minseok/titleprop/house2.fbx
+  - Assets/minseok/obj/pone/big/shield.obj
+  - Assets/minseok/obj/object/object34/object3_low.obj
+  - Assets/minseok/obj/pone/big/Wing.obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    electric_barrier.fbx
+  - Assets/minseok/obj/pone/big/Axe.obj
+  - Assets/minseok/obj/object2/ground 2/plane_low.obj
+  - Assets/minseok/obj/object/tex2/object_low_2.obj
+  - Assets/HyeYeon/SkillEffects/Hovl Studio/Magic effects pack/Models/Cylinder.fbx
+  - Assets/YuRi/Materials/Player_Character/Berserk.fbx
+  - Assets/minseok/obj/pone/big/bow.obj
+  - Assets/minseok/obj/object/tex2/object4_low_2.obj
+  - Assets/minseok/paticle/Status Effects/Demo Scene/Animations/SkeletonAnimationsAvatar.fbx
+  - Assets/minseok/obj/pone/tree/tree.fbx
+  - Assets/Jun/Model/Snake_dragon_V4.fbx
+  - Assets/minseok/titleprop/props/streetlamp.fbx
+  - Assets/minseok/obj/object2/object2_2_low.obj
+  - Assets/Jun/Animation/uni_IDLE.fbx
+  - Assets/Jun/Data/Material/sample_pone.obj
+  - Assets/minseok/obj/wall369/wall369_2/9wall_22.obj
+  - Assets/minseok/titleprop/house3.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh star8.fbx
+  - Assets/minseok/obj/pone/big/sword.obj
+  - Assets/minseok/obj/pone/big/bigrogue.obj
+  - Assets/minseok/obj/wall369/wall36_2.obj
+  - Assets/minseok/obj/wall369/wall36.obj
+  - Assets/Jun/Data/sample_pone.fbx
+  - Assets/YuRi/Base Modeling/Gaurdian.fbx
+  - Assets/minseok/obj/pone/big/bigarcher.obj
+  - Assets/minseok/titleprop/props/fence.fbx
+  - Assets/minseok/obj/chest/TreasureChest/Models/chestFinal_3.FBX
+  - Assets/minseok/titleprop/house7.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh donut.fbx
+  - Assets/YuRi/Base Modeling/Berserker.fbx
+  - Assets/Jun/Data/Material/sample_pone (1).obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX (legacy)/Mesh/CFX_Mesh_CircularAngle.FBX
+  - Assets/minseok/obj/object/tree/outtree/tree1_2.fbx
+  - Assets/minseok/obj/object2/object2_low.obj
+  - Assets/YuRi/Base Modeling/Paladin.fbx
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh ring.fbx
+  - Assets/minseok/obj/pone/big/staff.obj
+  - Assets/minseok/obj/chest/TreasureChest/Models/chestFinal_1.FBX
+  - Assets/YuRi/Base Modeling/Priest.fbx
+  - Assets/minseok/titleprop/testleaf/leaf.fbx
+  - Assets/minseok/obj/object2/ground/ground.obj
+  - Assets/minseok/obj/pone/big/Wing_smoo.obj
+  - Assets/minseok/titleprop/island/terrain1_5_low.obj
+  - Assets/minseok/titleprop/props/barrel.fbx
+  - Assets/circle/circle_low.obj
+  - Assets/HyeYeon/SkillEffects/JMO Assets/Cartoon FX Remaster/CFXR Assets/Meshes/cfxr
+    mesh foam.fbx
+  - Packages/com.unity.render-pipelines.core/Editor/Resources/DebugProbe.fbx
+  uvOverlapAssetList: 00000000ffffffff010100000101000000000000000000000101000001010000010100000000000000000000000000000101000000000000000000000000000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000101000001010000010100000000000000000000000000000000000000000000000000000000000000000000010100000000000000000000010100000101000000000000010100000000000000000000010100000101000000000000010100000101000000000000000000000101000001010000010100000101000000000000000000000101000000000000010100000101000000000000000000000000000001010000000000000000000000000000000000000000000000000000000000000101000001010000000000000000000001010000000000000000000001010000010100000101000001010000000000000000000001010000000000000000000001010000010100000101000001010000000000000000000001010000000000000101000001010000010100000101000000000000010100000101000000000000000000000000000000000000010100000000000000000000000000000101000001010000010100000000000000000000010100000000000001010000010100000101000000000000000000000000000001010000010100000000000001010000010100000101000000000000010100000101000000000000010100000000000001010000000000000000000001010000010100000000000000000000010100000000000001010000000000000000000000000000
   xatlasWarningShown: 0
   foundCompatibleSetup: 1
   gpuName: NVIDIA GeForce RTX 3080

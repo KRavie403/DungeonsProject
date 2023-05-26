@@ -17886,6 +17886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5f6a3f32c4ceae41a6bd4e633642d90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Obj_Count: 20
   TeleportObj: {fileID: 1203873298855349869, guid: 3fce741d14b9a40469c193be62e01ffc, type: 3}
   ChestObj: {fileID: 8846000833825839585, guid: 828891605c3699a45b021620cb666480, type: 3}
   TPUI: {fileID: 1146775508}
@@ -22681,7 +22682,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -25771,7 +25773,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -28314,7 +28317,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -29362,7 +29366,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -40437,7 +40442,8 @@ MonoBehaviour:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
+  m_fontSharedMaterials:
+  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
@@ -44118,6 +44124,8 @@ MonoBehaviour:
   myObj: {fileID: 0}
   myPlayer: {fileID: 0}
   myItemDB: {fileID: 0}
+  myEquipment: {fileID: 0}
+  slotsIndex: []
 --- !u!1001 &1267586605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51100,8 +51108,8 @@ MonoBehaviour:
   char_Frame: {fileID: 7690504195504836123, guid: d10492553eb56f548867821f48a753a5, type: 3}
   TPUI: {fileID: 0}
   ChestUI: {fileID: 0}
+  MonsterUI: {fileID: 0}
   TurnSystem: {fileID: 834339909}
-  currentSkillSet: {fileID: 11400000, guid: 315da2a20aa593c41b73a42b1f7e642a, type: 2}
   skillSlots:
   - {fileID: 1903974371}
   - {fileID: 452539028}
@@ -56320,6 +56328,7 @@ MonoBehaviour:
   Main_Cam: {fileID: 1337284519}
   curCharacter: 0
   selectedOrgChars: {fileID: 11400000, guid: dd8a01636edd7b34c9ab81e49450a8e1, type: 2}
+  selectedOrgSkills: {fileID: 0}
   boss: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
 --- !u!1001 &1584371344
 PrefabInstance:

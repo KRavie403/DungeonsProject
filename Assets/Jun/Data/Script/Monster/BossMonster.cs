@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 public class BossMonster : Battle
@@ -12,7 +13,8 @@ public class BossMonster : Battle
     public Slider _bossHPUI;
     public int searchLenght = 10;
     public int attackLenght = 5;
-    
+    public Dictionary<Player, Vector2> close_targets = new();
+    public List<CharactorProperty> targetList = new();
     private Senario idleScenario;
     private Senario searchScenario;
     private Senario attackScenario;
@@ -129,14 +131,6 @@ public class BossMonster : Battle
     }
     public override void OnMove()
     {
-        for (int i = 0; i <= 1; i++)
-        {
-            for (int j = 0; j <= 1; j++)
-            {
-                if (MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(i, j)))
-                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
-            }
-        }
         ChangeState(STATE.MOVE);
         InitTileDistance();
         SetDistance();
@@ -224,7 +218,7 @@ public class BossMonster : Battle
         bool is_done = false;
         Senario scenario = new Senario();
         ChangeState(STATE.SEARCH);
-        Dictionary <Player, Vector2> close_targets = new Dictionary<Player, Vector2>();
+        close_targets = new Dictionary<Player, Vector2>();
 
         while (!turnEnd)
         {
@@ -244,9 +238,9 @@ public class BossMonster : Battle
                     break;
                 case STATE.SEARCH:
                     this.SetDistance();
-                    SearchingPlayer((close_targets));
+                    SearchingPlayer();
                     close_targets.OrderBy(o => -o.Value.x + o.Value.y);
-                    if (close_targets.Count != 0)
+                    if (close_targets.Count == 0)
                     {
                         scenario = searchScenario;
                         ChangeState(STATE.WANDER);
@@ -256,7 +250,7 @@ public class BossMonster : Battle
                         int around_target_count = 0;
                         foreach (var target in close_targets)
                         {
-                            if (target.Value.x <= attackLenght)
+                            if (target.Value.x < attackLenght)
                             {
                                 around_target_count++;
                             }
@@ -348,7 +342,7 @@ public class BossMonster : Battle
         }
     }
 
-    private void SearchingPlayer( Dictionary <Player,Vector2> close_targets)
+    private void SearchingPlayer()
     {
         foreach (var player in GameManager.Inst.characters)
         {
@@ -359,6 +353,7 @@ public class BossMonster : Battle
             if (info.myType == OB_TYPES.PLAYER &&  dist < searchLenght)
             {
                 close_targets.Add(player.GetComponent<Player>(), new Vector2(dist, agro));
+                targetList.Add(info);
             }
         }
     }

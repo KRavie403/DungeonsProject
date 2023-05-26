@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: HolyBless
   m_EditorClassIdentifier: 
+  _tipText: "\uD640\uB9AC \uBE14\uB808\uC2A4 : 1\uD134\uAC04 5X5\uC2ED\uC790\uBC94\uC704
+    \uB9CC\uD07C \uC2A4\uD53C\uB4DC 3 \uC99D\uAC00"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 2, CT
+    : 2"
+  _tipSprite: {fileID: 21300000, guid: b0ac552e6fc7b46419ca8ff33bc76797, type: 3}
   _type: 2
   _Etype: 0
   _sprite: {fileID: 21300000, guid: a7f17e2b27d955746b321e76912b4ced, type: 3}

@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Viper
   m_EditorClassIdentifier: 
+  _tipText: "\uBC14\uC774\uD37C  : \uAE30\uBCF8 \uACF5\uACA9 \uD6C4 \uD134 \uC885\uB8CC
+    \uC2DC \uACF5\uACA9\uB825 4\uBC30\uB97C \uAC00\uD568"
+  _tipText2: "(\uD328\uC2DC\uBE0C)                        "
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 84940dd82f190714f8c9ac3724738861, type: 3}

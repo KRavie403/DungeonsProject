@@ -20,8 +20,11 @@ public class SceneLoader : Singleton<SceneLoader>
     IEnumerator Loading(int i)
     {
         yield return SceneManager.LoadSceneAsync(2);
+        SceneLoaderText.Inst.Setting(i);
         Slider loadingSlider = FindAnyObjectByType<Slider>();  
+
         AsyncOperation op = SceneManager.LoadSceneAsync(i);     //return AsyncOperation operation;
+        
         op.allowSceneActivation = false;    //씬 로딩이 끝나면 바로 해당 씬을 바로 활성화
 
         while (!op.isDone)
@@ -34,8 +37,20 @@ public class SceneLoader : Singleton<SceneLoader>
             {
                 op.allowSceneActivation = true;
             }
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
 
         }
+
+
+
+        //if (i == 0)
+        //{
+        //    GameObject intropenl = FindFirstObjectByType<Image>().gameObject;
+        //    if (intropenl != null)
+        //        Destroy(intropenl);
+        //}
+        //// 만약에 i==0 ==> 타이틀 씬으로 넘어가는것 ==> Game=> tile 가는 경우만 존재
+        //// intro panel을 찾아서 파괴하라=
     }
+
 }
