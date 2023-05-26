@@ -44,7 +44,7 @@
       <workItem from="1684053317601" duration="1000" />
       <workItem from="1684753875416" duration="2000" />
       <workItem from="1684939095017" duration="2987000" />
-      <workItem from="1684974681584" duration="23291000" />
+      <workItem from="1684974681584" duration="28254000" />
     </task>
     <servers />
   </component>
@@ -64,6 +64,19 @@
             <option name="multiMethodBreakpoint" value="true" />
           </properties>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Jun/Data/Script/Monster/BossMonster.cs</url>
+          <line>246</line>
+          <properties documentPath="D:\09.backup\Code\Atents_Team_Project\Assets\Jun\Data\Script\Monster\BossMonster.cs" initialLine="236" containingFunctionPresentation="method 'GenerateFSM'">
+            <startOffsets>
+              <option value="7839" />
+            </startOffsets>
+            <endOffsets>
+              <option value="7872" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

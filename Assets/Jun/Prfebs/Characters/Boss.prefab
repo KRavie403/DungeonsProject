@@ -162,10 +162,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53057d6c87cd4ce46975533c03d19c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Agro: 5
   skilList: []
   my_Sprite: {fileID: 0}
   myType: 1
-  jclass: 0
   my_Pos: {x: 0, y: 0}
   MaxHP: 100
   _curHP: -100
@@ -173,14 +173,20 @@ MonoBehaviour:
   _mySize: 1
   MoveSpeed: 1
   RotSpeed: 35
+  OrgAttackPower: 10
   AttackPower: 10
+  OrgDeffencePower: 10
   DeffencePower: 10
-  speed: 1
+  OrgSpeed: 1
+  Speed: 1
   _curActionPoint: 0
   _bfState: 0
   _curState: 0
   findPath: 0
+  expendedPos: []
   _bossHPUI: {fileID: 0}
+  searchLenght: 10
+  attackLenght: 5
 --- !u!54 &1344118261
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -330,7 +336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa7e26388e14789488aa4d36a024dbb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa7e26388e14789488aa4d36a024dbb5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -338,7 +344,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa7e26388e14789488aa4d36a024dbb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa7e26388e14789488aa4d36a024dbb5, type: 3}
       propertyPath: m_LocalRotation.w

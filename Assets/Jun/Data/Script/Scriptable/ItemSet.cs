@@ -8,6 +8,7 @@ public class ItemSet : ScriptableObject
 {
     public enum ItemType { Power, Armor, Potion, Accessories }
     public enum ItemGrade { Rare, Legendary, Epic, Myth }
+    public enum EquipmentType { None, Weapon, Helmet, Armor, Boots , EarRing , Necklace , Bracelet,Ring }
     [SerializeField]
     private ItemType _type;
     public ItemType myType { get { return _type; } }
@@ -15,6 +16,9 @@ public class ItemSet : ScriptableObject
     [SerializeField]
     private ItemGrade _Grade;
     public ItemGrade myGrade { get { return _Grade; } set {  } }
+    [SerializeField]
+    private EquipmentType _EquipmentType;
+    public EquipmentType myEquipmentType { get { return _EquipmentType; } set { } }
 
     [SerializeField]
     private float _power;

@@ -1,19 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 using System.Linq;
-using Unity.VisualScripting;
 using Random = UnityEngine.Random;
 
 public class BossMonster : Battle
 {
     // Start is called before the first frame update
+    public Vector2Int[] expendedPos;
     public Slider _bossHPUI;
-    public float searchLenght = 10.0f;
-    public float attackLenght = 5.0f;
+    public int searchLenght = 10;
+    public int attackLenght = 5;
     
     private Senario idleScenario;
     private Senario searchScenario;
@@ -23,11 +21,12 @@ public class BossMonster : Battle
     void Start()
     {
         idleScenario = new Senario(STATE.IDLE, null, null);
-        searchScenario = new Senario(STATE.SEARCH, null, MapManager.Inst.tiles[my_Pos]);    //search 결과에 따라 변경
+        searchScenario = new Senario(STATE.SEARCH, null, null);    //search 결과에 따라 변경
         
-        attackScenario = new Senario(STATE.ATTACK, null, MapManager.Inst.tiles[my_Pos]);    //search 발견 시 거리내에 있으면 타겟 공격
-        moveScenario = new Senario(STATE.MOVE, null, MapManager.Inst.tiles[my_Pos]);    //search 발견 했으나 거리가 멀면 이동
-        wanderScenario = new Senario(STATE.WANDER, null, MapManager.Inst.tiles[my_Pos]); //search 미발견 시 아무 위치로 n칸 이동
+        attackScenario = new Senario(STATE.ATTACK, null, null);    //search 발견 시 거리내에 있으면 타겟 공격
+        moveScenario = new Senario(STATE.MOVE, null, null);    //search 발견 했으나 거리가 멀면 이동
+        wanderScenario = new Senario(STATE.WANDER, null, null); //search 미발견 시 아무 위치로 n칸 이동
+
         
     }
     public void PlayerSetting()
@@ -44,7 +43,8 @@ public class BossMonster : Battle
 
         Vector2Int my_Pos = new Vector2Int();
         bool[] blocked = new bool[4];
-        
+        expendedPos = new Vector2Int[4];
+
         blocked = Enumerable.Repeat(true, 4).ToArray();
         
         do
@@ -67,7 +67,7 @@ public class BossMonster : Battle
 
         float half = MapManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
-
+        int count = 0;
         for (int i = 0; i <= 1; i++)
         {
             for (int j = 0; j <= 1; j++)
@@ -75,9 +75,11 @@ public class BossMonster : Battle
                 if (MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(i, j)))
                 {
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
-                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = -2;
+                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = 1;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
+                    expendedPos[count] = my_Pos + new Vector2Int(i, j);
+                    count++;
 
                 }
             }
@@ -88,33 +90,39 @@ public class BossMonster : Battle
     }
     public override void SetDistance()
     {
-        List<TileStatus> searchTileArea = new List<TileStatus>();
-
-        
-        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
+        GetMMInst().Init();
+        foreach (var pos in expendedPos)
         {
-            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
-            {
-                Vector2Int pos = new Vector2Int(i, j);
-                if (!MapManager.Inst.CheckIncludedIndex(pos))
-                    break;
-                searchTileArea.Add(MapManager.Inst.tiles[pos]);
-            }
+            Debug.Log(pos);
+            MapManager.Inst.tiles[pos].GetComponent<TileStatus>().isVisited = 1;
         }
-        
-        for (int step = 1; step <= curAP; step++)
+
+        for (int step = 1; step <= searchLenght; step++)
         {
-            foreach (TileStatus tile in searchTileArea)
+            foreach (var tile in GetMMInst().tiles)
             {
-                if (tile.isVisited == step - 1)
+                if (step <= attackLenght)
                 {
-                    TestAllDirection(tile.gridPos.x, tile.gridPos.y, step);
-                    //obj �ֺ� x+1 / y + 1���⵵ step�� ����, ����ó�� �ʿ�
-                    //if ����Ÿ���� ������ ���ΰ� ? step ����
-                    tile.gameObject.layer = 9;
+                    if (tile.Value.isVisited == step - 1)
+                    {
+                        TestAllDirection(tile.Value.gridPos.x, tile.Value.gridPos.y, step);
+                        tile.Value.gameObject.layer = 9;
+                    }
+
+                    if (tile.Value.isVisited == step)
+                        tile.Value.gameObject.layer = 9;
                 }
-                if (tile.GetComponent<TileStatus>().isVisited == step)
-                    tile.gameObject.layer = 9;
+                else
+                {
+                    if (tile.Value.isVisited == step - 1)
+                    {
+                        TestAllDirection(tile.Value.gridPos.x, tile.Value.gridPos.y, step);
+                        tile.Value.gameObject.layer = 8;
+                    }
+
+                    if (tile.Value.isVisited == step)
+                        tile.Value.gameObject.layer = 8;
+                }
             }
         }
 
@@ -235,6 +243,7 @@ public class BossMonster : Battle
                     is_done = true;
                     break;
                 case STATE.SEARCH:
+                    this.SetDistance();
                     SearchingPlayer((close_targets));
                     close_targets.OrderBy(o => -o.Value.x + o.Value.y);
                     if (close_targets.Count != 0)
@@ -272,10 +281,33 @@ public class BossMonster : Battle
                         List<TileStatus> path = PathFinder.Inst.FindPath(start, end);
 
                         MoveByPath(path, () => moved = true);
+                        while (!moved)
+                            yield return null;
                     }
                     else if (_curState == STATE.WANDER)
                     {
                         // Move to RandomPos
+                        List<TileStatus> movealbeTiles = new List<TileStatus>();
+                        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
+                        {
+                            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
+                            {
+                                Vector2Int pos = new Vector2Int(i, j);
+                                if (!MapManager.Inst.CheckIncludedIndex(pos))
+                                    break;
+                                movealbeTiles.Add(MapManager.Inst.tiles[pos]);
+                            }
+                        }
+
+                        int rnd = Random.Range(0, movealbeTiles.Count-1);
+                        bool moved= false;
+                        TileStatus start = GetMMInst().tiles[my_Pos];
+                        TileStatus end = movealbeTiles[rnd];
+                        List<TileStatus> path = PathFinder.Inst.FindPath(start, end);
+
+                        MoveByPath(path, () => moved = true);
+                        while (!moved)
+                            yield return null;
                     }
                     break;
 

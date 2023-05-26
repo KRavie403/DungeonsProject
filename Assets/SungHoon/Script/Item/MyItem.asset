@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: MyItem
   m_EditorClassIdentifier: 
   ItemList:
-  - {fileID: 11400000, guid: 5f53d660339be6343a84bf35cbf45e01, type: 2}
-  - {fileID: 11400000, guid: 831f69fc241ee1b42b6b84027e42f3a9, type: 2}
-  - {fileID: 11400000, guid: aacedf8fac415324a8b65fe0bfa9cb29, type: 2}
   - {fileID: 11400000, guid: 2a4008d7cb1c441468a48d0422b25d3d, type: 2}
+  - {fileID: 11400000, guid: 82c3ecb626a3fe5488718687f5b677d2, type: 2}
+  - {fileID: 11400000, guid: ff0c6004d59385c418fb400aaaed401f, type: 2}
+  - {fileID: 11400000, guid: f992fd9f997d24d49a2c89bf79be9c98, type: 2}
+  - {fileID: 11400000, guid: 2fd02a05ad871f14fab1b2c55497ee56, type: 2}
+  - {fileID: 11400000, guid: 207586fbf0ac53046b8a329454dc0732, type: 2}
+  - {fileID: 11400000, guid: 9836465e103da074baab7d05a2a6940d, type: 2}
+  - {fileID: 11400000, guid: 831f69fc241ee1b42b6b84027e42f3a9, type: 2}
+  - {fileID: 11400000, guid: 5f53d660339be6343a84bf35cbf45e01, type: 2}
+  - {fileID: 11400000, guid: fc3ae12f5bf29eb45b9d2a977373ef49, type: 2}
