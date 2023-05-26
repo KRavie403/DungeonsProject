@@ -46,7 +46,7 @@ public class SceneLoaderText : Singleton<SceneLoaderText>
             // 1. SceneLoaderText는 panel Object에 붙어 있음
             // 2. 바꿔야할 대상은 panel Object의 Image
             // 3. GetComponentInChildren는 자식 오브젝트에서만 찾으므로 nullreference 오류 발생
-            MapImage.sprite = loadedSprite;
+                MapImage.sprite = loadedSprite;
         }
         else
         {
