@@ -82122,7 +82122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b68b529f6179234290aee92630374cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: 5f53d660339be6343a84bf35cbf45e01, type: 2}
 --- !u!1 &1338585235
 GameObject:
   m_ObjectHideFlags: 0
@@ -99180,8 +99179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7abc1ab257d8f09459617a08c4ca827a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 100
-  columns: 100
+  rows: 10
+  columns: 10
   scale: 1
   crashMask:
     serializedVersion: 2
@@ -103890,7 +103889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fff6481243175c4196109b2417e66de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 1266270372}
 --- !u!4 &1703498864
 Transform:
   m_ObjectHideFlags: 0
