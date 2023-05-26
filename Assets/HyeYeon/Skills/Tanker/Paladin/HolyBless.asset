@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: HolyBless
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 0
   _sprite: {fileID: 21300000, guid: a7f17e2b27d955746b321e76912b4ced, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 1
+    lifeTime: 1
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 3
   _effect: {fileID: 8250502493019502326, guid: 7705f7f32f14ac64dbcdfe3124a6e78c, type: 3}
   AttackIndex:
   - {x: -3, y: 3}
@@ -66,3 +75,4 @@ MonoBehaviour:
   - {x: 2, y: -3}
   - {x: 3, y: -3}
   _distance: 5
+  _cost: 2

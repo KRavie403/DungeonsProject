@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: Revive
   m_EditorClassIdentifier: 
   _type: 1
+  _Etype: 1
   _sprite: {fileID: 21300000, guid: dcc61b98a9cdd6b40b4bb86958f6dae7, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 7432951424603320406, guid: d2ac08e12464c224686d193bdc209c1d, type: 3}
   AttackIndex:
   - {x: -5, y: 5}
@@ -138,3 +147,4 @@ MonoBehaviour:
   - {x: 4, y: -5}
   - {x: 5, y: -5}
   _distance: 5
+  _cost: 9

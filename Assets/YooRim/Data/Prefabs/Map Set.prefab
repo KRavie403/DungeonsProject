@@ -2774,6 +2774,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterSet: {fileID: 6394016531228994705}
+  Caution: {fileID: 0}
+  currentCharacterDB: {fileID: 0}
+  SceneIdx: 1
 --- !u!222 &6394016529296699077
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3891,7 +3894,6 @@ MonoBehaviour:
   - {fileID: 4524427161836454599}
   - {fileID: 585724682468153333}
   - {fileID: 3704852851119750114}
-  CharacterSkillSetText: {fileID: 6394016529676734051}
   characterButtonList:
   - {fileID: 6394016530486117159}
   - {fileID: 274798988139945782}
@@ -10621,17 +10623,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6394016529676734051 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3283886611044517441, guid: 1727bfa18bf972444901a2727f69e425, type: 3}
-  m_PrefabInstance: {fileID: 8443872518714148898}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6394016529692046312 stripped

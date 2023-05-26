@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: Regen
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 1
   _sprite: {fileID: 21300000, guid: f99b204a1c625574dae836f10730311b, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 8960516968802430018, guid: 2252c548a652ede49a6c136ac06bad81, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
   _distance: 5
+  _cost: 0

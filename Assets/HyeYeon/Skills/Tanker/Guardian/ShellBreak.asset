@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: ShellBreak
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 1
   _sprite: {fileID: 21300000, guid: 2787941c20c799443bfc90414dcae30a, type: 3}
   _damage: 0
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 5924412349827193920, guid: 939f4f6dfb503934789f94df342caf94, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
   _distance: 5
+  _cost: 1

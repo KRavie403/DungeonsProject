@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: LessHeal
   m_EditorClassIdentifier: 
   _type: 1
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: a2893219d09103f4bb0191fdf3330bd9, type: 3}
-  _damage: 0
+  _damage: 80
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 407878526911534723, guid: 053c306a929e1914585f0eb9523bc4be, type: 3}
   AttackIndex:
   - {x: -5, y: 5}
@@ -138,3 +147,4 @@ MonoBehaviour:
   - {x: 4, y: -5}
   - {x: 5, y: -5}
   _distance: 5
+  _cost: 3

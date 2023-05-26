@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.PlayerSettings;
 
 
 public class Picking : MonoBehaviour
@@ -204,6 +203,7 @@ public class Picking : MonoBehaviour
                                 Debug.Log($"Front : {is_front}, Direction {angle}");
                             }
                             break;
+                        case SkillSet.SkillType.Moveable:
                         case SkillSet.SkillType.Targeting:
                             {
                                 if (dot < 0)

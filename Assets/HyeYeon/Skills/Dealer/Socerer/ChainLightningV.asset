@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: ChainLightningV
   m_EditorClassIdentifier: 
   _type: 1
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: e1a91c592705b8d458b7bc8a5b789f0c, type: 3}
-  _damage: 0
+  _damage: 40
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 2636078657721803490, guid: b201e503cc3facd49ac38aba7a9183ee, type: 3}
   AttackIndex:
   - {x: -7, y: 7}
@@ -242,3 +251,4 @@ MonoBehaviour:
   - {x: 6, y: -7}
   - {x: 7, y: -7}
   _distance: 5
+  _cost: 6

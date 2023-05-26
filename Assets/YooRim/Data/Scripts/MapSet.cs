@@ -4,45 +4,44 @@ using System;
 using System.Windows;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro;
 
-public class MapSet : MonoBehaviour
+public class MapSet : Singleton<MapSet>
 {
     public GameObject CharacterSet;
     public GameObject Caution;
     public CharacterDB currentCharacterDB;
 
-    private Animator ani;
-
+    public int SceneIdx = 1;
     // Start is called before the first frame update
     void Start()
     {
-        ani = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
-
 
     public void backCharacterSelection() //Settings
     {
         CharacterSet.SetActive(false);
     }
 
+    void CallCaution()
+    {
+        GameObject obj = Instantiate(Caution, this.transform);
+        Destroy(obj, 2);
+    }
+
     public void StartGame()
     {
         if(currentCharacterDB.characterList.Count < 4)
         {
-            Caution.SetActive(true);
-            ani.SetTrigger("warning");
-            Caution.SetActive(false);
+            CallCaution();
         }
         else
         {
-            SceneManager.LoadScene("MainGameScene");
+            SceneLoader.Inst.ChangeScene(SceneIdx);
             this.gameObject.SetActive(false); //스테이지 비활
         }
     }

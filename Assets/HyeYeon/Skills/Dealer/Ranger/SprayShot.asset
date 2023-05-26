@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: SprayShot
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: 6c62bf5d333ae2a4eb2b7a46d8d5908f, type: 3}
-  _damage: 0
+  _damage: 30
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 7981457554071988039, guid: 751106e5531dbda458ef15b6cdb46593, type: 3}
   AttackIndex:
   - {x: -1, y: 1}
@@ -66,3 +75,4 @@ MonoBehaviour:
   - {x: 5, y: 6}
   - {x: 6, y: 6}
   _distance: 5
+  _cost: 4

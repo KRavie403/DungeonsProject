@@ -13,11 +13,21 @@ MonoBehaviour:
   m_Name: Smash
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: 1c059a8e42114214d9620c7cb64d558a, type: 3}
-  _damage: 0
+  _damage: 24
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 461895043675848679, guid: ce07d890f87ba834caa259bceae37377, type: 3}
   AttackIndex:
   - {x: 0, y: 1}
   - {x: 0, y: 2}
   - {x: 0, y: 3}
   _distance: 5
+  _cost: 5

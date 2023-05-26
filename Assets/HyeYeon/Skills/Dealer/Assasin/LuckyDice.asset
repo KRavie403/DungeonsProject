@@ -13,9 +13,19 @@ MonoBehaviour:
   m_Name: LuckyDice
   m_EditorClassIdentifier: 
   _type: 2
+  _Etype: 1
   _sprite: {fileID: 21300000, guid: 0f182fb2863faa7449e020de33b77e68, type: 3}
   _damage: 0
-  _effect: {fileID: 0}
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
+  _effect: {fileID: 9197552650811092114, guid: c25ed78df0a23cf468d749f3dcc6d28d, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
   _distance: 5
+  _cost: 0

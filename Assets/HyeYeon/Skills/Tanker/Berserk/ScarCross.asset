@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: ScarCross
   m_EditorClassIdentifier: 
   _type: 0
+  _Etype: 2
   _sprite: {fileID: 21300000, guid: bcc00d8b5e2809140b893ec5926b3f7a, type: 3}
   _damage: 32
+  _LifeTime: 0
+  _exStatus:
+    Unbreakable: 0
+    Postive: 0
+    lifeTime: 0
+    AttackPower: 0
+    DeffencePower: 0
+    Speed: 0
   _effect: {fileID: 6308338964091835586, guid: f26c4088f55f0a146aae3c166c98b408, type: 3}
   AttackIndex:
   - {x: -2, y: 2}
@@ -42,3 +51,4 @@ MonoBehaviour:
   - {x: 1, y: -2}
   - {x: 2, y: -2}
   _distance: 5
+  _cost: 3
