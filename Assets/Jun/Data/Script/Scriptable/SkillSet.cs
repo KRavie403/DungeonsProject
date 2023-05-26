@@ -24,6 +24,10 @@ public class SkillSet : ScriptableObject
     public string myTipText { get { return _tipText; } }
 
     [SerializeField]
+    private string _tipText2;
+    public string myTipText2 { get { return _tipText2; } }
+
+    [SerializeField]
     private Sprite _tipSprite;
     public Sprite myTipSprite { get { return _tipSprite; } }
 

@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Knock-BackShot
   m_EditorClassIdentifier: 
+  _tipText: "\uB109\uBC31\uC0F7 : \uACF5\uACA9\uB825 2\uBC30\uB85C \uC804\uBC29 3\uCE78
+    \uD53C\uD574\uB97C \uC900 \uD6C4 \uBCF4\uC2A4\uB2942\uCE78\uB4A4\uB85C \uC790\uC2E0\uC7404\uCE78\uB4A4\uB85C
+    \uC774\uB3D9"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 3, CT
+    : 3"
+  _tipSprite: {fileID: 21300000, guid: 3385a95309729cf4ba18b7eb99b91d0d, type: 3}
   _type: 2
   _Etype: 2
   _sprite: {fileID: 21300000, guid: 404b23297c494a241864e105baaa7d5a, type: 3}

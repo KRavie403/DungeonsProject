@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Earthquake
   m_EditorClassIdentifier: 
+  _tipText: "\uC5B4\uC2A4\uD018\uC774\uD06C : 1\uD134\uAC04 \uC804\uBC29\uC5D0 3\uCE78
+    \uBCBD\uC744 \uC138\uC6CC \uBC94\uC704 \uD53C\uD574\uB97C \uBC1B\uC9C0 \uC54A\uC74C"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 6, CT
+    : 3"
+  _tipSprite: {fileID: 21300000, guid: afcd43034c48aa448857c31f47019b1e, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 8ec5b52b09d90074a83d61c1334190f9, type: 3}

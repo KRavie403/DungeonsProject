@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Teleport
   m_EditorClassIdentifier: 
+  _tipText: "\uD154\uB808\uD3EC\uD2B8 : \uC6D0\uD558\uB294 \uC704\uCE58\uB85C \uC774\uB3D9"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 4, CT
+    : 3"
+  _tipSprite: {fileID: 21300000, guid: 6136711fe89bdc84a914757a04e07b63, type: 3}
   _type: 0
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 0ccf83822a19cdf468e31644d008e057, type: 3}

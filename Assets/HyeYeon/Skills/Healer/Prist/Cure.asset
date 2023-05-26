@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Cure
   m_EditorClassIdentifier: 
+  _tipText: "\uD050\uC5B4 : \uB514\uBC84\uD504 \uCE58\uC720"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 1, CT
+    : 1"
+  _tipSprite: {fileID: 21300000, guid: 6136711fe89bdc84a914757a04e07b63, type: 3}
   _type: 1
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 46532051285b31d4d9d6cc9328bc3bdd, type: 3}

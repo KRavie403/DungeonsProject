@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Regen
   m_EditorClassIdentifier: 
+  _tipText: "\uB9AC\uC820 : \uD134 \uC885\uB8CC\uC2DC \uCCB4\uB825 15 \uD68C\uBCF5"
+  _tipText2: "(\uD328\uC2DC\uBE0C)"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: f99b204a1c625574dae836f10730311b, type: 3}

@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: SacredArmer
   m_EditorClassIdentifier: 
+  _tipText: "\uC138\uD06C\uB9AC\uB4DC \uC544\uBA38 : 1\uD134\uAC04 \uD55C\uBA85\uC5D0\uAC8C
+    \uBB34\uC801\uBC84\uD504 \uBD80\uC5EC"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 4, CT
+    : 5"
+  _tipSprite: {fileID: 21300000, guid: 6136711fe89bdc84a914757a04e07b63, type: 3}
   _type: 1
   _Etype: 0
   _sprite: {fileID: 21300000, guid: 0629775bce2ebf8408a7450f1e987277, type: 3}

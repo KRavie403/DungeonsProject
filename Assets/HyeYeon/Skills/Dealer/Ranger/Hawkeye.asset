@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Hawkeye
   m_EditorClassIdentifier: 
+  _tipText: "\uD638\uD06C\uC544\uC774 : \uB2E4\uC74C \uC0AC\uC6A9\uD558\uB294 \uC2A4\uD0AC
+    \uB370\uBBF8\uC9C0 2\uBC30 \uC99D\uAC00"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 2, CT
+    : 5"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: cdec13907ffc75749ab2ed436bec6b14, type: 3}
