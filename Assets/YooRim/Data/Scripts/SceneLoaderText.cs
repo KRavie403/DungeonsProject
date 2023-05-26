@@ -41,16 +41,19 @@ public class SceneLoaderText : Singleton<SceneLoaderText>
         if (path != null)
         {
             // 이미지 스프라이트를 새로운 스프라이트로 교체
-            // MapImage.gameObject.GetComponent<Image>().sprite = loadedSprite;
+            // MapImage.gameObject.GetComponentInChildren<Image>().sprite = loadedSprite;
+            
+            // 1. SceneLoaderText는 panel Object에 붙어 있음
+            // 2. 바꿔야할 대상은 panel Object의 Image
+            // 3. GetComponentInChildren는 자식 오브젝트에서만 찾으므로 nullreference 오류 발생
             MapImage.sprite = loadedSprite;
-
         }
         else
         {
             Debug.LogWarning("스프라이트를 로드하는 데 실패했습니다.");
         }
 
-        mapText.text = i == 1 ? "실낙원" : "z";
+        mapText.text = i == 1 ? "실낙원" : "어스름의 미궁";
         rnd = Random.Range(0, 3);
         loadingText.text = textList[rnd];
     }

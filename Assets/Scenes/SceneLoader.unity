@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b3c6b9216077b49a9df6217407cdb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapImage: {fileID: 403974309}
+  MapImage: {fileID: 403974311}
   mapText: {fileID: 648266786}
   loadingText: {fileID: 1825638992}
 --- !u!1 &464747479
@@ -539,8 +539,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uC2E4\uB099\uC6D0"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
-  m_sharedMaterial: {fileID: 5408064240930060975, guid: 5865165c908f45f458cb369c24e796d4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2ab28bc38bfe1a64884bdcea2185cfb1, type: 2}
+  m_sharedMaterial: {fileID: -4648889955569073167, guid: 2ab28bc38bfe1a64884bdcea2185cfb1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

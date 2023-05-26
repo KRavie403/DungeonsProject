@@ -12,6 +12,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ide.rider@3.0.18/Rider/Editor/RiderScriptEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/HyeYeon/HoveringEvent.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2NdtfEWx8oldiQwZk5j7satSevR" />
   <component name="ProjectViewState">
@@ -45,7 +46,7 @@
       <workItem from="1684753875416" duration="2000" />
       <workItem from="1684939095017" duration="2987000" />
       <workItem from="1684974681584" duration="28254000" />
-      <workItem from="1685062088102" duration="841000" />
+      <workItem from="1685062088102" duration="2296000" />
     </task>
     <servers />
   </component>
