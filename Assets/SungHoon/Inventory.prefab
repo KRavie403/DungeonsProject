@@ -159,6 +159,8 @@ MonoBehaviour:
   myObj: {fileID: 0}
   myPlayer: {fileID: 0}
   myItemDB: {fileID: 11400000, guid: 30f61b3b0cef5fa47b50483ded1b9637, type: 2}
+  myEquipment: {fileID: 0}
+  slotsIndex: []
 --- !u!1001 &1009151810413186635
 PrefabInstance:
   m_ObjectHideFlags: 0
