@@ -19,6 +19,16 @@ public struct ExtendStatus
 
 public class SkillSet : ScriptableObject
 {
+    [SerializeField]
+    private string _tipText;
+    public string myTipText { get { return _tipText; } }
+
+    [SerializeField]
+    private Sprite _tipSprite;
+    public Sprite myTipSprite { get { return _tipSprite; } }
+
+
+
     public enum SkillType  {Moveable, Targeting, Directing }
     public enum EffectType  {StatEffect, SpecialEffect, DamageEffcet}
     [SerializeField]
