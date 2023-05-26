@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: BerserkerSoul
   m_EditorClassIdentifier: 
+  _tipText: "\uBC84\uC11C\uCEE4 \uC18C\uC6B8 : \uD589\uB3D9\uB825 4 \uD68C\uBCF5"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 1, CT
+    : 2"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 6699a83081041fe448424cf701cbb4cc, type: 3}

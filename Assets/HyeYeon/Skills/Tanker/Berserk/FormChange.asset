@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: FormChange
   m_EditorClassIdentifier: 
+  _tipText: "\uD3FC\uCCB4\uC778\uC9C0 : \uC2A4\uD0EF 400/30/8/4 -> 250\u2193/25\u2193/10\u2191/6\u2191
+    \uB85C \uBCC0\uACBD"
+  _tipText2: "(\uD328\uC2DC\uBE0C)"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 0
   _sprite: {fileID: 21300000, guid: 1bc5a60b1623c09469476ca08df6f9a1, type: 3}

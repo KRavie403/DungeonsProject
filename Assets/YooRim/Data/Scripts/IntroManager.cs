@@ -35,16 +35,6 @@ public class IntroManager : Singleton<IntroManager> //UI관련??메인타이틀??
         Settings.SetActive(false);
     }
 
-    public void OpenGraphicSettingMenu()
-    {
-
-    }
-
-    public void CloseGraphicSettingMenu()
-    {
-
-    }
-
     public void OpenStartMenu() //Start
     {
         darkImg.SetActive(true);

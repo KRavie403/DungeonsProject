@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: LuckyDice
   m_EditorClassIdentifier: 
+  _tipText: "\uB7ED\uD0A4\uB2E4\uC774\uC2A4 : \uAE30\uBCF8 \uACF5\uACA9\uC744 \uAC00\uD560
+    \uB54C \uB9C8\uB2E4 \uC8FC\uC0AC\uC704\uB97C \uAD74\uB9AC\uACE0 \uB098\uC628
+    \uC218\uC758 \uBC30\uC218 \uB9CC\uD07C \uACF5\uACA9\uB825 \uC99D\uAC00"
+  _tipText2: "(\uD328\uC2DC\uBE0C)        "
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 0f182fb2863faa7449e020de33b77e68, type: 3}

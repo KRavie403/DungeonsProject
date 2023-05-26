@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: ShellBreak
   m_EditorClassIdentifier: 
+  _tipText: "\uC258 \uBE0C\uB808\uC774\uD06C : 1\uD134\uAC04 \uC2A4\uD53C\uB4DC 7\uC99D\uAC00
+    \uD6C4 \uBC29\uC5B4\uB825 25\uAC10\uC18C"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 1, CT
+    : 1"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 2787941c20c799443bfc90414dcae30a, type: 3}

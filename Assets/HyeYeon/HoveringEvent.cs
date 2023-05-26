@@ -14,8 +14,15 @@ public class HoveringEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         skillTextUI.SetActive(true);
-        skillTextUI.GetComponentInChildren<TMP_Text>().text = CharSet.chosenDB.Skill.List[num].myTipText;
-        //skillTextUI.GetComponentInChildren<Image>().sprite = chosenDB.Skill.List[n].MySprite;
+        //skillTextUI.GetComponentInChildren<TMP_Text>().text = CharSet.chosenDB.Skill.List[num].myTipText;
+        var texts = skillTextUI.GetComponentsInChildren<TMP_Text>();
+        texts[0].text = CharSet.chosenDB.Skill.List[num].myTipText;
+        texts[1].text = CharSet.chosenDB.Skill.List[num].myTipText2;
+
+        var sprites = skillTextUI.GetComponentsInChildren<Image>();
+
+        sprites[0].sprite = CharSet.chosenDB.Skill.List[num].MySprite;
+        sprites[2].sprite = CharSet.chosenDB.Skill.List[num].myTipSprite;
         // 스킬에 대한 설명 UI skillTextUI.gameObject.SetActive(true)를 해준다.
 
     }

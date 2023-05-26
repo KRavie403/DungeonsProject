@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: SacredOfHeal
   m_EditorClassIdentifier: 
+  _tipText: "\uC138\uD06C\uB9AC\uB4DC \uC624\uBE0C \uD790 : \uC544\uAD70\uC758 \uCCB4\uB825
+    320 \uCE58\uC720"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 8, CT
+    : 5"
+  _tipSprite: {fileID: 21300000, guid: 2b7a7a443c67f124a98e936d983035a1, type: 3}
   _type: 1
   _Etype: 2
   _sprite: {fileID: 21300000, guid: 3bd3c8dc87104ea459be09d6750d1029, type: 3}
