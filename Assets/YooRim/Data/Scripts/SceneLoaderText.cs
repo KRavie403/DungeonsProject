@@ -7,7 +7,7 @@ using TMPro;
 
 public class SceneLoaderText : Singleton<SceneLoaderText>
 {
-    public GameObject MapImage;
+    public Image MapImage;
 
     public TMP_Text mapText;
     public TMP_Text loadingText;
@@ -41,7 +41,9 @@ public class SceneLoaderText : Singleton<SceneLoaderText>
         if (path != null)
         {
             // 이미지 스프라이트를 새로운 스프라이트로 교체
-            MapImage.gameObject.GetComponentInChildren<Image>().sprite = loadedSprite;
+            // MapImage.gameObject.GetComponent<Image>().sprite = loadedSprite;
+            MapImage.sprite = loadedSprite;
+
         }
         else
         {

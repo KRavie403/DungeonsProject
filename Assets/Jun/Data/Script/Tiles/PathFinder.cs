@@ -66,40 +66,66 @@ public class PathFinder : Singleton<PathFinder>
     {
         var map = MapManager.Inst.tiles;
 
-        List<TileStatus> neighborTile = new List<TileStatus>();
+        List<TileStatus> neighborTiles = new List<TileStatus>();
 
-
-        //left
-        Vector2Int loctaion2Check = new Vector2Int(currentTile.gridPos.x - 1, currentTile.gridPos.y);
-
-        if (map.ContainsKey(loctaion2Check))
+        // Left
+        Vector2Int locationToCheck = new Vector2Int(currentTile.gridPos.x - 1, currentTile.gridPos.y);
+        if (map.ContainsKey(locationToCheck))
         {
-            neighborTile.Add(map[loctaion2Check]);
+            neighborTiles.Add(map[locationToCheck]);
         }
-        //right
-        loctaion2Check = new Vector2Int(currentTile.gridPos.x + 1, currentTile.gridPos.y);
 
-        if (map.ContainsKey(loctaion2Check))
+        // Right
+        locationToCheck = new Vector2Int(currentTile.gridPos.x + 1, currentTile.gridPos.y);
+        if (map.ContainsKey(locationToCheck))
         {
-            neighborTile.Add(map[loctaion2Check]);
+            neighborTiles.Add(map[locationToCheck]);
         }
-        //foward
-        loctaion2Check = new Vector2Int(currentTile.gridPos.x, currentTile.gridPos.y + 1);
 
-        if (map.ContainsKey(loctaion2Check))
+        // Forward
+        locationToCheck = new Vector2Int(currentTile.gridPos.x, currentTile.gridPos.y + 1);
+        if (map.ContainsKey(locationToCheck))
         {
-            neighborTile.Add(map[loctaion2Check]);
+            neighborTiles.Add(map[locationToCheck]);
         }
-        //backward
-        loctaion2Check = new Vector2Int(currentTile.gridPos.x, currentTile.gridPos.y - 1);
 
-        if (map.ContainsKey(loctaion2Check))
+        // Backward
+        locationToCheck = new Vector2Int(currentTile.gridPos.x, currentTile.gridPos.y - 1);
+        if (map.ContainsKey(locationToCheck))
         {
-            neighborTile.Add(map[loctaion2Check]);
+            neighborTiles.Add(map[locationToCheck]);
         }
-        return neighborTile;
 
+        // Additional tiles for 2x2 object
+        // Top Left
+        locationToCheck = new Vector2Int(currentTile.gridPos.x - 1, currentTile.gridPos.y + 1);
+        if (map.ContainsKey(locationToCheck))
+        {
+            neighborTiles.Add(map[locationToCheck]);
+        }
 
+        // Top Right
+        locationToCheck = new Vector2Int(currentTile.gridPos.x + 1, currentTile.gridPos.y + 1);
+        if (map.ContainsKey(locationToCheck))
+        {
+            neighborTiles.Add(map[locationToCheck]);
+        }
+
+        // Bottom Left
+        locationToCheck = new Vector2Int(currentTile.gridPos.x - 1, currentTile.gridPos.y - 1);
+        if (map.ContainsKey(locationToCheck))
+        {
+            neighborTiles.Add(map[locationToCheck]);
+        }
+
+        // Bottom Right
+        locationToCheck = new Vector2Int(currentTile.gridPos.x + 1, currentTile.gridPos.y - 1);
+        if (map.ContainsKey(locationToCheck))
+        {
+            neighborTiles.Add(map[locationToCheck]);
+        }
+
+        return neighborTiles;
     }
     public List<TileStatus> GetPath()
     {

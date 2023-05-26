@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public abstract class CharactorProperty : MonoBehaviour
 {
     [SerializeField]
-    public float Aggro = 5;
+    public float Agro = 5;
     public List<SkillSet> skilList;
     public Sprite my_Sprite;
     public OB_TYPES myType = OB_TYPES.NONE;
@@ -27,6 +27,7 @@ public abstract class CharactorProperty : MonoBehaviour
     public float Speed = 1.0f; //전투 우선도 
 
     public List<StatModifire> AD_stat = new List<StatModifire>();
+    public List<StatModifire> Item_stat = new List<StatModifire>();
 
     protected int ActionPoint = 10;
     public int _curActionPoint;

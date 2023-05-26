@@ -14,7 +14,7 @@ public abstract class Battle : CharactorMovement
 
         GameObject obj;
 
-        //effect Àç»ý
+        //effect ìž¬ìƒ
         switch (skill.myType)
         {
             case SkillSet.SkillType.Directing:
@@ -52,7 +52,7 @@ public abstract class Battle : CharactorMovement
                 break;
             case SkillSet.SkillType.Moveable:
                 bool moved = false;
-                //ÀÌµ¿ ½ÃÀÛ ¾Ö´Ï¸ÞÀÌ¼Ç ÇÊ¿ä
+                //ì´ë™ ì‹œìž‘ ì• ë‹ˆë©”ì´ì…˜ í•„ìš”
                 StartCoroutine(MovingToTile(Indexs[0], () => moved = true));
                 while (!moved)
                 {

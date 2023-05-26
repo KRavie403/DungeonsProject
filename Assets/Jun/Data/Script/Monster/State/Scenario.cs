@@ -1,10 +1,9 @@
 public class Senario
 {
-    public float senarioValue;
+    public STATE senarioValue;
     public TileStatus targettile;
     public TileStatus myPostile;
-
-    public Senario(float senarioValue, TileStatus targettile, TileStatus myPostile)
+    public Senario(STATE senarioValue, TileStatus targettile, TileStatus myPostile)
     {
         this.senarioValue = senarioValue;
         this.targettile = targettile;
@@ -13,7 +12,7 @@ public class Senario
 
     public Senario()
     {
-        this.senarioValue = -1000000;
+        this.senarioValue = STATE.NONE;
         this.targettile = null;
         this.myPostile = null;
     }
