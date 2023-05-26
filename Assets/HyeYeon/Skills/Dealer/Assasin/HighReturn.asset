@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: HighReturn
   m_EditorClassIdentifier: 
+  _tipText: "\uD558\uC774\uB9AC\uD134  : \uBCF4\uC2A4\uCCB4\uB825\uC774 50\uD37C\uC5D0
+    \uB3C4\uB2EC \uC2DC \uC790\uC2E0 \uACF5\uACA9\uB825 1 \uC99D\uAC00"
+  _tipText2: "(\uD328\uC2DC\uBE0C)         "
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 04aa6d588031cca46a8bd5e5e6582140, type: 3}

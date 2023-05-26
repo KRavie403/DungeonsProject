@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Smash
   m_EditorClassIdentifier: 
+  _tipText: "\uC2A4\uB9E4\uC2DC : \uACF5\uACA9\uB825 6\uBC30\uB85C \uC804\uBC29\uC5D0
+    3\uCE78 \uD53C\uD574"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 5, CT
+    3"
+  _tipSprite: {fileID: 21300000, guid: 93b5cc1be601edf4aab0e63f17aabb80, type: 3}
   _type: 2
   _Etype: 2
   _sprite: {fileID: 21300000, guid: 1c059a8e42114214d9620c7cb64d558a, type: 3}

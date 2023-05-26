@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: ShadowMissing
   m_EditorClassIdentifier: 
+  _tipText: "\uC250\uB3C4\uC6B0 \uBBF8\uC2F1 : 1\uD134\uAC04 \uBCF4\uC2A4\uC5D0\uAC8C
+    \uD0C0\uAC9F\uD305 \uB2F9\uD558\uC9C0 \uC54A\uC74C"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 4, CT
+    : 3"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: c4c1307abbeb97c45940e6ea93df64d0, type: 3}

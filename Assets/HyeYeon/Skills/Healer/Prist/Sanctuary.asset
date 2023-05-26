@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Sanctuary
   m_EditorClassIdentifier: 
+  _tipText: "\uC14D\uCE04\uC5B4\uB9AC : \uC544\uAD70 \uC804\uCCB4\uC5D0\uAC8C \uCCB4\uB825
+    80 \uCE58\uC720"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 6, CT
+    : 3"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 2
   _sprite: {fileID: 21300000, guid: 90d1fff2a01a9424a8fbed22cbd0817e, type: 3}
