@@ -26,6 +26,7 @@ public class Equipment : MonoBehaviour
     public int Pindex;
     // Start is called before the first frame update
 
+    public List<float> CharPower;
 
 
     void Start()
@@ -39,6 +40,7 @@ public class Equipment : MonoBehaviour
         for (int i = 0; i < slots.Count; i++)
         {
             items.Add(null);
+            CharPower.Add(0.0f);
         }
     }
 
@@ -50,6 +52,7 @@ public class Equipment : MonoBehaviour
             this.gameObject.SetActive(false);
         }
     }
+
     public void FreshSlot()
     {
         int i = 0;
@@ -62,6 +65,7 @@ public class Equipment : MonoBehaviour
             slots[i].item = null;
         }
     }
+
     public void Additem(ItemSet myItem,ItemSet.ItemGrade myGrade,ItemSet.ItemType myType,ItemSet.EquipmentType myEquipmentType,float Power,int Pindex)
     {
         this.Pindex = Pindex;
@@ -72,23 +76,21 @@ public class Equipment : MonoBehaviour
                     if (items[0] == null)
                     {
                         items[0] = myItem;
-
                         this.myGrade = myGrade;
                         slots[0].myItemGrade = myGrade;
-
-                        myInventory.DestroyItem(Pindex);
-                    //myInventory.myPlayer.AttackPower += Power;
-                    //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
+                    myInventory.DestroyItem(Pindex);
                     FreshSlot();
-                    }
+                    CharPower[0] = slots[0].Power;
+                    myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[0];
+                    Debug.Log($"{myInventory.myPlayer.Item_stat[0].AttackPower}");
+                }
                     else
                     {
-                    //myInventory.slots[Pindex].myItem = GetComponentInChildren<DragItem>();
-                    //myInventory.slots[Pindex].image = myInventory.slots[Pindex].myItem.GetComponent<Image>();
-                    //myInventory.slots[Pindex].index = myInventory.slots[Pindex].myItem.myIndex;
+                    myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[0];
                     ChangeItem(0,items[0],myItem, myGrade, myType, myEquipmentType, Power,Pindex);
                     FreshSlot();
-                    }
+                    Debug.Log($"{myInventory.myPlayer.Item_stat[0].AttackPower}");
+                }
                 break;
                 case ItemSet.ItemType.Armor:
                     if (myEquipmentType == ItemSet.EquipmentType.Helmet)
@@ -99,12 +101,13 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[1].myItemGrade = myGrade;
                             myInventory.DestroyItem(Pindex);
-                        //myInventory.myPlayer.DeffencePower += Power;
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         FreshSlot();
-                        }
-                        else
+                        CharPower[1] = slots[1].Power;
+                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[1];
+                    }
+                    else
                         {
+                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[1];
                         ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                         FreshSlot();
                         }
@@ -122,9 +125,12 @@ public class Equipment : MonoBehaviour
                         //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         myInventory.DestroyItem(Pindex);
                         FreshSlot();
-                        }
-                        else
+                        CharPower[1] = slots[1].Power;
+                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[1];
+                    }
+                    else
                         {
+                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[1];
                         ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                         FreshSlot();
                         }
@@ -137,13 +143,14 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[1].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
-                        //myInventory.myPlayer.DeffencePower += Power;
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         FreshSlot();
-                        }
+                        CharPower[1] = slots[1].Power;
+                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[1];
+                    }
                         else
                         {
-                            ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[1];
+                        ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
@@ -157,12 +164,14 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[2].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         FreshSlot();
-                        }
+                        CharPower[2] = slots[2].Power;
+                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[2];
+                    }
                         else
                         {
-                            ChangeItem(2, items[2], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[2];
+                        ChangeItem(2, items[2], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
 
@@ -175,12 +184,14 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[3].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         FreshSlot();
-                        }
+                        CharPower[3] = slots[3].Power;
+                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[3];
+                    }
                         else
                         {
-                            ChangeItem(3, items[3], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[3];
+                        ChangeItem(3, items[3], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
@@ -192,12 +203,14 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[4].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         FreshSlot();
-                        }
+                        CharPower[4] = slots[4].Power;
+                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[4];
+                    }
                         else
                         {
-                            ChangeItem(4, items[4], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[4];
+                        ChangeItem(4, items[4], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
@@ -209,12 +222,14 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[5].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
-                        //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         FreshSlot();
-                        }
+                        CharPower[5] = slots[5].Power;
+                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[5];
+                    }
                         else
                         {
-                            ChangeItem(5, items[5], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[5];
+                        ChangeItem(5, items[5], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }

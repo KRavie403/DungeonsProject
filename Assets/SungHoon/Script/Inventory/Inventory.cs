@@ -6,9 +6,8 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     public List<ItemSet> items;
-
     [SerializeField]
-    private Transform slotParent;
+    private Transform[] slotParent;
     [SerializeField]
     public Slot[] slots;
     [SerializeField]
@@ -17,13 +16,14 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     public Player myPlayer;
 
+    [SerializeField]
+    public Player orgPlayer;
+
     public ItemSetDB myItemDB;
     
     public Equipment myEquipment;
 
     public List<Slot> slotsIndex;
-
-
 
     private GameManager GetGmInst()
     {
@@ -31,8 +31,7 @@ public class Inventory : MonoBehaviour
     }
     private void OnValidate()
     {
-        slots = slotParent.GetComponentsInChildren<Slot>();
-      
+        slots = slotParent[0].GetComponentsInChildren<Slot>();
     }
 
     void Awake()
@@ -46,14 +45,35 @@ public class Inventory : MonoBehaviour
         {
             slotsIndex.Add(slots[i]);
         }
+        orgPlayer = null;
     }
+    int i = 7;
     private void Update()
     {
-        if (myPlayer != null)
+        if (GetGmInst().characters.Count != 0)
         {
+            //if(myPlayer.Item_stat.Count. GetGmInst().characters.Count)
+            StatModifire myEquipmentStat = new StatModifire();
             myPlayer = GetGmInst().characters[GetGmInst().curCharacter].GetComponent<Player>();
-            
+            if (myPlayer != orgPlayer)
+            {
+                i++;
+                if ((orgPlayer != null))
+                {
+                    i = 0;
+                }
+                slots = slotParent[i].GetComponentsInChildren<Slot>();
+            }
+            orgPlayer = myPlayer;
+            if (myPlayer.Item_stat.Count == 0)
+            {
+                myPlayer.Item_stat.Add(myEquipmentStat);
+            }
+            myPlayer.Item_stat[0].AttackPower += 10;
+            Debug.Log($"{myPlayer.Item_stat.Count}");
+            Debug.Log($"{myPlayer.Item_stat[0].AttackPower}");
         }
+       
     }
     public void FreshSlot()
     {
