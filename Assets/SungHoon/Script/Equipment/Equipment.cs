@@ -218,7 +218,9 @@ public class Equipment : MonoBehaviour
                             FreshSlot();
                         }
                     }
-                    break;
+                break;
+                    
+                    
         }
     }
     public void DestroyItem(int index)

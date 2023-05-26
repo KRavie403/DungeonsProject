@@ -120,6 +120,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
                     myInventory.myEquipment.Additem(myInventory.items[index], myItemGrade, ItemSet.ItemType.Accessories, myInventory.items[index].myEquipmentType, Power,index);
                     //myInventory.DestroyItem(index);
                     break;
+                case ItemSet.ItemType.Potion:
+                    myInventory.DestroyItem(index);
+                    break;
             }
 
         }
