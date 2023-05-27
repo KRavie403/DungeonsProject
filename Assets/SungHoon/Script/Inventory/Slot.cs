@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using System;
 
 public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
 {
-    
+    [SerializeField]
+    public List<ItemSet> items;
+
     public Image image;
     
     public Sprite defaltSprite;
@@ -31,31 +35,17 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
     public Transform ChangeChild2;
     private void Start()
     {
-        
+        for (int i = 0; i < myInventory.slots.Length; i++)
+        {
+            items.Add(null);
+        }
         myItem = GetComponentInChildren<DragItem>();
         image = myItem.GetComponent<Image>();
-        index = myItem.myIndex;
-        orgChild = transform.GetChild(0);
-        orgSlot = orgChild.GetComponentInParent<Slot>();
-        Debug.Log($"{orgSlot}");
-        ChangeChild = orgChild;
-        ChangeChild2 = orgChild;
+        index =myInventory.slotsIndex.IndexOf(GetComponent<Slot>()); 
     }
     private void Update()
     {
-        int i = 0;
-        if (transform.childCount != 0)
-        {
-            orgChild = transform.GetChild(0);
-            if (orgChild != ChangeChild)
-            {
-                myItem = GetComponentInChildren<DragItem>();
-                image = myItem.GetComponent<Image>();
-                index = myItem.myIndex;
-                ChangeChild = orgChild;
-                ChangeChild2 = orgChild;
-            }
-        }
+        index = myInventory.slotsIndex.IndexOf(GetComponent<Slot>());
     }
     public ItemSet item
     {
@@ -67,10 +57,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
             {
                 image.sprite = item.MySprite;
                 image.color = new Color(1, 1, 1, 1); 
-            }
-            else
-            {
-                image.color = new Color(1, 1, 1, 0);
             }
         }
     }
@@ -89,36 +75,33 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
 
     public void ItemEquipment()
     {
-        if (myInventory.items[index] != null)
+        if (myInventory.myItemList[myInventory.curIndex].items[index] != null)
         {
             switch (myItemGrade)
             {
                 case ItemSet.ItemGrade.Rare:
-                    Power = myInventory.items[index].power * 1.0f;
+                    Power = myInventory.myItemList[myInventory.curIndex].items[index].power * 1.0f;
                     break;
                 case ItemSet.ItemGrade.Epic:
-                    Power = myInventory.items[index].power * 2.0f;
+                    Power = myInventory.myItemList[myInventory.curIndex].items[index].power * 2.0f;
                     break;
                 case ItemSet.ItemGrade.Legendary:
-                    Power = myInventory.items[index].power * 3.0f;
+                    Power = myInventory.myItemList[myInventory.curIndex].items[index].power * 3.0f;
                     break;
             }
-            switch (myInventory.items[index].myType)
+            switch (myInventory.myItemList[myInventory.curIndex].items[index].myType)
             {
                 case ItemSet.ItemType.Power:
                     Debug.Log("Power ÀåÂø");
-                        myInventory.myEquipment.Additem(myInventory.items[index], myItemGrade, ItemSet.ItemType.Power, myInventory.items[index].myEquipmentType,Power,index);
-                        //myInventory.DestroyItem(index);
+                        myInventory.myEquipment.Additem(myInventory.myItemList[myInventory.curIndex].items[index], myItemGrade, ItemSet.ItemType.Power, myInventory.myItemList[myInventory.curIndex].items[index].myEquipmentType,Power,index);
                     break;
                 case ItemSet.ItemType.Armor:
                     Debug.Log("Defence ÀåÂø");
-                    myInventory.myEquipment.Additem(myInventory.items[index], myItemGrade, ItemSet.ItemType.Armor, myInventory.items[index].myEquipmentType, Power,index);
-                    //myInventory.DestroyItem(index);
+                    myInventory.myEquipment.Additem(myInventory.myItemList[myInventory.curIndex].items[index], myItemGrade, ItemSet.ItemType.Armor, myInventory.myItemList[myInventory.curIndex].items[index].myEquipmentType, Power,index);
                     break;
                 case ItemSet.ItemType.Accessories:
                     Debug.Log("Accessories ÀåÂø");
-                    myInventory.myEquipment.Additem(myInventory.items[index], myItemGrade, ItemSet.ItemType.Accessories, myInventory.items[index].myEquipmentType, Power,index);
-                    //myInventory.DestroyItem(index);
+                    myInventory.myEquipment.Additem(myInventory.myItemList[myInventory.curIndex].items[index], myItemGrade, ItemSet.ItemType.Accessories, myInventory.myItemList[myInventory.curIndex].items[index].myEquipmentType, Power,index);
                     break;
                 case ItemSet.ItemType.Potion:
                     myInventory.DestroyItem(index);
@@ -138,5 +121,4 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
         //    myInventory.DestroyItem(index);
         //}
     }
-
 }

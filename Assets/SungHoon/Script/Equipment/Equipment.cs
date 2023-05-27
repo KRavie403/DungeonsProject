@@ -42,23 +42,21 @@ public class Equipment : MonoBehaviour
             items.Add(null);
             CharPower.Add(0.0f);
         }
+            this.transform.parent.parent.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            this.gameObject.SetActive(false);
-        }
+
     }
 
     public void FreshSlot()
     {
         int i = 0;
-        for (; i < items.Count && i < slots.Count; i++)
+        for (; i <myInventory.myEquipment.items.Count && i < slots.Count; i++)
         {
-            slots[i].item = items[i];
+            slots[i].item = myInventory.myEquipment.items[i];
         }
         for (; i < slots.Count; i++)
         {
@@ -73,9 +71,9 @@ public class Equipment : MonoBehaviour
             switch (myType)
             {
                 case ItemSet.ItemType.Power:
-                    if (items[0] == null)
+                    if (myInventory.myEquipment.items[0] == null)
                     {
-                        items[0] = myItem;
+                        myInventory.myEquipment.items[0] = myItem;
                         this.myGrade = myGrade;
                         slots[0].myItemGrade = myGrade;
                     myInventory.DestroyItem(Pindex);
@@ -87,7 +85,7 @@ public class Equipment : MonoBehaviour
                     else
                     {
                     myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[0];
-                    ChangeItem(0,items[0],myItem, myGrade, myType, myEquipmentType, Power,Pindex);
+                    ChangeItem(0,myInventory.myEquipment.items[0],myItem, myGrade, myType, myEquipmentType, Power,Pindex);
                     FreshSlot();
                     Debug.Log($"{myInventory.myPlayer.Item_stat[0].AttackPower}");
                 }
@@ -95,29 +93,31 @@ public class Equipment : MonoBehaviour
                 case ItemSet.ItemType.Armor:
                     if (myEquipmentType == ItemSet.EquipmentType.Helmet)
                     {
-                        if (items[1] == null)
+                        if (myInventory.myEquipment.items[1] == null)
                         {
-                            items[1] = myItem;
+                            myInventory.myEquipment.items[1] = myItem;
                             this.myGrade = myGrade;
                             slots[1].myItemGrade = myGrade;
                             myInventory.DestroyItem(Pindex);
                         FreshSlot();
                         CharPower[1] = slots[1].Power;
-                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[1];
+                        myInventory.myPlayer.Item_stat[0].DeffencePower += CharPower[1];
+                        Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
                     }
                     else
                         {
-                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[1];
-                        ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].DeffencePower -= CharPower[1];
+                        Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
+                        ChangeItem(1, myInventory.myEquipment.items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                         FreshSlot();
                         }
                 }
                     
                 if (myEquipmentType == ItemSet.EquipmentType.Armor)
                     {
-                        if (items[1] == null)
+                        if (myInventory.myEquipment.items[1] == null)
                         {
-                        items[1] = myItem;
+                        myInventory.myEquipment.items[1] = myItem;
                         this.myGrade = myGrade;
                         slots[1].myItemGrade = myGrade;
 
@@ -126,31 +126,35 @@ public class Equipment : MonoBehaviour
                         myInventory.DestroyItem(Pindex);
                         FreshSlot();
                         CharPower[1] = slots[1].Power;
-                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[1];
+                        myInventory.myPlayer.Item_stat[0].DeffencePower += CharPower[1];
+                        Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
                     }
                     else
                         {
-                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[1];
-                        ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].DeffencePower -= CharPower[1];
+                        Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
+                        ChangeItem(1, myInventory.myEquipment.items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                         FreshSlot();
                         }
                     }
                     if (myEquipmentType == ItemSet.EquipmentType.Boots)
                     {
-                        if (items[1] == null)
+                        if  (myInventory.myEquipment.items[1] == null)
                         {
-                            items[1] = myItem;
+                            myInventory.myEquipment.items[1] = myItem;
                             this.myGrade = myGrade;
                             slots[1].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
                         FreshSlot();
                         CharPower[1] = slots[1].Power;
-                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[1];
+                        myInventory.myPlayer.Item_stat[0].DeffencePower += CharPower[1];
+                        Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
                     }
                         else
                         {
-                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[1];
-                        ChangeItem(1, items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        myInventory.myPlayer.Item_stat[0].DeffencePower -= CharPower[1];
+                        Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
+                        ChangeItem(1, myInventory.myEquipment.items[1], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
@@ -158,78 +162,71 @@ public class Equipment : MonoBehaviour
                 case ItemSet.ItemType.Accessories:
                     if (myEquipmentType == ItemSet.EquipmentType.Ring)
                     {
-                        if (items[2] == null)
+                        if (myInventory.myEquipment.items[2] == null)
                         {
-                            items[2] = myItem;
+                            myInventory.myEquipment.items[2] = myItem;
                             this.myGrade = myGrade;
                             slots[2].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
                         FreshSlot();
                         CharPower[2] = slots[2].Power;
-                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[2];
                     }
                         else
                         {
-                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[2];
-                        ChangeItem(2, items[2], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        ChangeItem(2, myInventory.myEquipment.items[2], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
 
                     }
                     if (myEquipmentType == ItemSet.EquipmentType.Necklace)
                     {
-                        if (items[3] == null)
+                        if (myInventory.myEquipment.items[3] == null)
                         {
-                            items[3] = myItem;
+                            myInventory.myEquipment.items[3] = myItem;
                             this.myGrade = myGrade;
                             slots[3].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
                         FreshSlot();
                         CharPower[3] = slots[3].Power;
-                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[3];
                     }
                         else
                         {
                         myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[3];
-                        ChangeItem(3, items[3], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        ChangeItem(3, myInventory.myEquipment.items[3], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
                     if (myEquipmentType == ItemSet.EquipmentType.EarRing)
                     {
-                        if (items[4] == null)
+                        if (myInventory.myEquipment.items[4] == null)
                         {
-                            items[4] = myItem;
+                            myInventory.myEquipment.items[4] = myItem;
                             this.myGrade = myGrade;
                             slots[4].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
                         FreshSlot();
                         CharPower[4] = slots[4].Power;
-                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[4];
                     }
                         else
                         {
-                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[4];
-                        ChangeItem(4, items[4], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        ChangeItem(4, myInventory.myEquipment.items[4], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
                     if (myEquipmentType == ItemSet.EquipmentType.Bracelet)
                     {
-                        if (items[5] == null)
+                        if (myInventory.myEquipment.items[5] == null)
                         {
-                            items[5] = myItem;
+                            myInventory.myEquipment.items[5] = myItem;
                             this.myGrade = myGrade;
                             slots[5].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
                         FreshSlot();
                         CharPower[5] = slots[5].Power;
-                        myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[5];
                     }
                         else
                         {
-                        myInventory.myPlayer.Item_stat[0].AttackPower -= CharPower[5];
-                        ChangeItem(5, items[5], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
+                        ChangeItem(5, myInventory.myEquipment.items[5], myItem, myGrade, myType, myEquipmentType, Power, Pindex);
                             FreshSlot();
                         }
                     }
@@ -241,7 +238,7 @@ public class Equipment : MonoBehaviour
     public void DestroyItem(int index)
     {
         //items.RemoveAt(index);
-        items[index] = null;
+        myInventory.myEquipment.items[index] = null;
     }
     public void Open()
     {
@@ -255,7 +252,7 @@ public class Equipment : MonoBehaviour
         ItemSet.EquipmentType ChangeEquipmentType = myEquipmentType;
         float ChangePower = Power;
         ItemSet.ItemGrade orgGrade = slots[index].myItemGrade;
-        items[index] = null;
+        myInventory.myEquipment.items[index] = null;
         Additem(ChangeItem, ChangeGrade, ChangeType, ChangeEquipmentType, ChangePower,Cindex);
         myInventory.ChangeItem(orgItem, orgGrade, Cindex);
 
