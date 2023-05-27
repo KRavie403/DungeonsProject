@@ -19,7 +19,7 @@ public class SceneLoader : Singleton<SceneLoader>
 
     IEnumerator Loading(int i)
     {
-        yield return SceneManager.LoadSceneAsync(2);
+        yield return SceneManager.LoadSceneAsync(3);
         SceneLoaderText.Inst.Setting(i);
         Slider loadingSlider = FindAnyObjectByType<Slider>();  
 
