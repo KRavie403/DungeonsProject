@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Trapping
   m_EditorClassIdentifier: 
+  _tipText: "\uD2B8\uB798\uD551 : 5\uD134\uAC04 \uACF5\uACA9\uB825 2\uBC30\uB97C
+    \uAC00\uD558\uB294 \uD568\uC815 \uC124\uCE58"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 1, CT
+    : 1"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 2
   _sprite: {fileID: 21300000, guid: 8990c20e7e0ec014ca755c21bbab2c2e, type: 3}

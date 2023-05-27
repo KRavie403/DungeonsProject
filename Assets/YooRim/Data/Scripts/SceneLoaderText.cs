@@ -8,12 +8,13 @@ using TMPro;
 public class SceneLoaderText : Singleton<SceneLoaderText>
 {
     public Image MapImage;
+    public Sprite Map1;
+    public Sprite Map2;
 
     public TMP_Text mapText;
     public TMP_Text loadingText;
     string[] textList = new string[3];
-    string[] map = new string[2];
-    int rnd, i;
+    int rnd;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,7 @@ public class SceneLoaderText : Singleton<SceneLoaderText>
         textList[1] = "그날의 슬픔은 우리는 기억하지 못한다. 그저 한 마리의 짐승이 서글퍼 할 뿐이였다.";
         textList[2] = "짐승의 노래를 들어라, 슬픔의 노래를 들어라 , 통한의 노래를 들어라.";
 
-        map[0] = "Map1";
-        map[1] = "Map2";
 
-        Setting(i);
     }
 
     // Update is called once per frame
@@ -36,23 +34,7 @@ public class SceneLoaderText : Singleton<SceneLoaderText>
 
     public void Setting(int i)
     {
-        string path = "Database\\CharacterStatus\\" + map[i];
-        Sprite loadedSprite = Resources.Load<Sprite>(path);
-        if (path != null)
-        {
-            // 이미지 스프라이트를 새로운 스프라이트로 교체
-            // MapImage.gameObject.GetComponentInChildren<Image>().sprite = loadedSprite;
-            
-            // 1. SceneLoaderText는 panel Object에 붙어 있음
-            // 2. 바꿔야할 대상은 panel Object의 Image
-            // 3. GetComponentInChildren는 자식 오브젝트에서만 찾으므로 nullreference 오류 발생
-                MapImage.sprite = loadedSprite;
-        }
-        else
-        {
-            Debug.LogWarning("스프라이트를 로드하는 데 실패했습니다.");
-        }
-
+        MapImage.sprite = i == 1 ? Map1 : Map2;
         mapText.text = i == 1 ? "실낙원" : "어스름의 미궁";
         rnd = Random.Range(0, 3);
         loadingText.text = textList[rnd];

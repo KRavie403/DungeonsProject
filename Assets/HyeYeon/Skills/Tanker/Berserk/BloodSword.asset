@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: BloodSword
   m_EditorClassIdentifier: 
+  _tipText: "\uBE14\uB7EC\uB4DC \uC18C\uB4DC : \uACF5\uACA9\uB825 4\uBC30\uB85C \uC804\uBC29\uC5D0
+    5\uCE78 \uD53C\uD574"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 3, CT
+    : 3"
+  _tipSprite: {fileID: 21300000, guid: 02a9bd10d364179459119db2b8097a2c, type: 3}
   _type: 2
   _Etype: 2
   _sprite: {fileID: 21300000, guid: 70573ad27d14c264a8c07354ae1f41e5, type: 3}

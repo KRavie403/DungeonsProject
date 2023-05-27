@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Sniping
   m_EditorClassIdentifier: 
+  _tipText: "\uC2A4\uB098\uC774\uD551 : \uACF5\uACA9\uB825 5\uBC30\uB85C \uC804\uBC29
+    50\uCE78 \uD53C\uD574"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 7, CT
+    : 4"
+  _tipSprite: {fileID: 21300000, guid: 16d3ba53193c6b448bd8a9252479f318, type: 3}
   _type: 2
   _Etype: 2
   _sprite: {fileID: 21300000, guid: e8393a65dacbb78478b346104a8c9c44, type: 3}

@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: Adrenaline
   m_EditorClassIdentifier: 
+  _tipText: "\uC544\uB4DC\uB808\uB0A0\uB9B0  : \uD134 \uC885\uB8CC \uC2DC \uC790\uC2E0\uC758
+    \uD134\uC744 \uAC00\uC838\uC634"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 2, CT
+    : 5"
+  _tipSprite: {fileID: 21300000, guid: 2e2019d168d9a6f4999b6d8f07475370, type: 3}
   _type: 2
   _Etype: 1
   _sprite: {fileID: 21300000, guid: 917871e5c6d34ed4b93dfafad1277db5, type: 3}

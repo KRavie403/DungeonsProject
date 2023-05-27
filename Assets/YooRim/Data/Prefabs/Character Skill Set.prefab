@@ -827,9 +827,11 @@ MonoBehaviour:
   - {fileID: 7392242044662536699}
   - {fileID: 3964364636772213396}
   - {fileID: 6669372535065795095}
+  chosenDB: {fileID: 0}
   chosenSkillDB: {fileID: 0}
-  skillDB: {fileID: 0}
+  tempChosenSkillDB: {fileID: 0}
   countSkills: {fileID: 0}
+  charName: {fileID: 0}
 --- !u!222 &3283886609757562036
 CanvasRenderer:
   m_ObjectHideFlags: 0

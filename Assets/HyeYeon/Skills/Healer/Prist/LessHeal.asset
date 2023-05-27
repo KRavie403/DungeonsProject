@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5153cab9cf293274ab22ce609565eb9a, type: 3}
   m_Name: LessHeal
   m_EditorClassIdentifier: 
+  _tipText: "\uB808\uC2A4 \uD790 : \uC544\uAD70\uC758 \uCCB4\uB825 80 \uCE58\uC720"
+  _tipText2: "(\uC561\uD2F0\uBE0C)                                      AP : 3, CT
+    : 1"
+  _tipSprite: {fileID: 21300000, guid: 2b7a7a443c67f124a98e936d983035a1, type: 3}
   _type: 1
   _Etype: 2
   _sprite: {fileID: 21300000, guid: a2893219d09103f4bb0191fdf3330bd9, type: 3}
