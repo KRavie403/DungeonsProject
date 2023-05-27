@@ -12,6 +12,7 @@ public class MapManager : Singleton<MapManager>
     public float scale = 1.0f;
 
     public LayerMask crashMask;
+    public LayerMask terrainhMask;
     public Material tileMat;
     public Vector3 LBLocation = new Vector3(0, 0, 0);
 
@@ -36,7 +37,8 @@ public class MapManager : Singleton<MapManager>
                 Ray ray = new Ray(start, new Vector3(0, 1, 0));
 
                 if (!Physics.Raycast(ray, 10.0f, crashMask))
-                    tiles.Add(new Vector2Int(x, y), GenerateSingleTile(tileSize, x, y).GetComponent<TileStatus>());
+                    if(Physics.Raycast(ray, 10.0f, terrainhMask))
+                        tiles.Add(new Vector2Int(x, y), GenerateSingleTile(tileSize, x, y).GetComponent<TileStatus>());
 
                 //obj.SetActive(false);
             }
