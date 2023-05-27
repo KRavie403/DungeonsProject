@@ -20,8 +20,12 @@ public class IntroManager : Singleton<IntroManager> //UI관련??메인타이틀??
 
     IEnumerator DelayTime(float time)
     {
-        yield return new WaitForSeconds(time);
-        IntroPanel.SetActive(false);
+        if (IntroPanel != null)
+        {
+            yield return new WaitForSeconds(time);
+            IntroPanel.SetActive(false);
+        }
+
         StartPanel.SetActive(true);
     }
 

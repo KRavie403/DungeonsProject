@@ -238,9 +238,9 @@ public class BossMonster : Battle
                     break;
                 case STATE.SEARCH:
                     this.SetDistance();
-                    SearchingPlayer((close_targets));
+                    SearchingPlayer();
                     close_targets.OrderBy(o => -o.Value.x + o.Value.y);
-                    if (close_targets.Count != 0)
+                    if (close_targets.Count == 0)
                     {
                         scenario = searchScenario;
                         ChangeState(STATE.WANDER);
@@ -250,7 +250,7 @@ public class BossMonster : Battle
                         int around_target_count = 0;
                         foreach (var target in close_targets)
                         {
-                            if (target.Value.x <= attackLenght)
+                            if (target.Value.x < attackLenght)
                             {
                                 around_target_count++;
                             }
@@ -342,7 +342,7 @@ public class BossMonster : Battle
         }
     }
 
-    private void SearchingPlayer( Dictionary <Player,Vector2> close_targets)
+    private void SearchingPlayer()
     {
         foreach (var player in GameManager.Inst.characters)
         {
