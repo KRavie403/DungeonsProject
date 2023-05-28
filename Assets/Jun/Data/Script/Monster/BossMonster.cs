@@ -8,13 +8,19 @@ using Random = UnityEngine.Random;
 
 public class BossMonster : Battle
 {
+
     // Start is called before the first frame update
     public Vector2Int[] expendedPos;
     public Slider _bossHPUI;
     public int searchLenght = 10;
-    public int attackLenght = 5;
+    public int attackLength = 5;
     public Dictionary<Player, Vector2> close_targets = new();
     public List<CharactorProperty> targetList = new();
+    
+    public SkillSet currSkill = null;
+
+    
+
     private Senario idleScenario;
     private Senario searchScenario;
     private Senario attackScenario;
@@ -103,7 +109,7 @@ public class BossMonster : Battle
         {
             foreach (var tile in GetMMInst().tiles)
             {
-                if (step <= attackLenght)
+                if (step <= attackLength)
                 {
                     if (tile.Value.isVisited == step - 1)
                     {
@@ -165,7 +171,6 @@ public class BossMonster : Battle
     }
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
     {
-        //�ִϸ��̼� ��� (casting end)
         StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets));
     }
     IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
@@ -183,7 +188,7 @@ public class BossMonster : Battle
 
             if (target != null && target.GetComponent<BossMonster>() != null)
             {
-                target.GetComponent<BossMonster>().TakeDamage(10.0f);
+                Damaging(currSkill, currSkill.Damage, currSkill.AttackIndex.ToArray());
             }
         }
     }
@@ -194,6 +199,7 @@ public class BossMonster : Battle
     }
     public void OnSkillCastStart(SkillSet skill)
     {
+
     }
     public void OnMoveByPath(List<TileStatus> path)
     {
@@ -239,7 +245,7 @@ public class BossMonster : Battle
                 case STATE.SEARCH:
                     this.SetDistance();
                     SearchingPlayer();
-                    close_targets.OrderBy(o => -o.Value.x + o.Value.y);
+                    close_targets = close_targets.OrderBy(o => -o.Value.x + o.Value.y).ToDictionary(pair => pair.Key, pair => pair.Value);
                     if (close_targets.Count == 0)
                     {
                         scenario = searchScenario;
@@ -250,7 +256,7 @@ public class BossMonster : Battle
                         int around_target_count = 0;
                         foreach (var target in close_targets)
                         {
-                            if (target.Value.x < attackLenght)
+                            if (target.Value.x < attackLength)
                             {
                                 around_target_count++;
                             }
@@ -306,6 +312,25 @@ public class BossMonster : Battle
                     break;
 
                 case STATE.SKILL_CAST:
+                    if( targetList.Count >= 1)  //원래라면 시나리오가 필요
+                    {
+                        currSkill = skilList[3];
+                        
+                        List<Vector2Int> targets = new List<Vector2Int>();
+                        foreach(var target in targetList)
+                            targets.Add(target.my_Pos);
+
+                        CastingSkill(Vector3.forward, targets.ToArray());
+
+                    }
+                    else
+                    {
+                        //다른 전략으로 스킬 구성
+                    }
+
+
+
+
                     break;
             }
 

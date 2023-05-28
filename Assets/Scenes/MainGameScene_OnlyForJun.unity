@@ -39533,7 +39533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &610779961
 RectTransform:
   m_ObjectHideFlags: 0
@@ -103956,8 +103956,8 @@ MonoBehaviour:
   characters: []
   Main_Cam: {fileID: 2120833761}
   curCharacter: 0
-  selectedOrgChars: {fileID: 11400000, guid: dd8a01636edd7b34c9ab81e49450a8e1, type: 2}
-  selectedOrgSkills: {fileID: 11400000, guid: 9a788f47b515b3f4ca4948d3aff6b274, type: 2}
+  selectedOrgChars: {fileID: 11400000, guid: cab71d912e619fc409a5872b863d3483, type: 2}
+  selectedOrgSkills: {fileID: 11400000, guid: 41517ee87e8e0d94a8311f4404f2dfec, type: 2}
   boss: {fileID: 5510757949259109818, guid: d243557d47c822e41ba2c809df30c538, type: 3}
 --- !u!1 &1586710617
 GameObject:
@@ -105180,6 +105180,9 @@ MonoBehaviour:
   crashMask:
     serializedVersion: 2
     m_Bits: 1024
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 0
   tileMat: {fileID: 2100000, guid: 3bbe6b640ca7ba64d9663b2f85e31c09, type: 2}
   LBLocation: {x: 0, y: 0, z: 0}
 --- !u!4 &1610542076
@@ -131684,7 +131687,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019539186}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9a62dc9f56b0cd44a905cb4d89b4bb7, type: 3}
   m_Name: 
