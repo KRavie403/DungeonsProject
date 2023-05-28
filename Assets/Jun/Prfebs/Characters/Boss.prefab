@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 1344118261}
   m_Layer: 11
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
   _curHP: -100
   my_Size: 1
   _mySize: 1
-  MoveSpeed: 1
-  RotSpeed: 35
+  MoveSpeed: 5
+  RotSpeed: 180
   OrgAttackPower: 10
   AttackPower: 10
   OrgDeffencePower: 10
@@ -183,13 +183,15 @@ MonoBehaviour:
   Speed: 1
   _curActionPoint: 0
   _bfState: 0
-  _curState: 0
+  _curState: -99996
   findPath: 0
   expendedPos: []
   _bossHPUI: {fileID: 0}
-  searchLenght: 10
-  attackLenght: 5
+  searchLength: 10
+  attackLength: 5
   targetList: []
+  currSkill: {fileID: 0}
+  movealbeTiles: []
 --- !u!54 &1344118261
 Rigidbody:
   m_ObjectHideFlags: 0

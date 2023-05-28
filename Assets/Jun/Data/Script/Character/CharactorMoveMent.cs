@@ -190,10 +190,14 @@ public abstract class CharactorMovement : CharactorProperty
 
         if (curAP == 10)
             GetGMInst().ChangeTurn();
-        
-        else
-            GetComponent<Player>().ChangeState(STATE.ACTION);
 
+        else
+        {
+            if (myType == OB_TYPES.PLAYER)
+                GetComponent<Player>().ChangeState(STATE.ACTION);
+            else
+                GetComponent<BossMonster>().ChangeState(STATE.ACTION);
+        }
         GetMMInst().Init();
         my_Pos = dest_pos;
         GetMMInst().tiles[dest_pos].my_obj = OB_TYPES.PLAYER;

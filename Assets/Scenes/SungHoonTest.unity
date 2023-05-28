@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -446,6 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 859096922}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -1546,6 +1547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 419713658}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -1691,6 +1693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1100945114}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -2005,6 +2008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 822650660}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -2638,6 +2642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 578412373}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -2783,6 +2788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1246198434}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -3030,6 +3036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1575092910}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -3175,6 +3182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 994019582}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -3803,6 +3811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1561067020}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -3948,6 +3957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 362121347}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -4209,6 +4219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1679093823}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -4354,6 +4365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 2077243686}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -5055,6 +5067,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1461450586}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -5676,7 +5689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25baf1283fb991469c9cceba1a7cd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
   slotParent:
   - {fileID: 2000223166}
   - {fileID: 1607074575}
@@ -5696,7 +5708,11 @@ MonoBehaviour:
   orgPlayer: {fileID: 0}
   myItemDB: {fileID: 11400000, guid: 30f61b3b0cef5fa47b50483ded1b9637, type: 2}
   myEquipment: {fileID: 448914789}
+  curEquipment: {fileID: 0}
+  myEquipmentParent: []
   slotsIndex: []
+  myItemList: []
+  curIndex: 0
 --- !u!1 &467245274
 GameObject:
   m_ObjectHideFlags: 0
@@ -6554,6 +6570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1973296006}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -8892,6 +8909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1539662011}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -10098,6 +10116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 493464872}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -10494,6 +10513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 359286631}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 465713868}
@@ -11797,6 +11817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 584939255}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -12339,6 +12360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 2051765174}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -13161,6 +13183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1537242176}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -13581,6 +13604,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1875238917}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -14357,6 +14381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1594517973}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -16272,6 +16297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1538191408}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -16754,6 +16780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1063407699}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -18016,6 +18043,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1933373362}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -19016,6 +19044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 681083356}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -19140,6 +19169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 870168639}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 465713868}
@@ -19306,6 +19336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1385963013}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -19726,6 +19757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1655743598}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -20142,6 +20174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 92027634}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -20969,6 +21002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 682646723}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 465713868}
@@ -21211,6 +21245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 2014638270}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}
@@ -21503,6 +21538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 413425584}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 465713868}
@@ -21969,6 +22005,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 1586815935}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 465713868}
@@ -23161,6 +23198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2908493476cc2e743892d8d57153ea59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  items: []
   image: {fileID: 896335692}
   defaltSprite: {fileID: 0}
   myInventory: {fileID: 0}

@@ -18,7 +18,7 @@ MonoBehaviour:
   _type: 1
   _Etype: 2
   _sprite: {fileID: 0}
-  _damage: 0
+  _damage: 10
   _LifeTime: 0
   _exStatus:
     Unbreakable: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     AttackPower: 0
     DeffencePower: 0
     Speed: 0
-  _effect: {fileID: 0}
+  _effect: {fileID: 3302370344969496575, guid: 7c68778924bc00f4b933d3edfdca5e29, type: 3}
   AttackIndex:
   - {x: 0, y: 0}
   - {x: 1, y: 0}
@@ -35,4 +35,4 @@ MonoBehaviour:
   - {x: -1, y: 0}
   - {x: 0, y: -1}
   _distance: 5
-  _cost: 1
+  _cost: 5

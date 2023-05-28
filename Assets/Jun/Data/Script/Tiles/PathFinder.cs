@@ -28,16 +28,33 @@ public class PathFinder : Singleton<PathFinder>
             var neighbourTiles = GetNeighborTiles(currentTile);
             foreach (TileStatus neighbourTile in neighbourTiles)
             {
-                if (neighbourTile.is_blocked || closeList.Contains(neighbourTile))
-                    continue;
-                neighbourTile.G = GetManhattenDistance(start, neighbourTile);
-                neighbourTile.H = GetManhattenDistance(end, neighbourTile);
-
-                neighbourTile.prevTile = currentTile;
-
-                if (!openlist.Contains(neighbourTile))
+                if (GameManager.Inst.characters[GameManager.Inst.curCharacter].CompareTag("Player"))
                 {
-                    openlist.Add(neighbourTile);
+                    if (neighbourTile.is_blocked || closeList.Contains(neighbourTile))
+                        continue;
+                    neighbourTile.G = GetManhattenDistance(start, neighbourTile);
+                    neighbourTile.H = GetManhattenDistance(end, neighbourTile);
+
+                    neighbourTile.prevTile = currentTile;
+
+                    if (!openlist.Contains(neighbourTile))
+                    {
+                        openlist.Add(neighbourTile);
+                    }
+                }
+                else 
+                {
+                    if ((neighbourTile.is_blocked && !neighbourTile.OnMyTarget().CompareTag("Monster") )|| closeList.Contains(neighbourTile))
+                        continue;
+                    neighbourTile.G = GetManhattenDistance(start, neighbourTile);
+                    neighbourTile.H = GetManhattenDistance(end, neighbourTile);
+
+                    neighbourTile.prevTile = currentTile;
+
+                    if (!openlist.Contains(neighbourTile))
+                    {
+                        openlist.Add(neighbourTile);
+                    }
                 }
             }
         }
