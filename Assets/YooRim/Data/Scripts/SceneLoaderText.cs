@@ -33,8 +33,8 @@ public class SceneLoaderText : Singleton<SceneLoaderText>
 
     public void Setting(int i)
     {
-        MapImage.sprite = i == 1 ? Map1 : i == 2 ? Map2 : Title;
-        mapText.text = i == 1 ? "½Ç³«¿ø" : i == 2 ? "¾î½º¸§ÀÇ ¹Ì±Ã" : "";
+        MapImage.sprite = i == 2 ? Map1 : i == 3 ? Map2 : Title;
+        mapText.text = i == 2 ? "½Ç³«¿ø" : i == 3 ? "¾î½º¸§ÀÇ ¹Ì±Ã" : "";
         rnd = Random.Range(0, 3);
         loadingText.text = textList[rnd];
     }
