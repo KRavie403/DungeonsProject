@@ -50,7 +50,6 @@ public abstract class CharactorMovement : CharactorProperty
     protected void MoveByPath(List<TileStatus> path = null, UnityAction done = null)
     {
         StopAllCoroutines();
-
         
         if (path != null)
             findPath = true;

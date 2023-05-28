@@ -12,14 +12,15 @@ public class BossMonster : Battle
     // Start is called before the first frame update
     public Vector2Int[] expendedPos;
     public Slider _bossHPUI;
-    public int searchLenght = 10;
+    public int searchLength = 10;
     public int attackLength = 5;
     public Dictionary<Player, Vector2> close_targets = new();
     public List<CharactorProperty> targetList = new();
     
     public SkillSet currSkill = null;
+    public List<TileStatus> movealbeTiles;
 
-    
+
 
     private Senario idleScenario;
     private Senario searchScenario;
@@ -39,14 +40,15 @@ public class BossMonster : Battle
     }
     public void PlayerSetting()
     {
+        movealbeTiles = new List<TileStatus>(); 
         myType = OB_TYPES.MONSTER;
         _bossHPUI = UI_Manager.Inst.MonsterUI.GetComponentInChildren<Slider>();
         if (skilList == null)
             skilList = new List<SkillSet>();
-        StartCoroutine(SettingPos());
-
+        SettingPos();
+        _curState = STATE.CREATE;
     }
-    IEnumerator SettingPos()
+    public void SettingPos()
     {
 
         Vector2Int my_Pos = new Vector2Int();
@@ -94,10 +96,10 @@ public class BossMonster : Battle
         }
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
-        yield return null;
     }
     public override void SetDistance()
     {
+        movealbeTiles.Clear();
         GetMMInst().Init();
         foreach (var pos in expendedPos)
         {
@@ -105,7 +107,7 @@ public class BossMonster : Battle
             MapManager.Inst.tiles[pos].GetComponent<TileStatus>().isVisited = 1;
         }
 
-        for (int step = 1; step <= searchLenght; step++)
+        for (int step = 1; step <= searchLength; step++)
         {
             foreach (var tile in GetMMInst().tiles)
             {
@@ -119,6 +121,7 @@ public class BossMonster : Battle
 
                     if (tile.Value.isVisited == step)
                         tile.Value.gameObject.layer = 9;
+                    movealbeTiles.Add(tile.Value);
                 }
                 else
                 {
@@ -228,8 +231,12 @@ public class BossMonster : Battle
 
         while (!turnEnd)
         {
+            this.SetDistance();
+            is_done = false;
+
             switch (_curState)
             {
+
                 case STATE.CREATE:
                     break;
 
@@ -243,8 +250,9 @@ public class BossMonster : Battle
                     is_done = true;
                     break;
                 case STATE.SEARCH:
-                    this.SetDistance();
+                    yield return new WaitForSeconds(0.5f);
                     SearchingPlayer();
+                    yield return new WaitForSeconds(0.5f);
                     close_targets = close_targets.OrderBy(o => -o.Value.x + o.Value.y).ToDictionary(pair => pair.Key, pair => pair.Value);
                     if (close_targets.Count == 0)
                     {
@@ -270,66 +278,65 @@ public class BossMonster : Battle
                             ChangeState(STATE.SKILL_CAST);
                         }
                     }
+                    is_done = true;
+
                     break;
                 case STATE.MOVE:
-                    if (_curState == STATE.SEARCH || _curState == STATE.MOVE)
                     {
+                        
                         var target = close_targets.Aggregate((x, y) => x.Value.x < y.Value.x ? x : y).Key;
-                        bool moved= false;
+                        bool moved = false;
                         var start = GetMMInst().tiles[my_Pos];
                         var end = GetMMInst().tiles[target.my_Pos];
-                        List<TileStatus> path = PathFinder.Inst.FindPath(start, end);
+                        List<TileStatus> path = new List<TileStatus> { };
 
-                        MoveByPath(path, () => moved = true);
-                        while (!moved)
-                            yield return null;
-                    }
-                    else if (_curState == STATE.WANDER)
-                    {
-                        // Move to RandomPos
-                        List<TileStatus> movealbeTiles = new List<TileStatus>();
-                        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
+                        while (path==null)
                         {
-                            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
-                            {
-                                Vector2Int pos = new Vector2Int(i, j);
-                                if (!MapManager.Inst.CheckIncludedIndex(pos))
-                                    break;
-                                movealbeTiles.Add(MapManager.Inst.tiles[pos]);
-                            }
+                            path = PathFinder.Inst.FindPath(start, end);
+                            yield return null;
                         }
 
-                        int rnd = Random.Range(0, movealbeTiles.Count-1);
-                        bool moved= false;
-                        TileStatus start = GetMMInst().tiles[my_Pos];
-                        TileStatus end = movealbeTiles[rnd];
-                        List<TileStatus> path = PathFinder.Inst.FindPath(start, end);
-
                         MoveByPath(path, () => moved = true);
                         while (!moved)
                             yield return null;
                     }
+                    is_done = true;
+
                     break;
 
                 case STATE.SKILL_CAST:
-                    if( targetList.Count >= 1)  //원래라면 시나리오가 필요
                     {
                         currSkill = skilList[3];
-                        
+
                         List<Vector2Int> targets = new List<Vector2Int>();
-                        foreach(var target in targetList)
+                        foreach (var target in targetList)
                             targets.Add(target.my_Pos);
 
                         CastingSkill(Vector3.forward, targets.ToArray());
 
                     }
-                    else
+                    is_done = true;
+
+                    break;
+                case STATE.WANDER:
                     {
-                        //다른 전략으로 스킬 구성
+                        // Move to RandomPos
+                        List<TileStatus> path = new List<TileStatus> { };
+                        bool moved = false;
+                        TileStatus start = GetMMInst().tiles[my_Pos];
+
+                        while (path==null)
+                        {
+                            int rnd = Random.Range(0, movealbeTiles.Count - 1);
+                            TileStatus end = movealbeTiles[rnd];
+                            path = PathFinder.Inst.FindPath(start, end);
+                            yield return null;
+                        }
+                        MoveByPath(path, () => moved = true);
+                        while (!moved)
+                            yield return null;
                     }
-
-
-
+                    is_done = true;
 
                     break;
             }
@@ -375,7 +382,7 @@ public class BossMonster : Battle
             float dist = Vector2Int.Distance(my_Pos, info.my_Pos);
             float agro = info.Agro;
             
-            if (info.myType == OB_TYPES.PLAYER &&  dist < searchLenght)
+            if (info.myType == OB_TYPES.PLAYER &&  dist < searchLength)
             {
                 close_targets.Add(player.GetComponent<Player>(), new Vector2(dist, agro));
                 targetList.Add(info);
