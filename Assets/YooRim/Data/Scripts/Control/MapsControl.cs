@@ -22,12 +22,12 @@ public class MapsControl : MonoBehaviour
     {
         if (ani.GetBool("isNext"))
         {
-            MapSet.Inst.SceneIdx = 1;
+            MapSet.Inst.SceneIdx = 2;
             ani.SetBool("isNext", false);
         }
         else
         {
-            MapSet.Inst.SceneIdx = 2;
+            MapSet.Inst.SceneIdx = 3;
             ani.SetBool("isNext", true);
         }
     }

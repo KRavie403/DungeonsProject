@@ -327,9 +327,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 778612647}
-  - component: {fileID: 778612649}
+  - component: {fileID: 778612648}
   m_Layer: 0
-  m_Name: IntroManager
+  m_Name: Intro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,7 +350,7 @@ Transform:
   m_Father: {fileID: 2013815111}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &778612649
+--- !u!114 &778612648
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -359,16 +359,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 778612646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89148f92472e9b46a6743c9838b5a10, type: 3}
+  m_Script: {fileID: 11500000, guid: a31063fad4a8b394da91374adc4f9844, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartPanel: {fileID: 0}
   IntroPanel: {fileID: 219929944}
-  MapPanel: {fileID: 0}
-  CharacterPanel: {fileID: 0}
-  Settings: {fileID: 0}
-  CharacterSet: {fileID: 0}
-  darkImg: {fileID: 0}
 --- !u!1 &1654899592
 GameObject:
   m_ObjectHideFlags: 0
@@ -479,7 +473,6 @@ GameObject:
   - component: {fileID: 2013815110}
   - component: {fileID: 2013815109}
   - component: {fileID: 2013815108}
-  - component: {fileID: 2013815112}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -570,21 +563,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &2013815112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2013815107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d361ecbe4fd613447a51f7d7de7c73c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resolutionDropdown: {fileID: 0}
-  fullscreenBtn: {fileID: 0}
-  resolutionNum: 0
 --- !u!1 &2047458334
 GameObject:
   m_ObjectHideFlags: 0

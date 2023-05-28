@@ -57,6 +57,7 @@ public class MenuSet : MonoBehaviour
 
     public void ToMain()
     {
-        SceneLoader.Inst.ChangeScene(0);
+        Time.timeScale = 1f;
+        SceneLoader.Inst.ChangeScene(1);
     }
 }
