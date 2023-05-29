@@ -171,8 +171,8 @@ MonoBehaviour:
   my_Sprite: {fileID: 21300000, guid: eef61b855c76b9a49918864a076d17ba, type: 3}
   myType: 1
   my_Pos: {x: 0, y: 0}
-  MaxHP: 100
-  _curHP: -100
+  MaxHP: 1000
+  _curHP: 1000
   my_Size: 1
   _mySize: 1
   MoveSpeed: 5

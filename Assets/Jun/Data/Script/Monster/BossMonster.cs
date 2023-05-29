@@ -31,7 +31,7 @@ public class BossMonster : Battle
     {
         senarios = new Queue<Senario>();
 
-        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 46)], null);
+        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 45)], null);
         senarios.Enqueue(moveScenario);
         moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(55, 38)], null);
         senarios.Enqueue(moveScenario);
