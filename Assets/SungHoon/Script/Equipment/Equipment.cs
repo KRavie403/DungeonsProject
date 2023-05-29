@@ -26,10 +26,8 @@ public class Equipment : MonoBehaviour
 
     public List<float> CharPower;
 
-
-    void Start()
+    private void Awake()
     {
-        FreshSlot();
         slotsIndex = EquipmentSlotParent.GetComponentsInChildren<EquipmentSlot>();
         for (int i = 0; i < slotsIndex.Length; i++)
         {
@@ -40,7 +38,12 @@ public class Equipment : MonoBehaviour
             items.Add(null);
             CharPower.Add(0.0f);
         }
-            this.transform.parent.parent.gameObject.SetActive(false);
+    }
+    void Start()
+    {
+        FreshSlot();
+        this.transform.parent.gameObject.SetActive(false);
+        this.transform.parent.parent.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
