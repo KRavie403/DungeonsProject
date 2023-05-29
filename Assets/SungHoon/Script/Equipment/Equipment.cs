@@ -19,8 +19,6 @@ public class Equipment : MonoBehaviour
 
     EquipmentSlot[] slotsIndex;
 
-    public GameObject myConfirmButton;
-
     public ItemSet.ItemGrade myGrade;
     public ItemSet.EquipmentType myEquipmentType;
     public int Pindex;
@@ -239,10 +237,6 @@ public class Equipment : MonoBehaviour
     {
         //items.RemoveAt(index);
         myInventory.myEquipment.items[index] = null;
-    }
-    public void Open()
-    {
-        this.gameObject.SetActive(true);
     }
     public void ChangeItem(int index,ItemSet orgItem ,ItemSet myItem, ItemSet.ItemGrade myGrade, ItemSet.ItemType myType, ItemSet.EquipmentType myEquipmentType, float Power,int Cindex)
     {
