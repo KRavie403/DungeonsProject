@@ -29,7 +29,10 @@ public class ChestUISlot : MonoBehaviour, IPointerClickHandler
     //상자에 랜덤으로 넣기 완 
     //장비창 
     //변경
-
+    private void OnValidate()
+    {
+        myInventory = myChest.myInventory;
+    }
     public ItemSet item
     {
         get { return _item; }

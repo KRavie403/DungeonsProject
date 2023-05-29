@@ -39,3 +39,4 @@ MonoBehaviour:
   - {x: 0, y: 5}
   _distance: 5
   _cost: 3
+  myAudioClip: {fileID: 8300000, guid: ec560febbef69544cbe1fa2218affba1, type: 3}

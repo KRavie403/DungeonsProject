@@ -21,7 +21,17 @@ public class EquipmentSlot : MonoBehaviour
 
     public float Power;
 
-    
+    private void Awake()
+    {
+        myEquipment = GetComponentInParent<Equipment>();
+        myInventory = myEquipment.myInventory;
+    }
+
+    private void Start()
+    {
+        myEquipment = GetComponentInParent<Equipment>();
+        myInventory = myEquipment.myInventory;
+    }
     public ItemSet item
     {
         get { return _item; }
@@ -35,15 +45,12 @@ public class EquipmentSlot : MonoBehaviour
                 switch (myItemGrade)
                 {
                     case ItemSet.ItemGrade.Rare:
-                        Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 1.0f;
                         GetComponent<Image>().color = Color.white;
                         break;
                     case ItemSet.ItemGrade.Epic:
-                        Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 2.0f;
                         GetComponent<Image>().color = Color.green;
                         break;
                     case ItemSet.ItemGrade.Legendary:
-                        Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 3.0f;
                         GetComponent<Image>().color = Color.red;
                         break;
                 }
@@ -54,17 +61,21 @@ public class EquipmentSlot : MonoBehaviour
             }
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-        myEquipment = GetComponentInParent<Equipment>();
-        myInventory =myEquipment.myInventory;
-    }
 
-    // Update is called once per frame
-    void Update()
+    public float CheckPower()
     {
-        
+        switch (myItemGrade)
+        {
+            case ItemSet.ItemGrade.Rare:
+                Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 1.0f;
+                break;
+            case ItemSet.ItemGrade.Epic:
+                Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 2.0f;
+                break;
+            case ItemSet.ItemGrade.Legendary:
+                Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 3.0f;
+                break;
+        }
+        return Power;
     }
 }
