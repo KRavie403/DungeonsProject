@@ -72,4 +72,7 @@ public class SkillSet : ScriptableObject
     [SerializeField]
     private int _cost = 1;
     public int Cost { get { return _cost; } }
+
+    [SerializeField]
+    public AudioClip myAudioClip;
 }
