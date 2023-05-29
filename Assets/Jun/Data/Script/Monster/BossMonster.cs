@@ -7,7 +7,8 @@ using UnityEngine.Events;
 
 using Random = UnityEngine.Random;
 
-public class BossMonster : Battle
+public class BossMonster 
+    : Battle
 {
 
     // Start is called before the first frame update
@@ -23,20 +24,23 @@ public class BossMonster : Battle
     public List<TileStatus> movealbeTiles;
 
 
-
-    private Senario idleScenario;
-    private Senario searchScenario;
+    Queue<Senario> senarios;
     private Senario attackScenario;
     private Senario moveScenario;
-    private Senario wanderScenario;
+
     void Start()
     {
-        idleScenario = new Senario(STATE.IDLE, null, null);
-        searchScenario = new Senario(STATE.SEARCH, null, null);    //search 결과에 따라 변경
+        senarios = new Queue<Senario>();
 
-        attackScenario = new Senario(STATE.ATTACK, null, null);    //search 발견 시 거리내에 있으면 타겟 공격
-        moveScenario = new Senario(STATE.MOVE, null, null);    //search 발견 했으나 거리가 멀면 이동
-        wanderScenario = new Senario(STATE.WANDER, null, null); //search 미발견 시 아무 위치로 n칸 이동
+        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 45)], null);
+        senarios.Enqueue(moveScenario);
+        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(55, 38)], null);
+        senarios.Enqueue(moveScenario);
+        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 18)], null);
+        senarios.Enqueue(moveScenario);
+
+        attackScenario = new Senario(STATE.ATTACK, null, null);
+        senarios.Enqueue(attackScenario);
 
 
     }
@@ -58,22 +62,22 @@ public class BossMonster : Battle
 
         blocked = Enumerable.Repeat(true, 4).ToArray();
 
-        do
-        {
-            my_Pos.x = Random.Range(0, MapManager.Inst.rows - 1);
-            my_Pos.y = Random.Range(0, MapManager.Inst.columns - 1);
-            if (MapManager.Inst.tiles.ContainsKey(my_Pos)
-                && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(0, 1))
-                && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(1, 0))
-                && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(1, 1)))
-            {
-                blocked[0] = MapManager.Inst.tiles[my_Pos].is_blocked;
-                blocked[1] = MapManager.Inst.tiles[my_Pos + new Vector2Int(0, 1)].is_blocked;
-                blocked[2] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 0)].is_blocked;
-                blocked[3] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 1)].is_blocked;
-            }
-        } while (blocked[0] || blocked[1] || blocked[2] || blocked[3]);
-
+        //do
+        //{
+        //    my_Pos.x = Random.Range(0, MapManager.Inst.rows - 1);
+        //    my_Pos.y = Random.Range(0, MapManager.Inst.columns - 1);
+        //    if (MapManager.Inst.tiles.ContainsKey(my_Pos)
+        //        && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(0, 1))
+        //        && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(1, 0))
+        //        && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(1, 1)))
+        //    {
+        //        blocked[0] = MapManager.Inst.tiles[my_Pos].is_blocked;
+        //        blocked[1] = MapManager.Inst.tiles[my_Pos + new Vector2Int(0, 1)].is_blocked;
+        //        blocked[2] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 0)].is_blocked;
+        //        blocked[3] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 1)].is_blocked;
+        //    }
+        //} while (blocked[0] || blocked[1] || blocked[2] || blocked[3]);
+        my_Pos = new Vector2Int(35, 66);
 
 
         float half = MapManager.Inst.scale * 0.5f;
@@ -86,7 +90,6 @@ public class BossMonster : Battle
                 if (MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(i, j)))
                 {
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
-                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = 1;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
                     expendedPos[count] = my_Pos + new Vector2Int(i, j);
@@ -155,6 +158,8 @@ public class BossMonster : Battle
     }
     public override void OnMove()
     {
+        GetMMInst().tiles[my_Pos].isVisited = 1;
+
         ChangeState(STATE.MOVE);
         InitTileDistance();
 
@@ -162,6 +167,7 @@ public class BossMonster : Battle
         //FindingPlayer()?.MoveByPath(target);
     }
 
+    
 
     public override void ChangeState(STATE s)
     {
@@ -235,19 +241,21 @@ public class BossMonster : Battle
     {
         return 1;
     }
-    public void StartFSM()
+    public void StartScnarioMachine()
     {
         Debug.Log("FSM Start");
-        StartCoroutine(GenerateFSM());
+        StartCoroutine(GenerateSMachine());
     }
-    
-    IEnumerator GenerateFSM()
+
+    IEnumerator GenerateSMachine()
     {
         bool turnEnd = false;
         bool is_done = false;
-        Senario scenario = new Senario();
-        ChangeState(STATE.SEARCH);
         close_targets = new Dictionary<Player, Vector2>();
+
+        Senario cur_senario = senarios.Peek();
+        ChangeState(cur_senario.senarioValue);
+
         while (!turnEnd)
         {
             is_done = false;
@@ -260,160 +268,54 @@ public class BossMonster : Battle
                     break;
 
                 case STATE.IDLE:
-                    if (scenario.senarioValue > idleScenario.senarioValue)
-                        _curState = STATE.SKILL_CAST;
                     break;
 
-                case STATE.ACTION:
-                    ChangeState(STATE.SEARCH);
-                    is_done = true;
+                case STATE.ATTACK:
+                    close_targets.Clear();
+                    SetDistance();
                     break;
                 case STATE.SEARCH:
-                    this.SetDistance();
-                    yield return new WaitForSeconds(0.5f);
-
-                    close_targets = close_targets.OrderBy(o => -o.Value.x + o.Value.y).ToDictionary(pair => pair.Key, pair => pair.Value);
-                    if (close_targets.Count == 0)
-                    {
-                        scenario = searchScenario;
-                        ChangeState(STATE.WANDER);
-                    }
-                    else
-                    {
-                        int around_target_count = 0;
-                        foreach (var target in close_targets)
-                        {
-                            if (target.Value.x < attackLength)
-                            {
-                                around_target_count++;
-                            }
-                        }
-                        if (around_target_count == 0)
-                        {
-                            ChangeState(STATE.MOVE);
-                        }
-                        else
-                        {
-                            ChangeState(STATE.SKILL_CAST);
-                        }
-                    }
-                    is_done = true;
+                    
 
                     break;
                 case STATE.MOVE:
+                    var path = PathFinder.Inst.FindPath(GetMMInst().tiles[my_Pos], cur_senario.targettile);
+                    MoveByPath(path, ()=>is_done = true);
+                    Debug.Log($"MoveByPath{path}");
+                    while (!is_done)
                     {
-                        Debug.Log("Boss Move Start");
-
-                        var target = close_targets.Aggregate((x, y) => x.Value.x < y.Value.x ? x : y).Key;
-                        var start = GetMMInst().tiles[my_Pos];
-                        var end = GetMMInst().tiles[target.my_Pos];
-                        List<TileStatus> path = new List<TileStatus>();
-
-                        path = PathFinder.Inst.FindPath(start, end);
-                        foreach(var tile in path)
+                        if(curAP == ActionPoint|| cur_senario.targettile.gridPos == my_Pos)
                         {
-                            tile.gameObject.layer = 8;
+                            senarios.Dequeue();
+                            cur_senario = senarios.Peek();
+                            Debug.Log($"senario Count : {senarios.Count}");
                         }
-                        if (path.Count == 0)
-                        {
-                            Debug.Log("Boss Can't find Path");
-                            ChangeState(STATE.WANDER);
-                        }
-
-                        MoveByPath(path, () => is_done = true);
-                        while (!is_done)
-                            yield return null;
-                        Debug.Log("Boss Move Done");
-
+                        
+                        yield return null;
                     }
+                    if (cur_senario.targettile.gridPos == my_Pos)
+                    {
+                        senarios.Dequeue();
+                        cur_senario = senarios.Peek();
+                        Debug.Log($"senario Count : {senarios.Count}");
+                    }
+
 
                     break;
 
                 case STATE.SKILL_CAST:
-                    {
-                        yield return new WaitForSeconds(0.5f);
-                        if (targetList.Count == 1)
-                        {
-                            currSkill = skilList[2];
-
-                            GetMMInst().InitLayer();
-                            List<Vector2Int> attackIndex = new List<Vector2Int>();
-                            Vector2Int target = targetList.First().my_Pos;
-                            foreach (var tile in currSkill.AttackIndex)
-                            {
-                                if (GetMMInst().tiles.ContainsKey(target + tile))
-                                {
-                                    GetMMInst().tiles[target + tile].gameObject.layer = 8;
-                                    attackIndex.Add(target + tile);
-                                }
-                            }
-                            Vector2Int dir = target - my_Pos;
-                            
-                            OnCastingSkill(dir, attackIndex.ToArray(), () => is_done = true);
-
-                            while (!is_done)
-                                yield return null;
-                        }
-                        else
-                        {
-                            currSkill = skilList[2];
-
-                            List<Vector2Int> targets = new List<Vector2Int>();
-                            foreach (var target in targetList)
-                                targets.Add(target.my_Pos);
-
-                            GetMMInst().InitLayer();
-                            List<Vector2Int> attackIndex = new List<Vector2Int>();
-                            foreach (var target in targets)
-                            {
-                                foreach (var tile in currSkill.AttackIndex)
-                                {
-                                    if (GetMMInst().tiles.ContainsKey(target + tile))
-                                    {
-                                        GetMMInst().tiles[target + tile].gameObject.layer = 8;
-                                        attackIndex.Add(target + tile);
-                                    }
-                                }
-
-                            }
-                            int rnd = Random.Range(0, targets.Count);
-                            OnCastingSkill(targets[rnd] - my_Pos, attackIndex.ToArray(), () => is_done = true);
-
-                            while (!is_done)
-                                yield return null;
-                        }
-                        Debug.Log("Boss Skill Cast is Done");
-                    }
-                    ChangeState(STATE.ACTION);
+                     
                     break;
                 case STATE.WANDER:
-                    {
-                        // Move to RandomPos
-                        List<TileStatus> path = new List<TileStatus> { };
-                        TileStatus start = GetMMInst().tiles[my_Pos];
-                        int rnd = 0;
-                        TileStatus end;
-                        do
-                        {
-                            rnd = Random.Range(0, movealbeTiles.Count - 1);
-                            end = movealbeTiles[rnd];
-                            path = PathFinder.Inst.FindPath(start, end);
-
-                        } while (Vector2Int.Distance(my_Pos, end.gridPos) < 3.0f && path.Count == 0);
-
-                        MoveByPath(path, () => is_done = true);
-                        while (!is_done)
-                            yield return null;
-                    }
-                    is_done = true;
-
+                    break;
+                case STATE.ACTION:
+                    ChangeState(cur_senario.senarioValue);
                     break;
             }
 
-            
-            curAP--;
 
-            if (curAP == 10)
+
+            if (curAP == ActionPoint)
             {
                 GetMMInst().InitLayer();
                 GameManager.Inst.ChangeTurn();
@@ -427,13 +329,13 @@ public class BossMonster : Battle
     }
     protected override void TakeDamage(float dmg)
     {
-        Debug.Log($"Get Damage : {dmg}");
+        Debug.Log($"{this.gameObject.name} => Get Damage : {dmg}");
         StartCoroutine(TakingDamge(dmg));
     }
 
     IEnumerator TakingDamge(float dmg)
     {
-        float target = curHP - dmg;
+        float target = curHP - (dmg - DeffencePower);
 
         while (!Mathf.Approximately(curHP, target))
         {

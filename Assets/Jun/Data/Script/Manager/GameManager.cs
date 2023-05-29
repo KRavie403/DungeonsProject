@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
         characters.Add(obj);
 
         UI_Manager.Inst.GameStart();
+        UI_Manager.Inst.StateUpdate(curCharacter);
         Main_Cam.enabled = true;
         Main_Cam.SetCam(0);
 
@@ -52,18 +53,15 @@ public class GameManager : Singleton<GameManager>
 
 
     }
-    void Update()
-    {
-    }
-
+    
     //Player
     public void OnMove()
     {
-        characters[curCharacter].GetComponent<Player>()?.OnMove();
+        characters[curCharacter].GetComponent<Player>().OnMove();
     }
     public void OnInteraction()
     {
-        characters[curCharacter].GetComponent<Player>()?.OnInteract();
+        characters[curCharacter].GetComponent<Player>().OnInteract();
     }
     public void ChangeTurn()
     {
@@ -73,8 +71,8 @@ public class GameManager : Singleton<GameManager>
         Main_Cam.SetCam(curCharacter);
         characters[curCharacter].GetComponent<CharactorMovement>().ChangeState(STATE.ACTION);
 
-        if(characters[curCharacter].TryGetComponent(out BossMonster boss))
-            boss.StartFSM();
+        if (characters[curCharacter].TryGetComponent(out BossMonster boss))
+            boss.StartScnarioMachine();
 
         CurrentSkill();
 
