@@ -50,7 +50,7 @@ public class ChestUISlot : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        image = GetComponentInChildren<Image>();
+        image = GetComponentInChildren<Image>();    
         int index = myChest.slots.IndexOf(this);
         if (eventData.clickCount == 2)
         {
