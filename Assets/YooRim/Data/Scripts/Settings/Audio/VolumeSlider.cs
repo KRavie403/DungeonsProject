@@ -10,8 +10,8 @@ public class VolumeSlider : MonoBehaviour
     [SerializeField] private Slider _BGMSlider, _EffectSlider;
     void Start()
     {
-        _BGMSlider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeMasterVolume(val));
-        _EffectSlider.onValueChanged.AddListener(val => SoundManager.Instance.ChangeMasterVolume(val));
+        _BGMSlider.onValueChanged.AddListener(val => SoundManager.Inst.ChangeMasterVolume(val));
+        _EffectSlider.onValueChanged.AddListener(val => SoundManager.Inst.ChangeMasterVolume(val));
     }
 
 }

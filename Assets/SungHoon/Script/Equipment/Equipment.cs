@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using static ItemSet;
 
 public class Equipment : MonoBehaviour
 {
@@ -38,20 +39,13 @@ public class Equipment : MonoBehaviour
             items.Add(null);
             CharPower.Add(0.0f);
         }
-    }
-    void Start()
-    {
         FreshSlot();
+    }
+    private void Start()
+    {
         this.transform.parent.gameObject.SetActive(false);
         this.transform.parent.parent.gameObject.SetActive(false);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void FreshSlot()
     {
         int i = 0;
@@ -64,7 +58,6 @@ public class Equipment : MonoBehaviour
             slots[i].item = null;
         }
     }
-
     public void Additem(ItemSet myItem,ItemSet.ItemGrade myGrade,ItemSet.ItemType myType,ItemSet.EquipmentType myEquipmentType,float Power,int Pindex)
     {
         this.Pindex = Pindex;
@@ -78,9 +71,9 @@ public class Equipment : MonoBehaviour
                         this.myGrade = myGrade;
                         slots[0].myItemGrade = myGrade;
                     myInventory.DestroyItem(Pindex);
-                    FreshSlot();
-                    CharPower[0] = slots[0].Power;
+                    CharPower[0] = slots[0].CheckPower();
                     myInventory.myPlayer.Item_stat[0].AttackPower += CharPower[0];
+                    FreshSlot();
                     Debug.Log($"{myInventory.myPlayer.Item_stat[0].AttackPower}");
                 }
                     else
@@ -100,9 +93,9 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[1].myItemGrade = myGrade;
                             myInventory.DestroyItem(Pindex);
-                        FreshSlot();
-                        CharPower[1] = slots[1].Power;
+                        CharPower[1] = slots[1].CheckPower();
                         myInventory.myPlayer.Item_stat[0].DeffencePower += CharPower[1];
+                        FreshSlot();
                         Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
                     }
                     else
@@ -125,9 +118,9 @@ public class Equipment : MonoBehaviour
                         //myInventory.myPlayer.DeffencePower += Power;
                         //GetComponentInChildren<EquipmentSlot>().ChangeOutLine(myGrade);
                         myInventory.DestroyItem(Pindex);
-                        FreshSlot();
-                        CharPower[1] = slots[1].Power;
+                        CharPower[1] = slots[1].CheckPower();
                         myInventory.myPlayer.Item_stat[0].DeffencePower += CharPower[1];
+                        FreshSlot();
                         Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
                     }
                     else
@@ -146,9 +139,9 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[1].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
-                        FreshSlot();
-                        CharPower[1] = slots[1].Power;
+                        CharPower[1] = slots[1].CheckPower();
                         myInventory.myPlayer.Item_stat[0].DeffencePower += CharPower[1];
+                        FreshSlot();
                         Debug.Log($"{myInventory.myPlayer.Item_stat[0].DeffencePower}");
                     }
                         else
@@ -169,8 +162,8 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[2].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
+                        CharPower[2] = slots[2].CheckPower();
                         FreshSlot();
-                        CharPower[2] = slots[2].Power;
                     }
                         else
                         {
@@ -187,8 +180,8 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[3].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
+                        CharPower[3] = slots[3].CheckPower();
                         FreshSlot();
-                        CharPower[3] = slots[3].Power;
                     }
                         else
                         {
@@ -205,8 +198,8 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[4].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
+                        CharPower[4] = slots[4].CheckPower();
                         FreshSlot();
-                        CharPower[4] = slots[4].Power;
                     }
                         else
                         {
@@ -222,8 +215,8 @@ public class Equipment : MonoBehaviour
                             this.myGrade = myGrade;
                             slots[5].myItemGrade = myGrade;
                         myInventory.DestroyItem(Pindex);
+                        CharPower[5] = slots[5].CheckPower();
                         FreshSlot();
-                        CharPower[5] = slots[5].Power;
                     }
                         else
                         {

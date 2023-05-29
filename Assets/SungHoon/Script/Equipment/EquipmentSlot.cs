@@ -26,6 +26,12 @@ public class EquipmentSlot : MonoBehaviour
         myEquipment = GetComponentInParent<Equipment>();
         myInventory = myEquipment.myInventory;
     }
+
+    private void Start()
+    {
+        myEquipment = GetComponentInParent<Equipment>();
+        myInventory = myEquipment.myInventory;
+    }
     public ItemSet item
     {
         get { return _item; }
@@ -39,15 +45,12 @@ public class EquipmentSlot : MonoBehaviour
                 switch (myItemGrade)
                 {
                     case ItemSet.ItemGrade.Rare:
-                        Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 1.0f;
                         GetComponent<Image>().color = Color.white;
                         break;
                     case ItemSet.ItemGrade.Epic:
-                        Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 2.0f;
                         GetComponent<Image>().color = Color.green;
                         break;
                     case ItemSet.ItemGrade.Legendary:
-                        Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 3.0f;
                         GetComponent<Image>().color = Color.red;
                         break;
                 }
@@ -59,4 +62,20 @@ public class EquipmentSlot : MonoBehaviour
         }
     }
 
+    public float CheckPower()
+    {
+        switch (myItemGrade)
+        {
+            case ItemSet.ItemGrade.Rare:
+                Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 1.0f;
+                break;
+            case ItemSet.ItemGrade.Epic:
+                Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 2.0f;
+                break;
+            case ItemSet.ItemGrade.Legendary:
+                Power = myEquipment.items[myEquipment.slots.IndexOf(this)].power * 3.0f;
+                break;
+        }
+        return Power;
+    }
 }
