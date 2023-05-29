@@ -50,7 +50,7 @@ public abstract class CharactorMovement : CharactorProperty
     protected void MoveByPath(List<TileStatus> path = null, UnityAction done = null)
     {
         StopAllCoroutines();
-        
+
         if (path != null)
             findPath = true;
 
@@ -183,12 +183,12 @@ public abstract class CharactorMovement : CharactorProperty
 
             curAP--;
             UI_Manager.Inst.StateUpdate((int)GetGMInst().curCharacter);
-            if (curAP == 10)
+            if (curAP == ActionPoint)
                 break;
             i++;
         }
 
-        if (curAP == 10)
+        if (curAP == ActionPoint)
             GetGMInst().ChangeTurn();
 
         else

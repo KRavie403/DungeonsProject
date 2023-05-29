@@ -28,8 +28,8 @@ public class Player : Battle
         bool blocked = true;
         do
         {
-            x = Random.Range(0, GetMMInst().rows);
-            y = Random.Range(0, GetMMInst().columns);
+            x = Random.Range(0, 10);
+            y = Random.Range(0, 10);
             if(GetMMInst().tiles.ContainsKey(new Vector2Int(x,y)))
                 blocked = GetMMInst().tiles[new Vector2Int(x,y)].is_blocked;
         } while (blocked);

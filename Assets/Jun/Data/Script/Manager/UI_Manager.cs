@@ -46,14 +46,15 @@ public class UI_Manager : Singleton<UI_Manager>
     }
     public void StateUpdate(int p)
     {
-        currentActionPoint.fillAmount = GameManager.Inst.characters[p].GetComponent<CharactorMovement>().CheckAP() / 10.0f;
-        CharStatusUI.HP.text = $"HP : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>()._curHP} / {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().MaxHP}";
-        CharStatusUI.ATT.text = $"ATT : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().AttackPower}";
-        CharStatusUI.DFF.text = $"DFF : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().DeffencePower}";
-        CharStatusUI.SPD.text = $"SPD : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().Speed}";
-        CharStatusUI.name.text = $"{GameManager.Inst.characters[p].GetComponent<CharactorMovement>().name}";
-        for(int i=0;i<CharStatusUI.skills.Length;i++)
-            CharStatusUI.skills[i].GetComponent<Image>().sprite = GameManager.Inst.characters[p].GetComponent<CharactorProperty>().skilList[i].MySprite;
+        currentActionPoint.fillAmount = GameManager.Inst.characters[p].GetComponent<CharactorMovement>().CheckAP() / GameManager.Inst.characters[p].GetComponent<CharactorProperty>().ActionPoint;
+    //    CharStatusUI.HP.text = $"HP : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>()._curHP} / {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().MaxHP}";
+    //    CharStatusUI.ATT.text = $"ATT : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().AttackPower}";
+    //    CharStatusUI.DFF.text = $"DFF : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().DeffencePower}";
+    //    CharStatusUI.SPD.text = $"SPD : {GameManager.Inst.characters[p].GetComponent<CharactorMovement>().Speed}";
+    //    CharStatusUI.name.text = $"{GameManager.Inst.characters[p].GetComponent<CharactorMovement>().name}";
+    //    for(int i=0;i<CharStatusUI.skills.Length;i++)
+    //        CharStatusUI.skills[i].GetComponent<Image>().sprite = GameManager.Inst.characters[p].GetComponent<CharactorProperty>().skilList[i].MySprite;
+    //
     }
     public void AddPlayer(Sprite _spt)
     {
