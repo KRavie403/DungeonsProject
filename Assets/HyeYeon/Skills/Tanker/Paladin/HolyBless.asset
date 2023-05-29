@@ -31,6 +31,7 @@ MonoBehaviour:
     Speed: 3
   _effect: {fileID: 8250502493019502326, guid: 7705f7f32f14ac64dbcdfe3124a6e78c, type: 3}
   AttackIndex:
+  - {x: 0, y: 0}
   - {x: -3, y: 3}
   - {x: -2, y: 3}
   - {x: -1, y: 3}
