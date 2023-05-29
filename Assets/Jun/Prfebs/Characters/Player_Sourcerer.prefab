@@ -85,7 +85,7 @@ MonoBehaviour:
   myType: 0
   my_Pos: {x: 0, y: 0}
   MaxHP: 100
-  _curHP: -100
+  _curHP: 100
   my_Size: 1
   _mySize: 1
   MoveSpeed: 5
@@ -96,6 +96,7 @@ MonoBehaviour:
   DeffencePower: 10
   OrgSpeed: 1
   Speed: 1
+  ActionPoint: 10
   _curActionPoint: 0
   _bfState: 0
   _curState: 0

@@ -29,7 +29,8 @@ public abstract class CharactorProperty : MonoBehaviour
     public List<StatModifire> AD_stat = new List<StatModifire>();
     public List<StatModifire> Item_stat = new List<StatModifire>();
 
-    protected int ActionPoint = 10;
+    [SerializeField]
+    public int ActionPoint = 10;
     public int _curActionPoint;
     protected int curAP {
         get

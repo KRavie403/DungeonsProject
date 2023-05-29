@@ -11,4 +11,5 @@ public class SkillSlot : MonoBehaviour
         if(_my_skill != null)
             GameManager.Inst.characters[GameManager.Inst.curCharacter].GetComponent<Player>().OnSkilCastStart(_my_skill);
     }
+    
 }

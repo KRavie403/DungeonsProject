@@ -28,7 +28,7 @@ public class ChestUI : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {  
         FreshSlot();
         slotsIndex = ChestSlotParent.GetComponentsInChildren<ChestUISlot>();
         for (int i = 0; i < slotsIndex.Length; i++)
