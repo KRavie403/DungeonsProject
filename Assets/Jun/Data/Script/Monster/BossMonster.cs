@@ -7,7 +7,8 @@ using UnityEngine.Events;
 
 using Random = UnityEngine.Random;
 
-public class BossMonster : Battle
+public class BossMonster 
+    : Battle
 {
 
     // Start is called before the first frame update
@@ -31,7 +32,7 @@ public class BossMonster : Battle
     {
         senarios = new Queue<Senario>();
 
-        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 46)], null);
+        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 45)], null);
         senarios.Enqueue(moveScenario);
         moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(55, 38)], null);
         senarios.Enqueue(moveScenario);
@@ -89,7 +90,6 @@ public class BossMonster : Battle
                 if (MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(i, j)))
                 {
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
-                    MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = 1;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
                     expendedPos[count] = my_Pos + new Vector2Int(i, j);
@@ -158,6 +158,8 @@ public class BossMonster : Battle
     }
     public override void OnMove()
     {
+        GetMMInst().tiles[my_Pos].isVisited = 1;
+
         ChangeState(STATE.MOVE);
         InitTileDistance();
 
@@ -333,7 +335,7 @@ public class BossMonster : Battle
 
     IEnumerator TakingDamge(float dmg)
     {
-        float target = curHP - dmg;
+        float target = curHP - (dmg - DeffencePower);
 
         while (!Mathf.Approximately(curHP, target))
         {

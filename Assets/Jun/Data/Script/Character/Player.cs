@@ -28,8 +28,8 @@ public class Player : Battle
         bool blocked = true;
         do
         {
-            x = Random.Range(0, 10);
-            y = Random.Range(0, 10);
+            x = Random.Range(30, 50);
+            y = Random.Range(30, 50);
             if(GetMMInst().tiles.ContainsKey(new Vector2Int(x,y)))
                 blocked = GetMMInst().tiles[new Vector2Int(x,y)].is_blocked;
         } while (blocked);
@@ -41,7 +41,6 @@ public class Player : Battle
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
 
         GetMMInst().tiles[my_Pos].my_obj = myType;
-        GetMMInst().tiles[my_Pos].isVisited = 1;
         GetMMInst().tiles[my_Pos].is_blocked = true;
         GetMMInst().tiles[my_Pos].SetTarget(this.gameObject);
         UI_Manager.Inst.AddPlayer(my_Sprite);
@@ -76,6 +75,8 @@ public class Player : Battle
             case STATE.INTERACT:
             case STATE.MOVE:
             case STATE.SKILL_CAST:
+                GetMMInst().tiles[my_Pos].isVisited = 1;
+
                 if (Input.GetKeyDown(KeyCode.Backspace))
                 {
                     InitTileDistance();
@@ -174,13 +175,7 @@ public class Player : Battle
         ChangeState(STATE.IDLE);
     }
     
-
-
-    public void OnAttack(Vector2Int tile)
-    {
-        ChangeState(STATE.ATTACK);
-        InitTileDistance();
-    }
+    
     public void OnSkilCastStart(SkillSet skill)
     {
         //애니메이션 재생 (casting)
@@ -188,12 +183,24 @@ public class Player : Battle
         currSkill = skill;
         InitTileDistance();
     }
+    override public void SetDistance()
+    {
+        for (int step = 1; step <= curAP; step++)
+        {
+            foreach (TileStatus tile in GetMMInst().tiles.Values)
+            {
+                if (tile.isVisited == step - 1)
+                    TestAllDirection(tile.gridPos.x, tile.gridPos.y, step);
+            }
+        }
 
+        RefreshArea();
+    }
     public override void OnMove()
     {
         ChangeState(STATE.MOVE);
         InitTileDistance();
-        SetDistance();
+        this.SetDistance();
     }
     public override void OnInteract()
     {

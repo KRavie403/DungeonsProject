@@ -41,6 +41,7 @@ public class GameManager : Singleton<GameManager>
         characters.Add(obj);
 
         UI_Manager.Inst.GameStart();
+        UI_Manager.Inst.StateUpdate(curCharacter);
         Main_Cam.enabled = true;
         Main_Cam.SetCam(0);
 

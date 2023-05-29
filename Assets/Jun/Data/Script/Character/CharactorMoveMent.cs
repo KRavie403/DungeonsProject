@@ -88,20 +88,11 @@ public abstract class CharactorMovement : CharactorProperty
     }
     virtual public void SetDistance()
     {
-        for (int step = 1; step <= curAP; step++)
-        {
-            foreach (TileStatus tile in GetMMInst().tiles.Values)
-            {
-                if (tile.isVisited == step - 1)
-                    TestAllDirection(tile.gridPos.x, tile.gridPos.y, step);
-            }
-        }
-
-        RefreshArea();
+        
 
     }
 
-    private void RefreshArea()
+    public void RefreshArea()
     {
         foreach (TileStatus tile in GetMMInst().tiles.Values)
         {
@@ -200,10 +191,20 @@ public abstract class CharactorMovement : CharactorProperty
         }
         GetMMInst().Init();
         my_Pos = dest_pos;
-        GetMMInst().tiles[dest_pos].my_obj = OB_TYPES.PLAYER;
+
+        GetMMInst().tiles[dest_pos].my_obj = myType;
         GetMMInst().tiles[dest_pos].my_target = this.gameObject;
         GetMMInst().tiles[dest_pos].is_blocked = true;
 
+        if (myType == OB_TYPES.MONSTER)
+        {
+            foreach (var pos in GetComponent<BossMonster>().expendedPos)
+            {
+                GetMMInst().tiles[pos].my_obj = myType;
+                GetMMInst().tiles[pos].my_target = this.gameObject;
+                GetMMInst().tiles[pos].is_blocked = true;
+            }
+        }
         //myAnim.SetFloat("Speed", 0);
         arrive?.Invoke();
 
