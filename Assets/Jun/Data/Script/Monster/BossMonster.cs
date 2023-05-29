@@ -12,12 +12,11 @@ public class BossMonster
 {
 
     // Start is called before the first frame update
-    public Vector2Int[] expendedPos;
     public Slider _bossHPUI;
     public int searchLength = 15;
     public int attackLength = 5;
-    public Dictionary<Player, Vector2> close_targets = new();
-    public Dictionary<Player, Vector2> searched_targets = new();
+    public Dictionary<Player, Vector2Int> close_targets = new();
+    public Dictionary<Player, Vector2Int> searched_targets = new();
     public List<CharactorProperty> targetList = new();
 
     public SkillSet currSkill = null;
@@ -34,11 +33,10 @@ public class BossMonster
 
         moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 45)], null);
         senarios.Enqueue(moveScenario);
-        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(55, 38)], null);
-        senarios.Enqueue(moveScenario);
-        moveScenario = new Senario(STATE.MOVE, GetMMInst().tiles[new Vector2Int(35, 18)], null);
-        senarios.Enqueue(moveScenario);
 
+        attackScenario = new Senario(STATE.ATTACK, null, null);
+        senarios.Enqueue(attackScenario);
+        
         attackScenario = new Senario(STATE.ATTACK, null, null);
         senarios.Enqueue(attackScenario);
 
@@ -58,7 +56,6 @@ public class BossMonster
     {
 
         bool[] blocked = new bool[4];
-        expendedPos = new Vector2Int[4];
 
         blocked = Enumerable.Repeat(true, 4).ToArray();
 
@@ -82,7 +79,6 @@ public class BossMonster
 
         float half = MapManager.Inst.scale * 0.5f;
         transform.position = new Vector3((float)my_Pos.x + half, 0, (float)my_Pos.y + half);
-        int count = 0;
         for (int i = 0; i <= 1; i++)
         {
             for (int j = 0; j <= 1; j++)
@@ -92,8 +88,6 @@ public class BossMonster
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().my_obj = myType;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().is_blocked = true;
                     MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().SetTarget(this.gameObject);
-                    expendedPos[count] = my_Pos + new Vector2Int(i, j);
-                    count++;
 
                 }
             }
@@ -103,12 +97,10 @@ public class BossMonster
     }
     public override void SetDistance()
     {
-        movealbeTiles.Clear();
         GetMMInst().Init();
-        foreach (var pos in expendedPos)
-        {
-            MapManager.Inst.tiles[pos].GetComponent<TileStatus>().isVisited = 1;
-        }
+        for (int i = 0; i <= 1; i++)
+            for (int j = 0; j <= 1; j++)
+                MapManager.Inst.tiles[my_Pos + new Vector2Int(i, j)].GetComponent<TileStatus>().isVisited = 1;
 
         for (int step = 1; step <= searchLength; step++)
         {
@@ -121,38 +113,23 @@ public class BossMonster
                         TestAllDirection(tile.Value.gridPos.x, tile.Value.gridPos.y, step);
                         tile.Value.gameObject.layer = 9;
                     }
-
                     if (tile.Value.isVisited == step)
                         tile.Value.gameObject.layer = 9;
-                    if (!movealbeTiles.Contains(tile.Value))
-                        movealbeTiles.Add(tile.Value);
-
-                    if (tile.Value.OnMyTarget() != null && tile.Value.my_obj == OB_TYPES.PLAYER)
-                    {
-                        if (!close_targets.ContainsKey(tile.Value.OnMyTarget().GetComponent<Player>()))
-                            close_targets.Add(tile.Value.OnMyTarget().GetComponent<Player>(), tile.Key);
-
-                    }
-                    else
-                    {
-                        if (tile.Value.isVisited == step - 1)
-                        {
-                            TestAllDirection(tile.Value.gridPos.x, tile.Value.gridPos.y, step);
-                            tile.Value.gameObject.layer = 8;
-                        }
-
-                        if (tile.Value.isVisited == step)
-                            tile.Value.gameObject.layer = 8;
-                        if (tile.Value.OnMyTarget() != null && tile.Value.my_obj == OB_TYPES.PLAYER)
-                        {
-                            if (!close_targets.ContainsKey(tile.Value.OnMyTarget().GetComponent<Player>()))
-                                searched_targets.Add(tile.Value.OnMyTarget().GetComponent<Player>(), tile.Key);
-
-                        }
-                    }
-
                 }
+                else
+                {
+                    if (tile.Value.isVisited == step - 1)
+                    {
+                        TestAllDirection(tile.Value.gridPos.x, tile.Value.gridPos.y, step);
+                        tile.Value.gameObject.layer = 8;
+                    }
+
+                    if (tile.Value.isVisited == step)
+                        tile.Value.gameObject.layer = 8;
+                }
+
             }
+
 
         }
     }
@@ -251,7 +228,6 @@ public class BossMonster
     {
         bool turnEnd = false;
         bool is_done = false;
-        close_targets = new Dictionary<Player, Vector2>();
 
         Senario cur_senario = senarios.Peek();
         ChangeState(cur_senario.senarioValue);
@@ -273,6 +249,34 @@ public class BossMonster
                 case STATE.ATTACK:
                     close_targets.Clear();
                     SetDistance();
+                    bool searchDone = false;
+                    StartCoroutine(Searching(()=>searchDone = true));
+                    while (!searchDone)
+                    {
+                        yield return null;
+                    }
+                    currSkill = skilList[0];
+                    List<Vector2Int> tiles = new List<Vector2Int>();
+                    foreach(Player status in close_targets.Keys)
+                    {
+                        foreach (var idx in currSkill.AttackIndex)
+                        {
+                            if (GetMMInst().tiles.ContainsKey(status.my_Pos + idx) && !tiles.Contains(status.my_Pos + idx))
+                                tiles.Add(status.my_Pos + idx);
+                        }
+                    }
+                    OnCastingSkill(close_targets.First().Value, tiles.ToArray(), () => is_done = true);
+                    while(!is_done)
+                    {
+                        if (curAP == ActionPoint || cur_senario.targettile.gridPos == my_Pos)
+                        {
+                            senarios.Dequeue();
+                            cur_senario = senarios.Peek();
+                            Debug.Log($"senario Count : {senarios.Count}");
+                        }
+
+                        yield return null;
+                    }
                     break;
                 case STATE.SEARCH:
                     
@@ -344,6 +348,30 @@ public class BossMonster
             yield return null;
         }
     }
+    IEnumerator Searching(UnityAction done = null)
+    {
+        for (int step = 1; step <= searchLength; step++)
+        {
+            foreach (var tile in GetMMInst().tiles)
+            {
 
+                if (tile.Value.OnMyTarget() != null && tile.Value.my_obj == OB_TYPES.PLAYER)
+                {
+                    if (step <= attackLength)
+                    {
+                        if (tile.Value.OnMyTarget().TryGetComponent<Player>(out Player check) && !close_targets.ContainsKey(tile.Value.OnMyTarget().GetComponent<Player>()))
+                            close_targets.Add(tile.Value.OnMyTarget().GetComponent<Player>(), tile.Key);
+                    }
+                    else
+                    {
+                        if (tile.Value.OnMyTarget().TryGetComponent<Player>(out Player check) && !close_targets.ContainsKey(tile.Value.OnMyTarget().GetComponent<Player>()))
+                            searched_targets.Add(tile.Value.OnMyTarget().GetComponent<Player>(), tile.Key);
+                    }
+                }
+            }
+            yield return null;
+        }
+        done?.Invoke();
+    }
    
 }

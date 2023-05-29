@@ -198,12 +198,13 @@ public abstract class CharactorMovement : CharactorProperty
 
         if (myType == OB_TYPES.MONSTER)
         {
-            foreach (var pos in GetComponent<BossMonster>().expendedPos)
-            {
-                GetMMInst().tiles[pos].my_obj = myType;
-                GetMMInst().tiles[pos].my_target = this.gameObject;
-                GetMMInst().tiles[pos].is_blocked = true;
-            }
+            for (int i = 0; i <= 1; i++)
+                for (int j = 0; j <= 1; j++)
+                {
+                    GetMMInst().tiles[my_Pos + new Vector2Int(i, j)].my_obj = myType;
+                    GetMMInst().tiles[my_Pos + new Vector2Int(i, j)].my_target = this.gameObject;
+                    GetMMInst().tiles[my_Pos + new Vector2Int(i, j)].is_blocked = true;
+                }
         }
         //myAnim.SetFloat("Speed", 0);
         arrive?.Invoke();
