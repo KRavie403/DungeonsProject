@@ -24,6 +24,8 @@ public class Inventory : MonoBehaviour
 
     public Transform curEquipment;
 
+    public Transform curInventory;
+
     public Transform[] myEquipmentParent;
 
     public List<Slot> slotsIndex;
@@ -43,11 +45,12 @@ public class Inventory : MonoBehaviour
         slots = slotParent[0].GetComponentsInChildren<Slot>();
         myEquipment=myEquipmentParent[0].GetComponentInChildren<Equipment>();
         curEquipment = myEquipmentParent[0];
-
+        curInventory = slotParent[0];
     }
 
     void Awake()
     {
+        
         curIndex = 0;
         for (int i = 0; i < slots.Length; i++)
         {
@@ -56,6 +59,10 @@ public class Inventory : MonoBehaviour
         for(int i=0; i < slotParent.Length; i++)
         {
             myItemList.Add(slotParent[i].GetComponent<ItemList>());
+            if(slotParent[i] != curInventory)
+            {
+                slotParent[i].gameObject.SetActive(false);
+            }
         }
         orgPlayer = null;
         FreshSlot();
@@ -73,6 +80,8 @@ public class Inventory : MonoBehaviour
                 if (myPlayer != orgPlayer)
                 {
                     curEquipment.gameObject.SetActive(false);
+                    curEquipment.parent.gameObject.SetActive(false);
+                    curInventory.gameObject.SetActive(false);
                     curIndex++;
                     if ((orgPlayer == null))
                     {
@@ -81,7 +90,9 @@ public class Inventory : MonoBehaviour
                     slots = slotParent[curIndex].GetComponentsInChildren<Slot>();
                     myEquipment = myEquipmentParent[curIndex].GetComponentInChildren<Equipment>();
                     curEquipment = myEquipmentParent[curIndex];
-                    for(int i = 0; i < slots.Length; i++)
+                    curInventory = slotParent[curIndex];
+                    curInventory.gameObject.SetActive(true);
+                    for (int i = 0; i < slots.Length; i++)
                     {
                         slotsIndex[i] = null;
                         slotsIndex[i] = slots[i];
@@ -108,10 +119,12 @@ public class Inventory : MonoBehaviour
     {
         if (curEquipment.gameObject.activeSelf == false)
         {
+            curEquipment.parent.gameObject.SetActive(true);
             curEquipment.gameObject.SetActive(true);
         }
         else
         {
+            curEquipment.parent.gameObject.SetActive(false);
             curEquipment.gameObject.SetActive(false);
         }
           
