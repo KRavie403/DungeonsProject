@@ -21,7 +21,7 @@ public class HoveringEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         var sprites = skillTextUI.GetComponentsInChildren<Image>();
 
-        sprites[0].sprite = CharSet.chosenDB.Skill.List[num].MySprite;
+        sprites[1].sprite = CharSet.chosenDB.Skill.List[num].MySprite;
         sprites[2].sprite = CharSet.chosenDB.Skill.List[num].myTipSprite;
         // 스킬에 대한 설명 UI skillTextUI.gameObject.SetActive(true)를 해준다.
 

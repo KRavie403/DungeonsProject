@@ -30,6 +30,8 @@ public class Inventory : MonoBehaviour
 
     public List<ItemList> myItemList;
 
+    //public Transform myInformationButton;
+
     public int curIndex;
     private GameManager GetGmInst()
     {
@@ -61,7 +63,6 @@ public class Inventory : MonoBehaviour
    
     private void Update()
     {
-
         if (GetGmInst().characters.Count != 0)
         {
             //if(myPlayer.Item_stat.Count. GetGmInst().characters.Count)
@@ -73,7 +74,6 @@ public class Inventory : MonoBehaviour
                 {
                     curEquipment.gameObject.SetActive(false);
                     curIndex++;
-                    FreshSlot();   
                     if ((orgPlayer == null))
                     {
                         curIndex = 0;
@@ -164,16 +164,7 @@ public class Inventory : MonoBehaviour
         slots[i].item = null;
         myItemList[curIndex].items[index] = _item;
         slots[index].myItemGrade = itemGrade;
-        if(slots[index].ChangeChild2 != slots[index].orgChild)
-        {
-            slots[i].ChangeChild2 = slots[i].orgChild;
-            slots[i].item = myItemList[curIndex].items[index];
-        }
-        else
-        {
-            slots[i].ChangeChild2 = slots[i].orgChild;
-            slots[i].item = myItemList[curIndex].items[index];
-        }
+        slots[i].item = myItemList[curIndex].items[index];
         FreshSlot();
     }
     public void DestroyItem(int index) 

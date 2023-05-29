@@ -8,9 +8,6 @@ using System;
 
 public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
 {
-    [SerializeField]
-    public List<ItemSet> items;
-
     public Image image;
     
     public Sprite defaltSprite;
@@ -35,10 +32,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
     public Transform ChangeChild2;
     private void Start()
     {
-        for (int i = 0; i < myInventory.slots.Length; i++)
-        {
-            items.Add(null);
-        }
         myItem = GetComponentInChildren<DragItem>();
         image = myItem.GetComponent<Image>();
         index =myInventory.slotsIndex.IndexOf(GetComponent<Slot>()); 
@@ -56,7 +49,11 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
             if (_item != null)
             {
                 image.sprite = item.MySprite;
-                image.color = new Color(1, 1, 1, 1); 
+                image.color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                image.sprite =  defaltSprite;
             }
         }
     }
@@ -112,6 +109,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler/*, IDropHandler*/
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        //myInventory.myInformationButton.gameObject.SetActive(true);
         if (eventData.clickCount == 2)
         {
             ItemEquipment();
