@@ -56,9 +56,9 @@ public class ChestUISlot : MonoBehaviour, IPointerClickHandler
         {
             image.sprite = defaltSprite;
             bool flag = false;
-            for (int i = 0; i < myInventory.items.Count; i++)
+            for (int i = 0; i < myInventory.myItemList[myInventory.curIndex].items.Count; i++)
             {
-                if (myInventory.items[i] == null)
+                if (myInventory.myItemList[myInventory.curIndex].items[i] == null)
                 {
                     flag = true;
                 }
@@ -73,6 +73,7 @@ public class ChestUISlot : MonoBehaviour, IPointerClickHandler
     // Start is called before the first frame update
     void Start()
     {
+        myInventory = myChest.myInventory;
         int randGrade = UnityEngine.Random.Range(0, 100);
         if(randGrade > 90)
         {

@@ -11,16 +11,7 @@ public class MapSet : Singleton<MapSet>
     public GameObject Caution;
     public CharacterDB currentCharacterDB;
 
-    public int SceneIdx = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
+    public int SceneIdx = 2;
 
     public void backCharacterSelection() //Settings
     {

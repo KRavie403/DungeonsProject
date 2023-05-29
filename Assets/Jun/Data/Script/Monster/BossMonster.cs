@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using Unity.VisualScripting;
+using UnityEngine.Events;
+
 using Random = UnityEngine.Random;
 
 public class BossMonster : Battle
 {
+
     // Start is called before the first frame update
     public Vector2Int[] expendedPos;
     public Slider _bossHPUI;
-    public int searchLenght = 10;
-    public int attackLenght = 5;
+    public int searchLength = 15;
+    public int attackLength = 5;
     public Dictionary<Player, Vector2> close_targets = new();
+    public Dictionary<Player, Vector2> searched_targets = new();
     public List<CharactorProperty> targetList = new();
+
+    public SkillSet currSkill = null;
+    public List<TileStatus> movealbeTiles;
+
+
+
     private Senario idleScenario;
     private Senario searchScenario;
     private Senario attackScenario;
@@ -24,42 +33,42 @@ public class BossMonster : Battle
     {
         idleScenario = new Senario(STATE.IDLE, null, null);
         searchScenario = new Senario(STATE.SEARCH, null, null);    //search 결과에 따라 변경
-        
+
         attackScenario = new Senario(STATE.ATTACK, null, null);    //search 발견 시 거리내에 있으면 타겟 공격
         moveScenario = new Senario(STATE.MOVE, null, null);    //search 발견 했으나 거리가 멀면 이동
         wanderScenario = new Senario(STATE.WANDER, null, null); //search 미발견 시 아무 위치로 n칸 이동
 
-        
+
     }
     public void PlayerSetting()
     {
+        movealbeTiles = new List<TileStatus>();
         myType = OB_TYPES.MONSTER;
         _bossHPUI = UI_Manager.Inst.MonsterUI.GetComponentInChildren<Slider>();
         if (skilList == null)
             skilList = new List<SkillSet>();
-        StartCoroutine(SettingPos());
-
+        SettingPos();
+        _curState = STATE.CREATE;
     }
-    IEnumerator SettingPos()
+    public void SettingPos()
     {
 
-        Vector2Int my_Pos = new Vector2Int();
         bool[] blocked = new bool[4];
         expendedPos = new Vector2Int[4];
 
         blocked = Enumerable.Repeat(true, 4).ToArray();
-        
+
         do
         {
-            my_Pos.x = Random.Range(0, MapManager.Inst.rows-1);
-            my_Pos.y = Random.Range(0, MapManager.Inst.columns-1);
-            if (MapManager.Inst.tiles.ContainsKey(my_Pos) 
-                && MapManager.Inst.tiles.ContainsKey(my_Pos+ new Vector2Int(0,1))
-                && MapManager.Inst.tiles.ContainsKey(my_Pos+ new Vector2Int(1,0))
-                && MapManager.Inst.tiles.ContainsKey(my_Pos+ new Vector2Int(1,1)))
+            my_Pos.x = Random.Range(0, MapManager.Inst.rows - 1);
+            my_Pos.y = Random.Range(0, MapManager.Inst.columns - 1);
+            if (MapManager.Inst.tiles.ContainsKey(my_Pos)
+                && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(0, 1))
+                && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(1, 0))
+                && MapManager.Inst.tiles.ContainsKey(my_Pos + new Vector2Int(1, 1)))
             {
                 blocked[0] = MapManager.Inst.tiles[my_Pos].is_blocked;
-                blocked[1] = MapManager.Inst.tiles[my_Pos + new Vector2Int(0,1)].is_blocked;
+                blocked[1] = MapManager.Inst.tiles[my_Pos + new Vector2Int(0, 1)].is_blocked;
                 blocked[2] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 0)].is_blocked;
                 blocked[3] = MapManager.Inst.tiles[my_Pos + new Vector2Int(1, 1)].is_blocked;
             }
@@ -88,22 +97,21 @@ public class BossMonster : Battle
         }
         UI_Manager.Inst.AddPlayer(my_Sprite);
 
-        yield return null;
     }
     public override void SetDistance()
     {
+        movealbeTiles.Clear();
         GetMMInst().Init();
         foreach (var pos in expendedPos)
         {
-            Debug.Log(pos);
             MapManager.Inst.tiles[pos].GetComponent<TileStatus>().isVisited = 1;
         }
 
-        for (int step = 1; step <= searchLenght; step++)
+        for (int step = 1; step <= searchLength; step++)
         {
             foreach (var tile in GetMMInst().tiles)
             {
-                if (step <= attackLenght)
+                if (step <= attackLength)
                 {
                     if (tile.Value.isVisited == step - 1)
                     {
@@ -113,27 +121,42 @@ public class BossMonster : Battle
 
                     if (tile.Value.isVisited == step)
                         tile.Value.gameObject.layer = 9;
-                }
-                else
-                {
-                    if (tile.Value.isVisited == step - 1)
+                    if (!movealbeTiles.Contains(tile.Value))
+                        movealbeTiles.Add(tile.Value);
+
+                    if (tile.Value.OnMyTarget() != null && tile.Value.my_obj == OB_TYPES.PLAYER)
                     {
-                        TestAllDirection(tile.Value.gridPos.x, tile.Value.gridPos.y, step);
-                        tile.Value.gameObject.layer = 8;
+                        if (!close_targets.ContainsKey(tile.Value.OnMyTarget().GetComponent<Player>()))
+                            close_targets.Add(tile.Value.OnMyTarget().GetComponent<Player>(), tile.Key);
+
+                    }
+                    else
+                    {
+                        if (tile.Value.isVisited == step - 1)
+                        {
+                            TestAllDirection(tile.Value.gridPos.x, tile.Value.gridPos.y, step);
+                            tile.Value.gameObject.layer = 8;
+                        }
+
+                        if (tile.Value.isVisited == step)
+                            tile.Value.gameObject.layer = 8;
+                        if (tile.Value.OnMyTarget() != null && tile.Value.my_obj == OB_TYPES.PLAYER)
+                        {
+                            if (!close_targets.ContainsKey(tile.Value.OnMyTarget().GetComponent<Player>()))
+                                searched_targets.Add(tile.Value.OnMyTarget().GetComponent<Player>(), tile.Key);
+
+                        }
                     }
 
-                    if (tile.Value.isVisited == step)
-                        tile.Value.gameObject.layer = 8;
                 }
             }
-        }
 
+        }
     }
     public override void OnMove()
     {
         ChangeState(STATE.MOVE);
         InitTileDistance();
-        SetDistance();
 
         //Vector2Int target;
         //FindingPlayer()?.MoveByPath(target);
@@ -142,9 +165,12 @@ public class BossMonster : Battle
 
     public override void ChangeState(STATE s)
     {
+
         if (_curState == s) return;
         _bfState = _curState;
         _curState = s;
+        Debug.Log($"BOSS.STATE.{_curState}");
+
         switch (_curState)
         {
             case STATE.CREATE:
@@ -155,20 +181,20 @@ public class BossMonster : Battle
                 break;
 
             case STATE.ACTION:
-
                 break;
             case STATE.MOVE:
 
                 break;
-
+            case STATE.SKILL_CAST:
+                break;
         }
     }
-    public void OnCastingSkill(Vector2Int target, Vector2Int[] targets)
+    public void OnCastingSkill(Vector2Int target, Vector2Int[] targets, UnityAction done = null)
     {
-        //�ִϸ��̼� ��� (casting end)
-        StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets));
+        if(GetMMInst().tiles.ContainsKey(target))
+            StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets, done));
     }
-    IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets)
+    IEnumerator CastingSkill(Vector3 dir, Vector2Int[] targets, UnityAction done = null)
     {
         bool rote = false;
         Roatate(dir, () => rote = true);
@@ -181,11 +207,12 @@ public class BossMonster : Battle
         {
             GameObject target = MapManager.Inst.tiles[index].GetComponent<TileStatus>().OnMyTarget();
 
-            if (target != null && target.GetComponent<BossMonster>() != null)
+            if (target != null && target.GetComponent<Player>() != null)
             {
-                target.GetComponent<BossMonster>().TakeDamage(10.0f);
+                Damaging(currSkill, currSkill.Damage, currSkill.AttackIndex.ToArray());
             }
         }
+        done?.Invoke();
     }
     public void OnAttack(Vector2Int tile)
     {
@@ -194,6 +221,7 @@ public class BossMonster : Battle
     }
     public void OnSkillCastStart(SkillSet skill)
     {
+
     }
     public void OnMoveByPath(List<TileStatus> path)
     {
@@ -209,6 +237,7 @@ public class BossMonster : Battle
     }
     public void StartFSM()
     {
+        Debug.Log("FSM Start");
         StartCoroutine(GenerateFSM());
     }
     
@@ -219,11 +248,14 @@ public class BossMonster : Battle
         Senario scenario = new Senario();
         ChangeState(STATE.SEARCH);
         close_targets = new Dictionary<Player, Vector2>();
-
         while (!turnEnd)
         {
+            is_done = false;
+            yield return new WaitForSeconds(0.5f);
+
             switch (_curState)
             {
+
                 case STATE.CREATE:
                     break;
 
@@ -238,9 +270,10 @@ public class BossMonster : Battle
                     break;
                 case STATE.SEARCH:
                     this.SetDistance();
-                    SearchingPlayer((close_targets));
-                    close_targets.OrderBy(o => -o.Value.x + o.Value.y);
-                    if (close_targets.Count != 0)
+                    yield return new WaitForSeconds(0.5f);
+
+                    close_targets = close_targets.OrderBy(o => -o.Value.x + o.Value.y).ToDictionary(pair => pair.Key, pair => pair.Value);
+                    if (close_targets.Count == 0)
                     {
                         scenario = searchScenario;
                         ChangeState(STATE.WANDER);
@@ -250,7 +283,7 @@ public class BossMonster : Battle
                         int around_target_count = 0;
                         foreach (var target in close_targets)
                         {
-                            if (target.Value.x <= attackLenght)
+                            if (target.Value.x < attackLength)
                             {
                                 around_target_count++;
                             }
@@ -264,61 +297,129 @@ public class BossMonster : Battle
                             ChangeState(STATE.SKILL_CAST);
                         }
                     }
+                    is_done = true;
+
                     break;
                 case STATE.MOVE:
-                    if (_curState == STATE.SEARCH || _curState == STATE.MOVE)
                     {
+                        Debug.Log("Boss Move Start");
+
                         var target = close_targets.Aggregate((x, y) => x.Value.x < y.Value.x ? x : y).Key;
-                        bool moved= false;
                         var start = GetMMInst().tiles[my_Pos];
                         var end = GetMMInst().tiles[target.my_Pos];
-                        List<TileStatus> path = PathFinder.Inst.FindPath(start, end);
+                        List<TileStatus> path = new List<TileStatus>();
 
-                        MoveByPath(path, () => moved = true);
-                        while (!moved)
-                            yield return null;
-                    }
-                    else if (_curState == STATE.WANDER)
-                    {
-                        // Move to RandomPos
-                        List<TileStatus> movealbeTiles = new List<TileStatus>();
-                        for (int i = my_Pos.x - curAP; i <= my_Pos.x + curAP; i++)
+                        path = PathFinder.Inst.FindPath(start, end);
+                        foreach(var tile in path)
                         {
-                            for (int j = my_Pos.y - curAP; i <= my_Pos.y + curAP; j++)
-                            {
-                                Vector2Int pos = new Vector2Int(i, j);
-                                if (!MapManager.Inst.CheckIncludedIndex(pos))
-                                    break;
-                                movealbeTiles.Add(MapManager.Inst.tiles[pos]);
-                            }
+                            tile.gameObject.layer = 8;
+                        }
+                        if (path.Count == 0)
+                        {
+                            Debug.Log("Boss Can't find Path");
+                            ChangeState(STATE.WANDER);
                         }
 
-                        int rnd = Random.Range(0, movealbeTiles.Count-1);
-                        bool moved= false;
-                        TileStatus start = GetMMInst().tiles[my_Pos];
-                        TileStatus end = movealbeTiles[rnd];
-                        List<TileStatus> path = PathFinder.Inst.FindPath(start, end);
-
-                        MoveByPath(path, () => moved = true);
-                        while (!moved)
+                        MoveByPath(path, () => is_done = true);
+                        while (!is_done)
                             yield return null;
+                        Debug.Log("Boss Move Done");
+
                     }
+
                     break;
 
                 case STATE.SKILL_CAST:
+                    {
+                        yield return new WaitForSeconds(0.5f);
+                        if (targetList.Count == 1)
+                        {
+                            currSkill = skilList[2];
+
+                            GetMMInst().InitLayer();
+                            List<Vector2Int> attackIndex = new List<Vector2Int>();
+                            Vector2Int target = targetList.First().my_Pos;
+                            foreach (var tile in currSkill.AttackIndex)
+                            {
+                                if (GetMMInst().tiles.ContainsKey(target + tile))
+                                {
+                                    GetMMInst().tiles[target + tile].gameObject.layer = 8;
+                                    attackIndex.Add(target + tile);
+                                }
+                            }
+                            Vector2Int dir = target - my_Pos;
+                            
+                            OnCastingSkill(dir, attackIndex.ToArray(), () => is_done = true);
+
+                            while (!is_done)
+                                yield return null;
+                        }
+                        else
+                        {
+                            currSkill = skilList[2];
+
+                            List<Vector2Int> targets = new List<Vector2Int>();
+                            foreach (var target in targetList)
+                                targets.Add(target.my_Pos);
+
+                            GetMMInst().InitLayer();
+                            List<Vector2Int> attackIndex = new List<Vector2Int>();
+                            foreach (var target in targets)
+                            {
+                                foreach (var tile in currSkill.AttackIndex)
+                                {
+                                    if (GetMMInst().tiles.ContainsKey(target + tile))
+                                    {
+                                        GetMMInst().tiles[target + tile].gameObject.layer = 8;
+                                        attackIndex.Add(target + tile);
+                                    }
+                                }
+
+                            }
+                            int rnd = Random.Range(0, targets.Count);
+                            OnCastingSkill(targets[rnd] - my_Pos, attackIndex.ToArray(), () => is_done = true);
+
+                            while (!is_done)
+                                yield return null;
+                        }
+                        Debug.Log("Boss Skill Cast is Done");
+                    }
+                    ChangeState(STATE.ACTION);
+                    break;
+                case STATE.WANDER:
+                    {
+                        // Move to RandomPos
+                        List<TileStatus> path = new List<TileStatus> { };
+                        TileStatus start = GetMMInst().tiles[my_Pos];
+                        int rnd = 0;
+                        TileStatus end;
+                        do
+                        {
+                            rnd = Random.Range(0, movealbeTiles.Count - 1);
+                            end = movealbeTiles[rnd];
+                            path = PathFinder.Inst.FindPath(start, end);
+
+                        } while (Vector2Int.Distance(my_Pos, end.gridPos) < 3.0f && path.Count == 0);
+
+                        MoveByPath(path, () => is_done = true);
+                        while (!is_done)
+                            yield return null;
+                    }
+                    is_done = true;
+
                     break;
             }
 
-            while (!is_done)
-                yield return null;
-
+            
             curAP--;
 
             if (curAP == 10)
             {
+                GetMMInst().InitLayer();
                 GameManager.Inst.ChangeTurn();
                 StopAllCoroutines();
                 turnEnd = true;
+
             }
             yield return null;
         }
@@ -342,20 +443,5 @@ public class BossMonster : Battle
         }
     }
 
-    private void SearchingPlayer( Dictionary <Player,Vector2> close_targets)
-    {
-        foreach (var player in GameManager.Inst.characters)
-        {
-            CharactorProperty info = player.GetComponent<CharactorProperty>();
-            float dist = Vector2Int.Distance(my_Pos, info.my_Pos);
-            float agro = info.Agro;
-            
-            if (info.myType == OB_TYPES.PLAYER &&  dist < searchLenght)
-            {
-                close_targets.Add(player.GetComponent<Player>(), new Vector2(dist, agro));
-                targetList.Add(info);
-            }
-        }
-    }
-    
+   
 }

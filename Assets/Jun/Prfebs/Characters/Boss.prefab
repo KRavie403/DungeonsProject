@@ -125,10 +125,9 @@ GameObject:
   - component: {fileID: 6359686612413033023}
   - component: {fileID: 738821168}
   - component: {fileID: 1344118261}
-  - component: {fileID: 1294546649}
   m_Layer: 11
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,7 +162,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Agro: 5
-  skilList: []
+  skilList:
+  - {fileID: 11400000, guid: e485fa108165322479f21d3bc394d8e8, type: 2}
+  - {fileID: 11400000, guid: b8c4009f01201da439265239ed334cd4, type: 2}
+  - {fileID: 11400000, guid: 1c7f2ce5255e8684d9d08d3eae135f09, type: 2}
   my_Sprite: {fileID: 0}
   myType: 1
   my_Pos: {x: 0, y: 0}
@@ -171,8 +173,8 @@ MonoBehaviour:
   _curHP: -100
   my_Size: 1
   _mySize: 1
-  MoveSpeed: 1
-  RotSpeed: 35
+  MoveSpeed: 5
+  RotSpeed: 180
   OrgAttackPower: 10
   AttackPower: 10
   OrgDeffencePower: 10
@@ -181,12 +183,15 @@ MonoBehaviour:
   Speed: 1
   _curActionPoint: 0
   _bfState: 0
-  _curState: 0
+  _curState: -99996
   findPath: 0
   expendedPos: []
   _bossHPUI: {fileID: 0}
-  searchLenght: 10
-  attackLenght: 5
+  searchLength: 10
+  attackLength: 5
+  targetList: []
+  currSkill: {fileID: 0}
+  movealbeTiles: []
 --- !u!54 &1344118261
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -203,43 +208,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &1294546649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5510757949259109818}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39ab96f9a9680a449a32c1ea67c67940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickMask:
-    serializedVersion: 2
-    m_Bits: 776
-  clickToMove:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 738821168}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: Picked
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  clickToInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  clickToSkill:
-    m_PersistentCalls:
-      m_Calls: []
-  path: []
 --- !u!1 &8404458388881466845
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,9 @@
       <workItem from="1684753875416" duration="2000" />
       <workItem from="1684939095017" duration="2987000" />
       <workItem from="1684974681584" duration="28254000" />
-      <workItem from="1685062088102" duration="5427000" />
+      <workItem from="1685062088102" duration="6021000" />
+      <workItem from="1685171441463" duration="606000" />
+      <workItem from="1685188138101" duration="718000" />
     </task>
     <servers />
   </component>
@@ -75,7 +77,7 @@
               <option value="7620" />
             </startOffsets>
             <endOffsets>
-              <option value="7653" />
+              <option value="7636" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />

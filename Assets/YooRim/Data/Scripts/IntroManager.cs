@@ -6,24 +6,12 @@ using UnityEngine.SceneManagement;
 public class IntroManager : Singleton<IntroManager> //UI관련??메인타이틀??
 {
     public GameObject StartPanel;
-    public GameObject IntroPanel;
     public GameObject MapPanel;
     public GameObject CharacterPanel;
     public GameObject Settings;
     public GameObject CharacterSet;
     public GameObject darkImg;
 
-    void Start()
-    {
-        StartCoroutine(DelayTime(4));
-    }
-
-    IEnumerator DelayTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        IntroPanel.SetActive(false);
-        StartPanel.SetActive(true);
-    }
 
     public void OpenSettingsMenu() //Settings
     {
@@ -33,16 +21,6 @@ public class IntroManager : Singleton<IntroManager> //UI관련??메인타이틀??
     public void CloseSettingsMenu()
     {
         Settings.SetActive(false);
-    }
-
-    public void OpenGraphicSettingMenu()
-    {
-
-    }
-
-    public void CloseGraphicSettingMenu()
-    {
-
     }
 
     public void OpenStartMenu() //Start

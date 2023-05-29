@@ -19,10 +19,12 @@ public class SceneLoader : Singleton<SceneLoader>
 
     IEnumerator Loading(int i)
     {
-        yield return SceneManager.LoadSceneAsync(2);
+        yield return SceneManager.LoadSceneAsync(4);
         SceneLoaderText.Inst.Setting(i);
         Slider loadingSlider = FindAnyObjectByType<Slider>();  
+
         AsyncOperation op = SceneManager.LoadSceneAsync(i);     //return AsyncOperation operation;
+        
         op.allowSceneActivation = false;    //씬 로딩이 끝나면 바로 해당 씬을 바로 활성화
 
         while (!op.isDone)
@@ -35,8 +37,12 @@ public class SceneLoader : Singleton<SceneLoader>
             {
                 op.allowSceneActivation = true;
             }
-            yield return new WaitForSeconds(0.5f);
+            //yield return new WaitForSeconds(0.5f);
 
         }
+
+
+
     }
+
 }

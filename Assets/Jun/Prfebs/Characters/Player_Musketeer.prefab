@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 1444895744509276904}
   m_Layer: 6
   m_Name: Player_Musketeer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,11 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a4a9c85f82832046b8f3ba3c653e873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Aggro: 5
+  Agro: 5
   skilList: []
   my_Sprite: {fileID: 21300000, guid: 73ae470741602774d895db3dfacd869d, type: 3}
   myType: 0
-  jclass: 1
   my_Pos: {x: 0, y: 0}
   MaxHP: 100
   _curHP: -100

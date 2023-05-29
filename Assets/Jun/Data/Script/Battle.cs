@@ -20,8 +20,9 @@ public abstract class Battle : CharactorMovement
             case SkillSet.SkillType.Directing:
                 if (skill.Effect != null)
                 {
-                    obj = Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), Quaternion.identity);
-                    obj.transform.Rotate(dir);
+                    Quaternion model = transform.Find("Model").GetComponent<Transform>().rotation;
+                    obj = Instantiate(skill.Effect, MapManager.Inst.tiles[Indexs[0]].transform.position + new Vector3(0.5f, 0, 0.5f), model);
+                    
                 }
                 foreach (var i in Indexs)
                 {

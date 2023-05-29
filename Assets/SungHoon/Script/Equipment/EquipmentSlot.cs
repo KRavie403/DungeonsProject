@@ -57,7 +57,9 @@ public class EquipmentSlot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         myEquipment = GetComponentInParent<Equipment>();
+        myInventory =myEquipment.myInventory;
     }
 
     // Update is called once per frame
