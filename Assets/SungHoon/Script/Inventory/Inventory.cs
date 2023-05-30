@@ -82,7 +82,7 @@ public class Inventory : MonoBehaviour
                     curEquipment.gameObject.SetActive(false);
                     curEquipment.parent.gameObject.SetActive(false);
                     curInventory.gameObject.SetActive(false);
-                    curIndex++;
+                    //curIndex++;
                     if ((orgPlayer == null))
                     {
                         curIndex = 0;
@@ -121,6 +121,8 @@ public class Inventory : MonoBehaviour
         {
             curEquipment.parent.gameObject.SetActive(true);
             curEquipment.gameObject.SetActive(true);
+            UI_Manager.Inst.StateUpdate(GameManager.Inst.curCharacter);
+
         }
         else
         {

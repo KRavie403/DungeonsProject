@@ -16,7 +16,10 @@ public class SceneLoader : Singleton<SceneLoader>
         //메모리 중요( 중간 로딩 씬 필요 why : 씬 로딩시 이전 씬과 이후 씬의 메모리가 한 순간 같이 생기는 경우가 발생하기 때문)
 
     }
-
+    public void EndingScene()
+    {
+        SceneManager.LoadSceneAsync(5);
+    }
     IEnumerator Loading(int i)
     {
         yield return SceneManager.LoadSceneAsync(4);

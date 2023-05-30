@@ -62,6 +62,8 @@ public class UI_Manager : Singleton<UI_Manager>
 
             if (player.myType == OB_TYPES.PLAYER)
             {
+
+                CharStatus.Inst.name.text = $"{player.name}";
                 CharStatus.Inst.ATT.text = $"{player.AttackPower}";
                 CharStatus.Inst.DFF.text = $"{player.DeffencePower}";
                 CharStatus.Inst.SPD.text = $"{player.Speed}";

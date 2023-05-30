@@ -26,6 +26,7 @@ public class BossMonster
     Queue<Senario> senarios;
     private Senario attackScenario;
     private Senario moveScenario;
+    private Senario tempScenario;
 
     void Start()
     {
@@ -39,7 +40,12 @@ public class BossMonster
         
         attackScenario = new Senario(STATE.ATTACK, null, null);
         senarios.Enqueue(attackScenario);
+        senarios.Enqueue(attackScenario);
 
+        tempScenario = new Senario(STATE.NONE, null, null);
+        senarios.Enqueue(tempScenario);
+        senarios.Enqueue(tempScenario);
+        senarios.Enqueue(tempScenario);
 
     }
     public void PlayerSetting()
@@ -174,6 +180,7 @@ public class BossMonster
     }
     public void OnCastingSkill(Vector2Int target, Vector2Int[] targets, UnityAction done = null)
     {
+        myAnim.SetTrigger("Cast");
         if(GetMMInst().tiles.ContainsKey(target))
             StartCoroutine(CastingSkill(GetMMInst().tiles[target].transform.position, targets, done));
     }
@@ -186,15 +193,8 @@ public class BossMonster
             yield return null;
         }
 
-        foreach (var index in targets)
-        {
-            GameObject target = MapManager.Inst.tiles[index].GetComponent<TileStatus>().OnMyTarget();
+        StartCoroutine(Damaging(currSkill, currSkill.Damage, targets));
 
-            if (target != null && target.GetComponent<Player>() != null)
-            {
-                Damaging(currSkill, currSkill.Damage, currSkill.AttackIndex.ToArray());
-            }
-        }
         done?.Invoke();
     }
     public void OnAttack(Vector2Int tile)
@@ -268,13 +268,6 @@ public class BossMonster
                     OnCastingSkill(close_targets.First().Value, tiles.ToArray(), () => is_done = true);
                     while(!is_done)
                     {
-                        if (curAP == ActionPoint || cur_senario.targettile.gridPos == my_Pos)
-                        {
-                            senarios.Dequeue();
-                            cur_senario = senarios.Peek();
-                            Debug.Log($"senario Count : {senarios.Count}");
-                        }
-
                         yield return null;
                     }
                     break;
@@ -340,12 +333,20 @@ public class BossMonster
     IEnumerator TakingDamge(float dmg)
     {
         float target = curHP - (dmg - DeffencePower);
+        myAnim.SetTrigger("Hit");
 
         while (!Mathf.Approximately(curHP, target))
         {
             curHP = Mathf.Lerp(curHP, target, Time.deltaTime);
             _bossHPUI.value = curHP / MaxHP;
+                
             yield return null;
+        }
+        if (Mathf.Approximately(curAP, 0.0f))
+        {
+            myAnim.SetTrigger("Dead");
+            yield return new WaitForSeconds(4.5f);
+            SceneLoader.Inst.EndingScene();
         }
     }
     IEnumerator Searching(UnityAction done = null)

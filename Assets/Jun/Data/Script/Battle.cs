@@ -12,7 +12,7 @@ public abstract class Battle : CharactorMovement
         Vector3 dir = MapManager.Inst.tiles[Indexs[0]].transform.position - this.transform.position;
         dir.Normalize();
 
-        GameObject obj;
+        GameObject obj = new GameObject();
 
         //effect 재생
         switch (skill.myType)
@@ -119,8 +119,9 @@ public abstract class Battle : CharactorMovement
                 }
                 break;
         }
-
-        yield return null;
+        
+        yield return new WaitForSeconds(2.0f);
+        Destroy(obj);
         done?.Invoke();
 
     }

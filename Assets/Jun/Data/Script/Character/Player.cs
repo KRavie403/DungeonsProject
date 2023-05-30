@@ -216,6 +216,7 @@ public class Player : Battle
 
     protected override void TakeDamage(float dmg)
     {
+        myAnim.SetTrigger("Damaged");
         Mathf.Lerp(curHP, curHP - dmg, Time.deltaTime);
         Debug.Log($"Get Damage, Current HP : {curHP}");
     }
