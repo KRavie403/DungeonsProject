@@ -36,8 +36,12 @@ public class SceneLoader : Singleton<SceneLoader>
             if (Mathf.Approximately(loadingSlider.value, 1.0f))
             {
                 op.allowSceneActivation = true;
+                if (i == 2 || i == 3)
+                {
+                    yield return new WaitForSeconds(1.0f);
+                    GameManager.Inst.GameStart();
+                }
             }
-            //yield return new WaitForSeconds(0.5f);
 
         }
 

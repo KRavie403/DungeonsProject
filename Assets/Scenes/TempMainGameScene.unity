@@ -71364,7 +71364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1174030166
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78121,8 +78121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25baf1283fb991469c9cceba1a7cd78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
-  slotParent: {fileID: 2020333356}
+  slotParent:
+  - {fileID: 0}
   slots:
   - {fileID: 2122156897}
   - {fileID: 149023537}
@@ -78134,9 +78134,15 @@ MonoBehaviour:
   - {fileID: 1148015026}
   myObj: {fileID: 0}
   myPlayer: {fileID: 0}
+  orgPlayer: {fileID: 0}
   myItemDB: {fileID: 11400000, guid: 30f61b3b0cef5fa47b50483ded1b9637, type: 2}
   myEquipment: {fileID: 0}
+  curEquipment: {fileID: 0}
+  curInventory: {fileID: 0}
+  myEquipmentParent: []
   slotsIndex: []
+  myItemList: []
+  curIndex: 0
 --- !u!1 &1267466379
 GameObject:
   m_ObjectHideFlags: 0
@@ -88885,6 +88891,7 @@ MonoBehaviour:
   TPUI: {fileID: 0}
   ChestUI: {fileID: 0}
   MonsterUI: {fileID: 493968503}
+  CharStatusUI: {fileID: 0}
   TurnSystem: {fileID: 834339909}
   skillSlots:
   - {fileID: 1903974371}
@@ -88892,6 +88899,8 @@ MonoBehaviour:
   - {fileID: 906971832}
   - {fileID: 694744469}
   currentActionPoint: {fileID: 1575408379}
+  HealthPoint: {fileID: 0}
+  HealthText: {fileID: 0}
   skill_Count: 0
 --- !u!156049354 &1447946251
 Grid:
@@ -99186,6 +99195,9 @@ MonoBehaviour:
   crashMask:
     serializedVersion: 2
     m_Bits: 1024
+  GroundMask:
+    serializedVersion: 2
+    m_Bits: 0
   tileMat: {fileID: 2100000, guid: 3bbe6b640ca7ba64d9663b2f85e31c09, type: 2}
   LBLocation: {x: 0, y: 0, z: 0}
 --- !u!4 &1610542076

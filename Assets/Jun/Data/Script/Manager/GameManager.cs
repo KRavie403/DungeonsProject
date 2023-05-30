@@ -41,7 +41,6 @@ public class GameManager : Singleton<GameManager>
         characters.Add(obj);
 
         UI_Manager.Inst.GameStart();
-        UI_Manager.Inst.StateUpdate(curCharacter);
         Main_Cam.enabled = true;
         Main_Cam.SetCam(0);
 
@@ -49,11 +48,13 @@ public class GameManager : Singleton<GameManager>
         {
             characters[0].GetComponent<Player>().ChangeState(STATE.ACTION);
             CurrentSkill();
+            UI_Manager.Inst.StateUpdate(curCharacter);
+
         }
 
 
     }
-    
+
     //Player
     public void OnMove()
     {

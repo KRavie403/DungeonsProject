@@ -11,24 +11,18 @@ public class Teleport : MonoBehaviour
     public GameObject TPEffect;
     void Start()
     {
-        //Create_obj_System.main_teleport.teleporters.Add(this);
-        
 
+        Ray ray = new Ray(transform.position + new Vector3(0,0.5f,0), new Vector3(0, -1, 0));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 10.0f, pickMask))
+        {
+            pos = MapManager.Inst.GetTileIndex(hit.transform.gameObject);
+            MapManager.Inst.tiles[pos].my_target = this.gameObject;
+            MapManager.Inst.tiles[pos].my_obj = OB_TYPES.TELEPORT;
+        }
         Setting();
     }
-    void Update()
-    {
-        
-    }
-    private void OnTriggerEnter(Collider other) 
-    {
-        if ((1 << other.gameObject.layer & pickMask) != 0)
-        {
-            pos = MapManager.Inst.GetTileIndex(other.gameObject);
-            
-            this.GetComponent<CapsuleCollider>().isTrigger = false;
-        }
-    }
+
     Vector3 mypos = Vector3.zero;
     int x = 0, y = 0;
     

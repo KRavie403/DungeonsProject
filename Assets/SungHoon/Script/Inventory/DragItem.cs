@@ -15,23 +15,14 @@ public class DragItem : MonoBehaviour/*,IBeginDragHandler, IDragHandler, IEndDra
     {
         get; private set;
     }
-    private void OnValidate()
-    {
-        mySlot = GetComponentInParent<Slot>();
-    }
     private void Start()
     {
+        mySlot = GetComponentInParent<Slot>();
+
         myIndex = mySlot.myInventory.slotsIndex.IndexOf(mySlot);
         orgParent = transform.parent;
     }
-    private void Update()
-    {
-        if (orgParent != null)
-        {
-            mySlot = GetComponentInParent<Slot>();
-            
-        }   
-    }
+
     //public void OnBeginDrag(PointerEventData eventData)
     //{
     //    dragOffset = (Vector2)transform.position - eventData.position;

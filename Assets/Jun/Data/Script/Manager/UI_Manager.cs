@@ -42,18 +42,35 @@ public class UI_Manager : Singleton<UI_Manager>
     public void ShowStatusInven()
     {
         StateUpdate(GameManager.Inst.curCharacter);
+        
+
         if (CharStatusUI.gameObject.activeSelf == false)
-            CharStatusUI.gameObject.SetActive(true);
-        else    CharStatusUI.gameObject.SetActive(false);
+                CharStatusUI.gameObject.SetActive(true);
+            else CharStatusUI.gameObject.SetActive(false);
     }
     public void StateUpdate(int p)
     {
-        currentActionPoint.fillAmount = GameManager.Inst.characters[p].GetComponent<CharactorMovement>().CheckAP() 
-            / GameManager.Inst.characters[p].GetComponent<CharactorProperty>().ActionPoint;
-        HealthPoint.fillAmount = GameManager.Inst.characters[p].GetComponent<CharactorMovement>()._curHP
-            / GameManager.Inst.characters[p].GetComponent<CharactorProperty>().MaxHP;
-        HealthText.text = $"{GameManager.Inst.characters[p].GetComponent<CharactorMovement>()._curHP}/ {GameManager.Inst.characters[p].GetComponent<CharactorProperty>().MaxHP}";
+        CharactorProperty player = GameManager.Inst.characters[p].GetComponent<CharactorProperty>();
 
+        if (player != null)
+        {
+            currentActionPoint.fillAmount = player._curActionPoint
+                / player.ActionPoint;
+            HealthPoint.fillAmount = player._curHP
+                / player.MaxHP;
+            HealthText.text = $"{player._curHP}/ {player.MaxHP}";
+
+            if (player.myType == OB_TYPES.PLAYER)
+            {
+                CharStatus.Inst.ATT.text = $"{player.AttackPower}";
+                CharStatus.Inst.DFF.text = $"{player.DeffencePower}";
+                CharStatus.Inst.SPD.text = $"{player.Speed}";
+                CharStatus.Inst.HP.text = $"{player._curHP}/{player.MaxHP}";
+                for (int i = 0; i < 4; i++)
+                    CharStatus.Inst.skills[i].GetComponent<Image>().sprite = player.skilList[i].MySprite;
+
+            }
+        }
     }
     public void AddPlayer(Sprite _spt)
     {

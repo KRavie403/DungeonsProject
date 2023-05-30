@@ -158,7 +158,7 @@ public abstract class CharactorMovement : CharactorProperty
     }
     IEnumerator MovingByPath(List<TileStatus> path, UnityAction arrive = null)
     {
-        //myAnim.SetFloat("Speed", MoveSpeed);
+        myAnim.SetBool("Move", true);
         GetMMInst().tiles[my_Pos].is_blocked = false;
 
         Vector2Int dest_pos = my_Pos;
@@ -206,7 +206,7 @@ public abstract class CharactorMovement : CharactorProperty
                     GetMMInst().tiles[my_Pos + new Vector2Int(i, j)].is_blocked = true;
                 }
         }
-        //myAnim.SetFloat("Speed", 0);
+        myAnim.SetBool("Move", false);
         arrive?.Invoke();
 
     }
